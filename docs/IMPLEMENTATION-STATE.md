@@ -397,6 +397,41 @@ See [SHOPIFY-NAVIGATION.md](./SHOPIFY-NAVIGATION.md) for full link map and page 
 
 Images are stored in theme `assets/` and deploy with the theme. Upload to **Shopify Admin → Content → Files** is optional and was not performed via API (theme auth only).
 
+## Production release
+
+- Production commit: `25d99cf54ab5d991123d3c8036f640df3cb4533c`
+- Live theme ID: `144115499092`
+- Live theme name: Boat O'Craigo - Live
+- Deployment date: 2026-07-14
+- Staging merged to main: Yes
+- Main pushed to GitHub: Yes
+- Main pushed to live theme: Yes
+- Live backup path: `C:\workspace\dev-store\boat-o-craigo-live-backup-20260714-1725`
+
+### Page template assignments
+
+| Page | Template suffix | Page ID | Verified |
+|------|-----------------|---------|----------|
+| Wine Club | `wine-club` | `gid://shopify/Page/111877914708` | Yes |
+| What's On | `whats-on` | `gid://shopify/Page/111877980244` | Yes |
+| Visit | `visit` | `gid://shopify/Page/111877947476` | Yes |
+| Book Now | `book-now` | `gid://shopify/Page/111878045780` | Yes |
+| About | `about` | `gid://shopify/Page/111878013012` | Yes |
+| Contact | `contact` | `gid://shopify/Page/111871950932` | Yes |
+
+### Default templates
+
+- Homepage → `index`
+- Collection → `collection` (`boc-main-collection`)
+- Product → `product` (`boc-main-product`)
+
+### Pending post-launch
+
+- Legacy URL redirects (see promote-live-deploy task list)
+- Collection Search & Discovery filter configuration in Admin
+- Product metafield population QA on live
+- Full responsive/commerce smoke testing on production
+
 ## Next approved templates
 
 - Customer Account

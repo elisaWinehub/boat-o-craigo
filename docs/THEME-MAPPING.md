@@ -13,6 +13,8 @@ Date confirmed: 2026-07-14
 
 ## Production
 
-- Theme name: Horizon
+- Theme name: Boat O'Craigo - Live
 - Theme ID: 144115499092
 - Status: Live
+- Production commit: 25d99cf54ab5d991123d3c8036f640df3cb4533c
+- Last deployment: 2026-07-14

@@ -1,0 +1,38 @@
+query PageTemplates {
+  wineClub: page(id: "gid://shopify/Page/111877914708") {
+    id
+    handle
+    title
+    templateSuffix
+  }
+  whatsOn: page(id: "gid://shopify/Page/111877980244") {
+    id
+    handle
+    title
+    templateSuffix
+  }
+  visit: page(id: "gid://shopify/Page/111877947476") {
+    id
+    handle
+    title
+    templateSuffix
+  }
+  bookNow: page(id: "gid://shopify/Page/111878045780") {
+    id
+    handle
+    title
+    templateSuffix
+  }
+  about: page(id: "gid://shopify/Page/111878013012") {
+    id
+    handle
+    title
+    templateSuffix
+  }
+  contact: page(id: "gid://shopify/Page/111871950932") {
+    id
+    handle
+    title
+    templateSuffix
+  }
+}

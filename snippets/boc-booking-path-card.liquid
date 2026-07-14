@@ -1,0 +1,48 @@
+{%- doc -%}
+  Renders a booking pathway card.
+
+  @param {object} block - Pathway block
+  @param {string} widget_anchor - Booking widget anchor ID
+{%- enddoc -%}
+
+{%- liquid
+  assign action = block.settings.link_action | default: 'scroll_widget'
+  assign booking_type = block.settings.booking_experience | default: 'general'
+  assign card_href = '#'
+  assign is_external = false
+  assign open_new_tab = block.settings.open_new_tab
+
+  if action == 'scroll_widget'
+    assign card_href = '#' | append: widget_anchor
+  elsif action == 'url' and block.settings.url != blank
+    assign card_href = block.settings.url
+    assign is_external = true
+  elsif action == 'email' and block.settings.email != blank
+    assign card_href = 'mailto:' | append: block.settings.email
+    assign is_external = true
+  endif
+-%}
+
+<a
+  href="{{ card_href }}"
+  class="boc-booking-pathways__card"
+  style="--boc-bk-path-bg: {{ block.settings.background_color }}; --boc-bk-path-bg-hover: {{ block.settings.hover_background_color }}; --boc-bk-path-text: {{ block.settings.text_color }}; --boc-bk-path-text-hover: {{ block.settings.hover_text_color }};"
+  {% if action == 'scroll_widget' %}
+    data-boc-booking-scroll
+    data-boc-booking-action="open-booking"
+    data-boc-booking-type="{{ booking_type }}"
+    data-boc-booking-provider="now-book-it"
+  {% endif %}
+  {% if is_external and open_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}
+  {{ block.shopify_attributes }}
+>
+  {%- if block.settings.eyebrow != blank -%}<span class="boc-eyebrow">{{ block.settings.eyebrow }}</span>{%- endif -%}
+  {%- if block.settings.heading != blank -%}<h3>{{ block.settings.heading }}</h3>{%- endif -%}
+  {%- if block.settings.description != blank -%}<p>{{ block.settings.description }}</p>{%- endif -%}
+  {%- if block.settings.link_label != blank -%}
+    <span class="boc-home-text-link">
+      {{ block.settings.link_label }}
+      {%- if is_external and open_new_tab -%}<span class="visually-hidden"> (opens in a new tab)</span>{%- endif -%}
+    </span>
+  {%- endif -%}
+</a>

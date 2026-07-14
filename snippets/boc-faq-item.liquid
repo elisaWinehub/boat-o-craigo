@@ -8,10 +8,15 @@
   @param {string} question_color - Question text colour
   @param {string} answer_color - Answer text colour
   @param {string} icon_color - Plus/minus icon colour
+  @param {string} [namespace] - wine-club (default) or booking
 {%- enddoc -%}
 
 {%- liquid
-  assign item_id = 'boc-faq-' | append: section_id | append: '-' | append: block.id
+  assign faq_prefix = 'boc-wine-club-faq'
+  if namespace == 'booking'
+    assign faq_prefix = 'boc-booking-faq'
+  endif
+  assign item_id = faq_prefix | append: '-' | append: section_id | append: '-' | append: block.id
   assign open_class = ''
   if is_open
     assign open_class = ' is-open'
@@ -19,30 +24,30 @@
 -%}
 
 <div
-  class="boc-wine-club-faq__item{{ open_class }}"
+  class="{{ faq_prefix }}__item{{ open_class }}"
   style="--boc-faq-divider: {{ divider_color }}; --boc-faq-question: {{ question_color }}; --boc-faq-answer: {{ answer_color }}; --boc-faq-icon: {{ icon_color }};"
   {{ block.shopify_attributes }}
 >
-  <h3 class="boc-wine-club-faq__question">
+  <h3 class="{{ faq_prefix }}__question">
     <button
       type="button"
-      class="boc-wine-club-faq__trigger"
+      class="{{ faq_prefix }}__trigger"
       aria-expanded="{% if is_open %}true{% else %}false{% endif %}"
       aria-controls="{{ item_id }}-panel"
       id="{{ item_id }}-trigger"
     >
-      <span class="boc-wine-club-faq__question-text">{{ block.settings.question }}</span>
-      <span class="boc-wine-club-faq__icon" aria-hidden="true">{% if is_open %}−{% else %}+{% endif %}</span>
+      <span class="{{ faq_prefix }}__question-text">{{ block.settings.question }}</span>
+      <span class="{{ faq_prefix }}__icon" aria-hidden="true">{% if is_open %}−{% else %}+{% endif %}</span>
     </button>
   </h3>
   <div
     id="{{ item_id }}-panel"
-    class="boc-wine-club-faq__panel"
+    class="{{ faq_prefix }}__panel"
     role="region"
     aria-labelledby="{{ item_id }}-trigger"
     {% unless is_open %}hidden{% endunless %}
   >
-    <div class="boc-wine-club-faq__answer rte">
+    <div class="{{ faq_prefix }}__answer rte">
       {{ block.settings.answer }}
     </div>
   </div>

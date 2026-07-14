@@ -1,0 +1,104 @@
+{%- liquid
+  assign section_classes = 'boc-booking-section boc-booking-pathways boc-booking-section--standard'
+  unless section.settings.section_enabled
+    assign section_classes = section_classes | append: ' boc-booking-section--disabled'
+  endunless
+  unless section.settings.show_desktop
+    assign section_classes = section_classes | append: ' boc-booking-section--hide-desktop'
+  endunless
+  unless section.settings.show_tablet
+    assign section_classes = section_classes | append: ' boc-booking-section--hide-tablet'
+  endunless
+  unless section.settings.show_mobile
+    assign section_classes = section_classes | append: ' boc-booking-section--hide-mobile'
+  endunless
+  assign widget_anchor = section.settings.widget_anchor | default: 'boc-booking-widget'
+-%}
+
+<section
+  id="{{ section.settings.section_anchor_id | default: 'boc-booking-pathways' }}"
+  class="{{ section_classes }}"
+  data-boc-booking
+  style="
+    --boc-bk-bg: {{ section.settings.background_color }};
+    --boc-bk-pt-d: {{ section.settings.padding_top_desktop }}px;
+    --boc-bk-pb-d: {{ section.settings.padding_bottom_desktop }}px;
+    --boc-bk-pt-t: {{ section.settings.padding_top_tablet }}px;
+    --boc-bk-pb-t: {{ section.settings.padding_bottom_tablet }}px;
+    --boc-bk-pt-m: {{ section.settings.padding_top_mobile }}px;
+    --boc-bk-pb-m: {{ section.settings.padding_bottom_mobile }}px;
+    --boc-bk-path-cols-d: {{ section.settings.columns_desktop }};
+  "
+>
+  <div class="boc-booking-section__inner">
+    <div class="boc-booking-pathways__intro">
+      {%- if section.settings.eyebrow != blank -%}<span class="boc-eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+      {%- if section.settings.heading != blank -%}<h2 class="boc-booking-section__heading">{{ section.settings.heading }}</h2>{%- endif -%}
+      {%- if section.settings.body != blank -%}<p>{{ section.settings.body }}</p>{%- endif -%}
+    </div>
+    <div class="boc-booking-pathways__grid">
+      {%- for block in section.blocks -%}
+        {% render 'boc-booking-path-card', block: block, widget_anchor: widget_anchor %}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "BOC — Booking Pathways",
+  "tag": "section",
+  "class": "boc-booking-pathways-section",
+  "max_blocks": 6,
+  "settings": [
+    { "type": "checkbox", "id": "section_enabled", "label": "Enable section", "default": true },
+    { "type": "checkbox", "id": "show_desktop", "label": "Show on desktop", "default": true },
+    { "type": "checkbox", "id": "show_tablet", "label": "Show on tablet", "default": true },
+    { "type": "checkbox", "id": "show_mobile", "label": "Show on mobile", "default": true },
+    { "type": "text", "id": "section_anchor_id", "label": "Section anchor ID", "default": "boc-booking-pathways" },
+    { "type": "text", "id": "widget_anchor", "label": "Booking widget anchor", "default": "boc-booking-widget" },
+    { "type": "color", "id": "background_color", "label": "Background", "default": "#FFFFFF" },
+    { "type": "range", "id": "columns_desktop", "label": "Desktop columns", "min": 1, "max": 4, "step": 1, "default": 3 },
+    { "type": "range", "id": "padding_top_desktop", "label": "Desktop padding top", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 120 },
+    { "type": "range", "id": "padding_bottom_desktop", "label": "Desktop padding bottom", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 120 },
+    { "type": "range", "id": "padding_top_tablet", "label": "Tablet padding top", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 96 },
+    { "type": "range", "id": "padding_bottom_tablet", "label": "Tablet padding bottom", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 96 },
+    { "type": "range", "id": "padding_top_mobile", "label": "Mobile padding top", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 80 },
+    { "type": "range", "id": "padding_bottom_mobile", "label": "Mobile padding bottom", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 80 },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Choose your visit" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "One booking point, three clear pathways." },
+    { "type": "textarea", "id": "body", "label": "Body", "default": "Select the experience that best matches your visit. Wine tastings and restaurant bookings can be reserved online, while larger groups should contact the team directly." }
+  ],
+  "blocks": [
+    {
+      "type": "pathway",
+      "name": "Pathway card",
+      "settings": [
+        { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Cellar door" },
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Wine Tastings" },
+        { "type": "textarea", "id": "description", "label": "Description" },
+        { "type": "text", "id": "link_label", "label": "Link label", "default": "Book a tasting" },
+        { "type": "select", "id": "link_action", "label": "Link action", "options": [{"value":"scroll_widget","label":"Scroll to booking widget"},{"value":"url","label":"External URL"},{"value":"email","label":"Email"}],"default": "scroll_widget" },
+        { "type": "text", "id": "booking_experience", "label": "Booking experience value", "default": "wine-tasting" },
+        { "type": "url", "id": "url", "label": "URL" },
+        { "type": "text", "id": "email", "label": "Email address" },
+        { "type": "checkbox", "id": "open_new_tab", "label": "Open in new tab", "default": false },
+        { "type": "color", "id": "background_color", "label": "Background", "default": "#FFFFFF" },
+        { "type": "color", "id": "hover_background_color", "label": "Hover background", "default": "#FAF8F5" },
+        { "type": "color", "id": "text_color", "label": "Text colour", "default": "#212121" },
+        { "type": "color", "id": "hover_text_color", "label": "Hover text colour", "default": "#212121" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "BOC — Booking Pathways",
+      "blocks": [
+        { "type": "pathway", "settings": { "eyebrow": "Cellar door", "heading": "Wine Tastings", "description": "A guided tasting of current releases and selected estate wines. Bookings are recommended.", "link_label": "Book a tasting", "booking_experience": "wine-tasting" } },
+        { "type": "pathway", "settings": { "eyebrow": "Glasshouse", "heading": "Restaurant Dining", "description": "Seasonal food, estate wine and vineyard views for lunch and relaxed afternoon dining.", "link_label": "Reserve a table", "booking_experience": "restaurant" } },
+        { "type": "pathway", "settings": { "eyebrow": "Celebrations", "heading": "Groups of 11+", "description": "Larger groups require a direct enquiry so the team can confirm space, menu options and timing.", "link_label": "Send an enquiry", "link_action": "email", "email": "info@boatocraigo.com.au", "booking_experience": "group" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,27 @@
+mutation CreateRichTextWineMetafields {
+  winemaking_notes: metafieldDefinitionCreate(
+    definition: {
+      namespace: "wine"
+      key: "winemaking_notes"
+      name: "Winemaking Notes"
+      type: "rich_text_field"
+      ownerType: PRODUCT
+    }
+  ) {
+    createdDefinition { key type { name } }
+    userErrors { field message code }
+  }
+
+  ageing_process: metafieldDefinitionCreate(
+    definition: {
+      namespace: "wine"
+      key: "ageing_process"
+      name: "Ageing Process"
+      type: "rich_text_field"
+      ownerType: PRODUCT
+    }
+  ) {
+    createdDefinition { key type { name } }
+    userErrors { field message code }
+  }
+}

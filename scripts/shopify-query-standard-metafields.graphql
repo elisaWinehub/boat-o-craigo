@@ -1,0 +1,14 @@
+query {
+  standardMetafieldDefinitionTemplates(first: 50) {
+    nodes {
+      id
+      name
+      namespace
+      key
+      type {
+        name
+      }
+      ownerTypes
+    }
+  }
+}

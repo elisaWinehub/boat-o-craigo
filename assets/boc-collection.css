@@ -153,13 +153,32 @@
 
 .boc-collection-main { min-width: 0; }
 
-@media (min-width: 1100px) {
-  .boc-collection-page .facets-block-wrapper--vertical {
+@media screen and (min-width: 1100px) {
+  .boc-collection-page .collection-wrapper {
+    --facets-vertical-col-width: 4;
+    display: grid !important;
+    grid-template-columns: 270px minmax(0, 1fr) !important;
+    grid-template-areas: none !important;
+    gap: 48px !important;
+    align-items: start;
+  }
+
+  .boc-collection-page .collection-wrapper > .facets-block-wrapper--vertical {
+    grid-column: 1 !important;
+    grid-row: 1;
     position: sticky;
     top: calc(var(--header-height, var(--boc-header-height, 88px)) + 72px);
     align-self: start;
-    max-width: none;
+    max-height: calc(100vh - var(--header-height, 88px) - 72px);
+    overflow-y: auto;
     width: 100%;
+    min-width: 0;
+  }
+
+  .boc-collection-page .collection-wrapper > .boc-collection-main {
+    grid-column: 2 !important;
+    grid-row: 1;
+    min-width: 0;
   }
 
   .boc-collection-page .facets--vertical {
@@ -169,13 +188,6 @@
 
   .boc-collection-page .facets--vertical .facets__filters-wrapper {
     width: 100%;
-  }
-
-  .boc-collection-page .collection-wrapper {
-    display: grid;
-    grid-template-columns: minmax(260px, 280px) minmax(0, 1fr);
-    gap: 40px;
-    align-items: start;
   }
 }
 
@@ -371,11 +383,18 @@
 }
 
 /* ── Filter sidebar: prevent label truncation ────────────────────── */
-.boc-collection-page .facets--vertical .facets__label,
+/* blocks/filters.liquid compiles a {% stylesheet %} tag that sets
+   .facets__label { white-space: nowrap }. Those styles load after
+   boc-collection.css so !important is required to override them. */
+.boc-collection-page .facets--vertical .facets__label {
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+  word-break: break-word;
+}
+
 .boc-collection-page .facets--vertical .facets__checkbox + span,
-.boc-collection-page .facets--vertical .facets__item label span,
-.boc-collection-page .facets__summary,
-.boc-collection-page .facets--filters-title {
+.boc-collection-page .facets--vertical .facets__item label span {
   white-space: normal;
   overflow: visible;
   text-overflow: clip;
@@ -401,17 +420,20 @@
   flex: 1;
 }
 
-/* ── Product card actions: correct layout ────────────────────────── */
+/* ── Product card actions: stepper + button in one flex row ─────── */
 .boc-product-card--collection .boc-product-card__actions {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: stretch;
   gap: 8px;
   width: 100%;
   margin-top: 12px;
 }
 
-.boc-product-card--collection .boc-product-card__quantity {
+/* Target both class and data-attribute selectors —
+   boc-product-quantity.liquid renders [data-boc-qty] not a class */
+.boc-product-card--collection .boc-product-card__quantity,
+.boc-product-card--collection [data-boc-qty] {
   flex: 1;
   display: grid;
   grid-template-columns: 36px 1fr 36px;
@@ -421,7 +443,9 @@
   background: #fff;
 }
 
-.boc-product-card--collection .boc-product-card__qty-btn {
+.boc-product-card--collection .boc-product-card__qty-btn,
+.boc-product-card--collection [data-boc-qty-minus],
+.boc-product-card--collection [data-boc-qty-plus] {
   height: 100%;
   border: 0;
   background: transparent;
@@ -433,7 +457,8 @@
   justify-content: center;
 }
 
-.boc-product-card--collection .boc-product-card__qty-input {
+.boc-product-card--collection .boc-product-card__qty-input,
+.boc-product-card--collection [data-boc-qty-input] {
   width: 100%;
   text-align: center;
   border: 0;
@@ -445,6 +470,8 @@
   -moz-appearance: textfield;
 }
 
+.boc-product-card--collection [data-boc-qty-input]::-webkit-inner-spin-button,
+.boc-product-card--collection [data-boc-qty-input]::-webkit-outer-spin-button,
 .boc-product-card--collection .boc-product-card__qty-input::-webkit-inner-spin-button,
 .boc-product-card--collection .boc-product-card__qty-input::-webkit-outer-spin-button {
   -webkit-appearance: none;
@@ -464,9 +491,11 @@
 .boc-product-card--collection .boc-product-card__add[disabled] {
   width: 100%;
   flex: 1;
+  flex-shrink: 1;
 }
 
-.boc-product-card--collection .boc-product-card__actions:has(.boc-product-card__add[disabled]) .boc-product-card__quantity {
+.boc-product-card--collection .boc-product-card__actions:has(.boc-product-card__add[disabled]) .boc-product-card__quantity,
+.boc-product-card--collection .boc-product-card__actions:has(.boc-product-card__add[disabled]) [data-boc-qty] {
   display: none;
 }
 

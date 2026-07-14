@@ -34,6 +34,18 @@ Theme IDs: see [THEME-MAPPING.md](./THEME-MAPPING.md)
 - Testimonials
 - Yarra Valley discovery section
 - Final enquiry CTA
+- Visit page template
+- Visit hero
+- Sticky anchor navigation
+- Visit pathway cards
+- Wine tasting section
+- Glasshouse section
+- Menu cards
+- Group booking section
+- Guest reviews
+- Getting Here
+- Tour operators
+- Final booking CTA
 
 ## Global component files
 
@@ -131,6 +143,38 @@ Theme IDs: see [THEME-MAPPING.md](./THEME-MAPPING.md)
 - Replace placeholder testimonials
 - Confirm wedding and private event enquiry routing
 
+## Visit section files
+
+| Section | File |
+|---------|------|
+| Hero | `sections/boc-visit-hero.liquid` |
+| Sticky anchor nav | `sections/boc-visit-anchor-nav.liquid` |
+| Intro | `sections/boc-visit-intro.liquid` |
+| Wine tasting | `sections/boc-visit-tasting.liquid` |
+| Glasshouse | `sections/boc-visit-glasshouse.liquid` |
+| Menus | `sections/boc-visit-menus.liquid` |
+| Group bookings | `sections/boc-visit-groups.liquid` |
+| Guest reviews | `sections/boc-visit-reviews.liquid` |
+| Getting here | `sections/boc-visit-getting-here.liquid` |
+| Final CTA | `sections/boc-visit-final-cta.liquid` |
+| Feature split snippet | `snippets/boc-feature-split.liquid` |
+| Detail list snippet | `snippets/boc-detail-list.liquid` |
+| Menu card snippet | `snippets/boc-menu-card.liquid` |
+| Tour operator snippet | `snippets/boc-tour-operator-card.liquid` |
+| Styles / JS | `assets/boc-visit.css`, `assets/boc-visit.js` |
+| Template | `templates/page.visit.json` |
+| Mockup | `docs/mockups/boat-ocraigo-visit-concept.html` |
+
+**Global components reused:** announcement bar, header, mobile navigation, footer, design tokens, `boc-button`, `boc-responsive-image`, `boc-eyebrow`, `boc-home-text-link`, `boc-testimonial-card`.
+
+**Pending (Visit):**
+- Confirm final tasting details
+- Confirm restaurant hours
+- Confirm food and beverage menu files
+- Confirm booking URLs
+- Confirm tour operator list and logos
+- Replace placeholder reviews
+
 ## Homepage image assets (theme `assets/`)
 
 - `boc-hero-wines.png`
@@ -170,7 +214,6 @@ Images are stored in theme `assets/` and deploy with the theme. Upload to **Shop
 
 - Collection
 - Product
-- Visit
 - About
 - Book Now
 - Contact

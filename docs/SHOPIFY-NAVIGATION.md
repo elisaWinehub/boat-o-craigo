@@ -39,7 +39,7 @@ Assigned in: **Theme Editor → Footer → BOC — Footer**
 |--------|-------|----------|
 | `contact` | Contact | Default page |
 | `wine-club` | Wine Club | `page.wine-club` |
-| `visit` | Visit | Default page |
+| `visit` | Visit | `page.visit` |
 | `whats-on` | What's On | `page.whats-on` |
 | `about` | About | Default page |
 | `book-now` | Book Now | Default page |

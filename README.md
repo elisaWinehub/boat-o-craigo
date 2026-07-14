@@ -102,3 +102,17 @@ See [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) for the complete workflow.
 
 - [Deployment guide](docs/DEPLOYMENT.md)
 - [Theme ID mapping](docs/THEME-MAPPING.md)
+- [Brand & design system](docs/BOAT-O-CRAIGO-DESIGN-SYSTEM.md) — **design source of truth**
+- [Cursor implementation rules](docs/BOAT-O-CRAIGO-CURSOR-RULES.md)
+
+## Design system
+
+All theme development must follow the approved Boat O'Craigo design system before converting mockups into Horizon sections.
+
+**Read before any implementation task:**
+
+- `docs/BOAT-O-CRAIGO-DESIGN-SYSTEM.md`
+- `docs/BOAT-O-CRAIGO-CURSOR-RULES.md`
+- `assets/boc-design-tokens.css`
+
+CSS design tokens are loaded globally via `snippets/stylesheets.liquid`.

@@ -6,19 +6,35 @@
 
 {%- if section.settings.enable_view_toggle -%}
   <div class="boc-collection-view" data-boc-collection-view role="group" aria-label="Product view">
+
     <button
       type="button"
       class="boc-collection-view__btn{% if section.settings.default_view == 'grid' %} is-active{% endif %}"
       data-boc-collection-view-btn="grid"
       aria-pressed="{% if section.settings.default_view == 'grid' %}true{% else %}false{% endif %}"
       aria-label="Grid view"
-    >Grid</button>
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+        <rect x="1" y="1" width="6" height="6" rx="0.5"/>
+        <rect x="9" y="1" width="6" height="6" rx="0.5"/>
+        <rect x="1" y="9" width="6" height="6" rx="0.5"/>
+        <rect x="9" y="9" width="6" height="6" rx="0.5"/>
+      </svg>
+    </button>
+
     <button
       type="button"
       class="boc-collection-view__btn{% if section.settings.default_view == 'list' %} is-active{% endif %}"
       data-boc-collection-view-btn="list"
       aria-pressed="{% if section.settings.default_view == 'list' %}true{% else %}false{% endif %}"
       aria-label="List view"
-    >List</button>
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+        <rect x="1" y="1" width="14" height="3" rx="0.5"/>
+        <rect x="1" y="6.5" width="14" height="3" rx="0.5"/>
+        <rect x="1" y="12" width="14" height="3" rx="0.5"/>
+      </svg>
+    </button>
+
   </div>
 {%- endif -%}

@@ -157,15 +157,25 @@
   font: 400 1.35rem var(--boc-serif);
 }
 
-.boc-collection-view { display: inline-flex; gap: 8px; }
+.boc-collection-view { display: inline-flex; gap: 2px; }
 
 .boc-collection-view__btn {
-  min-height: 40px;
-  padding: 0 14px;
+  width: 40px;
+  height: 40px;
+  padding: 0;
   border: 1px solid var(--boc-line);
   background: var(--boc-white);
   cursor: pointer;
-  font: 500 0.82rem var(--boc-sans);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--boc-slate, #575962);
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.boc-collection-view__btn:hover {
+  border-color: var(--boc-ink, #212121);
+  color: var(--boc-ink, #212121);
 }
 
 .boc-collection-view__btn.is-active,
@@ -173,6 +183,11 @@
   background: var(--boc-ink, #212121);
   border-color: var(--boc-ink, #212121);
   color: var(--boc-white);
+}
+
+.boc-collection-view__btn svg {
+  display: block;
+  flex-shrink: 0;
 }
 
 .boc-collection-page .boc-collection-wrapper {

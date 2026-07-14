@@ -99,9 +99,11 @@
   endif
 
   assign use_ajax_cart = false
-  if card_context == 'collection' and requires_variant_choice == false and section and section.id
+  if product != blank and requires_variant_choice == false
     assign use_ajax_cart = true
   endif
+
+  assign form_section_id = section.id | default: product.id
 -%}
 
 <article class="boc-product-card boc-product-card--{{ card_context }}{% if card_class != blank %} {{ card_class }}{% endif %}">
@@ -140,7 +142,7 @@
         </div>
       {%- elsif use_ajax_cart -%}
         <product-form-component
-          data-section-id="{{ section.id }}"
+          data-section-id="{{ form_section_id }}"
           data-product-id="{{ product.id }}"
           data-product-url="{{ product.url }}"
           on:submit="/handleSubmit"
@@ -165,20 +167,6 @@
             </div>
           {%- endform -%}
         </product-form-component>
-      {%- else -%}
-        {%- form 'product', product, id: form_id, class: 'boc-product-card__form' -%}
-          <input type="hidden" name="id" value="{{ variant_id }}">
-          <div class="boc-product-card__actions">
-            {%- if show_quantity and product_available -%}
-              {% render 'boc-product-quantity', id_prefix: form_id %}
-            {%- else -%}
-              <input type="hidden" name="quantity" value="1">
-            {%- endif -%}
-            <button type="submit" class="boc-btn boc-btn--primary boc-product-card__add" {% unless product_available %}disabled{% endunless %}>
-              {%- if product_available -%}Add to cart{%- else -%}Sold out{%- endif -%}
-            </button>
-          </div>
-        {%- endform -%}
       {%- endif -%}
     {%- elsif show_add_to_cart -%}
       <div class="boc-product-card__actions">

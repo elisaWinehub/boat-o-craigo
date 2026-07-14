@@ -54,6 +54,7 @@
         {%- for product in section.settings.collection.products limit: section.settings.product_limit -%}
           {% render 'boc-product-card',
             product: product,
+            section: section,
             show_vendor: section.settings.show_vendor,
             show_price: section.settings.show_price,
             show_quantity: section.settings.show_quantity,

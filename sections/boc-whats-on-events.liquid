@@ -1,0 +1,132 @@
+{%- liquid
+  assign section_classes = 'boc-whats-on-section boc-whats-on-events boc-whats-on-section--standard'
+  unless section.settings.section_enabled
+    assign section_classes = section_classes | append: ' boc-whats-on-section--disabled'
+  endunless
+  unless section.settings.show_desktop
+    assign section_classes = section_classes | append: ' boc-whats-on-section--hide-desktop'
+  endunless
+  unless section.settings.show_tablet
+    assign section_classes = section_classes | append: ' boc-whats-on-section--hide-tablet'
+  endunless
+  unless section.settings.show_mobile
+    assign section_classes = section_classes | append: ' boc-whats-on-section--hide-mobile'
+  endunless
+
+  assign use_blog = false
+  if section.settings.source == 'blog' and section.settings.blog != blank and section.settings.blog.articles_count > 0
+    assign use_blog = true
+  endif
+-%}
+
+<section
+  id="{{ section.settings.section_anchor_id | default: 'boc-whats-on-events' }}"
+  class="{{ section_classes }}"
+  data-boc-whats-on
+  style="
+    --boc-wo-bg: {{ section.settings.background_color }};
+    --boc-wo-pt-d: {{ section.settings.padding_top_desktop }}px;
+    --boc-wo-pb-d: {{ section.settings.padding_bottom_desktop }}px;
+    --boc-wo-pt-t: {{ section.settings.padding_top_tablet }}px;
+    --boc-wo-pb-t: {{ section.settings.padding_bottom_tablet }}px;
+    --boc-wo-pt-m: {{ section.settings.padding_top_mobile }}px;
+    --boc-wo-pb-m: {{ section.settings.padding_bottom_mobile }}px;
+    --boc-wo-cols-d: {{ section.settings.columns_desktop }};
+    --boc-wo-cols-t: {{ section.settings.columns_tablet }};
+    --boc-wo-card-bg: {{ section.settings.card_background }};
+    --boc-wo-card-border: {{ section.settings.card_border }};
+    --boc-wo-date-bg: {{ section.settings.date_badge_bg }};
+    --boc-wo-date-text: {{ section.settings.date_badge_text }};
+  "
+>
+  <div class="boc-whats-on-section__inner">
+    <div class="boc-whats-on-section__head">
+      <div class="boc-whats-on-section__head-text">
+        {%- if section.settings.eyebrow != blank -%}<span class="boc-eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+        {%- if section.settings.heading != blank -%}<h2 class="boc-whats-on-section__heading">{{ section.settings.heading }}</h2>{%- endif -%}
+      </div>
+      {%- if section.settings.intro_body != blank -%}<p class="boc-whats-on-section__head-aside">{{ section.settings.intro_body }}</p>{%- endif -%}
+    </div>
+    <div class="boc-whats-on-events__grid">
+      {%- if use_blog -%}
+        {%- for article in section.settings.blog.articles limit: section.settings.article_limit -%}
+          {% render 'boc-event-card', article: article, settings: section.settings %}
+        {%- endfor -%}
+      {%- else -%}
+        {%- for block in section.blocks -%}
+          {% render 'boc-event-card', block: block, settings: section.settings %}
+        {%- endfor -%}
+      {%- endif -%}
+    </div>
+    {%- if section.settings.view_all_label != blank -%}
+      <p style="margin-top:32px"><a href="{{ section.settings.view_all_url | default: section.settings.blog.url | default: '#' }}" class="boc-home-text-link">{{ section.settings.view_all_label }}</a></p>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "BOC — WO Events",
+  "tag": "section",
+  "class": "boc-whats-on-events-section",
+  "max_blocks": 9,
+  "settings": [
+    { "type": "checkbox", "id": "section_enabled", "label": "Enable section", "default": true },
+    { "type": "checkbox", "id": "show_desktop", "label": "Show on desktop", "default": true },
+    { "type": "checkbox", "id": "show_tablet", "label": "Show on tablet", "default": true },
+    { "type": "checkbox", "id": "show_mobile", "label": "Show on mobile", "default": true },
+    { "type": "text", "id": "section_anchor_id", "label": "Section anchor ID", "default": "boc-whats-on-events" },
+    { "type": "color", "id": "background_color", "label": "Background", "default": "#FAF8F5" },
+    { "type": "range", "id": "padding_top_desktop", "label": "Desktop padding top", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 120 },
+    { "type": "range", "id": "padding_bottom_desktop", "label": "Desktop padding bottom", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 120 },
+    { "type": "range", "id": "padding_top_tablet", "label": "Tablet padding top", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 96 },
+    { "type": "range", "id": "padding_bottom_tablet", "label": "Tablet padding bottom", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 96 },
+    { "type": "range", "id": "padding_top_mobile", "label": "Mobile padding top", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 80 },
+    { "type": "range", "id": "padding_bottom_mobile", "label": "Mobile padding bottom", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 80 },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Upcoming at Boat O'Craigo" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "What's on." },
+    { "type": "textarea", "id": "intro_body", "label": "Intro", "default": "Seasonal events, vineyard experiences and special occasions." },
+    { "type": "select", "id": "source", "label": "Content source", "options": [{"value":"manual","label":"Manual blocks"},{"value":"blog","label":"Blog articles"}],"default": "manual" },
+    { "type": "blog", "id": "blog", "label": "Blog" },
+    { "type": "range", "id": "article_limit", "label": "Article limit", "min": 1, "max": 9, "step": 1, "default": 3 },
+    { "type": "range", "id": "columns_desktop", "label": "Desktop columns", "min": 1, "max": 4, "step": 1, "default": 3 },
+    { "type": "range", "id": "columns_tablet", "label": "Tablet columns", "min": 1, "max": 3, "step": 1, "default": 2 },
+    { "type": "checkbox", "id": "show_date", "label": "Show date badge", "default": true },
+    { "type": "checkbox", "id": "show_category", "label": "Show category", "default": true },
+    { "type": "checkbox", "id": "show_excerpt", "label": "Show excerpt", "default": true },
+    { "type": "checkbox", "id": "show_cta", "label": "Show CTA", "default": true },
+    { "type": "text", "id": "card_cta_label", "label": "Card CTA label", "default": "View event" },
+    { "type": "color", "id": "card_background", "label": "Card background", "default": "#FFFFFF" },
+    { "type": "color", "id": "card_border", "label": "Card border", "default": "#E8E2D9" },
+    { "type": "color", "id": "date_badge_bg", "label": "Date badge background", "default": "#212121" },
+    { "type": "color", "id": "date_badge_text", "label": "Date badge text", "default": "#FFFFFF" },
+    { "type": "text", "id": "view_all_label", "label": "View all label" },
+    { "type": "url", "id": "view_all_url", "label": "View all URL" }
+  ],
+  "blocks": [
+    {
+      "type": "event",
+      "name": "Event",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Event title" },
+        { "type": "text", "id": "category", "label": "Category", "default": "Event category" },
+        { "type": "textarea", "id": "excerpt", "label": "Excerpt" },
+        { "type": "text", "id": "event_date", "label": "Event date (YYYY-MM-DD)" },
+        { "type": "url", "id": "link", "label": "Link" },
+        { "type": "url", "id": "booking_url", "label": "Booking URL" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "BOC — WO Events",
+      "blocks": [
+        { "type": "event", "settings": { "title": "Sunday Sessions", "category": "Live music · Cellar door", "excerpt": "Slow down with live music, estate wines and a relaxed afternoon overlooking the vines.", "event_date": "2026-07-26" } },
+        { "type": "event", "settings": { "title": "Winter Long Lunch", "category": "Dining · Glasshouse", "excerpt": "A seasonal menu, matched estate wines and an unhurried afternoon in the Glasshouse.", "event_date": "2026-08-15" } },
+        { "type": "event", "settings": { "title": "Spring Release Tasting", "category": "Wine club · New release", "excerpt": "Be among the first to taste the new vintage with the winemaking and cellar door teams.", "event_date": "2026-09-06" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

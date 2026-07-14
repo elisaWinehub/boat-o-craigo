@@ -1,0 +1,81 @@
+{%- liquid
+  assign section_classes = 'boc-whats-on-section boc-whats-on-intro boc-whats-on-section--' | append: section.settings.container_width
+  unless section.settings.section_enabled
+    assign section_classes = section_classes | append: ' boc-whats-on-section--disabled'
+  endunless
+  unless section.settings.show_desktop
+    assign section_classes = section_classes | append: ' boc-whats-on-section--hide-desktop'
+  endunless
+  unless section.settings.show_tablet
+    assign section_classes = section_classes | append: ' boc-whats-on-section--hide-tablet'
+  endunless
+  unless section.settings.show_mobile
+    assign section_classes = section_classes | append: ' boc-whats-on-section--hide-mobile'
+  endunless
+  assign grid_class = 'boc-whats-on-intro__grid'
+  if section.settings.mobile_stack_order == 'copy_first'
+    assign grid_class = grid_class | append: ' boc-whats-on-intro__grid--copy-first'
+  endif
+-%}
+
+<section
+  id="boc-whats-on-intro-{{ section.id }}"
+  class="{{ section_classes }}"
+  data-boc-whats-on
+  style="
+    --boc-wo-bg: {{ section.settings.background_color }};
+    --boc-wo-pt-d: {{ section.settings.padding_top_desktop }}px;
+    --boc-wo-pb-d: {{ section.settings.padding_bottom_desktop }}px;
+    --boc-wo-pt-t: {{ section.settings.padding_top_tablet }}px;
+    --boc-wo-pb-t: {{ section.settings.padding_bottom_tablet }}px;
+    --boc-wo-pt-m: {{ section.settings.padding_top_mobile }}px;
+    --boc-wo-pb-m: {{ section.settings.padding_bottom_mobile }}px;
+    --boc-wo-intro-ratio: {{ section.settings.column_ratio }};
+    --boc-wo-heading: {{ section.settings.heading_color }};
+    --boc-wo-body: {{ section.settings.body_color }};
+  "
+>
+  <div class="boc-whats-on-section__inner">
+    <div class="{{ grid_class }}">
+      <div class="boc-whats-on-intro__heading-col">
+        {%- if section.settings.eyebrow != blank -%}<span class="boc-eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+        {%- if section.settings.heading != blank -%}<h2 class="boc-whats-on-section__heading">{{ section.settings.heading }}</h2>{%- endif -%}
+      </div>
+      <div class="boc-whats-on-intro__copy-col boc-whats-on-intro__copy">
+        {%- if section.settings.lead != blank -%}<p class="boc-whats-on-intro__lead">{{ section.settings.lead }}</p>{%- endif -%}
+        {%- if section.settings.body != blank -%}<div class="rte">{{ section.settings.body }}</div>{%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "BOC — WO Intro",
+  "tag": "section",
+  "class": "boc-whats-on-intro-section",
+  "settings": [
+    { "type": "checkbox", "id": "section_enabled", "label": "Enable section", "default": true },
+    { "type": "checkbox", "id": "show_desktop", "label": "Show on desktop", "default": true },
+    { "type": "checkbox", "id": "show_tablet", "label": "Show on tablet", "default": true },
+    { "type": "checkbox", "id": "show_mobile", "label": "Show on mobile", "default": true },
+    { "type": "select", "id": "container_width", "label": "Container", "options": [{"value":"standard","label":"Standard"},{"value":"narrow","label":"Narrow"},{"value":"full","label":"Full"}],"default": "standard" },
+    { "type": "text", "id": "column_ratio", "label": "Column ratio", "default": "0.8fr 1.2fr" },
+    { "type": "select", "id": "mobile_stack_order", "label": "Mobile stack order", "options": [{"value":"heading_first","label":"Heading first"},{"value":"copy_first","label":"Copy first"}],"default": "heading_first" },
+    { "type": "color", "id": "background_color", "label": "Background", "default": "#FFFFFF" },
+    { "type": "color", "id": "heading_color", "label": "Heading colour", "default": "#212121" },
+    { "type": "color", "id": "body_color", "label": "Body colour", "default": "#575962" },
+    { "type": "range", "id": "padding_top_desktop", "label": "Desktop padding top", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 120 },
+    { "type": "range", "id": "padding_bottom_desktop", "label": "Desktop padding bottom", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 120 },
+    { "type": "range", "id": "padding_top_tablet", "label": "Tablet padding top", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 96 },
+    { "type": "range", "id": "padding_bottom_tablet", "label": "Tablet padding bottom", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 96 },
+    { "type": "range", "id": "padding_top_mobile", "label": "Mobile padding top", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 80 },
+    { "type": "range", "id": "padding_bottom_mobile", "label": "Mobile padding bottom", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 80 },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "At the estate" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "There is always a reason to visit." },
+    { "type": "textarea", "id": "lead", "label": "Lead paragraph", "default": "From long lunches and live music to intimate weddings and milestone celebrations, every gathering is shaped by the vineyard around it." },
+    { "type": "richtext", "id": "body", "label": "Body", "default": "<p>Join us for public events throughout the year, or create a celebration of your own. Weddings and private events each receive a tailored experience, supported by the same dedicated team and beautiful estate setting.</p>" }
+  ],
+  "presets": [{ "name": "BOC — WO Intro" }]
+}
+{% endschema %}

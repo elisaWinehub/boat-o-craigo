@@ -1,0 +1,130 @@
+{%- liquid
+  assign section_classes = 'boc-whats-on-section boc-whats-on-details boc-whats-on-section--standard'
+  unless section.settings.section_enabled
+    assign section_classes = section_classes | append: ' boc-whats-on-section--disabled'
+  endunless
+  unless section.settings.show_desktop
+    assign section_classes = section_classes | append: ' boc-whats-on-section--hide-desktop'
+  endunless
+  unless section.settings.show_tablet
+    assign section_classes = section_classes | append: ' boc-whats-on-section--hide-tablet'
+  endunless
+  unless section.settings.show_mobile
+    assign section_classes = section_classes | append: ' boc-whats-on-section--hide-mobile'
+  endunless
+
+  assign grid_class = 'boc-whats-on-details__grid'
+  if section.settings.image_side == 'right'
+    assign grid_class = grid_class | append: ' boc-whats-on-details__grid--image-right'
+  endif
+  assign image_url = 'boc-estate-vineyard.jpg' | asset_url
+  if section.settings.image != blank
+    assign image_url = section.settings.image | image_url: width: 1400
+  endif
+-%}
+
+<section
+  id="boc-whats-on-details-{{ section.id }}"
+  class="{{ section_classes }}"
+  data-boc-whats-on
+  style="
+    --boc-wo-bg: {{ section.settings.background_color }};
+    --boc-wo-pt-d: {{ section.settings.padding_top_desktop }}px;
+    --boc-wo-pb-d: {{ section.settings.padding_bottom_desktop }}px;
+    --boc-wo-pt-t: {{ section.settings.padding_top_tablet }}px;
+    --boc-wo-pb-t: {{ section.settings.padding_bottom_tablet }}px;
+    --boc-wo-pt-m: {{ section.settings.padding_top_mobile }}px;
+    --boc-wo-pb-m: {{ section.settings.padding_bottom_mobile }}px;
+    --boc-wo-details-ratio: {{ section.settings.split_ratio }};
+    --boc-wo-details-media-h: {{ section.settings.image_height }}px;
+  "
+>
+  <div class="boc-whats-on-section__inner">
+    <div class="{{ grid_class }}">
+      <div class="boc-whats-on-details__media">
+        {%- if section.settings.image != blank or section.settings.mobile_image != blank -%}
+          {% render 'boc-responsive-image', image: section.settings.image, mobile_image: section.settings.mobile_image, alt: section.settings.heading, loading: 'lazy', sizes: '(min-width: 1050px) 50vw, 100vw' %}
+        {%- else -%}
+          <img src="{{ image_url }}" alt="{{ section.settings.heading | escape }}" loading="lazy" width="1200" height="650">
+        {%- endif -%}
+      </div>
+      <div class="boc-whats-on-details__copy">
+        {%- if section.settings.eyebrow != blank -%}<span class="boc-eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+        {%- if section.settings.heading != blank -%}<h2 class="boc-whats-on-section__heading">{{ section.settings.heading }}</h2>{%- endif -%}
+        {%- if section.settings.body != blank -%}<p class="boc-whats-on-section__body">{{ section.settings.body }}</p>{%- endif -%}
+        {%- if section.blocks.size > 0 -%}
+          <div class="boc-whats-on-details__features">
+            {%- for block in section.blocks -%}
+              <div class="boc-whats-on-details__feature" {{ block.shopify_attributes }}>
+                {%- if block.settings.number != blank -%}<span class="boc-whats-on-details__feature-num">{{ block.settings.number }}</span>{%- endif -%}
+                <div>
+                  {%- if block.settings.heading != blank -%}<strong>{{ block.settings.heading }}</strong>{%- endif -%}
+                  {%- if block.settings.description != blank -%}<span>{{ block.settings.description }}</span>{%- endif -%}
+                </div>
+              </div>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+        {%- if section.settings.button_enabled and section.settings.button_label != blank -%}
+          <a href="#{{ section.settings.button_anchor | default: 'boc-whats-on-enquiry' }}" class="boc-btn boc-btn--{{ section.settings.button_style }}" data-boc-whats-on-scroll>{{ section.settings.button_label }}</a>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "BOC — WO Event Details",
+  "tag": "section",
+  "class": "boc-whats-on-details-section",
+  "max_blocks": 8,
+  "settings": [
+    { "type": "checkbox", "id": "section_enabled", "label": "Enable section", "default": true },
+    { "type": "checkbox", "id": "show_desktop", "label": "Show on desktop", "default": true },
+    { "type": "checkbox", "id": "show_tablet", "label": "Show on tablet", "default": true },
+    { "type": "checkbox", "id": "show_mobile", "label": "Show on mobile", "default": true },
+    { "type": "color", "id": "background_color", "label": "Background", "default": "#FAF8F5" },
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "image_picker", "id": "mobile_image", "label": "Mobile image" },
+    { "type": "select", "id": "image_side", "label": "Image side", "options": [{"value":"left","label":"Left"},{"value":"right","label":"Right"}],"default": "left" },
+    { "type": "text", "id": "split_ratio", "label": "Split ratio", "default": "1fr 1fr" },
+    { "type": "range", "id": "image_height", "label": "Image height", "min": 360, "max": 800, "step": 20, "unit": "px", "default": 650 },
+    { "type": "range", "id": "padding_top_desktop", "label": "Desktop padding top", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 120 },
+    { "type": "range", "id": "padding_bottom_desktop", "label": "Desktop padding bottom", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 120 },
+    { "type": "range", "id": "padding_top_tablet", "label": "Tablet padding top", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 96 },
+    { "type": "range", "id": "padding_bottom_tablet", "label": "Tablet padding bottom", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 96 },
+    { "type": "range", "id": "padding_top_mobile", "label": "Mobile padding top", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 80 },
+    { "type": "range", "id": "padding_bottom_mobile", "label": "Mobile padding bottom", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 80 },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Designed around you" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "One team, every detail." },
+    { "type": "textarea", "id": "body", "label": "Body", "default": "From your first conversation to the final toast, our events team brings together the setting, service, food and wine that make the day feel effortless." },
+    { "type": "checkbox", "id": "button_enabled", "label": "Enable button", "default": true },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Start your enquiry" },
+    { "type": "text", "id": "button_anchor", "label": "Button anchor", "default": "boc-whats-on-enquiry" },
+    { "type": "select", "id": "button_style", "label": "Button style", "options": [{"value":"primary","label":"Primary"},{"value":"outline","label":"Outline"}],"default": "primary" }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        { "type": "text", "id": "number", "label": "Number", "default": "01" },
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Feature" },
+        { "type": "textarea", "id": "description", "label": "Description" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "BOC — WO Event Details",
+      "blocks": [
+        { "type": "feature", "settings": { "number": "01", "heading": "Flexible spaces", "description": "Options for ceremonies, seated dining, cocktail receptions and corporate gatherings." } },
+        { "type": "feature", "settings": { "number": "02", "heading": "Estate wine and local menus", "description": "Boat O'Craigo wines paired with seasonal, locally sourced food." } },
+        { "type": "feature", "settings": { "number": "03", "heading": "Dedicated coordination", "description": "A clear point of contact from first enquiry through to the event." } },
+        { "type": "feature", "settings": { "number": "04", "heading": "Yarra Valley location", "description": "An accessible destination surrounded by vineyards and mountain views." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

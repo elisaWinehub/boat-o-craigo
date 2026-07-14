@@ -21,34 +21,64 @@ Filtering, sorting, and AJAX section updates reuse Horizon's native implementati
 
 BOC styling is applied via `assets/boc-collection.css`. Do not implement client-side product filtering.
 
-## Recommended Search & Discovery filters
+## Search & Discovery filters (configured)
 
-Configure in **Shopify Admin → Search & Discovery → Filters**:
+Theme rendering is ready. Filter **sources** are prepared via Admin API; filter **registration** is done in Search & Discovery (no public Admin API).
 
-| Filter | Suggested source |
-|--------|------------------|
-| Availability | Shopify default |
-| Price | Shopify default |
-| Wine type | Product type or `wine.wine_type` metafield (create if needed) |
-| Vintage | `wine.vintage` (defined) |
-| Variety | `wine.variety_blend` (defined) |
-| Range | `wine.label_range` (defined) |
+### Automated setup (2026-07-14)
 
-Mockup reference values (for merchant setup only — not hard-coded in Liquid):
+| Step | Status | Script / command |
+|------|--------|------------------|
+| Enable `adminFilterable` on `wine.vintage`, `wine.variety_blend`, `wine.label_range` | Done | `scripts/shopify-enable-wine-filter-metafields.graphql` |
+| Wines collection membership (29 wines) | Done | Collection `wines` (`gid://shopify/Collection/301712080980`) |
+| Gift Packs collection (10 products) | Done | Collection `gift-packs` (`gid://shopify/Collection/301712113748`) |
 
-- Wine type: Sparkling, White, Rosé, Red, Reserve, Museum
-- Vintage: product vintages in catalogue
-- Price: Under $40, $40–$59, $60+
+Verify metafield capabilities:
+
+```powershell
+shopify store execute --store boat-o-craigo.myshopify.com --query-file scripts/shopify-query-wine-metafield-capabilities.graphql --json
+```
+
+### Filters to add in Search & Discovery
+
+Open: [Search & Discovery → Filters](https://admin.shopify.com/store/boat-o-craigo/apps/search-and-discovery/filters)
+
+Or run: `.\scripts\open-search-discovery-filters.ps1`
+
+| Filter label | Source in app | Notes |
+|--------------|---------------|-------|
+| Availability | **Availability** (standard) | Enabled by default on app install |
+| Price | **Price** (standard) | Enabled by default on app install |
+| Wine type | **Product type** (standard) | Values: White, Red, Sparkling, Rosé, Gift Packs |
+| Vintage | **Product metafield** → `wine.vintage` | Integer metafield |
+| Variety | **Product metafield** → `wine.variety_blend` | Single line text |
+| Range | **Product metafield** → `wine.label_range` | Single line text (e.g. Black Spur, Braveheart) |
+
+After adding filters, preview on staging:
+
+`/collections/wines?preview_theme_id=144118677588`
+
+Or live (password-protected): `/collections/wines`
+
+### Verify filter registration
+
+```powershell
+node scripts/configure-search-discovery-filters.mjs
+```
+
+This confirms metafield capabilities. Search & Discovery filter list itself has no public Admin API.
 
 ## Product metafields (`wine` namespace)
 
-Already defined and populated on imported products:
+Used by collection cards and product detail:
 
-- `wine.vintage`
-- `wine.variety_blend`
-- `wine.label_range`
+- `wine.vintage` — filterable
+- `wine.variety_blend` — filterable
+- `wine.label_range` — filterable
 
-Optional (create before use in Liquid):
+Wine type on cards uses `product.type` (fallback if `wine.wine_type` is blank).
+
+Optional (not created):
 
 - `wine.wine_type`
 - `wine.badge_label`
@@ -72,11 +102,12 @@ Priority chain:
 3. Section fallback image and copy
 4. Theme asset fallback (`boc-estate-vineyard.jpg`)
 
-## Manual setup steps
+## Scripts reference
 
-1. Open **Search & Discovery** and add filters for the Wines collection.
-2. Upload a **collection image** for each collection (Products → Collections → [Collection] → Image).
-3. Optionally create collection/product metafield definitions under namespace `wine`.
-4. Preview on staging: `/collections/wines?preview_theme_id=144118677588`
-
-Filters are **documented only** until configured in Search & Discovery Admin.
+| Script | Purpose |
+|--------|---------|
+| `scripts/shopify-enable-wine-filter-metafields.graphql` | Enable filterable wine metafields |
+| `scripts/shopify-query-wine-metafield-capabilities.graphql` | Audit metafield filter capabilities |
+| `scripts/shopify-query-collections.graphql` | Collection IDs and product counts |
+| `scripts/configure-search-discovery-filters.mjs` | Verify prerequisites + print admin checklist |
+| `scripts/open-search-discovery-filters.ps1` | Open filter config in Admin |

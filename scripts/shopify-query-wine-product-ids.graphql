@@ -1,0 +1,10 @@
+# Add all active wine products (excluding gift card) to the Wines collection.
+query WineProductIds {
+  products(first: 250, query: "status:active -product_type:'Gift Card'") {
+    nodes {
+      id
+      title
+      productType
+    }
+  }
+}

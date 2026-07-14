@@ -1,0 +1,14 @@
+query CollectionsByHandle {
+  wines: collectionByHandle(handle: "wines") {
+    id
+    handle
+    title
+    productsCount { count }
+  }
+  giftPacks: collectionByHandle(handle: "gift-packs") {
+    id
+    handle
+    title
+    productsCount { count }
+  }
+}

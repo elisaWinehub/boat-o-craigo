@@ -43,7 +43,7 @@
         "hero_height_desktop": 400,
         "hero_height_tablet": 380,
         "hero_height_mobile": 360,
-        "hero_description_width": 580,
+        "hero_description_width": 640,
         "hero_text_alignment_desktop": "left",
         "hero_text_alignment_mobile": "left",
         "hero_content_horizontal": "flex-start",

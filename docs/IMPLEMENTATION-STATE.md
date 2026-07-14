@@ -333,10 +333,9 @@ Theme IDs: see [THEME-MAPPING.md](./THEME-MAPPING.md)
 **Commerce:** Reuses Horizon `blocks/filters.liquid`, `facets.js`, `product-form-component` for cart drawer. Nine products per page, no infinite scroll.
 
 **Pending (Collection):**
-- Confirm Search & Discovery filter configuration in Admin
+- Add six filters in Search & Discovery Admin (see [COLLECTION-FILTERS.md](./COLLECTION-FILTERS.md) — metafield sources prepared, UI step required)
 - Confirm collection hero images per collection
 - Test all collections on staging
-- Optional `wine.wine_type` and badge metafield definitions
 
 ## Product detail section files
 
@@ -428,7 +427,7 @@ Images are stored in theme `assets/` and deploy with the theme. Upload to **Shop
 ### Pending post-launch
 
 - Legacy URL redirects (see promote-live-deploy task list)
-- Collection Search & Discovery filter configuration in Admin
+- Search & Discovery filter registration in Admin (sources prepared — see [COLLECTION-FILTERS.md](./COLLECTION-FILTERS.md))
 - Product metafield population QA on live
 - Full responsive/commerce smoke testing on production
 

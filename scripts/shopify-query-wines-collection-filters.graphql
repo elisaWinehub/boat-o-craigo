@@ -1,0 +1,24 @@
+query WinesCollectionFilters {
+  collectionByHandle(handle: "wines") {
+    id
+    handle
+    title
+    productsCount {
+      count
+    }
+    products(first: 50) {
+      nodes {
+        id
+        title
+        productType
+        status
+        metafields(first: 10, namespace: "wine") {
+          nodes {
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+query StoreProductsForFilters {
+  products(first: 50, sortKey: TITLE) {
+    nodes {
+      id
+      title
+      handle
+      status
+      productType
+      collections(first: 5) {
+        nodes {
+          handle
+        }
+      }
+      metafields(first: 15, namespace: "wine") {
+        nodes {
+          key
+          value
+        }
+      }
+    }
+  }
+}

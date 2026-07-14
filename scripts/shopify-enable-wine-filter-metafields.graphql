@@ -1,0 +1,66 @@
+# Enable adminFilterable + smartCollectionCondition on wine metafields
+# used as Search & Discovery filter sources.
+mutation EnableWineFilterMetafields {
+  vintage: metafieldDefinitionUpdate(
+    definition: {
+      namespace: "wine"
+      key: "vintage"
+      ownerType: PRODUCT
+      capabilities: {
+        adminFilterable: { enabled: true }
+        smartCollectionCondition: { enabled: true }
+      }
+    }
+  ) {
+    updatedDefinition {
+      key
+      capabilities {
+        adminFilterable { enabled }
+        smartCollectionCondition { enabled }
+      }
+    }
+    userErrors { field message code }
+  }
+
+  varietyBlend: metafieldDefinitionUpdate(
+    definition: {
+      namespace: "wine"
+      key: "variety_blend"
+      ownerType: PRODUCT
+      capabilities: {
+        adminFilterable: { enabled: true }
+        smartCollectionCondition: { enabled: true }
+      }
+    }
+  ) {
+    updatedDefinition {
+      key
+      capabilities {
+        adminFilterable { enabled }
+        smartCollectionCondition { enabled }
+      }
+    }
+    userErrors { field message code }
+  }
+
+  labelRange: metafieldDefinitionUpdate(
+    definition: {
+      namespace: "wine"
+      key: "label_range"
+      ownerType: PRODUCT
+      capabilities: {
+        adminFilterable: { enabled: true }
+        smartCollectionCondition: { enabled: true }
+      }
+    }
+  ) {
+    updatedDefinition {
+      key
+      capabilities {
+        adminFilterable { enabled }
+        smartCollectionCondition { enabled }
+      }
+    }
+    userErrors { field message code }
+  }
+}

@@ -1,0 +1,18 @@
+# Assign active wine products to the Wines collection.
+# Run query first to get product IDs, then pass variables to this mutation.
+mutation AddProductsToWinesCollection($collectionId: ID!, $productIds: [ID!]!) {
+  collectionAddProducts(id: $collectionId, productIds: $productIds) {
+    collection {
+      id
+      handle
+      title
+      productsCount {
+        count
+      }
+    }
+    userErrors {
+      field
+      message
+    }
+  }
+}

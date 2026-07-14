@@ -1,0 +1,20 @@
+query WineMetafieldCapabilities {
+  metafieldDefinitions(first: 50, ownerType: PRODUCT, namespace: "wine") {
+    nodes {
+      id
+      key
+      name
+      type {
+        name
+      }
+      capabilities {
+        adminFilterable {
+          enabled
+        }
+        smartCollectionCondition {
+          enabled
+        }
+      }
+    }
+  }
+}

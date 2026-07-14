@@ -15,6 +15,14 @@ Theme IDs: see [THEME-MAPPING.md](./THEME-MAPPING.md)
 - Homepage sections (10 modular sections)
 - Homepage template (`templates/index.json`)
 - Approved mockup archived at `docs/mockups/boat-ocraigo-homepage-concept.html`
+- Wine Club page template
+- Wine Club hero
+- Membership plans
+- Member benefits
+- How it works
+- Estate experience
+- Wine Club FAQ
+- Final CTA
 
 ## Global component files
 
@@ -55,6 +63,31 @@ Theme IDs: see [THEME-MAPPING.md](./THEME-MAPPING.md)
 | Styles / JS | `assets/boc-home.css`, `assets/boc-home.js` |
 | Template | `templates/index.json` |
 
+## Wine Club section files
+
+| Section | File |
+|---------|------|
+| Hero | `sections/boc-wine-club-hero.liquid` |
+| Membership plans | `sections/boc-wine-club-plans.liquid` |
+| Member benefits | `sections/boc-wine-club-benefits.liquid` |
+| How it works | `sections/boc-wine-club-how-it-works.liquid` |
+| Estate experience | `sections/boc-wine-club-estate-experience.liquid` |
+| FAQ | `sections/boc-wine-club-faq.liquid` |
+| Final CTA | `sections/boc-wine-club-final-cta.liquid` |
+| Plan card snippet | `snippets/boc-wine-club-plan-card.liquid` |
+| FAQ item snippet | `snippets/boc-faq-item.liquid` |
+| Styles / JS | `assets/boc-wine-club.css`, `assets/boc-wine-club.js` |
+| Template | `templates/page.wine-club.json` |
+| Mockup | `docs/mockups/boat-ocraigo-wine-club-concept.html` |
+
+**Global components reused:** announcement bar, header, mobile navigation, footer, design tokens, `boc-button`, `boc-responsive-image`, `boc-eyebrow`, `boc-display` typography classes.
+
+**Pending (Wine Club):**
+- Confirm Wine Club app
+- Connect membership join actions
+- Replace placeholder FAQ copy
+- Confirm final membership terms
+
 ## Homepage image assets (theme `assets/`)
 
 - `boc-hero-wines.png`
@@ -94,7 +127,6 @@ Images are stored in theme `assets/` and deploy with the theme. Upload to **Shop
 
 - Collection
 - Product
-- Wine Club
 - Visit
 - What's On
 - About

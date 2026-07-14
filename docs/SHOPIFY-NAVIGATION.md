@@ -38,7 +38,7 @@ Assigned in: **Theme Editor → Footer → BOC — Footer**
 | Handle | Title | Template |
 |--------|-------|----------|
 | `contact` | Contact | Default page |
-| `wine-club` | Wine Club | Default page |
+| `wine-club` | Wine Club | `page.wine-club` |
 | `visit` | Visit | Default page |
 | `whats-on` | What's On | Default page |
 | `about` | About | Default page |

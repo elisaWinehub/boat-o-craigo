@@ -6,6 +6,7 @@
   padding: 72px 0 28px;
 }
 
+/* Brand + Shop + Visit + Discover — four columns */
 .boc-footer__top {
   display: grid;
   grid-template-columns: 1.4fr repeat(3, 1fr);
@@ -24,6 +25,14 @@
   color: #999;
   font-size: 0.82rem;
   line-height: 1.6;
+}
+
+.boc-footer__contact p {
+  margin: 0;
+}
+
+.boc-footer__contact p + p {
+  margin-top: 0;
 }
 
 .boc-footer__contact a {
@@ -112,22 +121,6 @@
   color: var(--boc-sand);
 }
 
-.boc-footer__social {
-  display: flex;
-  gap: 16px;
-  margin-top: var(--boc-space-3);
-}
-
-.boc-footer__social-link {
-  color: #aaa;
-  font-size: 0.82rem;
-  transition: color var(--boc-transition);
-}
-
-.boc-footer__social-link:hover {
-  color: var(--boc-white);
-}
-
 .boc-footer__bottom {
   display: flex;
   align-items: center;
@@ -143,7 +136,13 @@
 .boc-footer__legal-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px 16px;
+  align-items: center;
+  gap: 0;
+}
+
+.boc-footer__legal-sep {
+  margin-inline: 0.35em;
+  color: #777;
 }
 
 .boc-footer__legal-link {
@@ -153,16 +152,6 @@
 
 .boc-footer__legal-link:hover {
   color: var(--boc-white);
-}
-
-@media (max-width: 1100px) {
-  .boc-footer__top {
-    grid-template-columns: 1.3fr 1fr 1fr;
-  }
-
-  .boc-footer__column--legal {
-    display: none;
-  }
 }
 
 @media (max-width: 720px) {
@@ -188,7 +177,7 @@
     display: block;
   }
 
-  .boc-footer__bottom span,
+  .boc-footer__bottom > span,
   .boc-footer__legal-links {
     display: block;
     margin-bottom: 8px;

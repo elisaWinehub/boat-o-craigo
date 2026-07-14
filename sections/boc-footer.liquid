@@ -38,54 +38,34 @@
             <a href="tel:{{ phone | replace: ' ', '' | replace: '(', '' | replace: ')', '' }}">{{ phone }}</a>
           </p>
         </div>
-
-        {%- if section.settings.show_social -%}
-          <div class="boc-footer__social">
-            {%- if section.settings.social_instagram != blank -%}
-              <a class="boc-footer__social-link" href="{{ section.settings.social_instagram }}" target="_blank" rel="noopener noreferrer">Instagram</a>
-            {%- endif -%}
-            {%- if section.settings.social_facebook != blank -%}
-              <a class="boc-footer__social-link" href="{{ section.settings.social_facebook }}" target="_blank" rel="noopener noreferrer">Facebook</a>
-            {%- endif -%}
-          </div>
-        {%- endif -%}
       </div>
 
-      {%- if section.settings.shop_menu != blank -%}
-        <div class="boc-footer__column">
-          <h4 class="boc-footer__heading">{{ section.settings.shop_heading | default: 'Shop' }}</h4>
+      <div class="boc-footer__column">
+        <h4 class="boc-footer__heading">{{ section.settings.shop_heading | default: 'Shop' }}</h4>
+        {%- if section.settings.shop_menu != blank -%}
           {%- for link in linklists[section.settings.shop_menu].links -%}
             <a class="boc-footer__menu-link" href="{{ link.url }}">{{ link.title }}</a>
           {%- endfor -%}
-        </div>
-      {%- endif -%}
+        {%- endif -%}
+      </div>
 
-      {%- if section.settings.visit_menu != blank -%}
-        <div class="boc-footer__column">
-          <h4 class="boc-footer__heading">{{ section.settings.visit_heading | default: 'Visit' }}</h4>
+      <div class="boc-footer__column">
+        <h4 class="boc-footer__heading">{{ section.settings.visit_heading | default: 'Visit' }}</h4>
+        {%- if section.settings.visit_menu != blank -%}
           {%- for link in linklists[section.settings.visit_menu].links -%}
             <a class="boc-footer__menu-link" href="{{ link.url }}">{{ link.title }}</a>
           {%- endfor -%}
-        </div>
-      {%- endif -%}
+        {%- endif -%}
+      </div>
 
-      {%- if section.settings.discover_menu != blank -%}
-        <div class="boc-footer__column">
-          <h4 class="boc-footer__heading">{{ section.settings.discover_heading | default: 'Discover' }}</h4>
+      <div class="boc-footer__column">
+        <h4 class="boc-footer__heading">{{ section.settings.discover_heading | default: 'Discover' }}</h4>
+        {%- if section.settings.discover_menu != blank -%}
           {%- for link in linklists[section.settings.discover_menu].links -%}
             <a class="boc-footer__menu-link" href="{{ link.url }}">{{ link.title }}</a>
           {%- endfor -%}
-        </div>
-      {%- endif -%}
-
-      {%- if section.settings.legal_menu != blank -%}
-        <div class="boc-footer__column boc-footer__column--legal">
-          <h4 class="boc-footer__heading">{{ section.settings.legal_heading | default: 'Legal' }}</h4>
-          {%- for link in linklists[section.settings.legal_menu].links -%}
-            <a class="boc-footer__menu-link" href="{{ link.url }}">{{ link.title }}</a>
-          {%- endfor -%}
-        </div>
-      {%- endif -%}
+        {%- endif -%}
+      </div>
     </div>
 
     {%- if section.settings.show_newsletter -%}
@@ -136,6 +116,9 @@
       {%- if section.settings.legal_menu != blank -%}
         <nav class="boc-footer__legal-links" aria-label="{{ section.settings.legal_heading | default: 'Legal' }}">
           {%- for link in linklists[section.settings.legal_menu].links -%}
+            {%- unless forloop.first -%}
+              <span class="boc-footer__legal-sep" aria-hidden="true">·</span>
+            {%- endunless -%}
             <a class="boc-footer__legal-link" href="{{ link.url }}">{{ link.title }}</a>
           {%- endfor -%}
         </nav>
@@ -302,7 +285,7 @@
   ],
   "presets": [
     {
-      "name": "BOC footer"
+      "name": "BOC — Footer"
     }
   ]
 }

@@ -2259,5 +2259,47 @@
         "default": "primary"
       }
     ]
+  },
+  {
+    "name": "Boat O'Craigo — Bookings",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Now Book It"
+      },
+      {
+        "type": "text",
+        "id": "boc_booking_provider_name",
+        "label": "Booking provider name",
+        "default": "Now Book It"
+      },
+      {
+        "type": "text",
+        "id": "boc_default_booking_url",
+        "label": "Default booking URL",
+        "default": "https://bookings.nowbookit.com/?accountid=20cb5efb-4257-47a2-a7c9-7c23eceb2feb&venueid=6523&theme=light&colors=hex,000000&font=PT%20Serif"
+      },
+      {
+        "type": "url",
+        "id": "boc_tasting_booking_url",
+        "label": "Wine tasting booking URL"
+      },
+      {
+        "type": "url",
+        "id": "boc_restaurant_booking_url",
+        "label": "Restaurant booking URL"
+      },
+      {
+        "type": "url",
+        "id": "boc_group_enquiry_url",
+        "label": "Group enquiry URL"
+      },
+      {
+        "type": "checkbox",
+        "id": "boc_booking_open_new_tab",
+        "label": "Open external bookings in new tab",
+        "default": false
+      }
+    ]
   }
 ]

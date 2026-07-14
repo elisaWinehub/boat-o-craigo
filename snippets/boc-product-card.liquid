@@ -1,0 +1,146 @@
+{%- doc -%}
+  Boat O'Craigo product card for homepage and collection grids.
+
+  @param {product} product - Shopify product object
+  @param {boolean} [show_vendor] - Show vendor or type metadata
+  @param {boolean} [show_price] - Show product price
+  @param {boolean} [show_quantity] - Show quantity selector
+  @param {boolean} [show_add_to_cart] - Show add to cart button
+  @param {string} [card_class] - Optional extra class on root element
+{%- enddoc -%}
+
+{%- liquid
+  assign show_vendor = show_vendor | default: true
+  assign show_price = show_price | default: true
+  assign show_quantity = show_quantity | default: true
+  assign show_add_to_cart = show_add_to_cart | default: true
+
+  if product == blank
+    assign product_title = 'Product title'
+    assign product_url = '#'
+    assign product_available = false
+    assign variant_id = ''
+    assign product_price = 3800
+    assign product_image = 'boc-placeholder-gruner-veltliner.jpg' | asset_url
+    assign product_image_alt = 'Wine bottle'
+    assign product_meta = '2024 · Healesville'
+  else
+    assign product_title = product.title
+    assign product_url = product.url
+    assign variant = product.selected_or_first_available_variant
+    assign product_available = variant.available
+    assign variant_id = variant.id
+    assign product_price = variant.price
+    if product.featured_image != blank
+      assign product_image = product.featured_image | image_url: width: 800
+      assign product_image_alt = product.featured_image.alt | default: product.title
+    else
+      assign product_image = 'boc-placeholder-gruner-veltliner.jpg' | asset_url
+      assign product_image_alt = product.title
+    endif
+    if product.vendor != blank
+      assign product_meta = product.vendor
+    elsif product.type != blank
+      assign product_meta = product.type
+    else
+      assign product_meta = ''
+    endif
+  endif
+
+  assign form_id = 'boc-product-form-' | append: product.id
+  if product.id == blank
+    assign form_id = 'boc-product-form-placeholder'
+  endif
+-%}
+
+<article class="boc-product-card{% if card_class != blank %} {{ card_class }}{% endif %}">
+  <a href="{{ product_url }}" class="boc-product-card__media-link" aria-label="{{ product_title | escape }}">
+    <div class="boc-product-card__media boc-product-image">
+      <img
+        src="{{ product_image }}"
+        alt="{{ product_image_alt | escape }}"
+        loading="lazy"
+        width="400"
+        height="430"
+      >
+    </div>
+  </a>
+
+  <div class="boc-product-card__info">
+    <h3 class="boc-product-card__title">
+      <a href="{{ product_url }}">{{ product_title }}</a>
+    </h3>
+
+    {%- if show_vendor and product_meta != blank -%}
+      <p class="boc-product-card__meta">{{ product_meta }}</p>
+    {%- endif -%}
+
+    {%- if show_price -%}
+      <p class="boc-product-card__price">
+        {%- if product == blank -%}
+          $38.00
+        {%- else -%}
+          {% render 'format-price', price: product_price %}
+        {%- endif -%}
+      </p>
+    {%- endif -%}
+
+    {%- if show_add_to_cart and product != blank -%}
+      {%- form 'product', product, id: form_id, class: 'boc-product-card__form' -%}
+        <input type="hidden" name="id" value="{{ variant_id }}">
+
+        <div class="boc-product-card__actions">
+          {%- if show_quantity -%}
+            <div class="boc-product-card__quantity" data-boc-qty>
+              <button
+                type="button"
+                class="boc-product-card__qty-btn"
+                data-boc-qty-minus
+                aria-label="Decrease quantity"
+              >
+                −
+              </button>
+              <input
+                type="number"
+                name="quantity"
+                value="1"
+                min="1"
+                class="boc-product-card__qty-input"
+                aria-label="Quantity"
+                data-boc-qty-input
+              >
+              <button
+                type="button"
+                class="boc-product-card__qty-btn"
+                data-boc-qty-plus
+                aria-label="Increase quantity"
+              >
+                +
+              </button>
+            </div>
+          {%- endif -%}
+
+          <button
+            type="submit"
+            class="boc-btn boc-btn--primary boc-product-card__add"
+            {% unless product_available %}
+              disabled
+            {% endunless %}
+          >
+            {%- if product_available -%}
+              Add to cart
+            {%- else -%}
+              Sold out
+            {%- endif -%}
+          </button>
+        </div>
+      {%- endform -%}
+    {%- elsif show_add_to_cart -%}
+      <div class="boc-product-card__actions">
+        <button type="button" class="boc-btn boc-btn--primary boc-product-card__add" disabled>
+          Add to cart
+        </button>
+      </div>
+    {%- endif -%}
+  </div>
+</article>

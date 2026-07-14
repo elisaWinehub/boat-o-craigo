@@ -1,0 +1,179 @@
+{%- liquid
+  assign dismiss_key = 'boc-announcement-dismissed-' | append: section.id
+-%}
+
+{%- unless section.settings.text == blank -%}
+  <div
+    class="boc-announcement-bar{% if section.settings.dismissible %} boc-announcement-bar--dismissible{% endif %}"
+    id="boc-announcement-{{ section.id }}"
+    data-boc-announcement
+    data-dismiss-key="{{ dismiss_key }}"
+    style="
+      --boc-announcement-bg: {{ section.settings.background_color | default: settings.boc_color_ink }};
+      --boc-announcement-text: {{ section.settings.text_color | default: settings.boc_color_white }};
+    "
+    {{ section.shopify_attributes }}
+  >
+    <div class="boc-announcement-bar__inner boc-container">
+      {%- if section.settings.link != blank -%}
+        <a class="boc-announcement-bar__link" href="{{ section.settings.link }}">
+          {{- section.settings.text -}}
+        </a>
+      {%- else -%}
+        <p class="boc-announcement-bar__text">{{ section.settings.text }}</p>
+      {%- endif -%}
+
+      {%- if section.settings.dismissible -%}
+        <button
+          type="button"
+          class="boc-announcement-bar__close"
+          data-boc-announcement-close
+          aria-label="{{ 'accessibility.close_dialog' | t }}"
+        >
+          {% render 'boc-icon', name: 'close' %}
+        </button>
+      {%- endif -%}
+    </div>
+  </div>
+{%- endunless -%}
+
+<script>
+  (function () {
+    const bar = document.getElementById('boc-announcement-{{ section.id }}');
+    if (!bar) return;
+
+    const dismissKey = bar.dataset.dismissKey;
+    if (dismissKey && sessionStorage.getItem(dismissKey) === 'true') {
+      bar.hidden = true;
+      return;
+    }
+
+    const closeBtn = bar.querySelector('[data-boc-announcement-close]');
+    closeBtn?.addEventListener('click', function () {
+      bar.hidden = true;
+      if (dismissKey) {
+        sessionStorage.setItem(dismissKey, 'true');
+      }
+    });
+  })();
+</script>
+
+{% stylesheet %}
+  .boc-announcement-bar {
+    height: 34px;
+    background: var(--boc-announcement-bg, var(--boc-ink));
+    color: var(--boc-announcement-text, var(--boc-white));
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 31;
+  }
+
+  .boc-announcement-bar[hidden] {
+    display: none;
+  }
+
+  .boc-announcement-bar__inner {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding-inline: 48px;
+  }
+
+  .boc-announcement-bar__text,
+  .boc-announcement-bar__link {
+    margin: 0;
+    font-family: var(--boc-sans);
+    font-size: 0.66rem;
+    font-weight: 500;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    text-align: center;
+    color: inherit;
+  }
+
+  .boc-announcement-bar__close {
+    position: absolute;
+    right: 0;
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+  }
+
+  .boc-announcement-bar__close .boc-icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  @media (max-width: 720px) {
+    .boc-announcement-bar__inner {
+      padding-inline: 40px 32px;
+    }
+
+    .boc-announcement-bar__text,
+    .boc-announcement-bar__link {
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "BOC — Announcement bar",
+  "tag": "aside",
+  "class": "boc-announcement-bar-section",
+  "enabled_on": {
+    "groups": ["header"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Announcement text",
+      "default": "Free shipping on 12+ bottles to Victoria, Sydney, Adelaide & Brisbane"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Link (optional)"
+    },
+    {
+      "type": "checkbox",
+      "id": "dismissible",
+      "label": "Allow dismiss",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Appearance"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#212121"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#FFFFFF"
+    }
+  ],
+  "presets": [
+    {
+      "name": "BOC announcement bar"
+    }
+  ]
+}
+{% endschema %}

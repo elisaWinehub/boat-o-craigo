@@ -2116,5 +2116,148 @@
         "default": "equal-width-buttons"
       }
     ]
+  },
+  {
+    "name": "Boat O'Craigo — Global Design",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Brand colours"
+      },
+      {
+        "type": "color",
+        "id": "boc_color_ink",
+        "label": "Ink",
+        "default": "#212121"
+      },
+      {
+        "type": "color",
+        "id": "boc_color_slate",
+        "label": "Slate",
+        "default": "#575962"
+      },
+      {
+        "type": "color",
+        "id": "boc_color_sand",
+        "label": "Sand",
+        "default": "#B99E7E"
+      },
+      {
+        "type": "color",
+        "id": "boc_color_cream",
+        "label": "Cream",
+        "default": "#FAF8F5"
+      },
+      {
+        "type": "color",
+        "id": "boc_color_white",
+        "label": "White",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "color",
+        "id": "boc_color_line",
+        "label": "Line",
+        "default": "#E8E2D9"
+      },
+      {
+        "type": "header",
+        "content": "Layout"
+      },
+      {
+        "type": "range",
+        "id": "boc_max_width",
+        "label": "Maximum content width",
+        "min": 1200,
+        "max": 1600,
+        "step": 20,
+        "unit": "px",
+        "default": 1420
+      },
+      {
+        "type": "range",
+        "id": "boc_container_padding_desktop",
+        "label": "Container side padding (desktop)",
+        "min": 24,
+        "max": 80,
+        "step": 4,
+        "unit": "px",
+        "default": 48
+      },
+      {
+        "type": "range",
+        "id": "boc_container_padding_mobile",
+        "label": "Container side padding (mobile)",
+        "min": 16,
+        "max": 48,
+        "step": 4,
+        "unit": "px",
+        "default": 32
+      },
+      {
+        "type": "range",
+        "id": "boc_section_padding_desktop",
+        "label": "Section vertical padding (desktop)",
+        "min": 72,
+        "max": 160,
+        "step": 4,
+        "unit": "px",
+        "default": 120
+      },
+      {
+        "type": "range",
+        "id": "boc_section_padding_mobile",
+        "label": "Section vertical padding (mobile)",
+        "min": 48,
+        "max": 120,
+        "step": 4,
+        "unit": "px",
+        "default": 72
+      },
+      {
+        "type": "header",
+        "content": "Buttons"
+      },
+      {
+        "type": "range",
+        "id": "boc_button_min_height",
+        "label": "Minimum height",
+        "min": 40,
+        "max": 56,
+        "step": 2,
+        "unit": "px",
+        "default": 48
+      },
+      {
+        "type": "range",
+        "id": "boc_button_padding_inline",
+        "label": "Horizontal padding",
+        "min": 16,
+        "max": 40,
+        "step": 2,
+        "unit": "px",
+        "default": 24
+      },
+      {
+        "type": "select",
+        "id": "boc_button_default_style",
+        "label": "Default button style",
+        "options": [
+          {
+            "value": "primary",
+            "label": "Primary (ink)"
+          },
+          {
+            "value": "accent",
+            "label": "Accent (sand)"
+          },
+          {
+            "value": "outline",
+            "label": "Outline"
+          }
+        ],
+        "default": "primary"
+      }
+    ]
   }
 ]

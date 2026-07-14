@@ -1,0 +1,309 @@
+<footer class="boc-footer shopify-section" {{ section.shopify_attributes }}>
+  <div class="boc-container">
+    <div class="boc-footer__top">
+      <div class="boc-footer__brand">
+        <a href="{{ routes.root_url }}" aria-label="{{ shop.name }}">
+          {%- if section.settings.logo != blank -%}
+            {{
+              section.settings.logo
+              | image_url: width: 340
+              | image_tag: class: 'boc-footer__brand-logo', alt: shop.name, loading: 'lazy'
+            }}
+          {%- else -%}
+            <img
+              class="boc-footer__brand-logo"
+              src="{{ 'boc-logo.svg' | asset_url }}"
+              alt="{{ shop.name }}"
+              width="170"
+              height="90"
+            >
+          {%- endif -%}
+        </a>
+
+        <div class="boc-footer__contact">
+          {%- if section.settings.address != blank -%}
+            <p>{{ section.settings.address | newline_to_br }}</p>
+          {%- else -%}
+            <p>458 Maroondah Highway, Healesville VIC 3777</p>
+          {%- endif -%}
+
+          {%- liquid
+            assign email = section.settings.email | default: 'hello@boatocraigo.com.au'
+            assign phone = section.settings.phone | default: '(03) 5962 6899'
+          -%}
+
+          <p>
+            <a href="mailto:{{ email }}">{{ email }}</a>
+            ·
+            <a href="tel:{{ phone | replace: ' ', '' | replace: '(', '' | replace: ')', '' }}">{{ phone }}</a>
+          </p>
+        </div>
+
+        {%- if section.settings.show_social -%}
+          <div class="boc-footer__social">
+            {%- if section.settings.social_instagram != blank -%}
+              <a class="boc-footer__social-link" href="{{ section.settings.social_instagram }}" target="_blank" rel="noopener noreferrer">Instagram</a>
+            {%- endif -%}
+            {%- if section.settings.social_facebook != blank -%}
+              <a class="boc-footer__social-link" href="{{ section.settings.social_facebook }}" target="_blank" rel="noopener noreferrer">Facebook</a>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      </div>
+
+      {%- if section.settings.shop_menu != blank -%}
+        <div class="boc-footer__column">
+          <h4 class="boc-footer__heading">{{ section.settings.shop_heading | default: 'Shop' }}</h4>
+          {%- for link in linklists[section.settings.shop_menu].links -%}
+            <a class="boc-footer__menu-link" href="{{ link.url }}">{{ link.title }}</a>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+
+      {%- if section.settings.visit_menu != blank -%}
+        <div class="boc-footer__column">
+          <h4 class="boc-footer__heading">{{ section.settings.visit_heading | default: 'Visit' }}</h4>
+          {%- for link in linklists[section.settings.visit_menu].links -%}
+            <a class="boc-footer__menu-link" href="{{ link.url }}">{{ link.title }}</a>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+
+      {%- if section.settings.discover_menu != blank -%}
+        <div class="boc-footer__column">
+          <h4 class="boc-footer__heading">{{ section.settings.discover_heading | default: 'Discover' }}</h4>
+          {%- for link in linklists[section.settings.discover_menu].links -%}
+            <a class="boc-footer__menu-link" href="{{ link.url }}">{{ link.title }}</a>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+
+      {%- if section.settings.legal_menu != blank -%}
+        <div class="boc-footer__column boc-footer__column--legal">
+          <h4 class="boc-footer__heading">{{ section.settings.legal_heading | default: 'Legal' }}</h4>
+          {%- for link in linklists[section.settings.legal_menu].links -%}
+            <a class="boc-footer__menu-link" href="{{ link.url }}">{{ link.title }}</a>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+    {%- if section.settings.show_newsletter -%}
+      <div class="boc-footer__newsletter">
+        <div class="boc-footer__newsletter-inner">
+          <div>
+            {%- if section.settings.newsletter_eyebrow != blank -%}
+              <p class="boc-eyebrow">{{ section.settings.newsletter_eyebrow }}</p>
+            {%- endif -%}
+            <h3 class="boc-footer__newsletter-heading">
+              {{ section.settings.newsletter_heading | default: 'Stay in touch.' }}
+            </h3>
+          </div>
+
+          {% form 'customer', class: 'boc-footer__newsletter-form' %}
+            <input type="hidden" name="contact[tags]" value="newsletter">
+            <label class="visually-hidden" for="boc-footer-email-{{ section.id }}">
+              {{ 'blocks.email_signup.label' | t }}
+            </label>
+            <input
+              id="boc-footer-email-{{ section.id }}"
+              class="boc-footer__newsletter-input"
+              type="email"
+              name="contact[email]"
+              value="{{ form.email }}"
+              placeholder="{{ section.settings.newsletter_placeholder | default: 'Your email address' }}"
+              autocomplete="email"
+              required
+            >
+            <button class="boc-footer__newsletter-submit" type="submit">
+              {{ section.settings.newsletter_button | default: 'Subscribe' }}
+            </button>
+          {% endform %}
+        </div>
+      </div>
+    {%- endif -%}
+
+    <div class="boc-footer__bottom">
+      <span>
+        © {{ 'now' | date: '%Y' }} {{ shop.name }}
+        {%- if section.settings.liquor_licence != blank -%}
+          · {{ section.settings.liquor_licence }}
+        {%- else -%}
+          · Liquor Licence No. 32809777
+        {%- endif -%}
+      </span>
+
+      {%- if section.settings.legal_menu != blank -%}
+        <nav class="boc-footer__legal-links" aria-label="{{ section.settings.legal_heading | default: 'Legal' }}">
+          {%- for link in linklists[section.settings.legal_menu].links -%}
+            <a class="boc-footer__legal-link" href="{{ link.url }}">{{ link.title }}</a>
+          {%- endfor -%}
+        </nav>
+      {%- endif -%}
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "BOC — Footer",
+  "tag": "section",
+  "class": "boc-footer-section",
+  "enabled_on": {
+    "groups": ["footer"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Brand"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Footer logo"
+    },
+    {
+      "type": "textarea",
+      "id": "address",
+      "label": "Address",
+      "default": "458 Maroondah Highway, Healesville VIC 3777"
+    },
+    {
+      "type": "text",
+      "id": "email",
+      "label": "Email",
+      "default": "hello@boatocraigo.com.au"
+    },
+    {
+      "type": "text",
+      "id": "phone",
+      "label": "Phone",
+      "default": "(03) 5962 6899"
+    },
+    {
+      "type": "text",
+      "id": "liquor_licence",
+      "label": "Liquor licence",
+      "default": "Liquor Licence No. 32809777"
+    },
+    {
+      "type": "header",
+      "content": "Shop menu"
+    },
+    {
+      "type": "text",
+      "id": "shop_heading",
+      "label": "Heading",
+      "default": "Shop"
+    },
+    {
+      "type": "link_list",
+      "id": "shop_menu",
+      "label": "Menu"
+    },
+    {
+      "type": "header",
+      "content": "Visit menu"
+    },
+    {
+      "type": "text",
+      "id": "visit_heading",
+      "label": "Heading",
+      "default": "Visit"
+    },
+    {
+      "type": "link_list",
+      "id": "visit_menu",
+      "label": "Menu"
+    },
+    {
+      "type": "header",
+      "content": "Discover menu"
+    },
+    {
+      "type": "text",
+      "id": "discover_heading",
+      "label": "Heading",
+      "default": "Discover"
+    },
+    {
+      "type": "link_list",
+      "id": "discover_menu",
+      "label": "Menu"
+    },
+    {
+      "type": "header",
+      "content": "Legal menu"
+    },
+    {
+      "type": "text",
+      "id": "legal_heading",
+      "label": "Heading",
+      "default": "Legal"
+    },
+    {
+      "type": "link_list",
+      "id": "legal_menu",
+      "label": "Menu"
+    },
+    {
+      "type": "header",
+      "content": "Newsletter"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_newsletter",
+      "label": "Show newsletter signup",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "newsletter_eyebrow",
+      "label": "Eyebrow"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_heading",
+      "label": "Heading",
+      "default": "Stay in touch."
+    },
+    {
+      "type": "text",
+      "id": "newsletter_placeholder",
+      "label": "Email placeholder",
+      "default": "Your email address"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_button",
+      "label": "Submit button",
+      "default": "Subscribe"
+    },
+    {
+      "type": "header",
+      "content": "Social links"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_social",
+      "label": "Show social links",
+      "default": true
+    },
+    {
+      "type": "url",
+      "id": "social_instagram",
+      "label": "Instagram URL"
+    },
+    {
+      "type": "url",
+      "id": "social_facebook",
+      "label": "Facebook URL"
+    }
+  ],
+  "presets": [
+    {
+      "name": "BOC footer"
+    }
+  ]
+}
+{% endschema %}

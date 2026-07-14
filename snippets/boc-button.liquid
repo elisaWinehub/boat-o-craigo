@@ -1,0 +1,37 @@
+{%- doc -%}
+  Renders a Boat O'Craigo button.
+
+  @param {string} label - Button text
+  @param {string} [url] - Link URL (renders as anchor when present)
+  @param {string} [style] - primary | accent | outline | light
+  @param {boolean} [new_tab] - Open link in new tab
+  @param {string} [class] - Additional CSS classes
+
+  @example
+  {% render 'boc-button', label: 'Shop wines', url: collections.all.url, style: 'primary' %}
+{%- enddoc -%}
+
+{%- liquid
+  assign btn_style = style | default: 'primary'
+  assign btn_class = 'boc-btn boc-btn--' | append: btn_style
+  if class != blank
+    assign btn_class = btn_class | append: ' ' | append: class
+  endif
+-%}
+
+{%- if url != blank -%}
+  <a
+    href="{{ url }}"
+    class="{{ btn_class }}"
+    {% if new_tab %}
+      target="_blank"
+      rel="noopener noreferrer"
+    {% endif %}
+  >
+    {{- label -}}
+  </a>
+{%- else -%}
+  <button type="button" class="{{ btn_class }}">
+    {{- label -}}
+  </button>
+{%- endif -%}

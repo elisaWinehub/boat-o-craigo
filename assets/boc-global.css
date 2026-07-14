@@ -1,0 +1,186 @@
+/* Boat O'Craigo — Global base styles */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--boc-white);
+  color: var(--boc-ink);
+  font-family: var(--boc-sans);
+  font-size: var(--boc-body);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+/* Typography */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--boc-serif);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+p {
+  margin: 0 0 1em;
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+.boc-body-lg {
+  font-size: var(--boc-body-lg);
+}
+
+.boc-body-sm {
+  font-size: var(--boc-body-sm);
+  color: var(--boc-slate);
+}
+
+.boc-caption {
+  font-size: var(--boc-body-sm);
+  color: var(--boc-slate);
+}
+
+/* Section utilities */
+
+.boc-section--cream {
+  background: var(--boc-cream);
+}
+
+.boc-section--sand {
+  background: var(--boc-sand);
+  color: var(--boc-white);
+}
+
+.boc-section--ink {
+  background: var(--boc-ink);
+  color: var(--boc-white);
+}
+
+.boc-section--white {
+  background: var(--boc-white);
+}
+
+.boc-section-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--boc-space-4);
+  margin-bottom: var(--boc-space-5);
+}
+
+.boc-section-header__heading {
+  margin-top: var(--boc-space-1);
+}
+
+.boc-section-header__body {
+  max-width: 430px;
+  color: var(--boc-slate);
+  margin-top: var(--boc-space-2);
+}
+
+/* Text link */
+
+.boc-text-link {
+  display: inline-block;
+  font-family: var(--boc-sans);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 4px;
+  transition: color var(--boc-transition), border-color var(--boc-transition);
+}
+
+.boc-text-link:hover {
+  color: var(--boc-sand);
+  border-color: var(--boc-sand);
+}
+
+/* Button hover states */
+
+.boc-btn--primary:hover {
+  background: var(--boc-slate);
+  border-color: var(--boc-slate);
+  color: var(--boc-white);
+}
+
+.boc-btn--accent:hover {
+  background: var(--boc-ink);
+  border-color: var(--boc-ink);
+  color: var(--boc-white);
+}
+
+.boc-btn--outline:hover {
+  background: var(--boc-ink);
+  border-color: var(--boc-ink);
+  color: var(--boc-white);
+}
+
+.boc-btn--light:hover {
+  background: var(--boc-white);
+  border-color: var(--boc-white);
+  color: var(--boc-ink);
+}
+
+/* Icon base */
+
+.boc-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+/* Scroll lock (header drawer) */
+
+body.boc-scroll-lock {
+  overflow: hidden;
+}
+
+/* Responsive section header */
+
+@media (max-width: 720px) {
+  .boc-section-header {
+    display: block;
+  }
+
+  .boc-section-header__link {
+    margin-top: var(--boc-space-3);
+  }
+}

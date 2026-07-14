@@ -1,0 +1,49 @@
+{%- doc -%}
+  Renders an inline SVG icon for Boat O'Craigo.
+
+  @param {string} name - search | account | cart | menu | close | chevron | plus | minus
+  @param {string} [class] - Additional CSS classes
+
+  @example
+  {% render 'boc-icon', name: 'search', class: 'boc-header__icon' %}
+{%- enddoc -%}
+
+{%- liquid
+  assign icon_class = 'boc-icon'
+  if class != blank
+    assign icon_class = icon_class | append: ' ' | append: class
+  endif
+-%}
+
+<svg
+  class="{{ icon_class }}"
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.6"
+  aria-hidden="true"
+  focusable="false"
+>
+  {%- case name -%}
+    {%- when 'search' -%}
+      <circle cx="11" cy="11" r="6.5"></circle>
+      <path d="m16 16 4 4"></path>
+    {%- when 'account' -%}
+      <circle cx="12" cy="8" r="3.5"></circle>
+      <path d="M5 21c.6-4.3 3-6.5 7-6.5s6.4 2.2 7 6.5"></path>
+    {%- when 'cart' -%}
+      <path d="M5 8h14l-1 12H6L5 8Z"></path>
+      <path d="M9 8a3 3 0 0 1 6 0"></path>
+    {%- when 'menu' -%}
+      <path d="M3 7h18M3 12h18M3 17h18"></path>
+    {%- when 'close' -%}
+      <path d="M6 6l12 12M18 6 6 18"></path>
+    {%- when 'chevron' -%}
+      <path d="M9 6l6 6-6 6"></path>
+    {%- when 'plus' -%}
+      <path d="M12 5v14M5 12h14"></path>
+    {%- when 'minus' -%}
+      <path d="M5 12h14"></path>
+  {%- endcase -%}
+</svg>

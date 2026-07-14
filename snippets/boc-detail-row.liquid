@@ -1,0 +1,19 @@
+{%- doc -%}
+  Label/value detail row list for About feature sections.
+
+  @param {object[]} blocks - Detail blocks
+  @param {boolean} [dark] - Dark panel styling
+{%- enddoc -%}
+
+{%- if blocks.size > 0 -%}
+  <ul class="boc-about-detail-list{% if dark %} boc-about-detail-list--dark{% endif %}">
+    {%- for block in blocks -%}
+      {%- if block.settings.label != blank or block.settings.value != blank -%}
+        <li {{ block.shopify_attributes }}>
+          <span>{{ block.settings.label }}</span>
+          <strong>{{ block.settings.value }}</strong>
+        </li>
+      {%- endif -%}
+    {%- endfor -%}
+  </ul>
+{%- endif -%}

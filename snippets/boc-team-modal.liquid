@@ -1,0 +1,28 @@
+{%- doc -%}
+  Accessible team profile modal shell for About team section.
+
+  @param {string} section_id - Parent section ID
+{%- enddoc -%}
+
+<div
+  class="boc-about-modal"
+  data-boc-about-modal
+  role="dialog"
+  aria-modal="true"
+  aria-hidden="true"
+  aria-labelledby="boc-about-modal-name-{{ section_id }}"
+>
+  <button type="button" class="boc-about-modal__backdrop" aria-label="Close team profile"></button>
+  <div class="boc-about-modal__dialog">
+    <button type="button" class="boc-about-modal__close" data-boc-about-modal-close aria-label="Close team profile">×</button>
+    <div class="boc-about-modal__media">
+      <img data-boc-about-modal-image src="" alt="" width="800" height="560">
+    </div>
+    <div class="boc-about-modal__content">
+      <span class="boc-eyebrow">Meet the team</span>
+      <h2 id="boc-about-modal-name-{{ section_id }}" data-boc-about-modal-name></h2>
+      <p class="boc-about-modal__role" data-boc-about-modal-role></p>
+      <div class="boc-about-modal__bio rte" data-boc-about-modal-bio></div>
+    </div>
+  </div>
+</div>

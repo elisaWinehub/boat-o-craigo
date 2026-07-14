@@ -1,0 +1,40 @@
+{%- doc -%}
+  Carousel team card for About team section.
+
+  @param {object} block - Team member block
+  @param {string} [image_fallback] - Fallback asset
+{%- enddoc -%}
+
+{%- liquid
+  assign fallback_url = image_fallback | default: 'boc-estate-visit.jpg' | asset_url
+  assign alt_text = block.settings.image.alt | default: block.settings.name
+  if block.settings.image == blank
+    assign alt_text = block.settings.name | append: ' placeholder portrait'
+  endif
+-%}
+
+<button
+  type="button"
+  class="boc-about-team__card"
+  data-boc-about-carousel-card
+  data-boc-about-team-open="{{ block.id }}"
+  aria-label="View profile for {{ block.settings.name | escape }}"
+  {{ block.shopify_attributes }}
+>
+  {%- if block.settings.image != blank or block.settings.mobile_image != blank -%}
+    {% render 'boc-responsive-image',
+      image: block.settings.image,
+      mobile_image: block.settings.mobile_image,
+      alt: alt_text,
+      loading: 'lazy',
+      sizes: '(min-width: 981px) 25vw, (min-width: 641px) 50vw, 100vw'
+    %}
+  {%- else -%}
+    <img src="{{ fallback_url }}" alt="{{ alt_text | escape }}" loading="lazy" width="600" height="310">
+  {%- endif -%}
+  <span class="boc-about-team__card-body">
+    {%- if block.settings.name != blank -%}<h4>{{ block.settings.name }}</h4>{%- endif -%}
+    {%- if block.settings.role != blank -%}<span>{{ block.settings.role }}</span>{%- endif -%}
+    <span class="boc-about-team__more">View profile</span>
+  </span>
+</button>

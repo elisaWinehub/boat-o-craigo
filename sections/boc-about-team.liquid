@@ -1,0 +1,172 @@
+{%- liquid
+  assign section_classes = 'boc-about-section boc-about-team boc-about-section--standard'
+  unless section.settings.section_enabled
+    assign section_classes = section_classes | append: ' boc-about-section--disabled'
+  endunless
+  unless section.settings.show_desktop
+    assign section_classes = section_classes | append: ' boc-about-section--hide-desktop'
+  endunless
+  unless section.settings.show_tablet
+    assign section_classes = section_classes | append: ' boc-about-section--hide-tablet'
+  endunless
+  unless section.settings.show_mobile
+    assign section_classes = section_classes | append: ' boc-about-section--hide-mobile'
+  endunless
+
+  assign featured_count = 0
+  assign carousel_count = 0
+  for block in section.blocks
+    if block.settings.featured
+      assign featured_count = featured_count | plus: 1
+    else
+      assign carousel_count = carousel_count | plus: 1
+    endif
+  endfor
+-%}
+
+<section
+  id="{{ section.settings.section_anchor_id | default: 'boc-about-team' }}"
+  class="{{ section_classes }}"
+  data-boc-about
+  data-cards-desktop="{{ section.settings.cards_visible_desktop }}"
+  data-cards-tablet="{{ section.settings.cards_visible_tablet }}"
+  data-cards-mobile="{{ section.settings.cards_visible_mobile }}"
+  data-scroll-amount="{{ section.settings.scroll_amount }}"
+  style="
+    --boc-ab-team-bg: {{ section.settings.background_color }};
+    --boc-ab-team-text: {{ section.settings.text_color }};
+    --boc-ab-team-intro: {{ section.settings.intro_color }};
+    --boc-ab-featured-bg: {{ section.settings.featured_card_background }};
+    --boc-ab-card-bg: {{ section.settings.carousel_card_background }};
+    --boc-ab-card-img-h: {{ section.settings.card_image_height }}px;
+    --boc-ab-pad-top-d: {{ section.settings.padding_top_desktop }}px;
+    --boc-ab-pad-bottom-d: {{ section.settings.padding_bottom_desktop }}px;
+    --boc-ab-pad-top-t: {{ section.settings.padding_top_tablet }}px;
+    --boc-ab-pad-bottom-t: {{ section.settings.padding_bottom_tablet }}px;
+    --boc-ab-pad-top-m: {{ section.settings.padding_top_mobile }}px;
+    --boc-ab-pad-bottom-m: {{ section.settings.padding_bottom_mobile }}px;
+  "
+>
+  <div class="boc-about-section__inner">
+    <div class="boc-about-team__head">
+      <div>
+        {%- if section.settings.eyebrow != blank -%}<span class="boc-eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+        {%- if section.settings.heading != blank -%}<h2 class="boc-about-section__heading">{{ section.settings.heading }}</h2>{%- endif -%}
+      </div>
+      {%- if section.settings.body != blank -%}<p>{{ section.settings.body }}</p>{%- endif -%}
+    </div>
+
+    {%- if featured_count > 0 -%}
+      <div class="boc-about-team__featured">
+        {%- for block in section.blocks -%}
+          {%- if block.settings.featured -%}
+            {% render 'boc-team-card', block: block, section_id: section.id, image_fallback: 'boc-estate-vineyard.jpg' %}
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+    {%- if carousel_count > 0 and section.settings.show_carousel -%}
+      <div class="boc-about-team__carousel" data-boc-about-carousel aria-label="{{ section.settings.carousel_aria_label | default: 'Boat O Craigo team carousel' }}">
+        <div class="boc-about-team__carousel-head">
+          <div>
+            {%- if section.settings.carousel_eyebrow != blank -%}<span class="boc-eyebrow">{{ section.settings.carousel_eyebrow }}</span>{%- endif -%}
+            {%- if section.settings.carousel_heading != blank -%}<h3>{{ section.settings.carousel_heading }}</h3>{%- endif -%}
+          </div>
+          {%- if section.settings.show_controls -%}
+            <div class="boc-about-team__carousel-controls">
+              <button type="button" class="boc-about-team__carousel-btn" data-boc-about-carousel-prev aria-label="Previous team member">←</button>
+              <button type="button" class="boc-about-team__carousel-btn" data-boc-about-carousel-next aria-label="Next team member">→</button>
+            </div>
+          {%- endif -%}
+        </div>
+        <div class="boc-about-team__carousel-viewport">
+          <div class="boc-about-team__carousel-track" data-boc-about-carousel-track>
+            {%- for block in section.blocks -%}
+              {%- unless block.settings.featured -%}
+                {% render 'boc-team-carousel-card', block: block, image_fallback: 'boc-estate-visit.jpg' %}
+              {%- endunless -%}
+            {%- endfor -%}
+          </div>
+        </div>
+      </div>
+    {%- endif -%}
+  </div>
+
+  <script type="application/json" data-boc-about-team-data>
+    {
+      "profiles": [
+        {%- for block in section.blocks -%}
+          {
+            "id": {{ block.id | json }},
+            "name": {{ block.settings.name | json }},
+            "role": {{ block.settings.role | json }},
+            "image": {% if block.settings.image != blank %}{{ block.settings.image | image_url: width: 1200 | json }}{% else %}{{ 'boc-estate-vineyard.jpg' | asset_url | json }}{% endif %},
+            "biography": {{ block.settings.biography | json }}
+          }{%- unless forloop.last -%},{%- endunless -%}
+        {%- endfor -%}
+      ]
+    }
+  </script>
+
+  {% render 'boc-team-modal', section_id: section.id %}
+</section>
+
+{% schema %}
+{
+  "name": "BOC — About Team",
+  "tag": "section",
+  "class": "boc-about-team-section",
+  "max_blocks": 24,
+  "settings": [
+    { "type": "checkbox", "id": "section_enabled", "label": "Enable section", "default": true },
+    { "type": "checkbox", "id": "show_desktop", "label": "Show on desktop", "default": true },
+    { "type": "checkbox", "id": "show_tablet", "label": "Show on tablet", "default": true },
+    { "type": "checkbox", "id": "show_mobile", "label": "Show on mobile", "default": true },
+    { "type": "text", "id": "section_anchor_id", "label": "Section anchor ID", "default": "boc-about-team" },
+    { "type": "color", "id": "background_color", "label": "Background", "default": "#333333" },
+    { "type": "color", "id": "text_color", "label": "Heading colour", "default": "#FFFFFF" },
+    { "type": "color", "id": "intro_color", "label": "Intro text colour", "default": "#bdbdbd" },
+    { "type": "color", "id": "featured_card_background", "label": "Featured card background", "default": "#2a2a2a" },
+    { "type": "color", "id": "carousel_card_background", "label": "Carousel card background", "default": "#FFFFFF" },
+    { "type": "range", "id": "card_image_height", "label": "Carousel card image height", "min": 240, "max": 480, "step": 10, "unit": "px", "default": 310 },
+    { "type": "range", "id": "padding_top_desktop", "label": "Desktop padding top", "min": 40, "max": 160, "step": 8, "unit": "px", "default": 120 },
+    { "type": "range", "id": "padding_bottom_desktop", "label": "Desktop padding bottom", "min": 40, "max": 160, "step": 8, "unit": "px", "default": 120 },
+    { "type": "range", "id": "padding_top_tablet", "label": "Tablet padding top", "min": 40, "max": 128, "step": 8, "unit": "px", "default": 96 },
+    { "type": "range", "id": "padding_bottom_tablet", "label": "Tablet padding bottom", "min": 40, "max": 128, "step": 8, "unit": "px", "default": 96 },
+    { "type": "range", "id": "padding_top_mobile", "label": "Mobile padding top", "min": 40, "max": 120, "step": 8, "unit": "px", "default": 80 },
+    { "type": "range", "id": "padding_bottom_mobile", "label": "Mobile padding bottom", "min": 40, "max": 120, "step": 8, "unit": "px", "default": 80 },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "The people behind the wine" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Meet the team." },
+    { "type": "textarea", "id": "body", "label": "Body", "default": "Rob Hall and Ben Craig lead the wine and vineyard story. Select any profile to read more about the wider Boat O'Craigo team." },
+    { "type": "header", "content": "Carousel" },
+    { "type": "checkbox", "id": "show_carousel", "label": "Show wider team carousel", "default": true },
+    { "type": "checkbox", "id": "show_controls", "label": "Show carousel controls", "default": true },
+    { "type": "range", "id": "cards_visible_desktop", "label": "Cards visible (desktop)", "min": 1, "max": 4, "step": 1, "default": 4 },
+    { "type": "range", "id": "cards_visible_tablet", "label": "Cards visible (tablet)", "min": 1, "max": 3, "step": 1, "default": 2 },
+    { "type": "range", "id": "cards_visible_mobile", "label": "Cards visible (mobile)", "min": 1, "max": 2, "step": 1, "default": 1 },
+    { "type": "range", "id": "scroll_amount", "label": "Scroll amount", "min": 1, "max": 3, "step": 1, "default": 1 },
+    { "type": "text", "id": "carousel_eyebrow", "label": "Carousel eyebrow", "default": "Hospitality, events and operations" },
+    { "type": "text", "id": "carousel_heading", "label": "Carousel heading", "default": "The wider team" },
+    { "type": "text", "id": "carousel_aria_label", "label": "Carousel ARIA label", "default": "Boat O'Craigo team carousel" }
+  ],
+  "blocks": [
+    {
+      "type": "member",
+      "name": "Team member",
+      "settings": [
+        { "type": "checkbox", "id": "featured", "label": "Featured profile", "default": false, "info": "Limit to two featured profiles for best layout." },
+        { "type": "text", "id": "name", "label": "Name", "default": "Team member" },
+        { "type": "text", "id": "role", "label": "Role", "default": "Role" },
+        { "type": "textarea", "id": "summary", "label": "Summary", "default": "Short profile summary." },
+        { "type": "richtext", "id": "biography", "label": "Biography" },
+        { "type": "image_picker", "id": "image", "label": "Image", "info": "Placeholder estate imagery is used until real staff portraits are supplied." },
+        { "type": "image_picker", "id": "mobile_image", "label": "Mobile image" },
+        { "type": "text", "id": "email", "label": "Email" },
+        { "type": "url", "id": "profile_url", "label": "Profile URL" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "BOC — About Team" }]
+}
+{% endschema %}

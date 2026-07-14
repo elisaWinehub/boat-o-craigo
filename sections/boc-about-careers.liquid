@@ -1,0 +1,119 @@
+{%- liquid
+  assign section_classes = 'boc-about-section boc-about-careers boc-about-section--standard'
+  unless section.settings.section_enabled
+    assign section_classes = section_classes | append: ' boc-about-section--disabled'
+  endunless
+  unless section.settings.show_desktop
+    assign section_classes = section_classes | append: ' boc-about-section--hide-desktop'
+  endunless
+  unless section.settings.show_tablet
+    assign section_classes = section_classes | append: ' boc-about-section--hide-tablet'
+  endunless
+  unless section.settings.show_mobile
+    assign section_classes = section_classes | append: ' boc-about-section--hide-mobile'
+  endunless
+
+  assign open_jobs = 0
+  for block in section.blocks
+    if block.settings.status != 'closed' or section.settings.show_closed_jobs
+      assign open_jobs = open_jobs | plus: 1
+    endif
+  endfor
+-%}
+
+<section
+  id="{{ section.settings.section_anchor_id | default: 'boc-about-careers' }}"
+  class="{{ section_classes }}"
+  data-boc-about
+  style="
+    --boc-ab-bg: {{ section.settings.background_color }};
+    --boc-ab-pad-top-d: {{ section.settings.padding_top_desktop }}px;
+    --boc-ab-pad-bottom-d: {{ section.settings.padding_bottom_desktop }}px;
+    --boc-ab-pad-top-t: {{ section.settings.padding_top_tablet }}px;
+    --boc-ab-pad-bottom-t: {{ section.settings.padding_bottom_tablet }}px;
+    --boc-ab-pad-top-m: {{ section.settings.padding_top_mobile }}px;
+    --boc-ab-pad-bottom-m: {{ section.settings.padding_bottom_mobile }}px;
+  "
+>
+  <div class="boc-about-section__inner">
+    <div class="boc-about-careers__head">
+      <div>
+        {%- if section.settings.eyebrow != blank -%}<span class="boc-eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+        {%- if section.settings.heading != blank -%}<h2 class="boc-about-section__heading">{{ section.settings.heading }}</h2>{%- endif -%}
+      </div>
+      {%- if section.settings.body != blank -%}<p>{{ section.settings.body }}</p>{%- endif -%}
+    </div>
+
+    {%- if open_jobs > 0 -%}
+      <div class="boc-about-careers__list" data-boc-about-careers data-one-open="{{ section.settings.one_open_only }}">
+        {%- assign first_open_set = false -%}
+        {%- for block in section.blocks -%}
+          {%- if block.settings.status != 'closed' or section.settings.show_closed_jobs -%}
+            {%- liquid
+              assign is_open = false
+              if block.settings.open_by_default and first_open_set == false
+                assign is_open = true
+                assign first_open_set = true
+              endif
+            -%}
+            {% render 'boc-career-item', block: block, section_id: section.id, is_open: is_open %}
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- else -%}
+      <p class="boc-about-careers__empty">{{ section.settings.empty_state_text | default: 'There are currently no open positions.' }}</p>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "BOC — About Careers",
+  "tag": "section",
+  "class": "boc-about-careers-section",
+  "max_blocks": 12,
+  "settings": [
+    { "type": "checkbox", "id": "section_enabled", "label": "Enable section", "default": true },
+    { "type": "checkbox", "id": "show_desktop", "label": "Show on desktop", "default": true },
+    { "type": "checkbox", "id": "show_tablet", "label": "Show on tablet", "default": true },
+    { "type": "checkbox", "id": "show_mobile", "label": "Show on mobile", "default": true },
+    { "type": "text", "id": "section_anchor_id", "label": "Section anchor ID", "default": "boc-about-careers" },
+    { "type": "color", "id": "background_color", "label": "Background", "default": "#FFFFFF" },
+    { "type": "checkbox", "id": "one_open_only", "label": "One job open at a time", "default": true },
+    { "type": "checkbox", "id": "show_closed_jobs", "label": "Show closed jobs", "default": false },
+    { "type": "text", "id": "empty_state_text", "label": "Empty state message", "default": "There are currently no open positions." },
+    { "type": "range", "id": "padding_top_desktop", "label": "Desktop padding top", "min": 40, "max": 160, "step": 8, "unit": "px", "default": 120 },
+    { "type": "range", "id": "padding_bottom_desktop", "label": "Desktop padding bottom", "min": 40, "max": 160, "step": 8, "unit": "px", "default": 120 },
+    { "type": "range", "id": "padding_top_tablet", "label": "Tablet padding top", "min": 40, "max": 128, "step": 8, "unit": "px", "default": 96 },
+    { "type": "range", "id": "padding_bottom_tablet", "label": "Tablet padding bottom", "min": 40, "max": 128, "step": 8, "unit": "px", "default": 96 },
+    { "type": "range", "id": "padding_top_mobile", "label": "Mobile padding top", "min": 40, "max": 120, "step": 8, "unit": "px", "default": 80 },
+    { "type": "range", "id": "padding_bottom_mobile", "label": "Mobile padding bottom", "min": 40, "max": 120, "step": 8, "unit": "px", "default": 80 },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Work with us" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Join the Boat O'Craigo team." },
+    { "type": "textarea", "id": "body", "label": "Body", "default": "Explore current opportunities across hospitality, cellar door, events, wine and vineyard operations." }
+  ],
+  "blocks": [
+    {
+      "type": "job",
+      "name": "Job",
+      "settings": [
+        { "type": "text", "id": "job_title", "label": "Job title", "default": "Role title" },
+        { "type": "text", "id": "employment_type", "label": "Employment type" },
+        { "type": "text", "id": "location", "label": "Location" },
+        { "type": "textarea", "id": "summary", "label": "Summary" },
+        { "type": "richtext", "id": "description", "label": "Full description" },
+        { "type": "richtext", "id": "requirements", "label": "Requirements list" },
+        { "type": "text", "id": "closing_date", "label": "Closing date" },
+        { "type": "select", "id": "status", "label": "Status", "options": [{"value":"open","label":"Open"},{"value":"closed","label":"Closed"}],"default": "open" },
+        { "type": "checkbox", "id": "open_by_default", "label": "Open by default", "default": false },
+        { "type": "select", "id": "application_method", "label": "Application method", "options": [{"value":"email","label":"Email"},{"value":"url","label":"External URL"},{"value":"pdf","label":"PDF download"}],"default": "email" },
+        { "type": "text", "id": "application_email", "label": "Application email", "default": "info@boatocraigo.com.au" },
+        { "type": "url", "id": "application_url", "label": "Application URL" },
+        { "type": "url", "id": "application_pdf", "label": "Job description PDF" },
+        { "type": "checkbox", "id": "application_new_tab", "label": "Open application in new tab", "default": false }
+      ]
+    }
+  ],
+  "presets": [{ "name": "BOC — About Careers" }]
+}
+{% endschema %}

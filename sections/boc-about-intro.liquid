@@ -1,0 +1,107 @@
+{%- liquid
+  assign section_classes = 'boc-about-section boc-about-intro boc-about-section--standard'
+  unless section.settings.section_enabled
+    assign section_classes = section_classes | append: ' boc-about-section--disabled'
+  endunless
+  unless section.settings.show_desktop
+    assign section_classes = section_classes | append: ' boc-about-section--hide-desktop'
+  endunless
+  unless section.settings.show_tablet
+    assign section_classes = section_classes | append: ' boc-about-section--hide-tablet'
+  endunless
+  unless section.settings.show_mobile
+    assign section_classes = section_classes | append: ' boc-about-section--hide-mobile'
+  endunless
+-%}
+
+<section
+  id="{{ section.settings.section_anchor_id | default: 'boc-about-intro' }}"
+  class="{{ section_classes }}"
+  data-boc-about
+  style="
+    --boc-ab-bg: {{ section.settings.background_color }};
+    --boc-ab-text: {{ section.settings.text_color }};
+    --boc-ab-body: {{ section.settings.body_color }};
+    --boc-ab-pad-top-d: {{ section.settings.padding_top_desktop }}px;
+    --boc-ab-pad-bottom-d: {{ section.settings.padding_bottom_desktop }}px;
+    --boc-ab-pad-top-t: {{ section.settings.padding_top_tablet }}px;
+    --boc-ab-pad-bottom-t: {{ section.settings.padding_bottom_tablet }}px;
+    --boc-ab-pad-top-m: {{ section.settings.padding_top_mobile }}px;
+    --boc-ab-pad-bottom-m: {{ section.settings.padding_bottom_mobile }}px;
+    --boc-ab-intro-ratio: {{ section.settings.column_ratio }};
+    --boc-ab-stat-cols: {{ section.settings.statistics_columns }};
+  "
+>
+  <div class="boc-about-section__inner">
+    <div class="boc-about-intro__grid">
+      <div class="boc-about-intro__head">
+        {%- if section.settings.eyebrow != blank -%}<span class="boc-eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+        {%- if section.settings.heading != blank -%}<h2 class="boc-about-section__heading">{{ section.settings.heading }}</h2>{%- endif -%}
+      </div>
+      <div class="boc-about-intro__copy">
+        {%- if section.settings.body != blank -%}<div class="rte">{{ section.settings.body }}</div>{%- endif -%}
+        {%- if section.blocks.size > 0 -%}
+          <div class="boc-about-intro__stats">
+            {%- for block in section.blocks -%}
+              {% render 'boc-stat-item', block: block %}
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "BOC — About Intro",
+  "tag": "section",
+  "class": "boc-about-intro-section",
+  "max_blocks": 8,
+  "settings": [
+    { "type": "checkbox", "id": "section_enabled", "label": "Enable section", "default": true },
+    { "type": "checkbox", "id": "show_desktop", "label": "Show on desktop", "default": true },
+    { "type": "checkbox", "id": "show_tablet", "label": "Show on tablet", "default": true },
+    { "type": "checkbox", "id": "show_mobile", "label": "Show on mobile", "default": true },
+    { "type": "text", "id": "section_anchor_id", "label": "Section anchor ID", "default": "boc-about-intro" },
+    { "type": "color", "id": "background_color", "label": "Background", "default": "#FFFFFF" },
+    { "type": "color", "id": "text_color", "label": "Heading colour", "default": "#212121" },
+    { "type": "color", "id": "body_color", "label": "Body colour", "default": "#575962" },
+    { "type": "text", "id": "column_ratio", "label": "Column ratio", "default": "0.85fr 1.15fr" },
+    { "type": "range", "id": "statistics_columns", "label": "Statistics columns (desktop)", "min": 2, "max": 4, "step": 1, "default": 4 },
+    { "type": "range", "id": "padding_top_desktop", "label": "Desktop padding top", "min": 40, "max": 160, "step": 8, "unit": "px", "default": 120 },
+    { "type": "range", "id": "padding_bottom_desktop", "label": "Desktop padding bottom", "min": 40, "max": 160, "step": 8, "unit": "px", "default": 96 },
+    { "type": "range", "id": "padding_top_tablet", "label": "Tablet padding top", "min": 40, "max": 128, "step": 8, "unit": "px", "default": 96 },
+    { "type": "range", "id": "padding_bottom_tablet", "label": "Tablet padding bottom", "min": 40, "max": 128, "step": 8, "unit": "px", "default": 80 },
+    { "type": "range", "id": "padding_top_mobile", "label": "Mobile padding top", "min": 40, "max": 120, "step": 8, "unit": "px", "default": 80 },
+    { "type": "range", "id": "padding_bottom_mobile", "label": "Mobile padding bottom", "min": 40, "max": 120, "step": 8, "unit": "px", "default": 80 },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Boat O'Craigo" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "A family estate with a clear sense of place." },
+    { "type": "richtext", "id": "body", "label": "Body", "default": "<p>Boat O'Craigo is a second-generation, family-owned winery with vineyards in Healesville and Kangaroo Ground. Since the early 2000s, the estate has focused on small-batch wines that reflect the conditions, character and cool-climate personality of each site.</p><p>The Graham family continues to guide the business with the same practical spirit that shaped its beginning: care for the vineyard, respect for the fruit and a welcoming experience for every visitor.</p>" }
+  ],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Statistic",
+      "settings": [
+        { "type": "text", "id": "prefix", "label": "Prefix" },
+        { "type": "text", "id": "value", "label": "Value", "default": "2" },
+        { "type": "text", "id": "suffix", "label": "Suffix" },
+        { "type": "text", "id": "label", "label": "Label", "default": "Label" },
+        { "type": "color", "id": "accent_color", "label": "Value colour", "default": "#212121" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "BOC — About Intro",
+      "blocks": [
+        { "type": "stat", "settings": { "value": "2", "label": "Yarra Valley vineyard sites" } },
+        { "type": "stat", "settings": { "value": "50+", "label": "Acres under vine" } },
+        { "type": "stat", "settings": { "value": "20+", "label": "Years of estate history" } },
+        { "type": "stat", "settings": { "value": "Family", "label": "Owned and operated" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

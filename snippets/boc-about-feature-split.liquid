@@ -1,0 +1,86 @@
+{%- doc -%}
+  Split image and copy layout for About page sections.
+
+  @param {object} section - Section object
+  @param {string} anchor_id - Section anchor ID
+  @param {boolean} [reverse] - Image on right
+  @param {boolean} [dark_copy] - Dark copy panel
+  @param {string} [image_fallback] - Theme asset fallback filename
+{%- enddoc -%}
+
+{%- liquid
+  assign feature_class = 'boc-about-feature'
+  if reverse
+    assign feature_class = feature_class | append: ' boc-about-feature--reverse'
+  endif
+  if section.settings.mobile_stack_order == 'copy_first'
+    assign feature_class = feature_class | append: ' boc-about-feature--mobile-copy-first'
+  endif
+
+  assign copy_class = 'boc-about-feature__copy'
+  if dark_copy
+    assign copy_class = copy_class | append: ' boc-about-feature__copy--dark'
+  endif
+
+  assign fallback_url = image_fallback | default: 'boc-estate-visit.jpg' | asset_url
+  assign button_url = section.settings.button_url | default: '#'
+-%}
+
+<div
+  id="{{ anchor_id }}"
+  class="{{ feature_class }}"
+  style="
+    --boc-ab-split-ratio: {{ section.settings.split_ratio | default: '1fr 1fr' }};
+    --boc-ab-feature-min-h: {{ section.settings.desktop_image_height }}px;
+    --boc-ab-feature-media-h: {{ section.settings.desktop_image_height }}px;
+    --boc-ab-feature-media-h-t: {{ section.settings.tablet_image_height }}px;
+    --boc-ab-feature-media-h-m: {{ section.settings.mobile_image_height }}px;
+    --boc-ab-copy-bg: {{ section.settings.copy_background_color }};
+    --boc-ab-copy-text: {{ section.settings.copy_text_color }};
+    --boc-ab-copy-body: {{ section.settings.copy_body_color }};
+    --boc-ab-detail-border: {{ section.settings.detail_border_color }};
+  "
+>
+  <div class="boc-about-feature__media">
+    {%- if section.settings.image != blank or section.settings.mobile_image != blank -%}
+      {% render 'boc-responsive-image',
+        image: section.settings.image,
+        mobile_image: section.settings.mobile_image,
+        alt: section.settings.image.alt | default: section.settings.heading,
+        loading: 'lazy',
+        sizes: '(min-width: 980px) 55vw, 100vw'
+      %}
+    {%- else -%}
+      <img src="{{ fallback_url }}" alt="{{ section.settings.heading | escape }}" loading="lazy" width="1600" height="720">
+    {%- endif -%}
+  </div>
+
+  <div class="{{ copy_class }}">
+    {%- if section.settings.eyebrow != blank -%}
+      <span class="boc-eyebrow">{{ section.settings.eyebrow }}</span>
+    {%- endif -%}
+    {%- if section.settings.heading != blank -%}
+      <h2 class="boc-about-section__heading">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+    {%- if section.settings.body != blank -%}
+      <p>{{ section.settings.body }}</p>
+    {%- endif -%}
+
+    {% render 'boc-detail-row', blocks: section.blocks, dark: dark_copy %}
+
+    {%- if section.settings.button_enabled and section.settings.button_label != blank -%}
+      {%- if button_url contains '#' -%}
+        <a href="{{ button_url }}" class="boc-btn boc-btn--{{ section.settings.button_style | default: 'primary' }}" data-boc-about-scroll
+          {%- if section.settings.button_new_tab -%} target="_blank" rel="noopener noreferrer"{%- endif -%}
+        >{{ section.settings.button_label }}</a>
+      {%- else -%}
+        {% render 'boc-button',
+          label: section.settings.button_label,
+          url: button_url,
+          style: section.settings.button_style | default: 'primary',
+          new_tab: section.settings.button_new_tab
+        %}
+      {%- endif -%}
+    {%- endif -%}
+  </div>
+</div>

@@ -1,0 +1,60 @@
+{%- doc -%}
+  Career accordion item for About careers section.
+
+  @param {object} block - Career block
+  @param {string} section_id - Parent section ID
+  @param {boolean} is_open - Whether item starts open
+{%- enddoc -%}
+
+{%- liquid
+  assign item_id = 'boc-about-career-' | append: section_id | append: '-' | append: block.id
+  assign open_class = ''
+  if is_open
+    assign open_class = ' is-open'
+  endif
+-%}
+
+<article class="boc-about-career{{ open_class }}" data-boc-about-career {{ block.shopify_attributes }}>
+  <h3 class="boc-about-career__heading">
+    <button
+      type="button"
+      class="boc-about-career__trigger"
+      data-boc-about-career-trigger
+      aria-expanded="{% if is_open %}true{% else %}false{% endif %}"
+      aria-controls="{{ item_id }}-panel"
+      id="{{ item_id }}-trigger"
+    >
+      <span>{{ block.settings.job_title }}</span>
+      <span class="boc-about-career__icon" data-boc-about-career-icon aria-hidden="true">{% if is_open %}−{% else %}+{% endif %}</span>
+    </button>
+  </h3>
+  <div
+    id="{{ item_id }}-panel"
+    class="boc-about-career__panel"
+    data-boc-about-career-panel
+    role="region"
+    aria-labelledby="{{ item_id }}-trigger"
+    {% unless is_open %}hidden{% endunless %}
+  >
+    {%- if block.settings.employment_type != blank or block.settings.location != blank -%}
+      <p>
+        {%- if block.settings.employment_type != blank -%}{{ block.settings.employment_type }}{%- endif -%}
+        {%- if block.settings.employment_type != blank and block.settings.location != blank -%} · {%- endif -%}
+        {%- if block.settings.location != blank -%}{{ block.settings.location }}{%- endif -%}
+      </p>
+    {%- endif -%}
+    {%- if block.settings.summary != blank -%}<p>{{ block.settings.summary }}</p>{%- endif -%}
+    {%- if block.settings.description != blank -%}<div class="rte">{{ block.settings.description }}</div>{%- endif -%}
+    {%- if block.settings.requirements != blank -%}
+      <div class="rte">{{ block.settings.requirements }}</div>
+    {%- endif -%}
+    {%- if block.settings.closing_date != blank -%}<p><strong>Closing date:</strong> {{ block.settings.closing_date }}</p>{%- endif -%}
+    {%- if block.settings.application_method == 'email' and block.settings.application_email != blank -%}
+      <p><a href="mailto:{{ block.settings.application_email }}" class="boc-home-text-link">Apply by email</a></p>
+    {%- elsif block.settings.application_method == 'url' and block.settings.application_url != blank -%}
+      <p><a href="{{ block.settings.application_url }}" class="boc-home-text-link"{% if block.settings.application_new_tab %} target="_blank" rel="noopener noreferrer"{% endif %}>Apply online</a></p>
+    {%- elsif block.settings.application_method == 'pdf' and block.settings.application_pdf != blank -%}
+      <p><a href="{{ block.settings.application_pdf }}" class="boc-home-text-link" target="_blank" rel="noopener noreferrer">Download job description</a></p>
+    {%- endif -%}
+  </div>
+</article>

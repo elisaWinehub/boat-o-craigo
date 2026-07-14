@@ -1,0 +1,76 @@
+{%- liquid
+  assign nav_classes = 'boc-about-nav'
+  unless section.settings.sticky_enabled
+    assign nav_classes = nav_classes | append: ' boc-about-nav--disabled'
+  endunless
+  unless section.settings.section_enabled
+    assign nav_classes = nav_classes | append: ' boc-about-section--disabled'
+  endunless
+  unless section.settings.show_desktop
+    assign nav_classes = nav_classes | append: ' boc-about-section--hide-desktop'
+  endunless
+  unless section.settings.show_tablet
+    assign nav_classes = nav_classes | append: ' boc-about-section--hide-tablet'
+  endunless
+  unless section.settings.show_mobile
+    assign nav_classes = nav_classes | append: ' boc-about-section--hide-mobile'
+  endunless
+-%}
+
+<nav
+  class="{{ nav_classes }}"
+  aria-label="{{ section.settings.aria_label | default: 'About page navigation' }}"
+  data-boc-about-nav
+  data-tracking="{{ section.settings.active_tracking }}"
+  data-boc-about
+  style="--boc-ab-nav-bg: {{ section.settings.background_color }}; --boc-ab-nav-text: {{ section.settings.text_color }}; --boc-ab-nav-active: {{ section.settings.active_color }};"
+>
+  <div class="boc-about-section__inner boc-about-nav__inner">
+    {%- for block in section.blocks -%}
+      <a href="#{{ block.settings.anchor_id }}" class="boc-about-nav__link" data-boc-about-scroll {{ block.shopify_attributes }}>{{ block.settings.label }}</a>
+    {%- endfor -%}
+  </div>
+</nav>
+
+{% schema %}
+{
+  "name": "BOC — About Nav",
+  "tag": "section",
+  "class": "boc-about-nav-section",
+  "max_blocks": 8,
+  "settings": [
+    { "type": "checkbox", "id": "section_enabled", "label": "Enable section", "default": true },
+    { "type": "checkbox", "id": "show_desktop", "label": "Show on desktop", "default": true },
+    { "type": "checkbox", "id": "show_tablet", "label": "Show on tablet", "default": true },
+    { "type": "checkbox", "id": "show_mobile", "label": "Show on mobile", "default": true },
+    { "type": "checkbox", "id": "sticky_enabled", "label": "Enable sticky navigation", "default": true },
+    { "type": "checkbox", "id": "active_tracking", "label": "Highlight active section on scroll", "default": true },
+    { "type": "color", "id": "background_color", "label": "Background", "default": "#FFFFFF" },
+    { "type": "color", "id": "text_color", "label": "Text colour", "default": "#212121" },
+    { "type": "color", "id": "active_color", "label": "Active/hover colour", "default": "#B99E7E" },
+    { "type": "text", "id": "aria_label", "label": "ARIA label", "default": "About page navigation" }
+  ],
+  "blocks": [
+    {
+      "type": "link",
+      "name": "Nav link",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label", "default": "Link" },
+        { "type": "text", "id": "anchor_id", "label": "Anchor ID", "default": "boc-about-family" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "BOC — About Nav",
+      "blocks": [
+        { "type": "link", "settings": { "label": "The family", "anchor_id": "boc-about-family" } },
+        { "type": "link", "settings": { "label": "The vineyards", "anchor_id": "boc-about-vineyards" } },
+        { "type": "link", "settings": { "label": "Winemaking", "anchor_id": "boc-about-winemaking" } },
+        { "type": "link", "settings": { "label": "Our team", "anchor_id": "boc-about-team" } },
+        { "type": "link", "settings": { "label": "Careers", "anchor_id": "boc-about-careers" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

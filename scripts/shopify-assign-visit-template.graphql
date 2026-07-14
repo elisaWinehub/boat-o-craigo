@@ -1,0 +1,16 @@
+mutation AssignVisitTemplate {
+  pageUpdate(
+    id: "gid://shopify/Page/111877947476"
+    page: { templateSuffix: "visit" }
+  ) {
+    page {
+      id
+      handle
+      templateSuffix
+    }
+    userErrors {
+      field
+      message
+    }
+  }
+}

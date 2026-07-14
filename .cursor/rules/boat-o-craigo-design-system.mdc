@@ -1,0 +1,35 @@
+---
+description: Boat O'Craigo design source of truth — read before any theme implementation
+alwaysApply: true
+---
+
+# Boat O'Craigo Design System
+
+Before making any changes, read:
+
+- `docs/BOAT-O-CRAIGO-DESIGN-SYSTEM.md`
+- `docs/BOAT-O-CRAIGO-CURSOR-RULES.md`
+- `assets/boc-design-tokens.css`
+
+These files are the design source of truth. Do not introduce a new visual style or component pattern that conflicts with them.
+
+## Critical rules
+
+- Never use `#F0F5ED`
+- Do not redesign the approved header or footer
+- Do not invent new colours, fonts, gradients, rounded cards, shadows, or animations
+- Product card Add to Cart buttons use `#212121`
+- Product collection images: white background, no padding, no bottle shadow, no hover movement
+- Reuse existing `boc-*` components before creating new sections
+- Build page content as merchant-editable Shopify sections and blocks
+- Limit the site to the approved ten-template architecture
+- Run `shopify theme check` before completion
+- Report any design-system deviation before implementing it
+
+## Approved templates
+
+Homepage, Collection, Product, Wine Club, Visit, What's On, About, Book Now, Contact, Customer Account
+
+## CSS tokens
+
+Use variables and classes from `assets/boc-design-tokens.css` (e.g. `--boc-ink`, `.boc-btn--primary`, `.boc-container`, `.boc-product-image`).

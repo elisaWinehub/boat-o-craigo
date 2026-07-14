@@ -510,6 +510,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  background: var(--product-story-copy-bg, #171717);
 }
 
 .product-story-copy h2 { margin: 10px 0 22px; }

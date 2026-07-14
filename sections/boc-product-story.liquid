@@ -11,6 +11,12 @@
     assign story_image = product.featured_image
   endif
 
+  assign default_story_image_url = 'https://cdn.shopify.com/s/files/1/0698/9912/4820/files/Wine-10.jpg?v=1784072202'
+  assign use_default_story_image = false
+  if story_image == blank
+    assign use_default_story_image = true
+  endif
+
   assign body = section.settings.body
   if body == blank and winemaking != blank
     assign body = winemaking | metafield_tag | strip_html
@@ -25,7 +31,7 @@
   endif
 
   assign has_image = false
-  if story_image != blank
+  if story_image != blank or use_default_story_image
     assign has_image = true
   endif
 
@@ -45,17 +51,20 @@
   {{ section.shopify_attributes }}
 >
   <div class="product-story-media">
-    {%- if story_image != blank -%}
+    {%- if use_default_story_image -%}
+      <img src="{{ default_story_image_url }}" alt="{{ product.title | escape }}" loading="lazy" width="1600" height="680">
+    {%- elsif story_image != blank -%}
       {%- if story_image.media_type -%}
         {{ story_image | image_url: width: 1600 | image_tag: alt: product.title, loading: 'lazy', widths: '800, 1200, 1600' }}
       {%- else -%}
         {{ story_image | image_url: width: 1600 | image_tag: alt: story_image.alt | default: product.title, loading: 'lazy', widths: '800, 1200, 1600' }}
       {%- endif -%}
-    {%- else -%}
-      <img src="{{ 'boc-estate-vineyard.jpg' | asset_url }}" alt="{{ product.title | escape }}" loading="lazy" width="1600" height="680">
     {%- endif -%}
   </div>
-  <div class="product-story-copy">
+  <div
+    class="product-story-copy"
+    style="--product-story-copy-bg: {{ section.settings.copy_background_color | default: '#171717' }};"
+  >
     {%- if eyebrow != blank -%}
       <span class="eyebrow boc-eyebrow">{{ eyebrow }}</span>
     {%- endif -%}
@@ -87,6 +96,7 @@
   "class": "boc-product-story-section",
   "settings": [
     { "type": "image_picker", "id": "image", "label": "Image override" },
+    { "type": "color", "id": "copy_background_color", "label": "Copy panel background", "default": "#171717" },
     { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "From the vineyard" },
     { "type": "text", "id": "heading", "label": "Heading", "default": "Cool climate. Bright character." },
     { "type": "textarea", "id": "body", "label": "Body copy", "info": "Defaults to wine.winemaking_notes when blank." },

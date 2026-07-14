@@ -151,6 +151,7 @@
       "settings": {
         "eyebrow": "From the vineyard",
         "heading": "Cool climate. Bright character.",
+        "copy_background_color": "#171717",
         "vineyard_label": "Vineyard",
         "region_label": "Region",
         "winemaker_label": "Winemaking"

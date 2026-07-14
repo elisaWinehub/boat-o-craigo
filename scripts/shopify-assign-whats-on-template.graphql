@@ -1,0 +1,16 @@
+mutation AssignWhatsOnTemplate {
+  pageUpdate(
+    id: "gid://shopify/Page/111877980244"
+    page: { templateSuffix: "whats-on" }
+  ) {
+    page {
+      id
+      handle
+      templateSuffix
+    }
+    userErrors {
+      field
+      message
+    }
+  }
+}

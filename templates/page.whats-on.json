@@ -1,0 +1,502 @@
+{
+  "sections": {
+    "boc_whats_on_hero": {
+      "type": "boc-whats-on-hero",
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "overlay_color": "#141414",
+        "overlay_opacity": 55,
+        "height_desktop": 760,
+        "height_tablet": 700,
+        "height_mobile": 680,
+        "image_focal_point": "center",
+        "content_width": 790,
+        "eyebrow": "What's on at Boat O'Craigo",
+        "heading": "Gather, celebrate and stay awhile.",
+        "body": "Discover seasonal events, weddings and private celebrations set among the vines in the Yarra Valley.",
+        "text_alignment_desktop": "left",
+        "text_alignment_mobile": "left",
+        "button_1_enabled": true,
+        "button_1_label": "Explore what's on",
+        "button_1_anchor": "boc-whats-on-events",
+        "button_1_style": "accent",
+        "button_2_enabled": true,
+        "button_2_label": "Plan an event",
+        "button_2_anchor": "boc-whats-on-celebrations",
+        "button_2_style": "light"
+      }
+    },
+    "boc_whats_on_nav": {
+      "type": "boc-whats-on-anchor-nav",
+      "blocks": {
+        "nav_events": {
+          "type": "link",
+          "settings": {
+            "label": "Upcoming events",
+            "anchor_id": "boc-whats-on-events"
+          }
+        },
+        "nav_celebrations": {
+          "type": "link",
+          "settings": {
+            "label": "Weddings & private events",
+            "anchor_id": "boc-whats-on-celebrations"
+          }
+        },
+        "nav_venues": {
+          "type": "link",
+          "settings": {
+            "label": "Our spaces",
+            "anchor_id": "boc-whats-on-venues"
+          }
+        },
+        "nav_enquiry": {
+          "type": "link",
+          "settings": {
+            "label": "Enquire",
+            "anchor_id": "boc-whats-on-enquiry"
+          }
+        },
+        "nav_discover": {
+          "type": "link",
+          "settings": {
+            "label": "Explore the Yarra Valley",
+            "anchor_id": "boc-whats-on-discover"
+          }
+        }
+      },
+      "block_order": ["nav_events", "nav_celebrations", "nav_venues", "nav_enquiry", "nav_discover"],
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "sticky_enabled": true,
+        "active_tracking": true,
+        "background_color": "#FFFFFF",
+        "text_color": "#212121",
+        "active_color": "#B99E7E",
+        "aria_label": "What's On page navigation"
+      }
+    },
+    "boc_whats_on_intro": {
+      "type": "boc-whats-on-intro",
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "container_width": "standard",
+        "column_ratio": "0.8fr 1.2fr",
+        "mobile_stack_order": "heading_first",
+        "background_color": "#FFFFFF",
+        "heading_color": "#212121",
+        "body_color": "#575962",
+        "padding_top_desktop": 120,
+        "padding_bottom_desktop": 120,
+        "padding_top_tablet": 96,
+        "padding_bottom_tablet": 96,
+        "padding_top_mobile": 80,
+        "padding_bottom_mobile": 80,
+        "eyebrow": "At the estate",
+        "heading": "There is always a reason to visit.",
+        "lead": "From long lunches and live music to intimate weddings and milestone celebrations, every gathering is shaped by the vineyard around it.",
+        "body": "<p>Join us for public events throughout the year, or create a celebration of your own. Weddings and private events each receive a tailored experience, supported by the same dedicated team and beautiful estate setting.</p>"
+      }
+    },
+    "boc_whats_on_events": {
+      "type": "boc-whats-on-events",
+      "blocks": {
+        "event_sunday_sessions": {
+          "type": "event",
+          "settings": {
+            "title": "Sunday Sessions",
+            "category": "Live music · Cellar door",
+            "excerpt": "Slow down with live music, estate wines and a relaxed afternoon overlooking the vines.",
+            "event_date": "2026-07-26"
+          }
+        },
+        "event_winter_lunch": {
+          "type": "event",
+          "settings": {
+            "title": "Winter Long Lunch",
+            "category": "Dining · Glasshouse",
+            "excerpt": "A seasonal menu, matched estate wines and an unhurried afternoon in the Glasshouse.",
+            "event_date": "2026-08-15"
+          }
+        },
+        "event_spring_tasting": {
+          "type": "event",
+          "settings": {
+            "title": "Spring Release Tasting",
+            "category": "Wine club · New release",
+            "excerpt": "Be among the first to taste the new vintage with the winemaking and cellar door teams.",
+            "event_date": "2026-09-06"
+          }
+        }
+      },
+      "block_order": ["event_sunday_sessions", "event_winter_lunch", "event_spring_tasting"],
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "section_anchor_id": "boc-whats-on-events",
+        "background_color": "#FAF8F5",
+        "padding_top_desktop": 120,
+        "padding_bottom_desktop": 120,
+        "padding_top_tablet": 96,
+        "padding_bottom_tablet": 96,
+        "padding_top_mobile": 80,
+        "padding_bottom_mobile": 80,
+        "eyebrow": "Upcoming at Boat O'Craigo",
+        "heading": "What's on.",
+        "intro_body": "Seasonal events, vineyard experiences and special occasions.",
+        "source": "manual",
+        "article_limit": 3,
+        "columns_desktop": 3,
+        "columns_tablet": 2,
+        "show_date": true,
+        "show_category": true,
+        "show_excerpt": true,
+        "show_cta": true,
+        "card_cta_label": "View event",
+        "card_background": "#FFFFFF",
+        "card_border": "#E8E2D9",
+        "date_badge_bg": "#212121",
+        "date_badge_text": "#FFFFFF"
+      }
+    },
+    "boc_whats_on_celebrations": {
+      "type": "boc-whats-on-celebrations",
+      "blocks": {
+        "celebration_wedding": {
+          "type": "celebration",
+          "settings": {
+            "eyebrow": "Weddings",
+            "heading": "Made for your day.",
+            "body": "Contemporary architecture, vineyard views and flexible spaces for ceremonies, receptions and unforgettable photographs.",
+            "button_label": "Plan your wedding",
+            "button_anchor": "boc-whats-on-enquiry",
+            "enquiry_type": "wedding",
+            "button_style": "light",
+            "card_height": 660
+          }
+        },
+        "celebration_private": {
+          "type": "celebration",
+          "settings": {
+            "eyebrow": "Private events",
+            "heading": "Gather your people.",
+            "body": "Birthdays, corporate lunches, family occasions and milestone celebrations, supported by estate wines and locally focused menus.",
+            "button_label": "Plan a private event",
+            "button_anchor": "boc-whats-on-enquiry",
+            "enquiry_type": "private",
+            "button_style": "light",
+            "card_height": 660
+          }
+        }
+      },
+      "block_order": ["celebration_wedding", "celebration_private"],
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "section_anchor_id": "boc-whats-on-celebrations",
+        "background_color": "#212121",
+        "text_color": "#FFFFFF",
+        "heading_color": "#FFFFFF",
+        "body_color": "#BBBBBB",
+        "padding_top_desktop": 120,
+        "padding_bottom_desktop": 120,
+        "padding_top_tablet": 96,
+        "padding_bottom_tablet": 96,
+        "padding_top_mobile": 80,
+        "padding_bottom_mobile": 80,
+        "eyebrow": "Your occasion, our estate",
+        "heading": "Celebrate among the vines.",
+        "intro_body": "Whether you are planning a wedding, a milestone or a relaxed gathering, our team will help shape the estate around your occasion."
+      }
+    },
+    "boc_whats_on_venues": {
+      "type": "boc-whats-on-venues",
+      "blocks": {
+        "venue_glasshouse": {
+          "type": "venue",
+          "settings": {
+            "name": "The Glasshouse",
+            "description": "Light-filled dining and reception space with panoramic vineyard views.",
+            "layout_size": "featured"
+          }
+        },
+        "venue_pavilion": {
+          "type": "venue",
+          "settings": {
+            "name": "The Pavilion",
+            "description": "An intimate setting for ceremonies and smaller gatherings.",
+            "layout_size": "standard"
+          }
+        },
+        "venue_vineyard": {
+          "type": "venue",
+          "settings": {
+            "name": "The Vineyard",
+            "description": "A dramatic natural backdrop for portraits and outdoor moments.",
+            "layout_size": "standard"
+          }
+        }
+      },
+      "block_order": ["venue_glasshouse", "venue_pavilion", "venue_vineyard"],
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "section_anchor_id": "boc-whats-on-venues",
+        "background_color": "#FFFFFF",
+        "padding_top_desktop": 120,
+        "padding_bottom_desktop": 120,
+        "padding_top_tablet": 96,
+        "padding_bottom_tablet": 96,
+        "padding_top_mobile": 80,
+        "padding_bottom_mobile": 80,
+        "eyebrow": "Our spaces",
+        "heading": "A setting for every moment.",
+        "intro_body": "Choose from light-filled indoor spaces, intimate ceremony settings and vineyard backdrops framed by the Yarra Ranges."
+      }
+    },
+    "boc_whats_on_details": {
+      "type": "boc-whats-on-event-details",
+      "blocks": {
+        "feature_1": {
+          "type": "feature",
+          "settings": {
+            "number": "01",
+            "heading": "Flexible spaces",
+            "description": "Options for ceremonies, seated dining, cocktail receptions and corporate gatherings."
+          }
+        },
+        "feature_2": {
+          "type": "feature",
+          "settings": {
+            "number": "02",
+            "heading": "Estate wine and local menus",
+            "description": "Boat O'Craigo wines paired with seasonal, locally sourced food."
+          }
+        },
+        "feature_3": {
+          "type": "feature",
+          "settings": {
+            "number": "03",
+            "heading": "Dedicated coordination",
+            "description": "A clear point of contact from first enquiry through to the event."
+          }
+        },
+        "feature_4": {
+          "type": "feature",
+          "settings": {
+            "number": "04",
+            "heading": "Yarra Valley location",
+            "description": "An accessible destination surrounded by vineyards and mountain views."
+          }
+        }
+      },
+      "block_order": ["feature_1", "feature_2", "feature_3", "feature_4"],
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "background_color": "#FAF8F5",
+        "image_side": "left",
+        "split_ratio": "1fr 1fr",
+        "image_height": 650,
+        "padding_top_desktop": 120,
+        "padding_bottom_desktop": 120,
+        "padding_top_tablet": 96,
+        "padding_bottom_tablet": 96,
+        "padding_top_mobile": 80,
+        "padding_bottom_mobile": 80,
+        "eyebrow": "Designed around you",
+        "heading": "One team, every detail.",
+        "body": "From your first conversation to the final toast, our events team brings together the setting, service, food and wine that make the day feel effortless.",
+        "button_enabled": true,
+        "button_label": "Start your enquiry",
+        "button_anchor": "boc-whats-on-enquiry",
+        "button_style": "primary"
+      }
+    },
+    "boc_whats_on_enquiry": {
+      "type": "boc-whats-on-enquiry",
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "section_anchor_id": "boc-whats-on-enquiry",
+        "form_provider_mode": "native_contact",
+        "background_color": "#B99E7E",
+        "text_color": "#FFFFFF",
+        "form_background": "#FFFFFF",
+        "field_background": "#FFFFFF",
+        "field_border": "#E8E2D9",
+        "padding_top_desktop": 120,
+        "padding_bottom_desktop": 120,
+        "padding_top_tablet": 96,
+        "padding_bottom_tablet": 96,
+        "padding_top_mobile": 80,
+        "padding_bottom_mobile": 80,
+        "eyebrow": "Enquire",
+        "heading": "Tell us what you're planning.",
+        "body": "Choose the type of occasion below and share a few details. Our events team will be in touch to discuss availability and the next steps.",
+        "wedding_tab_label": "Wedding enquiry",
+        "private_tab_label": "Private event enquiry",
+        "wedding_submit_label": "Send wedding enquiry",
+        "private_submit_label": "Send event enquiry",
+        "success_message": "Thank you. Our events team will be in touch shortly.",
+        "privacy_text": "Your details will only be used to respond to your enquiry."
+      }
+    },
+    "boc_whats_on_testimonials": {
+      "type": "boc-whats-on-testimonials",
+      "blocks": {
+        "testimonial_1": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "The setting was beautiful, the team made everything effortless and our guests are still talking about the wine.",
+            "name": "Wedding couple",
+            "context": "Placeholder",
+            "rating": 5
+          }
+        },
+        "testimonial_2": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "From the first enquiry to the final toast, every detail felt thoughtful and completely personal.",
+            "name": "Private event host",
+            "context": "Placeholder",
+            "rating": 5
+          }
+        },
+        "testimonial_3": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "A relaxed Yarra Valley celebration with exceptional food, warm service and a view we will never forget.",
+            "name": "Wedding guest",
+            "context": "Placeholder",
+            "rating": 5
+          }
+        }
+      },
+      "block_order": ["testimonial_1", "testimonial_2", "testimonial_3"],
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "background_color": "#FAF8F5",
+        "card_background": "#FFFFFF",
+        "star_color": "#B99E7E",
+        "show_stars": true,
+        "columns_desktop": 3,
+        "padding_top_desktop": 120,
+        "padding_bottom_desktop": 120,
+        "padding_top_tablet": 96,
+        "padding_bottom_tablet": 96,
+        "padding_top_mobile": 80,
+        "padding_bottom_mobile": 80,
+        "eyebrow": "Kind words",
+        "heading": "Celebrations remembered.",
+        "intro_body": "A few words from couples, hosts and guests who have celebrated at the estate."
+      }
+    },
+    "boc_whats_on_discover": {
+      "type": "boc-whats-on-discover",
+      "blocks": {
+        "card_wine_trail": {
+          "type": "card",
+          "settings": {
+            "eyebrow": "Guide",
+            "heading": "Yarra Valley Wine Trail",
+            "link_label": "Explore the trail",
+            "card_height": 430
+          }
+        },
+        "card_things_to_do": {
+          "type": "card",
+          "settings": {
+            "eyebrow": "Local area",
+            "heading": "Things to do nearby",
+            "link_label": "Discover the region",
+            "card_height": 430
+          }
+        },
+        "card_journal": {
+          "type": "card",
+          "settings": {
+            "eyebrow": "Journal",
+            "heading": "Stories from the vineyard",
+            "link_label": "Read the journal",
+            "card_height": 430
+          }
+        }
+      },
+      "block_order": ["card_wine_trail", "card_things_to_do", "card_journal"],
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "section_anchor_id": "boc-whats-on-discover",
+        "background_color": "#FFFFFF",
+        "padding_top_desktop": 120,
+        "padding_bottom_desktop": 120,
+        "padding_top_tablet": 96,
+        "padding_bottom_tablet": 96,
+        "padding_top_mobile": 80,
+        "padding_bottom_mobile": 80,
+        "eyebrow": "Beyond the estate",
+        "heading": "Explore the Yarra Valley.",
+        "intro_body": "Make a day or weekend of your visit with local wine, food and attractions throughout the Yarra Valley."
+      }
+    },
+    "boc_whats_on_final_cta": {
+      "type": "boc-whats-on-final-cta",
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "overlay_color": "#000000",
+        "overlay_opacity": 50,
+        "height_desktop": 560,
+        "height_mobile": 560,
+        "content_width": 760,
+        "eyebrow": "Your event at Boat O'Craigo",
+        "heading": "Let the vineyard set the scene.",
+        "body": "Share a few details with our events team and begin planning a celebration that feels entirely your own.",
+        "button_enabled": true,
+        "button_label": "Make an enquiry",
+        "button_anchor": "boc-whats-on-enquiry",
+        "button_style": "light"
+      }
+    }
+  },
+  "order": [
+    "boc_whats_on_hero",
+    "boc_whats_on_nav",
+    "boc_whats_on_intro",
+    "boc_whats_on_events",
+    "boc_whats_on_celebrations",
+    "boc_whats_on_venues",
+    "boc_whats_on_details",
+    "boc_whats_on_enquiry",
+    "boc_whats_on_testimonials",
+    "boc_whats_on_discover",
+    "boc_whats_on_final_cta"
+  ]
+}

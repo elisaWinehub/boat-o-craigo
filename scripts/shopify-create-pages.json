@@ -1,0 +1,38 @@
+{
+  "wineClub": {
+    "title": "Wine Club",
+    "handle": "wine-club",
+    "body": "<p>Wine Club content coming soon.</p>",
+    "isPublished": true
+  },
+  "visit": {
+    "title": "Visit",
+    "handle": "visit",
+    "body": "<p>Visit content coming soon.</p>",
+    "isPublished": true
+  },
+  "whatsOn": {
+    "title": "What's On",
+    "handle": "whats-on",
+    "body": "<p>What's On content coming soon.</p>",
+    "isPublished": true
+  },
+  "about": {
+    "title": "About",
+    "handle": "about",
+    "body": "<p>About content coming soon.</p>",
+    "isPublished": true
+  },
+  "bookNow": {
+    "title": "Book Now",
+    "handle": "book-now",
+    "body": "<p>Booking content coming soon.</p>",
+    "isPublished": true
+  },
+  "faqs": {
+    "title": "FAQs",
+    "handle": "faqs",
+    "body": "<p>FAQs content coming soon.</p>",
+    "isPublished": true
+  }
+}

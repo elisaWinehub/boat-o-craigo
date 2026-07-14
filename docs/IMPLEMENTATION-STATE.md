@@ -66,7 +66,17 @@ Theme IDs: see [THEME-MAPPING.md](./THEME-MAPPING.md)
 
 ## Shopify menus
 
-See [SHOPIFY-NAVIGATION.md](./SHOPIFY-NAVIGATION.md). Header defaults to `main-menu`. Footer menu pickers require manual Admin setup.
+Configured and created in Shopify Admin (2026-07-14):
+
+| Handle | Purpose |
+|--------|---------|
+| `main-menu` | Header navigation (Shop dropdown + 5 top-level links) |
+| `footer-shop` | Footer Shop column |
+| `footer-visit` | Footer Visit column |
+| `footer-discover` | Footer Discover column |
+| `footer-legal` | Footer legal links |
+
+See [SHOPIFY-NAVIGATION.md](./SHOPIFY-NAVIGATION.md) for full link map and page list.
 
 ## Shopify Files
 

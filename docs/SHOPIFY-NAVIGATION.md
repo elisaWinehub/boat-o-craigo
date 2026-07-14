@@ -1,48 +1,75 @@
 # Shopify Navigation — Boat O'Craigo
 
-Store: `boat-o-craigo.myshopify.com`
-
-Navigation menus must be created and assigned in **Shopify Admin → Content → Menus**. The theme uses menu pickers in the header and footer sections; links are not hard-coded.
+Store: `boat-o-craigo.myshopify.com`  
+Last updated: 2026-07-14
 
 ## Main menu (`main-menu`)
 
 Assigned in: **Theme Editor → Header → BOC — Header → Menu**
 
-Recommended structure:
+| Link | URL | Type |
+|------|-----|------|
+| Shop | `/collections/wines` | Parent with dropdown |
+| → Wines | `/collections/wines` | Collection |
+| → Experiences | `/pages/visit` | Page |
+| → Gift Packs | `/collections/gift-packs` | Collection |
+| → Gift Cards | `/products/gift-card` | Product (placeholder URL) |
+| Wine Club | `/pages/wine-club` | Page |
+| Visit | `/pages/visit` | Page |
+| What's On | `/pages/whats-on` | Page |
+| About | `/pages/about` | Page |
+| Contact | `/pages/contact` | Page |
 
-| Top level | Child links | Recommended URL |
-|-----------|-------------|-----------------|
-| Shop | Wines | `/collections/wines` |
-| | Experiences | `/pages/visit` |
-| | Gift Packs | `/collections/gift-packs` |
-| | Gift Cards | `/products/gift-card` |
-| Wine Club | — | `/pages/wine-club` |
-| Visit | — | `/pages/visit` |
-| What's On | — | `/pages/whats-on` |
-| About | — | `/pages/about` |
-| Contact | — | `/pages/contact` |
-| Book a Visit | — | `/pages/book-now` |
-
-Some pages and collections may not exist yet. Create placeholder pages in Admin or use relative URLs until content is ready.
+**Book a Visit** is a separate header CTA button → `/pages/book-now` (not in main menu).
 
 ## Footer menus
 
 Assigned in: **Theme Editor → Footer → BOC — Footer**
 
-| Setting | Recommended handle | Example links |
-|---------|-------------------|---------------|
-| Shop menu | `footer-shop` | Wines, Gift Packs, Gift Cards, Wine Club |
-| Visit menu | `footer-visit` | Cellar Door, Restaurant, Weddings & Events, Book a Visit |
-| Discover menu | `footer-discover` | Our Story, What's On, Contact, FAQs |
-| Legal menu | `footer-legal` | Terms, Privacy, Shipping |
+| Menu handle | Links |
+|-------------|-------|
+| `footer-shop` | Wines, Gift Packs, Gift Cards, Wine Club |
+| `footer-visit` | Cellar Door, Restaurant, Weddings & Events, Book a Visit |
+| `footer-discover` | Our Story, What's On, Contact, FAQs |
+| `footer-legal` | Terms, Privacy, Shipping |
 
-## Book a Visit CTA
+## Pages created
 
-The header **Book a visit** button uses a separate URL setting (default: `/pages/book-now`), not the main menu.
+| Handle | Title | Template |
+|--------|-------|----------|
+| `contact` | Contact | Default page |
+| `wine-club` | Wine Club | Default page |
+| `visit` | Visit | Default page |
+| `whats-on` | What's On | Default page |
+| `about` | About | Default page |
+| `book-now` | Book Now | Default page |
+| `faqs` | FAQs | Default page |
 
-## Status
+## Collections created
 
-- **Theme configuration:** Header and footer menu pickers are configured in `sections/header-group.json` and `sections/footer-group.json`.
-- **Admin API menu creation:** Not available via Shopify CLI theme auth alone. Menus must be created or updated manually in Shopify Admin unless Admin API access is added separately.
+| Handle | Title |
+|--------|-------|
+| `wines` | Wines |
+| `gift-packs` | Gift Packs |
 
-After creating menus, assign the handles above in Theme Editor and verify links on the staging theme preview.
+## Manual follow-up
+
+- Create a **Gift Card** product with handle `gift-card` if the Gift Cards link should resolve (currently points to `/products/gift-card`).
+- Add shop policies in **Settings → Policies** if Terms / Privacy / Shipping policy pages are empty.
+
+## Setup scripts
+
+Reusable Admin API scripts are in `scripts/`:
+
+- `shopify-create-pages.graphql` / `.json`
+- `shopify-create-collections.graphql` / `.json`
+- `shopify-update-main-menu.graphql` / `.json`
+- `shopify-create-footer-menus.graphql`
+
+Run with:
+
+```powershell
+shopify store auth --store boat-o-craigo.myshopify.com --scopes read_content,write_content,write_online_store_pages,read_online_store_navigation,write_online_store_navigation,write_products
+
+shopify store execute --store boat-o-craigo.myshopify.com --query-file scripts/shopify-update-main-menu.graphql --variable-file scripts/shopify-update-main-menu.json --allow-mutations
+```

@@ -1,0 +1,41 @@
+{
+  "shop": {
+    "title": "Footer — Shop",
+    "handle": "footer-shop",
+    "items": [
+      { "title": "Wines", "type": "HTTP", "url": "/collections/wines" },
+      { "title": "Gift Packs", "type": "HTTP", "url": "/collections/gift-packs" },
+      { "title": "Gift Cards", "type": "HTTP", "url": "/products/gift-card" },
+      { "title": "Wine Club", "type": "PAGE", "resourceId": "gid://shopify/Page/111877914708" }
+    ]
+  },
+  "visit": {
+    "title": "Footer — Visit",
+    "handle": "footer-visit",
+    "items": [
+      { "title": "Cellar Door", "type": "PAGE", "resourceId": "gid://shopify/Page/111877947476" },
+      { "title": "Restaurant", "type": "PAGE", "resourceId": "gid://shopify/Page/111877947476" },
+      { "title": "Weddings & Events", "type": "PAGE", "resourceId": "gid://shopify/Page/111877980244" },
+      { "title": "Book a Visit", "type": "PAGE", "resourceId": "gid://shopify/Page/111878045780" }
+    ]
+  },
+  "discover": {
+    "title": "Footer — Discover",
+    "handle": "footer-discover",
+    "items": [
+      { "title": "Our Story", "type": "PAGE", "resourceId": "gid://shopify/Page/111878013012" },
+      { "title": "What's On", "type": "PAGE", "resourceId": "gid://shopify/Page/111877980244" },
+      { "title": "Contact", "type": "PAGE", "resourceId": "gid://shopify/Page/111871950932" },
+      { "title": "FAQs", "type": "PAGE", "resourceId": "gid://shopify/Page/111878078548" }
+    ]
+  },
+  "legal": {
+    "title": "Footer — Legal",
+    "handle": "footer-legal",
+    "items": [
+      { "title": "Terms", "type": "HTTP", "url": "/policies/terms-of-service" },
+      { "title": "Privacy", "type": "HTTP", "url": "/policies/privacy-policy" },
+      { "title": "Shipping", "type": "HTTP", "url": "/policies/shipping-policy" }
+    ]
+  }
+}

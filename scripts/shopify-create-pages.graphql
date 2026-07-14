@@ -1,0 +1,33 @@
+mutation CreatePages(
+  $wineClub: PageCreateInput!
+  $visit: PageCreateInput!
+  $whatsOn: PageCreateInput!
+  $about: PageCreateInput!
+  $bookNow: PageCreateInput!
+  $faqs: PageCreateInput!
+) {
+  wineClub: pageCreate(page: $wineClub) {
+    page { id handle title }
+    userErrors { field message }
+  }
+  visit: pageCreate(page: $visit) {
+    page { id handle title }
+    userErrors { field message }
+  }
+  whatsOn: pageCreate(page: $whatsOn) {
+    page { id handle title }
+    userErrors { field message }
+  }
+  about: pageCreate(page: $about) {
+    page { id handle title }
+    userErrors { field message }
+  }
+  bookNow: pageCreate(page: $bookNow) {
+    page { id handle title }
+    userErrors { field message }
+  }
+  faqs: pageCreate(page: $faqs) {
+    page { id handle title }
+    userErrors { field message }
+  }
+}

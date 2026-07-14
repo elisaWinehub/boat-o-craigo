@@ -1,0 +1,16 @@
+query {
+  pages(first: 50) {
+    nodes {
+      id
+      handle
+      title
+    }
+  }
+  collections(first: 20) {
+    nodes {
+      id
+      handle
+      title
+    }
+  }
+}

@@ -1,0 +1,10 @@
+mutation CreateCollections($wines: CollectionInput!, $giftPacks: CollectionInput!) {
+  wines: collectionCreate(input: $wines) {
+    collection { id handle title }
+    userErrors { field message }
+  }
+  giftPacks: collectionCreate(input: $giftPacks) {
+    collection { id handle title }
+    userErrors { field message }
+  }
+}

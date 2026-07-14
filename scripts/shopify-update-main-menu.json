@@ -1,0 +1,58 @@
+{
+  "id": "gid://shopify/Menu/230242025556",
+  "title": "Main menu",
+  "items": [
+    {
+      "title": "Shop",
+      "type": "HTTP",
+      "url": "/collections/wines",
+      "items": [
+        {
+          "title": "Wines",
+          "type": "HTTP",
+          "url": "/collections/wines"
+        },
+        {
+          "title": "Experiences",
+          "type": "PAGE",
+          "resourceId": "gid://shopify/Page/111877947476"
+        },
+        {
+          "title": "Gift Packs",
+          "type": "HTTP",
+          "url": "/collections/gift-packs"
+        },
+        {
+          "title": "Gift Cards",
+          "type": "HTTP",
+          "url": "/products/gift-card"
+        }
+      ]
+    },
+    {
+      "title": "Wine Club",
+      "type": "PAGE",
+      "resourceId": "gid://shopify/Page/111877914708"
+    },
+    {
+      "title": "Visit",
+      "type": "PAGE",
+      "resourceId": "gid://shopify/Page/111877947476"
+    },
+    {
+      "title": "What's On",
+      "type": "PAGE",
+      "resourceId": "gid://shopify/Page/111877980244"
+    },
+    {
+      "title": "About",
+      "type": "PAGE",
+      "resourceId": "gid://shopify/Page/111878013012"
+    },
+    {
+      "title": "Contact",
+      "type": "PAGE",
+      "resourceId": "gid://shopify/Page/111871950932"
+    }
+  ]
+}

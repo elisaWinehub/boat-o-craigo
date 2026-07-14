@@ -1,0 +1,12 @@
+{
+  "wines": {
+    "title": "Wines",
+    "handle": "wines",
+    "descriptionHtml": "<p>Explore the Boat O'Craigo wine range.</p>"
+  },
+  "giftPacks": {
+    "title": "Gift Packs",
+    "handle": "gift-packs",
+    "descriptionHtml": "<p>Curated gift packs from Boat O'Craigo.</p>"
+  }
+}

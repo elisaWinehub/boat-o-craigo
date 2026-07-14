@@ -19,9 +19,13 @@
         "phone": "(03) 5962 6899",
         "liquor_licence": "Liquor Licence No. 32809777",
         "shop_heading": "Shop",
+        "shop_menu": "footer-shop",
         "visit_heading": "Visit",
+        "visit_menu": "footer-visit",
         "discover_heading": "Discover",
+        "discover_menu": "footer-discover",
         "legal_heading": "Legal",
+        "legal_menu": "footer-legal",
         "show_newsletter": false,
         "show_social": true
       }

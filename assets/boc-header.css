@@ -73,7 +73,8 @@
 }
 
 .boc-header__nav-item:hover > .boc-header__nav-link::after,
-.boc-header__nav-item:focus-within > .boc-header__nav-link::after {
+.boc-header__nav-item:focus-within > .boc-header__nav-link::after,
+.boc-header__nav-link[aria-current="page"]::after {
   transform: scaleX(1);
 }
 
@@ -347,6 +348,10 @@
   font-size: 0.82rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
+}
+
+.boc-header__drawer-link[aria-current="page"] {
+  color: var(--boc-sand);
 }
 
 /* Responsive */

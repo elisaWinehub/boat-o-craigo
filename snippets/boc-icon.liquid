@@ -1,7 +1,7 @@
 {%- doc -%}
   Renders an inline SVG icon for Boat O'Craigo.
 
-  @param {string} name - search | account | cart | menu | close | chevron | plus | minus
+  @param {string} name - search | account | cart | menu | close | chevron | plus | minus | arrow-up
   @param {string} [class] - Additional CSS classes
 
   @example
@@ -45,5 +45,8 @@
       <path d="M12 5v14M5 12h14"></path>
     {%- when 'minus' -%}
       <path d="M5 12h14"></path>
+    {%- when 'arrow-up' -%}
+      <path d="M12 19V5"></path>
+      <path d="m7 10 5-5 5 5"></path>
   {%- endcase -%}
 </svg>

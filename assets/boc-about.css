@@ -111,7 +111,7 @@
 /* Anchor nav */
 .boc-about-nav {
   position: sticky;
-  top: var(--boc-header-height, 88px);
+  top: var(--header-height, var(--boc-header-height, 88px));
   z-index: 20;
   background: var(--boc-ab-nav-bg, var(--boc-white));
   border-bottom: 1px solid var(--boc-line);

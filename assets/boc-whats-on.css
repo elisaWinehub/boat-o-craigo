@@ -188,15 +188,14 @@
   text-transform: uppercase;
   white-space: nowrap;
   padding: 24px 0;
-  border-bottom: 2px solid transparent;
   color: var(--boc-wo-nav-text, var(--boc-ink));
   text-decoration: none;
-  transition: border-color var(--boc-transition);
+  transition: color var(--boc-transition);
 }
 
 .boc-whats-on-nav__link:hover,
 .boc-whats-on-nav__link.is-active {
-  border-color: var(--boc-wo-nav-active, var(--boc-sand));
+  color: var(--boc-wo-nav-active, var(--boc-sand));
 }
 
 .boc-whats-on-nav__link:focus-visible {

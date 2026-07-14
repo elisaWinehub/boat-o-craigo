@@ -1,0 +1,17 @@
+{%- doc -%}
+  Site-wide back to top control.
+
+  @example
+  {% render 'boc-back-to-top' %}
+{%- enddoc -%}
+
+<button
+  type="button"
+  class="boc-back-to-top"
+  data-boc-back-to-top
+  aria-label="Back to top"
+  hidden
+>
+  {% render 'boc-icon', name: 'arrow-up', class: 'boc-back-to-top__icon' %}
+  <span class="boc-back-to-top__label">Back to top</span>
+</button>

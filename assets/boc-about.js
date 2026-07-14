@@ -34,6 +34,24 @@
     });
   }
 
+  function getMarkerOffset() {
+    var headerHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-height'), 10);
+    if (!headerHeight || Number.isNaN(headerHeight)) {
+      headerHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--boc-header-height'), 10) || 88;
+    }
+    return headerHeight + 32;
+  }
+
+  function bindPageScroll(handler) {
+    if (window.BocScroll && window.BocScroll.bind) {
+      window.BocScroll.bind(handler);
+      return;
+    }
+    window.addEventListener('scroll', handler, { passive: true });
+    var wrapper = document.querySelector('.page-wrapper');
+    if (wrapper) wrapper.addEventListener('scroll', handler, { passive: true });
+  }
+
   function initAnchorNav(root) {
     var nav = root.querySelector('[data-boc-about-nav]');
     if (!nav || nav.dataset.bocAboutNavBound === 'true') return;
@@ -53,20 +71,16 @@
     if (!sections.length) return;
 
     function updateActive() {
-      var scrollY = window.scrollY + 120;
+      var marker = getMarkerOffset();
       var current = sections[0];
       sections.forEach(function (item) {
-        if (item.section.offsetTop <= scrollY) current = item;
+        if (item.section.getBoundingClientRect().top <= marker) current = item;
       });
       links.forEach(function (l) { l.classList.remove('is-active'); });
       if (current) current.link.classList.add('is-active');
     }
 
-    var onScroll = updateActive;
-    window.addEventListener('scroll', onScroll, { passive: true });
-    nav._bocAboutScrollCleanup = function () {
-      window.removeEventListener('scroll', onScroll);
-    };
+    bindPageScroll(updateActive);
     updateActive();
   }
 

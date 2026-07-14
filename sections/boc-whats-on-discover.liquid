@@ -46,7 +46,7 @@
             assign card_url = block.settings.article.url
           endif
         -%}
-        <a href="{{ card_url | default: '#' }}" class="boc-whats-on-feature-card boc-whats-on-feature-card--discover" style="--boc-wo-card-height: {{ block.settings.card_height | default: 430 }}px;" {{ block.shopify_attributes }}>
+        <a href="{{ card_url | default: '#' }}" class="boc-whats-on-feature-card boc-whats-on-feature-card--discover" style="--boc-wo-card-height: {{ block.settings.card_height | default: 420 }}px;" {{ block.shopify_attributes }}>
           <div class="boc-whats-on-feature-card__media">
             {%- if block.settings.image != blank -%}
               <img src="{{ block.settings.image | image_url: width: 900 }}" alt="{{ block.settings.heading | escape }}" loading="lazy" width="900" height="430">
@@ -101,7 +101,7 @@
         { "type": "url", "id": "url", "label": "URL" },
         { "type": "page", "id": "page", "label": "Page" },
         { "type": "article", "id": "article", "label": "Article" },
-        { "type": "range", "id": "card_height", "label": "Card height", "min": 300, "max": 600, "step": 20, "unit": "px", "default": 430 }
+        { "type": "range", "id": "card_height", "label": "Card height", "min": 300, "max": 600, "step": 20, "unit": "px", "default": 420 }
       ]
     }
   ],

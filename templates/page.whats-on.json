@@ -13,7 +13,7 @@
         "height_tablet": 700,
         "height_mobile": 680,
         "image_focal_point": "center",
-        "content_width": 790,
+        "content_width": 800,
         "eyebrow": "What's on at Boat O'Craigo",
         "heading": "Gather, celebrate and stay awhile.",
         "body": "Discover seasonal events, weddings and private celebrations set among the vines in the Yarra Valley.",
@@ -314,7 +314,7 @@
         "background_color": "#FAF8F5",
         "image_side": "left",
         "split_ratio": "1fr 1fr",
-        "image_height": 650,
+        "image_height": 640,
         "padding_top_desktop": 120,
         "padding_bottom_desktop": 120,
         "padding_top_tablet": 96,
@@ -423,7 +423,7 @@
             "eyebrow": "Guide",
             "heading": "Yarra Valley Wine Trail",
             "link_label": "Explore the trail",
-            "card_height": 430
+            "card_height": 420
           }
         },
         "card_things_to_do": {
@@ -432,7 +432,7 @@
             "eyebrow": "Local area",
             "heading": "Things to do nearby",
             "link_label": "Discover the region",
-            "card_height": 430
+            "card_height": 420
           }
         },
         "card_journal": {
@@ -441,7 +441,7 @@
             "eyebrow": "Journal",
             "heading": "Stories from the vineyard",
             "link_label": "Read the journal",
-            "card_height": 430
+            "card_height": 420
           }
         }
       },

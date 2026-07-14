@@ -1,0 +1,16 @@
+mutation AssignBookNowTemplate {
+  pageUpdate(
+    id: "gid://shopify/Page/111878045780"
+    page: { templateSuffix: "book-now" }
+  ) {
+    page {
+      id
+      handle
+      templateSuffix
+    }
+    userErrors {
+      field
+      message
+    }
+  }
+}

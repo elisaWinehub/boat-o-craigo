@@ -1,0 +1,387 @@
+{
+  "sections": {
+    "boc_booking_hero": {
+      "type": "boc-booking-hero",
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "widget_anchor": "boc-booking-widget",
+        "info_anchor": "boc-booking-information",
+        "overlay_opacity": 100,
+        "height_desktop": 680,
+        "height_tablet": 620,
+        "height_mobile": 580,
+        "image_focal_point": "center",
+        "content_width": 780,
+        "eyebrow": "Bookings",
+        "heading": "Reserve your table or tasting.",
+        "body": "Plan a relaxed Yarra Valley visit with wine tastings, seasonal food and sweeping vineyard views. Choose your experience below and reserve your preferred date.",
+        "text_alignment_desktop": "left",
+        "text_alignment_mobile": "left",
+        "button_1_enabled": true,
+        "button_1_label": "Book now",
+        "button_1_style": "accent",
+        "button_2_enabled": true,
+        "button_2_label": "Before you book",
+        "button_2_style": "light"
+      }
+    },
+    "boc_booking_nav": {
+      "type": "boc-booking-anchor-nav",
+      "blocks": {
+        "nav_experiences": {
+          "type": "link",
+          "settings": {
+            "label": "Experiences",
+            "anchor_id": "boc-booking-pathways"
+          }
+        },
+        "nav_booking_form": {
+          "type": "link",
+          "settings": {
+            "label": "Booking form",
+            "anchor_id": "boc-booking-widget"
+          }
+        },
+        "nav_information": {
+          "type": "link",
+          "settings": {
+            "label": "Important information",
+            "anchor_id": "boc-booking-information"
+          }
+        },
+        "nav_faq": {
+          "type": "link",
+          "settings": {
+            "label": "FAQs",
+            "anchor_id": "boc-booking-faq"
+          }
+        }
+      },
+      "block_order": [
+        "nav_experiences",
+        "nav_booking_form",
+        "nav_information",
+        "nav_faq"
+      ],
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "sticky_enabled": true,
+        "active_tracking": true,
+        "background_color": "#FFFFFF",
+        "text_color": "#212121",
+        "active_color": "#B99E7E",
+        "aria_label": "Booking page navigation"
+      }
+    },
+    "boc_booking_pathways": {
+      "type": "boc-booking-pathways",
+      "blocks": {
+        "pathway_tastings": {
+          "type": "pathway",
+          "settings": {
+            "eyebrow": "Cellar door",
+            "heading": "Wine Tastings",
+            "description": "A guided tasting of current releases and selected estate wines. Bookings are recommended.",
+            "link_label": "Book a tasting",
+            "link_action": "scroll_widget",
+            "booking_experience": "wine-tasting",
+            "open_new_tab": false,
+            "background_color": "#FFFFFF",
+            "hover_background_color": "#FAF8F5",
+            "text_color": "#212121",
+            "hover_text_color": "#212121"
+          }
+        },
+        "pathway_restaurant": {
+          "type": "pathway",
+          "settings": {
+            "eyebrow": "Glasshouse",
+            "heading": "Restaurant Dining",
+            "description": "Seasonal food, estate wine and vineyard views for lunch and relaxed afternoon dining.",
+            "link_label": "Reserve a table",
+            "link_action": "scroll_widget",
+            "booking_experience": "restaurant",
+            "open_new_tab": false,
+            "background_color": "#FFFFFF",
+            "hover_background_color": "#FAF8F5",
+            "text_color": "#212121",
+            "hover_text_color": "#212121"
+          }
+        },
+        "pathway_groups": {
+          "type": "pathway",
+          "settings": {
+            "eyebrow": "Celebrations",
+            "heading": "Groups of 11+",
+            "description": "Larger groups require a direct enquiry so the team can confirm space, menu options and timing.",
+            "link_label": "Send an enquiry",
+            "link_action": "email",
+            "email": "info@boatocraigo.com.au",
+            "booking_experience": "group",
+            "open_new_tab": false,
+            "background_color": "#FFFFFF",
+            "hover_background_color": "#FAF8F5",
+            "text_color": "#212121",
+            "hover_text_color": "#212121"
+          }
+        }
+      },
+      "block_order": [
+        "pathway_tastings",
+        "pathway_restaurant",
+        "pathway_groups"
+      ],
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "section_anchor_id": "boc-booking-pathways",
+        "widget_anchor": "boc-booking-widget",
+        "background_color": "#FFFFFF",
+        "columns_desktop": 3,
+        "padding_top_desktop": 120,
+        "padding_bottom_desktop": 120,
+        "padding_top_tablet": 96,
+        "padding_bottom_tablet": 96,
+        "padding_top_mobile": 80,
+        "padding_bottom_mobile": 80,
+        "eyebrow": "Choose your visit",
+        "heading": "One booking point, three clear pathways.",
+        "body": "Select the experience that best matches your visit. Wine tastings and restaurant bookings can be reserved online, while larger groups should contact the team directly."
+      }
+    },
+    "boc_booking_widget": {
+      "type": "boc-booking-widget",
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "section_anchor_id": "boc-booking-widget",
+        "container_width": "standard",
+        "section_background_color": "#FAF8F5",
+        "widget_background_color": "#FFFFFF",
+        "widget_border_color": "#E8E2D9",
+        "padding_top_desktop": 120,
+        "padding_bottom_desktop": 120,
+        "padding_top_tablet": 96,
+        "padding_bottom_tablet": 96,
+        "padding_top_mobile": 80,
+        "padding_bottom_mobile": 80,
+        "eyebrow": "Reserve online",
+        "heading": "Make a booking.",
+        "intro_body": "Use our secure Now Book It system to reserve wine tastings and Glasshouse dining.",
+        "integration_mode": "iframe",
+        "booking_url": "https://bookings.nowbookit.com/?accountid=20cb5efb-4257-47a2-a7c9-7c23eceb2feb&venueid=6523&theme=light&colors=hex,000000&font=PT%20Serif",
+        "open_in_new_tab": false,
+        "iframe_title": "Book a wine tasting or restaurant table at Boat O'Craigo",
+        "iframe_loading": "lazy",
+        "iframe_height_desktop": 720,
+        "iframe_height_tablet": 640,
+        "iframe_height_mobile": 560,
+        "panel_heading": "Boat O'Craigo Reservations",
+        "launch_button_label": "Open booking system",
+        "launch_button_style": "accent",
+        "show_provider_label": true,
+        "provider_label_prefix": "Powered by",
+        "fallback_text": "If the booking form does not load,",
+        "fallback_link_label": "open Now Book It directly"
+      }
+    },
+    "boc_booking_information": {
+      "type": "boc-booking-information",
+      "blocks": {
+        "info_hours": {
+          "type": "info",
+          "settings": {
+            "card_style": "light",
+            "eyebrow": "Opening hours",
+            "heading": "Plan your arrival.",
+            "detail_1_label": "Cellar Door",
+            "detail_1_value": "10am–5pm",
+            "detail_2_label": "Restaurant",
+            "detail_2_value": "11am–4pm",
+            "detail_3_label": "Recommended arrival",
+            "detail_3_value": "10 minutes early",
+            "button_enabled": false,
+            "button_style": "primary",
+            "button_new_tab": false,
+            "link_new_tab": false
+          }
+        },
+        "info_groups": {
+          "type": "info",
+          "settings": {
+            "card_style": "dark",
+            "eyebrow": "Group bookings",
+            "heading": "Bringing 11 or more guests?",
+            "body": "Large groups, celebrations and private functions should contact the team directly so the right space and service can be arranged.",
+            "link_label": "Email the team",
+            "link_url": "mailto:info@boatocraigo.com.au",
+            "button_enabled": false,
+            "button_style": "primary",
+            "button_new_tab": false,
+            "link_new_tab": false
+          }
+        },
+        "info_before_visit": {
+          "type": "info",
+          "settings": {
+            "card_style": "light",
+            "eyebrow": "Before visiting",
+            "heading": "Good to know.",
+            "detail_1_label": "Walk-ins",
+            "detail_1_value": "Subject to availability",
+            "detail_2_label": "Dietary needs",
+            "detail_2_value": "Add during booking",
+            "detail_3_label": "Wine tasting",
+            "detail_3_value": "Pre-booking preferred",
+            "detail_4_label": "Children",
+            "detail_4_value": "Include in guest count",
+            "button_enabled": false,
+            "button_style": "primary",
+            "button_new_tab": false,
+            "link_new_tab": false
+          }
+        }
+      },
+      "block_order": [
+        "info_hours",
+        "info_groups",
+        "info_before_visit"
+      ],
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "section_anchor_id": "boc-booking-information",
+        "background_color": "#FFFFFF",
+        "columns_desktop": 3,
+        "columns_tablet": 2,
+        "padding_top_desktop": 120,
+        "padding_bottom_desktop": 120,
+        "padding_top_tablet": 96,
+        "padding_bottom_tablet": 96,
+        "padding_top_mobile": 80,
+        "padding_bottom_mobile": 80
+      }
+    },
+    "boc_booking_faq": {
+      "type": "boc-booking-faq",
+      "blocks": {
+        "faq_tasting_lunch": {
+          "type": "faq",
+          "settings": {
+            "question": "Can I book a wine tasting and lunch together?",
+            "answer": "<p>Yes. Select the relevant experience in the live booking system, or make separate reservations where required. Placeholder copy can be replaced once the final booking rules are confirmed.</p>",
+            "open_by_default": true
+          }
+        },
+        "faq_large_groups": {
+          "type": "faq",
+          "settings": {
+            "question": "What happens if our group is larger than ten?",
+            "answer": "<p>Groups of 11 or more should contact Boat O'Craigo directly. This allows the team to confirm availability, menu format, deposits and seating arrangements.</p>",
+            "open_by_default": false
+          }
+        },
+        "faq_dietary": {
+          "type": "faq",
+          "settings": {
+            "question": "Can dietary requirements be accommodated?",
+            "answer": "<p>Dietary requirements can be added during booking. The final production content should list any notice periods or limitations provided by the venue.</p>",
+            "open_by_default": false
+          }
+        },
+        "faq_children": {
+          "type": "faq",
+          "settings": {
+            "question": "Are children and non-drinkers welcome?",
+            "answer": "<p>Yes. All guests should be included in the booking count so the venue can prepare the correct table arrangement and service.</p>",
+            "open_by_default": false
+          }
+        },
+        "faq_cancellation": {
+          "type": "faq",
+          "settings": {
+            "question": "What is the cancellation policy?",
+            "answer": "<p>Temporary placeholder text. The live page should pull the approved cancellation, no-show and deposit terms from Boat O'Craigo.</p>",
+            "open_by_default": false
+          }
+        }
+      },
+      "block_order": [
+        "faq_tasting_lunch",
+        "faq_large_groups",
+        "faq_dietary",
+        "faq_children",
+        "faq_cancellation"
+      ],
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "section_anchor_id": "boc-booking-faq",
+        "container_width": "standard",
+        "background_color": "#FFFFFF",
+        "divider_color": "#E8E2D9",
+        "question_color": "#212121",
+        "answer_color": "#575962",
+        "icon_color": "#212121",
+        "one_open_only": true,
+        "first_item_open": true,
+        "heading_column_ratio": "0.78fr 1.22fr",
+        "padding_top_desktop": 120,
+        "padding_bottom_desktop": 120,
+        "padding_top_tablet": 96,
+        "padding_bottom_tablet": 96,
+        "padding_top_mobile": 80,
+        "padding_bottom_mobile": 80,
+        "eyebrow": "Booking information",
+        "heading": "Everything guests need, without the wall of text."
+      }
+    },
+    "boc_booking_final_cta": {
+      "type": "boc-booking-final-cta",
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "widget_anchor": "boc-booking-widget",
+        "overlay_color": "#000000",
+        "overlay_opacity": 50,
+        "height_desktop": 500,
+        "content_width": 780,
+        "eyebrow": "Need help?",
+        "heading": "Not sure which experience to book?",
+        "body": "The cellar door and restaurant team can help with larger groups, accessibility questions, dietary needs and special occasions.",
+        "button_1_enabled": true,
+        "button_1_label": "Contact the team",
+        "button_1_style": "accent",
+        "button_1_new_tab": false,
+        "button_2_enabled": true,
+        "button_2_label": "Return to bookings",
+        "button_2_style": "light"
+      }
+    }
+  },
+  "order": [
+    "boc_booking_hero",
+    "boc_booking_nav",
+    "boc_booking_pathways",
+    "boc_booking_widget",
+    "boc_booking_information",
+    "boc_booking_faq",
+    "boc_booking_final_cta"
+  ]
+}

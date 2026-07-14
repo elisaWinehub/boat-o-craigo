@@ -1,0 +1,16 @@
+mutation AssignAboutTemplate {
+  pageUpdate(
+    id: "gid://shopify/Page/111878013012"
+    page: { templateSuffix: "about" }
+  ) {
+    page {
+      id
+      handle
+      templateSuffix
+    }
+    userErrors {
+      field
+      message
+    }
+  }
+}

@@ -1,0 +1,10 @@
+query AboutPage {
+  pages(first: 5, query: "handle:about") {
+    nodes {
+      id
+      handle
+      title
+      templateSuffix
+    }
+  }
+}

@@ -41,8 +41,6 @@
 .boc-collection-hero__content {
   position: relative;
   z-index: 2;
-  width: 100%;
-  max-width: none;
   padding: 72px 0 48px;
   text-align: var(--boc-col-hero-align-d, left);
 }

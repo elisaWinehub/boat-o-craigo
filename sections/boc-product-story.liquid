@@ -5,12 +5,6 @@
   assign winemaking = product.metafields.wine.winemaking_notes
 
   assign story_image = section.settings.image
-  if story_image == blank and product.media.size > 1
-    assign story_image = product.media[1]
-  elsif story_image == blank and product.featured_image
-    assign story_image = product.featured_image
-  endif
-
   assign default_story_image_url = 'https://cdn.shopify.com/s/files/1/0698/9912/4820/files/Wine-10.jpg?v=1784072202'
   assign use_default_story_image = false
   if story_image == blank

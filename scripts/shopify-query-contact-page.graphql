@@ -1,0 +1,10 @@
+query ContactPage {
+  pages(first: 5, query: "handle:contact") {
+    nodes {
+      id
+      handle
+      title
+      templateSuffix
+    }
+  }
+}

@@ -1,0 +1,127 @@
+{%- liquid
+  assign section_classes = 'boc-home-section boc-home-wine-club boc-home-section--full'
+  unless section.settings.section_enabled
+    assign section_classes = section_classes | append: ' boc-home-section--disabled'
+  endunless
+  unless section.settings.show_desktop
+    assign section_classes = section_classes | append: ' boc-home-section--hide-desktop'
+  endunless
+  unless section.settings.show_tablet
+    assign section_classes = section_classes | append: ' boc-home-section--hide-tablet'
+  endunless
+  unless section.settings.show_mobile
+    assign section_classes = section_classes | append: ' boc-home-section--hide-mobile'
+  endunless
+
+  assign image_url = 'boc-hero-wine-club.png' | asset_url
+  if section.settings.image != blank
+    assign image_url = section.settings.image | image_url: width: 1600
+  endif
+-%}
+
+<section
+  id="boc-home-wine-club-{{ section.id }}"
+  class="{{ section_classes }}"
+  style="--boc-section-bg: {{ section.settings.background_color }}; --boc-section-pt: {{ section.settings.padding_top }}px; --boc-section-pb: {{ section.settings.padding_bottom }}px;"
+>
+  <div class="boc-home-wine-club__grid">
+    <div class="boc-home-wine-club__image">
+      <img
+        src="{{ image_url }}"
+        alt="{{ section.settings.image.alt | default: section.settings.heading | escape }}"
+        loading="lazy"
+        width="1200"
+        height="690"
+      >
+    </div>
+
+    <div class="boc-home-wine-club__copy">
+      {%- if section.settings.eyebrow != blank -%}
+        <span class="boc-eyebrow">{{ section.settings.eyebrow }}</span>
+      {%- endif -%}
+      {%- if section.settings.heading != blank -%}
+        <h2 class="boc-home-section__heading">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+      {%- if section.settings.body != blank -%}
+        <p>{{ section.settings.body }}</p>
+      {%- endif -%}
+
+      {%- if section.blocks.size > 0 -%}
+        <ul class="boc-home-wine-club__list">
+          {%- for block in section.blocks -%}
+            <li {{ block.shopify_attributes }}>
+              <span>{{ block.settings.text }}</span>
+              <span>{{ block.settings.number }}</span>
+            </li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+
+      {%- if section.settings.button_label != blank -%}
+        <a href="{{ section.settings.button_link | default: '/pages/wine-club' }}" class="boc-btn boc-btn--light">
+          {{ section.settings.button_label }}
+        </a>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "BOC — Wine Club",
+  "tag": "section",
+  "class": "boc-home-wine-club-section",
+  "max_blocks": 8,
+  "settings": [
+    { "type": "checkbox", "id": "section_enabled", "label": "Enable section", "default": true },
+    { "type": "checkbox", "id": "show_desktop", "label": "Show on desktop", "default": true },
+    { "type": "checkbox", "id": "show_tablet", "label": "Show on tablet", "default": true },
+    { "type": "checkbox", "id": "show_mobile", "label": "Show on mobile", "default": true },
+    {
+      "type": "select",
+      "id": "container_width",
+      "label": "Container width",
+      "options": [
+        { "value": "container", "label": "Contained" },
+        { "value": "full", "label": "Full width" }
+      ],
+      "default": "full"
+    },
+    { "type": "color", "id": "background_color", "label": "Background color", "default": "#B99E7E" },
+    { "type": "range", "id": "padding_top", "label": "Padding top", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 0 },
+    { "type": "range", "id": "padding_bottom", "label": "Padding bottom", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 0 },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Boat O'Craigo Wine Club" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Your cellar, curated by ours." },
+    {
+      "type": "textarea",
+      "id": "body",
+      "label": "Body",
+      "default": "Flexible deliveries, member pricing and first access to limited releases throughout the year."
+    },
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Join the club" },
+    { "type": "url", "id": "button_link", "label": "Button link" }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Benefit",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Benefit", "default": "Benefit text" },
+        { "type": "text", "id": "number", "label": "Number", "default": "01" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "BOC — Wine Club",
+      "blocks": [
+        { "type": "benefit", "settings": { "text": "Save up to 30% on wine", "number": "01" } },
+        { "type": "benefit", "settings": { "text": "Customise every delivery", "number": "02" } },
+        { "type": "benefit", "settings": { "text": "Complimentary tastings", "number": "03" } },
+        { "type": "benefit", "settings": { "text": "Member-only releases & events", "number": "04" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

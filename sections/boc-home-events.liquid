@@ -1,0 +1,209 @@
+{%- liquid
+  assign section_classes = 'boc-home-section boc-home-events boc-home-section--' | append: section.settings.container_width
+  unless section.settings.section_enabled
+    assign section_classes = section_classes | append: ' boc-home-section--disabled'
+  endunless
+  unless section.settings.show_desktop
+    assign section_classes = section_classes | append: ' boc-home-section--hide-desktop'
+  endunless
+  unless section.settings.show_tablet
+    assign section_classes = section_classes | append: ' boc-home-section--hide-tablet'
+  endunless
+  unless section.settings.show_mobile
+    assign section_classes = section_classes | append: ' boc-home-section--hide-mobile'
+  endunless
+
+  assign use_blog = false
+  if section.settings.source == 'blog' and section.settings.blog != blank and section.settings.blog.articles_count > 0
+    assign use_blog = true
+  endif
+-%}
+
+<section
+  id="boc-home-events-{{ section.id }}"
+  class="{{ section_classes }}"
+  style="--boc-section-bg: {{ section.settings.background_color }}; --boc-section-pt: {{ section.settings.padding_top }}px; --boc-section-pb: {{ section.settings.padding_bottom }}px;"
+>
+  <div class="boc-home-section__inner">
+    <div class="boc-home-section__head">
+      <div class="boc-home-section__head-text">
+        {%- if section.settings.eyebrow != blank -%}
+          <span class="boc-eyebrow">{{ section.settings.eyebrow }}</span>
+        {%- endif -%}
+        {%- if section.settings.heading != blank -%}
+          <h2 class="boc-home-section__heading">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+        {%- if section.settings.body != blank -%}
+          <p class="boc-home-section__body">{{ section.settings.body }}</p>
+        {%- endif -%}
+      </div>
+      {%- if section.settings.link_label != blank -%}
+        <a href="{{ section.settings.link_url | default: section.settings.blog.url | default: '/blogs/news' }}" class="boc-home-text-link">
+          {{ section.settings.link_label }}
+        </a>
+      {%- endif -%}
+    </div>
+
+    <div class="boc-home-cards__grid">
+      {%- if use_blog -%}
+        {%- for article in section.settings.blog.articles limit: section.settings.article_limit -%}
+          <article class="boc-home-card">
+            <a href="{{ article.url }}" class="boc-home-card__media">
+              {%- if article.image != blank -%}
+                <img
+                  src="{{ article.image | image_url: width: 900 }}"
+                  alt="{{ article.image.alt | default: article.title | escape }}"
+                  loading="lazy"
+                  width="900"
+                  height="310"
+                >
+              {%- else -%}
+                <img
+                  src="{{ 'boc-estate-visit.jpg' | asset_url }}"
+                  alt="{{ article.title | escape }}"
+                  loading="lazy"
+                  width="900"
+                  height="310"
+                >
+              {%- endif -%}
+            </a>
+            {%- if article.tags.size > 0 -%}
+              <p class="boc-home-card__meta">{{ article.tags.first }}</p>
+            {%- endif -%}
+            <h3 class="boc-home-card__title">
+              <a href="{{ article.url }}">{{ article.title }}</a>
+            </h3>
+            {%- if article.excerpt != blank -%}
+              <p class="boc-home-card__body">{{ article.excerpt | strip_html | truncate: 140 }}</p>
+            {%- endif -%}
+            <a href="{{ article.url }}" class="boc-home-text-link">View event</a>
+          </article>
+        {%- endfor -%}
+      {%- else -%}
+        {%- for block in section.blocks -%}
+          {%- liquid
+            if block.settings.image != blank
+              assign card_image = block.settings.image | image_url: width: 900
+              assign card_alt = block.settings.image.alt | default: block.settings.title
+            else
+              assign card_image = 'boc-estate-visit.jpg' | asset_url
+              assign card_alt = block.settings.title
+            endif
+          -%}
+          <article class="boc-home-card" {{ block.shopify_attributes }}>
+            <a href="{{ block.settings.link | default: '#' }}" class="boc-home-card__media">
+              <img src="{{ card_image }}" alt="{{ card_alt | escape }}" loading="lazy" width="900" height="310">
+            </a>
+            {%- if block.settings.meta != blank -%}
+              <p class="boc-home-card__meta">{{ block.settings.meta }}</p>
+            {%- endif -%}
+            {%- if block.settings.title != blank -%}
+              <h3 class="boc-home-card__title">
+                <a href="{{ block.settings.link | default: '#' }}">{{ block.settings.title }}</a>
+              </h3>
+            {%- endif -%}
+            {%- if block.settings.body != blank -%}
+              <p class="boc-home-card__body">{{ block.settings.body }}</p>
+            {%- endif -%}
+            {%- if block.settings.link_label != blank -%}
+              <a href="{{ block.settings.link | default: '#' }}" class="boc-home-text-link">{{ block.settings.link_label }}</a>
+            {%- endif -%}
+          </article>
+        {%- endfor -%}
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "BOC — Events",
+  "tag": "section",
+  "class": "boc-home-events-section",
+  "max_blocks": 6,
+  "settings": [
+    { "type": "checkbox", "id": "section_enabled", "label": "Enable section", "default": true },
+    { "type": "checkbox", "id": "show_desktop", "label": "Show on desktop", "default": true },
+    { "type": "checkbox", "id": "show_tablet", "label": "Show on tablet", "default": true },
+    { "type": "checkbox", "id": "show_mobile", "label": "Show on mobile", "default": true },
+    {
+      "type": "select",
+      "id": "container_width",
+      "label": "Container width",
+      "options": [
+        { "value": "container", "label": "Contained" },
+        { "value": "full", "label": "Full width" }
+      ],
+      "default": "container"
+    },
+    { "type": "color", "id": "background_color", "label": "Background color", "default": "#FAF8F5" },
+    { "type": "range", "id": "padding_top", "label": "Padding top", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 120 },
+    { "type": "range", "id": "padding_bottom", "label": "Padding bottom", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 120 },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "What's on" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "At the estate." },
+    { "type": "textarea", "id": "body", "label": "Body" },
+    { "type": "text", "id": "link_label", "label": "Link label", "default": "View all events" },
+    { "type": "url", "id": "link_url", "label": "Link URL" },
+    {
+      "type": "select",
+      "id": "source",
+      "label": "Content source",
+      "options": [
+        { "value": "manual", "label": "Manual cards" },
+        { "value": "blog", "label": "Blog articles" }
+      ],
+      "default": "manual"
+    },
+    { "type": "blog", "id": "blog", "label": "Blog" },
+    { "type": "range", "id": "article_limit", "label": "Articles to show", "min": 1, "max": 6, "step": 1, "default": 3 }
+  ],
+  "blocks": [
+    {
+      "type": "event",
+      "name": "Event card",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "meta", "label": "Meta", "default": "Event meta" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Event title" },
+        { "type": "textarea", "id": "body", "label": "Body" },
+        { "type": "text", "id": "link_label", "label": "Link label", "default": "View event" },
+        { "type": "url", "id": "link", "label": "Link" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "BOC — Events",
+      "blocks": [
+        {
+          "type": "event",
+          "settings": {
+            "meta": "Sunday Sessions · Winter",
+            "title": "Live music, vineyard views and a glass in hand.",
+            "body": "Relaxed acoustic afternoons at the estate.",
+            "link_label": "View event"
+          }
+        },
+        {
+          "type": "event",
+          "settings": {
+            "meta": "Friday Night Sessions",
+            "title": "Firelight, dinner and late-night cellar door.",
+            "body": "A seasonal evening of local food, music and estate wine.",
+            "link_label": "View event"
+          }
+        },
+        {
+          "type": "event",
+          "settings": {
+            "meta": "Special Event",
+            "title": "Meet the makers behind the latest release.",
+            "body": "Join our family and winemaking team for a guided release tasting.",
+            "link_label": "View event"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

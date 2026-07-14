@@ -46,6 +46,14 @@ Theme IDs: see [THEME-MAPPING.md](./THEME-MAPPING.md)
 - Getting Here
 - Tour operators
 - Final booking CTA
+- Book Now page template
+- Booking hero
+- Sticky booking navigation
+- Experience pathways
+- Now Book It integration section
+- Booking information cards
+- Booking FAQ
+- Final support CTA
 
 ## Global component files
 
@@ -175,6 +183,41 @@ Theme IDs: see [THEME-MAPPING.md](./THEME-MAPPING.md)
 - Confirm tour operator list and logos
 - Replace placeholder reviews
 
+## Book Now section files
+
+| Section | File |
+|---------|------|
+| Hero | `sections/boc-booking-hero.liquid` |
+| Sticky anchor nav | `sections/boc-booking-anchor-nav.liquid` |
+| Experience pathways | `sections/boc-booking-pathways.liquid` |
+| Now Book It widget | `sections/boc-booking-widget.liquid` |
+| Information cards | `sections/boc-booking-information.liquid` |
+| FAQ | `sections/boc-booking-faq.liquid` |
+| Final CTA | `sections/boc-booking-final-cta.liquid` |
+| Booking URL snippet | `snippets/boc-booking-url.liquid` |
+| Pathway card snippet | `snippets/boc-booking-path-card.liquid` |
+| Info card snippet | `snippets/boc-booking-info-card.liquid` |
+| FAQ item snippet | `snippets/boc-faq-item.liquid` (namespace: `booking`) |
+| Styles / JS | `assets/boc-booking.css`, `assets/boc-booking.js` |
+| Template | `templates/page.book-now.json` |
+| Mockup | `docs/mockups/boat-ocraigo-booking-concept.html` |
+| Page assignment | `scripts/shopify-assign-book-now-template.graphql` |
+
+**Booking provider:** Now Book It
+
+**Default booking URL:** Theme setting `boc_default_booking_url` (also set on widget section in template)
+
+**Integration mode:** Embedded iframe (default); fallback direct link below iframe; launch panel for same-tab / new-tab modes
+
+**Global components reused:** announcement bar, header, mobile navigation, footer, design tokens, `boc-button`, `boc-responsive-image`, `boc-eyebrow`, `boc-faq-item`.
+
+**Pending (Book Now):**
+- Confirm cancellation policy
+- Confirm final operating hours
+- Confirm whether tasting and restaurant have separate booking URLs
+- Confirm group enquiry destination
+- Confirm production iframe behaviour on staging preview
+
 ## Homepage image assets (theme `assets/`)
 
 - `boc-hero-wines.png`
@@ -215,7 +258,6 @@ Images are stored in theme `assets/` and deploy with the theme. Upload to **Shop
 - Collection
 - Product
 - About
-- Book Now
 - Contact
 - Customer Account
 

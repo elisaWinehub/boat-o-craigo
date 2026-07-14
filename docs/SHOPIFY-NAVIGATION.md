@@ -42,7 +42,7 @@ Assigned in: **Theme Editor → Footer → BOC — Footer**
 | `visit` | Visit | `page.visit` |
 | `whats-on` | What's On | `page.whats-on` |
 | `about` | About | Default page |
-| `book-now` | Book Now | Default page |
+| `book-now` | Book Now | `page.book-now` |
 | `faqs` | FAQs | Default page |
 
 ## Collections created

@@ -1,0 +1,66 @@
+{%- liquid
+  assign product = closest.product | default: product
+  assign source = block.settings.source | default: 'description'
+  assign copy = ''
+
+  case source
+    when 'description'
+      assign copy = product.description | strip_html | strip
+      assign word_limit = block.settings.word_limit | default: 40
+      if copy != blank
+        assign copy_words = copy | split: ' '
+        if copy_words.size > word_limit
+          assign copy = copy_words | slice: 0, word_limit | join: ' '
+          assign copy = copy | append: '…'
+        endif
+      endif
+    when 'custom'
+      assign copy = block.settings.custom_text
+  endcase
+-%}
+
+{%- if copy != blank -%}
+  <p class="product-short-copy" {{ block.shopify_attributes }}>{{ copy }}</p>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "BOC — Short description",
+  "tag": null,
+  "settings": [
+    {
+      "type": "select",
+      "id": "source",
+      "label": "Copy source",
+      "options": [
+        { "value": "description", "label": "Product description (truncated)" },
+        { "value": "custom", "label": "Custom text (per template)" }
+      ],
+      "default": "description",
+      "info": "Confirm with merchant if a dedicated short-copy metafield is preferred instead of truncated description."
+    },
+    {
+      "type": "range",
+      "id": "word_limit",
+      "label": "Word limit",
+      "min": 10,
+      "max": 80,
+      "step": 5,
+      "default": 40,
+      "visible_if": "{{ block.settings.source == 'description' }}"
+    },
+    {
+      "type": "textarea",
+      "id": "custom_text",
+      "label": "Custom text",
+      "visible_if": "{{ block.settings.source == 'custom' }}"
+    }
+  ],
+  "presets": [
+    {
+      "name": "BOC — Short description",
+      "category": "Product"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,79 @@
+{%- liquid
+  assign subregion = product.metafields.wine.subregion
+  assign region = product.metafields.wine.region
+  assign winemaker = product.metafields.wine.winemaker
+  assign winemaking = product.metafields.wine.winemaking_notes
+  assign story_image = section.settings.image
+  if story_image == blank and product.media.size > 1
+    assign story_image = product.media[1]
+  elsif story_image == blank and product.featured_image
+    assign story_image = product.featured_image
+  endif
+  assign body = section.settings.body
+  if body == blank and winemaking != blank
+    assign body = winemaking | metafield_tag | strip_html
+  endif
+-%}
+
+<section
+  class="product-story"
+  data-section-type="image-with-text"
+  {{ section.shopify_attributes }}
+>
+  <div class="product-story-media">
+    {%- if story_image != blank -%}
+      {%- if story_image.media_type -%}
+        {{ story_image | image_url: width: 1600 | image_tag: alt: product.title, loading: 'lazy', widths: '800, 1200, 1600' }}
+      {%- else -%}
+        {{ story_image | image_url: width: 1600 | image_tag: alt: story_image.alt | default: product.title, loading: 'lazy', widths: '800, 1200, 1600' }}
+      {%- endif -%}
+    {%- else -%}
+      <img src="{{ 'boc-estate-vineyard.jpg' | asset_url }}" alt="{{ product.title | escape }}" loading="lazy" width="1600" height="680">
+    {%- endif -%}
+  </div>
+  <div class="product-story-copy">
+    {%- if section.settings.eyebrow != blank -%}
+      <span class="eyebrow boc-eyebrow">{{ section.settings.eyebrow }}</span>
+    {%- endif -%}
+    {%- if section.settings.heading != blank -%}
+      <h2 class="display boc-display">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+    {%- if body != blank -%}
+      <p>{{ body }}</p>
+    {%- endif -%}
+    <ul class="product-story-list">
+      {%- if subregion != blank -%}
+        <li><span>{{ section.settings.vineyard_label | default: 'Vineyard' }}</span><strong>{{ subregion }}</strong></li>
+      {%- endif -%}
+      {%- if region != blank -%}
+        <li><span>{{ section.settings.region_label | default: 'Region' }}</span><strong>{{ region }}</strong></li>
+      {%- endif -%}
+      {%- if winemaker != blank -%}
+        <li><span>{{ section.settings.winemaker_label | default: 'Winemaking' }}</span><strong>{{ winemaker }}</strong></li>
+      {%- endif -%}
+    </ul>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "BOC — Product story",
+  "tag": "section",
+  "class": "boc-product-story-section",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Image override" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "From the vineyard" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Cool climate. Bright character." },
+    { "type": "textarea", "id": "body", "label": "Body copy", "info": "Defaults to wine.winemaking_notes when blank." },
+    { "type": "text", "id": "vineyard_label", "label": "Vineyard label", "default": "Vineyard" },
+    { "type": "text", "id": "region_label", "label": "Region label", "default": "Climate" },
+    { "type": "text", "id": "winemaker_label", "label": "Winemaker label", "default": "Winemaking" }
+  ],
+  "presets": [
+    { "name": "BOC — Product story" }
+  ],
+  "enabled_on": {
+    "templates": ["product"]
+  }
+}
+{% endschema %}

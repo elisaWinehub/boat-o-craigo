@@ -1,0 +1,100 @@
+{%- liquid
+  assign product = closest.product | default: product
+  assign variant = product.selected_or_first_available_variant
+  assign has_plans = false
+  if product.selling_plan_groups.size > 0
+    assign has_plans = true
+  endif
+  assign option_name = 'purchase-option-' | append: section.id
+-%}
+
+<div class="purchase-options" data-block-type="selling-plans" data-boc-purchase-options {{ block.shopify_attributes }}>
+  <label class="purchase-option active" data-boc-purchase-option>
+    <input type="radio" name="{{ option_name }}" value="one-time" checked data-boc-purchase-radio>
+    <span>
+      <span class="purchase-option-title">{{ block.settings.one_time_title | default: 'One-time purchase' }}</span>
+      <span class="purchase-option-copy">{{ block.settings.one_time_copy }}</span>
+    </span>
+    <span class="purchase-option-price">{% render 'format-price', price: variant.price %}</span>
+  </label>
+
+  {%- if has_plans -%}
+    {%- assign first_plan = product.selling_plan_groups.first.selling_plans.first -%}
+    {%- assign plan_price = variant.price -%}
+    {%- for allocation in variant.selling_plan_allocations -%}
+      {%- if allocation.selling_plan.id == first_plan.id -%}
+        {%- assign plan_price = allocation.price -%}
+        {%- break -%}
+      {%- endif -%}
+    {%- endfor -%}
+    <label class="purchase-option" data-boc-purchase-option>
+      <input
+        type="radio"
+        name="{{ option_name }}"
+        value="subscription"
+        data-boc-purchase-radio
+        data-selling-plan-id="{{ first_plan.id }}"
+      >
+      <span>
+        <span class="purchase-option-title">{{ block.settings.subscription_title | default: 'Subscribe & save' }}</span>
+        <span class="purchase-option-copy">{{ block.settings.subscription_copy }}</span>
+      </span>
+      <span class="purchase-option-price">{% render 'format-price', price: plan_price %}</span>
+    </label>
+
+    <div class="subscription-placeholder" data-boc-subscription-panel>
+      <label for="subscriptionFrequency-{{ section.id }}">{{ block.settings.frequency_label | default: 'Delivery frequency' }}</label>
+      <select id="subscriptionFrequency-{{ section.id }}" data-boc-selling-plan-select>
+        {%- for group in product.selling_plan_groups -%}
+          {%- for plan in group.selling_plans -%}
+            <option value="{{ plan.id }}">{{ plan.name }}</option>
+          {%- endfor -%}
+        {%- endfor -%}
+      </select>
+    </div>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "BOC — Purchase options",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "one_time_title",
+      "label": "One-time title",
+      "default": "One-time purchase"
+    },
+    {
+      "type": "textarea",
+      "id": "one_time_copy",
+      "label": "One-time description",
+      "default": "Single bottle purchase at the standard price."
+    },
+    {
+      "type": "text",
+      "id": "subscription_title",
+      "label": "Subscription fallback title",
+      "default": "Subscribe & save"
+    },
+    {
+      "type": "textarea",
+      "id": "subscription_copy",
+      "label": "Subscription description"
+    },
+    {
+      "type": "text",
+      "id": "frequency_label",
+      "label": "Frequency label",
+      "default": "Delivery frequency"
+    }
+  ],
+  "presets": [
+    {
+      "name": "BOC — Purchase options",
+      "category": "Product"
+    }
+  ]
+}
+{% endschema %}

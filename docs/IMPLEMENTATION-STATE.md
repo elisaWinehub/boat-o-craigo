@@ -338,6 +338,30 @@ Theme IDs: see [THEME-MAPPING.md](./THEME-MAPPING.md)
 - Test all collections on staging
 - Optional `wine.wine_type` and badge metafield definitions
 
+## Product detail section files
+
+| Item | File |
+|------|------|
+| Main section | `sections/boc-main-product.liquid` |
+| Product story | `sections/boc-product-story.liquid` |
+| Related products | `sections/boc-product-related.liquid` |
+| Theme blocks | `blocks/boc-product-*.liquid` (13 block types) |
+| Gallery / accordion snippets | `snippets/boc-product-gallery.liquid`, `boc-product-accordion-item.liquid`, `boc-related-product-card.liquid` |
+| Styles / JS | `assets/boc-product.css`, `assets/boc-product.js` |
+| Default template | `templates/product.json` |
+| Mockup | `docs/mockups/boat-ocraigo-product-detail-concept.html` |
+
+**Original Horizon template:** `product-information` + `product-recommendations` (preserved in Git history).
+
+**Commerce:** Block-based `.product-info` (Theme Editor reorderable), `product-form-component` for AJAX cart, real `selling_plan_groups` only when subscriptions exist, Shopify Product Reviews metafields for ratings (no fabricated stars).
+
+**Pending (Product):**
+- Merchant decision: `product.vendor` vs `wine.label_range` for kicker (block setting defaults to vendor)
+- Merchant decision: short-copy source (`product.description` truncated vs dedicated metafield)
+- Create `wine.food_pairing`, `wine.spec_sheet_pdf`, optional badge/cellaring/vineyard metafields when approved
+- QA on staging with real imported wine product
+- Test Theme Editor block reorder + section reload interactions
+
 ## Homepage image assets (theme `assets/`)
 
 - `boc-hero-wines.png`
@@ -375,7 +399,6 @@ Images are stored in theme `assets/` and deploy with the theme. Upload to **Shop
 
 ## Next approved templates
 
-- Product
 - Customer Account
 
 ## Rules for future tasks

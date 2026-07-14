@@ -1,0 +1,156 @@
+{{ 'boc-product.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'boc-product.js' | asset_url }}" defer></script>
+<script src="{{ 'product-form.js' | asset_url }}" type="module" fetchpriority="low"></script>
+
+<script type="application/ld+json">
+  {{ product | structured_data }}
+</script>
+
+{%- liquid
+  assign wines_collection = section.settings.wines_collection
+  if wines_collection == blank
+    assign wines_collection = collections['wines']
+  endif
+  assign wines_url = wines_collection.url | default: routes.all_products_collection_url
+-%}
+
+<section
+  class="product-main boc-product-page"
+  data-boc-product
+  data-section-id="{{ section.id }}"
+  data-section-type="main-product"
+  {{ section.shopify_attributes }}
+>
+  <div class="boc-container">
+    <nav class="product-breadcrumbs" aria-label="Breadcrumb">
+      <a href="{{ routes.root_url }}">Home</a><span>/</span>
+      <a href="{{ wines_url }}">{{ section.settings.wines_label | default: 'Wines' }}</a><span>/</span>
+      <span>{{ product.title }}</span>
+    </nav>
+
+    <div class="product-layout">
+      {% render 'boc-product-gallery', product: product, section_id: section.id %}
+
+      <div class="product-info" data-block-type="product-information">
+        {% content_for 'blocks', closest.product: product %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "BOC — Main product",
+  "tag": "section",
+  "class": "boc-main-product-section",
+  "blocks": [
+    { "type": "boc-product-kicker" },
+    { "type": "boc-product-title" },
+    { "type": "boc-product-subtitle" },
+    { "type": "boc-product-rating" },
+    { "type": "boc-product-price" },
+    { "type": "boc-product-short-copy" },
+    { "type": "boc-product-meta-list" },
+    { "type": "boc-product-purchase-options" },
+    { "type": "boc-product-form" },
+    { "type": "boc-product-secondary-cta" },
+    { "type": "boc-product-stock" },
+    { "type": "boc-product-benefits" },
+    { "type": "boc-product-accordions" },
+    { "type": "custom-liquid" },
+    { "type": "@app" }
+  ],
+  "settings": [
+    {
+      "type": "collection",
+      "id": "wines_collection",
+      "label": "Wines collection (breadcrumb)"
+    },
+    {
+      "type": "text",
+      "id": "wines_label",
+      "label": "Wines breadcrumb label",
+      "default": "Wines"
+    }
+  ],
+  "presets": [
+    {
+      "name": "BOC — Main product",
+      "blocks": {
+        "kicker": { "type": "boc-product-kicker" },
+        "title": { "type": "boc-product-title" },
+        "subtitle": { "type": "boc-product-subtitle" },
+        "rating": { "type": "boc-product-rating" },
+        "price": { "type": "boc-product-price" },
+        "short_copy": { "type": "boc-product-short-copy" },
+        "meta_list": { "type": "boc-product-meta-list" },
+        "purchase_options": { "type": "boc-product-purchase-options" },
+        "form": { "type": "boc-product-form" },
+        "secondary_cta": { "type": "boc-product-secondary-cta" },
+        "stock": { "type": "boc-product-stock" },
+        "benefits": { "type": "boc-product-benefits" },
+        "accordions": {
+          "type": "boc-product-accordions",
+          "blocks": {
+            "tasting": {
+              "type": "boc-product-accordion-item",
+              "settings": {
+                "heading": "Tasting notes",
+                "accordion_type": "tasting_notes",
+                "open_by_default": true
+              }
+            },
+            "details": {
+              "type": "boc-product-accordion-item",
+              "settings": {
+                "heading": "Wine details",
+                "accordion_type": "wine_details"
+              }
+            },
+            "pairing": {
+              "type": "boc-product-accordion-item",
+              "settings": {
+                "heading": "Food pairing",
+                "accordion_type": "food_pairing"
+              }
+            },
+            "shipping": {
+              "type": "boc-product-accordion-item",
+              "settings": {
+                "heading": "Shipping & delivery",
+                "accordion_type": "shipping"
+              }
+            },
+            "pdf": {
+              "type": "boc-product-accordion-item",
+              "settings": {
+                "heading": "Download wine information",
+                "accordion_type": "pdf_download"
+              }
+            }
+          },
+          "block_order": ["tasting", "details", "pairing", "shipping", "pdf"]
+        }
+      },
+      "block_order": [
+        "kicker",
+        "title",
+        "subtitle",
+        "rating",
+        "price",
+        "short_copy",
+        "meta_list",
+        "purchase_options",
+        "form",
+        "secondary_cta",
+        "stock",
+        "benefits",
+        "accordions"
+      ]
+    }
+  ],
+  "enabled_on": {
+    "templates": ["product"]
+  }
+}
+{% endschema %}

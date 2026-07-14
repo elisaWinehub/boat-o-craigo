@@ -1,0 +1,51 @@
+{%- liquid
+  assign product = closest.product | default: product
+  assign source = block.settings.kicker_source | default: 'vendor'
+  assign kicker_text = product.vendor
+  if source == 'label_range'
+    assign kicker_text = product.metafields.wine.label_range | default: product.vendor
+  endif
+  assign vintage = product.metafields.wine.vintage
+  assign vintage_prefix = block.settings.vintage_prefix | default: 'Vintage'
+-%}
+
+<div class="product-kicker" {{ block.shopify_attributes }}>
+  {%- if kicker_text != blank -%}
+    <span class="eyebrow boc-eyebrow">{{ kicker_text }}</span>
+  {%- endif -%}
+  {%- if vintage != blank -%}
+    <span class="product-vintage">{{ vintage_prefix }} {{ vintage }}</span>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "BOC — Product kicker",
+  "tag": null,
+  "settings": [
+    {
+      "type": "select",
+      "id": "kicker_source",
+      "label": "Eyebrow source",
+      "options": [
+        { "value": "vendor", "label": "Product vendor" },
+        { "value": "label_range", "label": "Wine label / range metafield" }
+      ],
+      "default": "vendor",
+      "info": "Confirm with merchant which field should display as the estate kicker."
+    },
+    {
+      "type": "text",
+      "id": "vintage_prefix",
+      "label": "Vintage prefix",
+      "default": "Vintage"
+    }
+  ],
+  "presets": [
+    {
+      "name": "BOC — Product kicker",
+      "category": "Product"
+    }
+  ]
+}
+{% endschema %}

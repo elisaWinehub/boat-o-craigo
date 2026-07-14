@@ -1,0 +1,118 @@
+<script
+  src="{{ 'product-recommendations.js' | asset_url }}"
+  type="module"
+  fetchpriority="low"
+></script>
+<script src="{{ 'product-form.js' | asset_url }}" type="module" fetchpriority="low"></script>
+
+{%- liquid
+  assign wines_collection = section.settings.wines_collection
+  if wines_collection == blank
+    assign wines_collection = collections['wines']
+  endif
+  assign wines_url = wines_collection.url | default: routes.all_products_collection_url
+-%}
+
+<product-recommendations
+  id="boc-product-related-{{ section.id }}"
+  class="product-related boc-product-related"
+  data-url="{{ routes.product_recommendations_url }}?limit={{ section.settings.max_products }}"
+  data-section-id="{{ section.id }}"
+  data-product-id="{{ product.id }}"
+  data-intent="{{ section.settings.recommendation_type }}"
+  data-recommendations-performed="{{ recommendations.performed }}"
+  {{ section.shopify_attributes }}
+>
+  <div class="boc-container">
+    <div class="section-head">
+      <div>
+        {%- if section.settings.eyebrow != blank -%}
+          <span class="eyebrow boc-eyebrow">{{ section.settings.eyebrow }}</span>
+        {%- endif -%}
+        {%- if section.settings.heading != blank -%}
+          <h2 class="display boc-display">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+      </div>
+      {%- if section.settings.link_label != blank -%}
+        <a class="text-link" href="{{ wines_url }}">{{ section.settings.link_label }}</a>
+      {%- endif -%}
+    </div>
+
+    {%- if recommendations.performed -%}
+      {%- if recommendations.products_count > 0 -%}
+        <div class="related-grid">
+          {%- for rec_product in recommendations.products limit: section.settings.max_products -%}
+            {% render 'boc-related-product-card', product: rec_product, section: section %}
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    {%- else -%}
+      <div class="related-grid" data-boc-related-placeholder>
+        {%- for i in (1..section.settings.max_products) -%}
+          <article class="related-card related-card--placeholder" aria-hidden="true">
+            <div class="related-image"></div>
+            <div class="related-info"><h3>&nbsp;</h3></div>
+          </article>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</product-recommendations>
+
+{% schema %}
+{
+  "name": "BOC — Related products",
+  "tag": "section",
+  "class": "boc-product-related-section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "recommendation_type",
+      "label": "Recommendation type",
+      "options": [
+        { "value": "related", "label": "Related" },
+        { "value": "complementary", "label": "Complementary" }
+      ],
+      "default": "related"
+    },
+    {
+      "type": "range",
+      "id": "max_products",
+      "label": "Maximum products",
+      "min": 2,
+      "max": 8,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "collection",
+      "id": "wines_collection",
+      "label": "View all collection"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "You may also enjoy"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Related wines."
+    },
+    {
+      "type": "text",
+      "id": "link_label",
+      "label": "View all label",
+      "default": "View all wines"
+    }
+  ],
+  "presets": [
+    { "name": "BOC — Related products" }
+  ],
+  "enabled_on": {
+    "templates": ["product"]
+  }
+}
+{% endschema %}

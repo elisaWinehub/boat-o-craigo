@@ -1,0 +1,76 @@
+{%- liquid
+  assign product = closest.product | default: product
+-%}
+
+{% render 'boc-product-accordion-item', block: block, product: product %}
+
+{% schema %}
+{
+  "name": "BOC — Accordion item",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Accordion"
+    },
+    {
+      "type": "select",
+      "id": "accordion_type",
+      "label": "Content source",
+      "options": [
+        { "value": "tasting_notes", "label": "Tasting notes (wine metafields)" },
+        { "value": "wine_details", "label": "Wine details (wine metafields)" },
+        { "value": "food_pairing", "label": "Food pairing (wine.food_pairing)" },
+        { "value": "shipping", "label": "Shipping & delivery (static)" },
+        { "value": "pdf_download", "label": "PDF download (wine.spec_sheet_pdf)" },
+        { "value": "custom", "label": "Custom rich text" }
+      ],
+      "default": "custom"
+    },
+    {
+      "type": "checkbox",
+      "id": "open_by_default",
+      "label": "Open by default",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "cellaring_source",
+      "label": "Cellaring field",
+      "options": [
+        { "value": "ageing_process", "label": "wine.ageing_process" },
+        { "value": "cellaring_notes", "label": "wine.cellaring_notes" }
+      ],
+      "default": "ageing_process",
+      "visible_if": "{{ block.settings.accordion_type == 'wine_details' }}"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Content",
+      "visible_if": "{{ block.settings.accordion_type == 'shipping' or block.settings.accordion_type == 'custom' }}"
+    },
+    {
+      "type": "textarea",
+      "id": "intro",
+      "label": "Intro text",
+      "visible_if": "{{ block.settings.accordion_type == 'pdf_download' }}"
+    },
+    {
+      "type": "text",
+      "id": "link_label",
+      "label": "Download link label",
+      "default": "Download PDF",
+      "visible_if": "{{ block.settings.accordion_type == 'pdf_download' }}"
+    }
+  ],
+  "presets": [
+    {
+      "name": "BOC — Accordion item",
+      "category": "Product"
+    }
+  ]
+}
+{% endschema %}

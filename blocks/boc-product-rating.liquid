@@ -1,0 +1,61 @@
+{%- liquid
+  assign product = closest.product | default: product
+  assign rating = product.metafields.reviews.rating.value.rating
+  assign scale_max = product.metafields.reviews.rating.value.scale_max | default: 5
+  assign rating_count = product.metafields.reviews.rating_count
+
+  if request.visual_preview_mode and product != blank and rating == blank
+    assign rating = blank
+  endif
+-%}
+
+{%- if rating != blank -%}
+  {%- liquid
+    assign full_stars = rating | floor
+    assign remainder = rating | modulo: 1
+    assign display_stars = full_stars
+    if remainder >= 0.5
+      assign display_stars = display_stars | plus: 1
+    endif
+  -%}
+  <div class="product-rating" data-block-type="product-rating" {{ block.shopify_attributes }}>
+    <span class="product-stars" aria-hidden="true">
+      {%- for i in (1..scale_max) -%}
+        {%- if i <= display_stars -%}★{%- else -%}☆{%- endif -%}
+      {%- endfor -%}
+    </span>
+    <span>
+      {{ rating | round: 1 }}
+      {%- if rating_count != blank -%}
+        · {{ rating_count }} {{ block.settings.reviews_label | default: 'reviews' }}
+      {%- endif -%}
+    </span>
+  </div>
+{%- else -%}
+  {%- comment -%}Reviews render when Shopify Product Reviews metafields exist, or insert an @app block.{%- endcomment -%}
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "BOC — Product rating",
+  "tag": null,
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Displays Shopify Product Reviews metafields when a reviews app is installed. No ratings are fabricated — the block stays empty until real review data exists. You can also insert a reviews app block via Add block."
+    },
+    {
+      "type": "text",
+      "id": "reviews_label",
+      "label": "Reviews label",
+      "default": "reviews"
+    }
+  ],
+  "presets": [
+    {
+      "name": "BOC — Product rating",
+      "category": "Product"
+    }
+  ]
+}
+{% endschema %}

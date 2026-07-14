@@ -99,4 +99,21 @@ Metafield: wine.winemaking_notes [rich_text_field]
 Metafield: wine.ageing_process [rich_text_field]
 ```
 
+## Tier 3 — proposed for product detail (not yet created)
+
+These fields are referenced in the product template but **not yet defined** in Admin. Create only after merchant approval — do not duplicate existing keys.
+
+| Key | Name | Type | Purpose | Status |
+|---|---|---|---|---|
+| `food_pairing` | Food pairing | `multi_line_text_field` | Accordion: food pairing copy | **Not created** |
+| `spec_sheet_pdf` | Spec sheet PDF | `file_reference` | Accordion: downloadable PDF | **Not created** |
+| `badge_label` | Badge label | `single_line_text_field` | Gallery badge (e.g. "New release") | **Not created** |
+| `badge_style` | Badge style | `single_line_text_field` | Badge colour variant (`sand`, `ink`, `cream`) | **Not created** |
+| `vineyard` | Vineyard | `single_line_text_field` | Only if `wine.subregion` cannot serve as vineyard name | **Not created** |
+| `cellaring_notes` | Cellaring notes | `multi_line_text_field` | Only if `wine.ageing_process` cannot serve as cellaring guidance | **Not created** |
+
+The product template currently uses `wine.subregion` for the vineyard line in Wine details, and `wine.ageing_process` for cellaring (configurable in the accordion block settings).
+
+---
+
 Reference in theme Liquid: `{{ product.metafields.wine.vintage }}`, etc.

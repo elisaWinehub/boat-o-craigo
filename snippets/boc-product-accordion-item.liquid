@@ -1,0 +1,137 @@
+{%- doc -%}
+  Single product accordion item — renders only when content exists.
+
+  @param {object} block - Accordion item block
+  @param {product} product - Shopify product
+{%- enddoc -%}
+
+{%- liquid
+  assign product = product | default: closest.product
+  assign accordion_type = block.settings.accordion_type
+  assign heading = block.settings.heading
+  assign panel_html = ''
+  assign has_content = false
+  assign open_by_default = block.settings.open_by_default
+
+  case accordion_type
+    when 'tasting_notes'
+      assign eyes = product.metafields.wine.tasting_eyes
+      assign nose = product.metafields.wine.tasting_nose
+      assign mouth = product.metafields.wine.tasting_mouth
+      if eyes != blank or nose != blank or mouth != blank
+        assign has_content = true
+        capture panel_html
+          if eyes != blank
+            echo '<p><strong>Appearance:</strong> '
+            echo eyes
+            echo '</p>'
+          endif
+          if nose != blank
+            echo '<p><strong>Aroma:</strong> '
+            echo nose
+            echo '</p>'
+          endif
+          if mouth != blank
+            echo '<p><strong>Palate:</strong> '
+            echo mouth
+            echo '</p>'
+          endif
+        endcapture
+      endif
+
+    when 'wine_details'
+      assign vintage = product.metafields.wine.vintage
+      assign variety = product.metafields.wine.variety_blend
+      assign vineyard = product.metafields.wine.subregion
+      assign region = product.metafields.wine.region
+      assign cellaring = product.metafields.wine.ageing_process
+      if block.settings.cellaring_source == 'cellaring_notes'
+        assign cellaring = product.metafields.wine.cellaring_notes
+      endif
+      if vintage != blank or variety != blank or vineyard != blank or region != blank or cellaring != blank
+        assign has_content = true
+        capture panel_html
+          echo '<ul>'
+          if vintage != blank
+            echo '<li>Vintage: '
+            echo vintage
+            echo '</li>'
+          endif
+          if variety != blank
+            echo '<li>Variety: '
+            echo variety
+            echo '</li>'
+          endif
+          if vineyard != blank
+            echo '<li>Vineyard: '
+            echo vineyard
+            echo '</li>'
+          endif
+          if region != blank
+            echo '<li>Region: '
+            echo region
+            echo '</li>'
+          endif
+          echo '</ul>'
+          if cellaring != blank
+            echo '<div class="product-accordion-cellaring"><strong>Cellaring:</strong> '
+            echo cellaring | metafield_tag
+            echo '</div>'
+          endif
+        endcapture
+      endif
+
+    when 'food_pairing'
+      assign pairing = product.metafields.wine.food_pairing
+      if pairing != blank
+        assign has_content = true
+        capture panel_html
+          echo pairing | metafield_tag
+        endcapture
+      endif
+
+    when 'shipping'
+      if block.settings.content != blank
+        assign has_content = true
+        assign panel_html = block.settings.content
+      endif
+
+    when 'pdf_download'
+      assign pdf = product.metafields.wine.spec_sheet_pdf
+      if pdf != blank
+        assign has_content = true
+        capture panel_html
+          if block.settings.intro != blank
+            echo block.settings.intro
+          endif
+          echo '<p><a class="text-link" href="'
+          echo pdf.value.url
+          echo '" target="_blank" rel="noopener">'
+          echo block.settings.link_label | default: 'Download PDF'
+          echo '</a></p>'
+        endcapture
+      endif
+
+    when 'custom'
+      if block.settings.content != blank
+        assign has_content = true
+        assign panel_html = block.settings.content
+      endif
+  endcase
+-%}
+
+{%- if has_content and heading != blank -%}
+  <article
+    class="product-accordion{% if open_by_default %} open{% endif %}"
+    data-boc-product-accordion
+    {{ block.shopify_attributes }}
+  >
+    <button class="product-accordion-btn" type="button" aria-expanded="{% if open_by_default %}true{% else %}false{% endif %}">
+      <span>{{ heading }}</span>
+      <span aria-hidden="true">{% if open_by_default %}−{% else %}+{% endif %}</span>
+    </button>
+    <div class="product-accordion-panel">
+      {{ panel_html }}
+    </div>
+  </article>
+{%- endif -%}

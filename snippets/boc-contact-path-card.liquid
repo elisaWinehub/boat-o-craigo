@@ -1,0 +1,62 @@
+{%- doc -%}
+  Contact pathway card with scroll, URL, email, phone, or form topic actions.
+
+  @param {object} block - Pathway block
+  @param {string} form_anchor - Contact form anchor ID
+{%- enddoc -%}
+
+{%- liquid
+  assign action = block.settings.action_type | default: 'page_url'
+  assign card_href = '#'
+  assign is_external = false
+  assign open_new_tab = block.settings.open_new_tab
+  assign topic = block.settings.enquiry_topic
+
+  if action == 'page_url' and block.settings.url != blank
+    assign card_href = block.settings.url
+    assign is_external = true
+  elsif action == 'email'
+    assign email = block.settings.email
+    if email == blank and block.settings.email_source == 'wine_club'
+      assign email = settings.boc_wine_club_email
+    elsif email == blank and block.settings.email_source == 'events'
+      assign email = settings.boc_events_email
+    endif
+    if email != blank
+      assign card_href = 'mailto:' | append: email
+      assign is_external = true
+    endif
+  elsif action == 'phone'
+    assign phone = block.settings.phone | default: settings.boc_general_phone
+    if phone != blank
+      assign card_href = 'tel:' | append: phone | replace: ' ', '' | replace: '(', '' | replace: ')', ''
+      assign is_external = true
+    endif
+  elsif action == 'scroll_form' or action == 'form_topic'
+    assign card_href = '#' | append: form_anchor
+  endif
+-%}
+
+<a
+  href="{{ card_href }}"
+  class="boc-contact-pathways__card"
+  style="--boc-ct-path-bg: {{ block.settings.background_color }}; --boc-ct-path-bg-hover: {{ block.settings.hover_background_color }}; --boc-ct-path-text: {{ block.settings.text_color }}; --boc-ct-path-text-hover: {{ block.settings.hover_text_color }};"
+  {% if action == 'scroll_form' %}
+    data-boc-contact-scroll
+  {% elsif action == 'form_topic' and topic != blank %}
+    data-boc-contact-scroll
+    data-boc-contact-topic="{{ topic }}"
+  {% endif %}
+  {% if is_external and open_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}
+  {{ block.shopify_attributes }}
+>
+  {%- if block.settings.eyebrow != blank -%}<span class="boc-eyebrow">{{ block.settings.eyebrow }}</span>{%- endif -%}
+  {%- if block.settings.heading != blank -%}<h3>{{ block.settings.heading }}</h3>{%- endif -%}
+  {%- if block.settings.description != blank -%}<p>{{ block.settings.description }}</p>{%- endif -%}
+  {%- if block.settings.link_label != blank -%}
+    <span class="boc-home-text-link">
+      {{ block.settings.link_label }}
+      {%- if is_external and open_new_tab -%}<span class="visually-hidden"> (opens in a new tab)</span>{%- endif -%}
+    </span>
+  {%- endif -%}
+</a>

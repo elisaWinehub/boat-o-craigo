@@ -1,0 +1,55 @@
+{%- doc -%}
+  Contact detail card for address, phone, hours, and email blocks.
+
+  @param {object} block - Detail block
+{%- enddoc -%}
+
+<article
+  class="boc-contact-detail"
+  style="--boc-ct-detail-bg: {{ block.settings.card_background_color }}; --boc-ct-detail-text: {{ block.settings.text_color }};"
+  {{ block.shopify_attributes }}
+>
+  {%- if block.settings.heading != blank -%}<h3>{{ block.settings.heading }}</h3>{%- endif -%}
+
+  {%- if block.settings.body != blank -%}
+    <div class="rte">{{ block.settings.body }}</div>
+  {%- endif -%}
+
+  {%- if block.settings.label != blank or block.settings.content != blank -%}
+    <p>
+      {%- if block.settings.label != blank -%}<strong>{{ block.settings.label }}</strong>{%- endif -%}
+      {%- if block.settings.content != blank -%}{{ block.settings.content | newline_to_br }}{%- endif -%}
+    </p>
+  {%- endif -%}
+
+  {%- if block.settings.phone != blank -%}
+    <p>
+      {%- if block.settings.phone_label != blank -%}<strong>{{ block.settings.phone_label }}</strong>{%- endif -%}
+      <a href="tel:{{ block.settings.phone | replace: ' ', '' | replace: '(', '' | replace: ')', '' }}">{{ block.settings.phone }}</a>
+    </p>
+  {%- endif -%}
+
+  {%- if block.settings.email != blank -%}
+    <p>
+      {%- if block.settings.email_label != blank -%}<strong>{{ block.settings.email_label }}</strong>{%- endif -%}
+      <a href="mailto:{{ block.settings.email }}">{{ block.settings.email }}</a>
+    </p>
+  {%- endif -%}
+
+  {%- if block.settings.detail_1_label != blank or block.settings.detail_1_value != blank -%}
+    <ul class="boc-contact-detail__rows">
+      {%- if block.settings.detail_1_label != blank or block.settings.detail_1_value != blank -%}
+        <li><strong>{{ block.settings.detail_1_label }}</strong> {{ block.settings.detail_1_value }}</li>
+      {%- endif -%}
+      {%- if block.settings.detail_2_label != blank or block.settings.detail_2_value != blank -%}
+        <li><strong>{{ block.settings.detail_2_label }}</strong> {{ block.settings.detail_2_value }}</li>
+      {%- endif -%}
+      {%- if block.settings.detail_3_label != blank or block.settings.detail_3_value != blank -%}
+        <li><strong>{{ block.settings.detail_3_label }}</strong> {{ block.settings.detail_3_value }}</li>
+      {%- endif -%}
+      {%- if block.settings.detail_4_label != blank or block.settings.detail_4_value != blank -%}
+        <li><strong>{{ block.settings.detail_4_label }}</strong> {{ block.settings.detail_4_value }}</li>
+      {%- endif -%}
+    </ul>
+  {%- endif -%}
+</article>

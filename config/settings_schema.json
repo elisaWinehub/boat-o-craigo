@@ -2301,5 +2301,68 @@
         "default": false
       }
     ]
+  },
+  {
+    "name": "Boat O'Craigo — Contact",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Business details"
+      },
+      {
+        "type": "text",
+        "id": "boc_business_name",
+        "label": "Business name",
+        "default": "Boat O'Craigo"
+      },
+      {
+        "type": "textarea",
+        "id": "boc_street_address",
+        "label": "Street address",
+        "default": "458 Maroondah Highway\nHealesville VIC 3777"
+      },
+      {
+        "type": "textarea",
+        "id": "boc_postal_address",
+        "label": "Postal address",
+        "default": "PO Box 231\nWarrandyte VIC 3113"
+      },
+      {
+        "type": "text",
+        "id": "boc_general_phone",
+        "label": "General phone",
+        "default": "03 5962 6899"
+      },
+      {
+        "type": "text",
+        "id": "boc_general_email",
+        "label": "General email",
+        "default": "hello@boatocraigo.com.au"
+      },
+      {
+        "type": "text",
+        "id": "boc_bookings_email",
+        "label": "Bookings email",
+        "default": "bookings@boatocraigo.com.au"
+      },
+      {
+        "type": "text",
+        "id": "boc_wine_club_email",
+        "label": "Wine Club email",
+        "default": "wineclub@boatocraigo.com.au"
+      },
+      {
+        "type": "text",
+        "id": "boc_events_email",
+        "label": "Events email",
+        "default": "events@boatocraigo.com.au"
+      },
+      {
+        "type": "text",
+        "id": "boc_google_maps_url",
+        "label": "Google Maps directions URL",
+        "default": "https://www.google.com/maps/search/?api=1&query=458+Maroondah+Highway,+Healesville+VIC+3777"
+      }
+    ]
   }
 ]

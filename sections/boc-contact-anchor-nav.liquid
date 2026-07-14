@@ -1,0 +1,76 @@
+{%- liquid
+  assign nav_classes = 'boc-contact-nav'
+  unless section.settings.sticky_enabled
+    assign nav_classes = nav_classes | append: ' boc-contact-nav--disabled'
+  endunless
+  unless section.settings.section_enabled
+    assign nav_classes = nav_classes | append: ' boc-contact-section--disabled'
+  endunless
+  unless section.settings.show_desktop
+    assign nav_classes = nav_classes | append: ' boc-contact-section--hide-desktop'
+  endunless
+  unless section.settings.show_tablet
+    assign nav_classes = nav_classes | append: ' boc-contact-section--hide-tablet'
+  endunless
+  unless section.settings.show_mobile
+    assign nav_classes = nav_classes | append: ' boc-contact-section--hide-mobile'
+  endunless
+-%}
+
+<nav
+  class="{{ nav_classes }}"
+  aria-label="{{ section.settings.aria_label | default: 'Contact page navigation' }}"
+  data-boc-contact-nav
+  data-tracking="{{ section.settings.active_tracking }}"
+  data-boc-contact
+  style="--boc-ct-nav-bg: {{ section.settings.background_color }}; --boc-ct-nav-text: {{ section.settings.text_color }}; --boc-ct-nav-active: {{ section.settings.active_color }};"
+>
+  <div class="boc-contact-section__inner boc-contact-nav__inner">
+    {%- for block in section.blocks -%}
+      <a href="#{{ block.settings.anchor_id }}" class="boc-contact-nav__link" data-boc-contact-scroll {{ block.shopify_attributes }}>{{ block.settings.label }}</a>
+    {%- endfor -%}
+  </div>
+</nav>
+
+{% schema %}
+{
+  "name": "BOC — Contact Nav",
+  "tag": "section",
+  "class": "boc-contact-nav-section",
+  "max_blocks": 8,
+  "settings": [
+    { "type": "checkbox", "id": "section_enabled", "label": "Enable section", "default": true },
+    { "type": "checkbox", "id": "show_desktop", "label": "Show on desktop", "default": true },
+    { "type": "checkbox", "id": "show_tablet", "label": "Show on tablet", "default": true },
+    { "type": "checkbox", "id": "show_mobile", "label": "Show on mobile", "default": true },
+    { "type": "checkbox", "id": "sticky_enabled", "label": "Enable sticky navigation", "default": true },
+    { "type": "checkbox", "id": "active_tracking", "label": "Highlight active section on scroll", "default": true },
+    { "type": "color", "id": "background_color", "label": "Background", "default": "#FFFFFF" },
+    { "type": "color", "id": "text_color", "label": "Text colour", "default": "#212121" },
+    { "type": "color", "id": "active_color", "label": "Active/hover colour", "default": "#B99E7E" },
+    { "type": "text", "id": "aria_label", "label": "ARIA label", "default": "Contact page navigation" }
+  ],
+  "blocks": [
+    {
+      "type": "link",
+      "name": "Nav link",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label", "default": "Link" },
+        { "type": "text", "id": "anchor_id", "label": "Anchor ID", "default": "boc-contact-pathways" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "BOC — Contact Nav",
+      "blocks": [
+        { "type": "link", "settings": { "label": "Contact options", "anchor_id": "boc-contact-pathways" } },
+        { "type": "link", "settings": { "label": "Details & hours", "anchor_id": "boc-contact-details" } },
+        { "type": "link", "settings": { "label": "Enquiry form", "anchor_id": "boc-contact-form" } },
+        { "type": "link", "settings": { "label": "FAQs", "anchor_id": "boc-contact-faq" } },
+        { "type": "link", "settings": { "label": "Getting here", "anchor_id": "boc-contact-location" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

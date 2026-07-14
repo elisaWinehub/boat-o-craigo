@@ -8,13 +8,15 @@
   @param {string} question_color - Question text colour
   @param {string} answer_color - Answer text colour
   @param {string} icon_color - Plus/minus icon colour
-  @param {string} [namespace] - wine-club (default) or booking
+  @param {string} [namespace] - wine-club (default), booking, or contact
 {%- enddoc -%}
 
 {%- liquid
   assign faq_prefix = 'boc-wine-club-faq'
   if namespace == 'booking'
     assign faq_prefix = 'boc-booking-faq'
+  elsif namespace == 'contact'
+    assign faq_prefix = 'boc-contact-faq'
   endif
   assign item_id = faq_prefix | append: '-' | append: section_id | append: '-' | append: block.id
   assign open_class = ''
@@ -25,7 +27,8 @@
 
 <div
   class="{{ faq_prefix }}__item{{ open_class }}"
-  style="--boc-faq-divider: {{ divider_color }}; --boc-faq-question: {{ question_color }}; --boc-faq-answer: {{ answer_color }}; --boc-faq-icon: {{ icon_color }};"
+  style="--boc-faq-divider: {{ divider_color }}; --boc-faq-question: {{ question_color }}; --boc-faq-answer: {{ answer_color }}; --boc-faq-icon: {{ icon_color }};{% if namespace == 'contact' %} --boc-ct-faq-divider: {{ divider_color }}; --boc-ct-faq-question: {{ question_color }}; --boc-ct-faq-answer: {{ answer_color }};{% endif %}"
+  {% if namespace == 'contact' %}data-boc-contact-faq-item{% endif %}
   {{ block.shopify_attributes }}
 >
   <h3 class="{{ faq_prefix }}__question">
@@ -35,9 +38,10 @@
       aria-expanded="{% if is_open %}true{% else %}false{% endif %}"
       aria-controls="{{ item_id }}-panel"
       id="{{ item_id }}-trigger"
+      {% if namespace == 'contact' %}data-boc-contact-faq-trigger{% endif %}
     >
       <span class="{{ faq_prefix }}__question-text">{{ block.settings.question }}</span>
-      <span class="{{ faq_prefix }}__icon" aria-hidden="true">{% if is_open %}−{% else %}+{% endif %}</span>
+      <span class="{{ faq_prefix }}__icon" aria-hidden="true"{% if namespace == 'contact' %} data-boc-contact-faq-icon{% endif %}>{% if is_open %}−{% else %}+{% endif %}</span>
     </button>
   </h3>
   <div
@@ -45,6 +49,7 @@
     class="{{ faq_prefix }}__panel"
     role="region"
     aria-labelledby="{{ item_id }}-trigger"
+    {% if namespace == 'contact' %}data-boc-contact-faq-panel{% endif %}
     {% unless is_open %}hidden{% endunless %}
   >
     <div class="{{ faq_prefix }}__answer rte">

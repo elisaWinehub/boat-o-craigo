@@ -1,0 +1,652 @@
+/* Boat O'Craigo — Wine Club page */
+
+.boc-wine-club-section--disabled {
+  display: none !important;
+}
+
+@media (min-width: 1101px) {
+  .boc-wine-club-section--hide-desktop {
+    display: none !important;
+  }
+}
+
+@media (min-width: 721px) and (max-width: 1100px) {
+  .boc-wine-club-section--hide-tablet {
+    display: none !important;
+  }
+}
+
+@media (max-width: 720px) {
+  .boc-wine-club-section--hide-mobile {
+    display: none !important;
+  }
+}
+
+.boc-wine-club-section {
+  background: var(--boc-wc-bg, var(--boc-white));
+  color: var(--boc-wc-text, var(--boc-ink));
+  padding-top: var(--boc-wc-pt-d, var(--boc-space-9));
+  padding-bottom: var(--boc-wc-pb-d, var(--boc-space-9));
+}
+
+@media (min-width: 721px) and (max-width: 1100px) {
+  .boc-wine-club-section {
+    padding-top: var(--boc-wc-pt-t, var(--boc-wc-pt-d, var(--boc-space-9)));
+    padding-bottom: var(--boc-wc-pb-t, var(--boc-wc-pb-d, var(--boc-space-9)));
+  }
+}
+
+@media (max-width: 720px) {
+  .boc-wine-club-section {
+    padding-top: var(--boc-wc-pt-m, var(--boc-wc-pt-d, 72px));
+    padding-bottom: var(--boc-wc-pb-m, var(--boc-wc-pb-d, 72px));
+  }
+}
+
+.boc-wine-club-section--full {
+  padding-inline: 0;
+}
+
+.boc-wine-club-section__inner {
+  width: 100%;
+}
+
+.boc-wine-club-section--container .boc-wine-club-section__inner,
+.boc-wine-club-section--standard .boc-wine-club-section__inner {
+  width: min(calc(100% - 48px), var(--boc-max-width));
+  margin-inline: auto;
+}
+
+.boc-wine-club-section--narrow .boc-wine-club-section__inner {
+  width: min(calc(100% - 48px), 960px);
+  margin-inline: auto;
+}
+
+@media (max-width: 720px) {
+  .boc-wine-club-section--container .boc-wine-club-section__inner,
+  .boc-wine-club-section--standard .boc-wine-club-section__inner,
+  .boc-wine-club-section--narrow .boc-wine-club-section__inner {
+    width: min(calc(100% - 32px), var(--boc-max-width));
+  }
+}
+
+.boc-wine-club-section__head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--boc-space-4);
+  margin-bottom: 42px;
+  text-align: var(--boc-wc-align-d, left);
+}
+
+.boc-wine-club-section__head-text {
+  max-width: 640px;
+}
+
+.boc-wine-club-section__eyebrow {
+  color: var(--boc-wc-eyebrow, inherit);
+}
+
+.boc-wine-club-section__heading {
+  font-family: var(--boc-serif);
+  font-size: var(--boc-wc-heading-size, var(--boc-display-lg));
+  font-weight: 400;
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+  margin: 8px 0 0;
+  color: var(--boc-wc-heading, inherit);
+}
+
+.boc-wine-club-section__body {
+  color: var(--boc-wc-body, var(--boc-slate));
+  font-size: var(--boc-body);
+  line-height: 1.55;
+  margin: 0;
+}
+
+.boc-wine-club-section__head-aside {
+  max-width: 430px;
+  color: var(--boc-wc-body, var(--boc-slate));
+}
+
+@media (max-width: 720px) {
+  .boc-wine-club-section__head {
+    display: block;
+    text-align: var(--boc-wc-align-m, var(--boc-wc-align-d, left));
+  }
+}
+
+/* Hero */
+.boc-wine-club-hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: var(--boc-wc-hero-min-h, 760px);
+  height: var(--boc-wc-hero-h, auto);
+  color: var(--boc-white);
+  overflow: hidden;
+  padding: 0;
+}
+
+.boc-wine-club-hero__media {
+  position: absolute;
+  inset: 0;
+}
+
+.boc-wine-club-hero__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--boc-wc-focal, center);
+}
+
+.boc-wine-club-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: var(--boc-wc-overlay, rgba(0, 0, 0, 0.55));
+  opacity: var(--boc-wc-overlay-opacity, 1);
+}
+
+.boc-wine-club-hero__content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding-block: 110px;
+}
+
+.boc-wine-club-hero__copy {
+  max-width: var(--boc-wc-content-width, 760px);
+  text-align: var(--boc-wc-align-d, left);
+}
+
+.boc-wine-club-hero__copy p {
+  max-width: 620px;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: var(--boc-body-lg);
+  margin: 0 0 30px;
+}
+
+.boc-wine-club-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: var(--boc-wc-hero-actions-align, flex-start);
+}
+
+@media (min-width: 721px) and (max-width: 1100px) {
+  .boc-wine-club-hero {
+    min-height: var(--boc-wc-hero-min-h-t, 700px);
+  }
+}
+
+@media (max-width: 720px) {
+  .boc-wine-club-hero {
+    min-height: var(--boc-wc-hero-min-h-m, 650px);
+  }
+
+  .boc-wine-club-hero__content {
+    padding-block: 90px 70px;
+  }
+
+  .boc-wine-club-hero__copy {
+    text-align: var(--boc-wc-align-m, left);
+  }
+}
+
+/* Plans */
+.boc-wine-club-plans__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.boc-wine-club-plan-card {
+  border: 1px solid var(--boc-line);
+  background: var(--boc-plan-card-bg, var(--boc-white));
+  color: var(--boc-plan-text, var(--boc-ink));
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  border-top: 3px solid var(--boc-plan-tier-color, var(--boc-club-bronze));
+}
+
+.boc-wine-club-plan-card--featured {
+  border-color: var(--boc-plan-tier-color, var(--boc-club-silver));
+  box-shadow: 0 16px 45px rgba(33, 33, 33, 0.08);
+}
+
+.boc-wine-club-plan-card--featured .boc-wine-club-plan-card__body {
+  background: #fbf7f2;
+}
+
+.boc-wine-club-plan-card__media {
+  height: 280px;
+  position: relative;
+  overflow: hidden;
+}
+
+.boc-wine-club-plan-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.boc-wine-club-plan-card:hover .boc-wine-club-plan-card__media img {
+  transform: scale(1.035);
+}
+
+.boc-wine-club-plan-card__badge {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  background: var(--boc-plan-tier-color, var(--boc-ink));
+  color: var(--boc-white);
+  padding: 10px 14px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.boc-wine-club-plan-card__body {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.boc-wine-club-plan-card__tier {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--boc-plan-tier-color, var(--boc-club-bronze));
+  margin: 0 0 8px;
+}
+
+.boc-wine-club-plan-card__title {
+  font-family: var(--boc-serif);
+  font-size: 2rem;
+  font-weight: 400;
+  line-height: 1.05;
+  margin: 0 0 8px;
+}
+
+.boc-wine-club-plan-card__sub {
+  color: var(--boc-slate);
+  font-size: 0.84rem;
+  margin: 0 0 22px;
+}
+
+.boc-wine-club-plan-card__description {
+  font-size: 0.88rem;
+  margin: 0 0 16px;
+}
+
+.boc-wine-club-plan-card__list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 28px;
+}
+
+.boc-wine-club-plan-card__list li {
+  padding: 11px 0;
+  border-bottom: 1px solid var(--boc-line);
+  font-size: 0.88rem;
+}
+
+.boc-wine-club-plan-card__button {
+  margin-top: auto;
+  width: 100%;
+}
+
+.boc-wine-club-plan-card__app-note {
+  font-size: 0.78rem;
+  color: var(--boc-slate);
+  margin: 0 0 12px;
+}
+
+@media (max-width: 1100px) {
+  .boc-wine-club-plans__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .boc-wine-club-plan-card {
+    max-width: 760px;
+    width: 100%;
+    margin-inline: auto;
+  }
+}
+
+@media (max-width: 720px) {
+  .boc-wine-club-plan-card__body {
+    padding: 26px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .boc-wine-club-plan-card__media img {
+    transition: none;
+  }
+
+  .boc-wine-club-plan-card:hover .boc-wine-club-plan-card__media img {
+    transform: none;
+  }
+}
+
+/* Benefits */
+.boc-wine-club-benefits__grid {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 8vw;
+  align-items: start;
+}
+
+.boc-wine-club-benefits__intro .boc-wine-club-section__body {
+  color: #cfcfcf;
+  max-width: 500px;
+}
+
+.boc-wine-club-benefits__list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 34px;
+}
+
+.boc-wine-club-benefits__item {
+  padding: 24px 0;
+  border-top: 1px solid var(--boc-wc-benefit-divider, #4b4b4b);
+}
+
+.boc-wine-club-benefits__item-title {
+  display: block;
+  font-family: var(--boc-serif);
+  font-size: 1.35rem;
+  font-weight: 400;
+  margin-bottom: 8px;
+  color: var(--boc-wc-benefit-heading, var(--boc-white));
+}
+
+.boc-wine-club-benefits__item-body {
+  color: var(--boc-wc-benefit-body, #bdbdbd);
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.boc-wine-club-benefits__item-number {
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--boc-wc-benefit-accent, var(--boc-sand));
+  margin-bottom: 6px;
+}
+
+@media (max-width: 1050px) {
+  .boc-wine-club-benefits__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .boc-wine-club-benefits__list {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* How it works */
+.boc-wine-club-how__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 48px;
+  margin-top: 52px;
+}
+
+.boc-wine-club-how__step {
+  border-top: 1px solid var(--boc-wc-step-border, var(--boc-ink));
+  padding-top: 20px;
+}
+
+.boc-wine-club-how__step-num {
+  font-family: var(--boc-serif);
+  font-size: 3rem;
+  font-weight: 400;
+  line-height: 1;
+  color: var(--boc-wc-step-accent, var(--boc-sand));
+}
+
+.boc-wine-club-how__step-title {
+  font-family: var(--boc-serif);
+  font-size: 1.55rem;
+  font-weight: 400;
+  margin: 10px 0;
+}
+
+.boc-wine-club-how__step-body {
+  color: var(--boc-slate);
+  font-size: 0.88rem;
+  margin: 0;
+}
+
+@media (max-width: 720px) {
+  .boc-wine-club-how__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Estate experience */
+.boc-wine-club-estate {
+  padding: 0;
+}
+
+.boc-wine-club-estate__grid {
+  display: grid;
+  grid-template-columns: var(--boc-wc-estate-ratio, 1.08fr 0.92fr);
+  min-height: var(--boc-wc-estate-min-h, 680px);
+}
+
+.boc-wine-club-estate__grid--image-right .boc-wine-club-estate__media {
+  order: 2;
+}
+
+.boc-wine-club-estate__media {
+  min-height: var(--boc-wc-estate-media-h, 680px);
+  overflow: hidden;
+}
+
+.boc-wine-club-estate__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.boc-wine-club-estate__copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 90px max(50px, 8vw);
+}
+
+.boc-wine-club-estate__copy p {
+  max-width: 500px;
+}
+
+.boc-wine-club-estate__checks {
+  list-style: none;
+  padding: 0;
+  margin: 28px 0 34px;
+}
+
+.boc-wine-club-estate__checks li {
+  padding: 13px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.38);
+}
+
+@media (max-width: 1050px) {
+  .boc-wine-club-estate__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .boc-wine-club-estate__grid--image-right .boc-wine-club-estate__media {
+    order: 0;
+  }
+
+  .boc-wine-club-estate__media {
+    min-height: 520px;
+  }
+}
+
+@media (max-width: 720px) {
+  .boc-wine-club-estate__copy {
+    padding: 70px 24px;
+  }
+
+  .boc-wine-club-estate__media {
+    min-height: 380px;
+  }
+
+  .boc-wine-club-estate__grid--mobile-copy-first .boc-wine-club-estate__copy {
+    order: -1;
+  }
+}
+
+/* FAQ */
+.boc-wine-club-faq__layout {
+  display: grid;
+  grid-template-columns: 0.75fr 1.25fr;
+  gap: 8vw;
+}
+
+.boc-wine-club-faq__item {
+  border-top: 1px solid var(--boc-faq-divider, var(--boc-line));
+}
+
+.boc-wine-club-faq__item:last-child {
+  border-bottom: 1px solid var(--boc-faq-divider, var(--boc-line));
+}
+
+.boc-wine-club-faq__question {
+  margin: 0;
+}
+
+.boc-wine-club-faq__trigger {
+  width: 100%;
+  border: 0;
+  background: none;
+  padding: 22px 0;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  text-align: left;
+  font-family: var(--boc-serif);
+  font-size: 1.18rem;
+  font-weight: 400;
+  color: var(--boc-faq-question, var(--boc-ink));
+  cursor: pointer;
+}
+
+.boc-wine-club-faq__trigger:focus-visible {
+  outline: 2px solid var(--boc-teal);
+  outline-offset: 2px;
+}
+
+.boc-wine-club-faq__icon {
+  font-family: var(--boc-sans);
+  font-size: 1.2rem;
+  color: var(--boc-faq-icon, var(--boc-ink));
+  flex-shrink: 0;
+}
+
+.boc-wine-club-faq__answer {
+  color: var(--boc-faq-answer, var(--boc-slate));
+  font-size: 0.9rem;
+  padding: 0 40px 22px 0;
+}
+
+.boc-wine-club-faq__panel[hidden] {
+  display: none;
+}
+
+@media (max-width: 1050px) {
+  .boc-wine-club-faq__layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Final CTA */
+.boc-wine-club-final-cta {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--boc-wc-final-min-h, 620px);
+  color: var(--boc-white);
+  text-align: var(--boc-wc-align-d, center);
+  overflow: hidden;
+  padding: 0;
+}
+
+.boc-wine-club-final-cta__media {
+  position: absolute;
+  inset: 0;
+  background: var(--boc-wc-bg-fallback, var(--boc-dark-grey));
+}
+
+.boc-wine-club-final-cta__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.boc-wine-club-final-cta__overlay {
+  position: absolute;
+  inset: 0;
+  background: var(--boc-wc-overlay, rgba(0, 0, 0, 0.45));
+  opacity: var(--boc-wc-overlay-opacity, 1);
+}
+
+.boc-wine-club-final-cta__content {
+  position: relative;
+  z-index: 2;
+  max-width: var(--boc-wc-content-width, 760px);
+  padding-block: 80px;
+}
+
+.boc-wine-club-final-cta__content p {
+  margin: 0 auto 30px;
+  max-width: 560px;
+}
+
+.boc-wine-club-final-cta__actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+@media (max-width: 720px) {
+  .boc-wine-club-final-cta {
+    min-height: var(--boc-wc-final-min-h-m, 560px);
+    text-align: var(--boc-wc-align-m, center);
+  }
+}
+
+/* Custom button colours via section settings */
+.boc-wine-club-btn--custom {
+  background: var(--boc-wc-btn-bg, var(--boc-ink));
+  border-color: var(--boc-wc-btn-border, var(--boc-ink));
+  color: var(--boc-wc-btn-text, var(--boc-white));
+}
+
+.boc-wine-club-btn--custom:hover {
+  background: var(--boc-wc-btn-hover-bg, var(--boc-white));
+  border-color: var(--boc-wc-btn-hover-border, var(--boc-white));
+  color: var(--boc-wc-btn-hover-text, var(--boc-ink));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html:has(.boc-wine-club-section) {
+    scroll-behavior: auto;
+  }
+}

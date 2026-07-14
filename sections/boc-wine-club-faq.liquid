@@ -1,0 +1,173 @@
+{%- liquid
+  assign section_classes = 'boc-wine-club-section boc-wine-club-faq boc-wine-club-section--' | append: section.settings.container_width
+  unless section.settings.section_enabled
+    assign section_classes = section_classes | append: ' boc-wine-club-section--disabled'
+  endunless
+  unless section.settings.show_desktop
+    assign section_classes = section_classes | append: ' boc-wine-club-section--hide-desktop'
+  endunless
+  unless section.settings.show_tablet
+    assign section_classes = section_classes | append: ' boc-wine-club-section--hide-tablet'
+  endunless
+  unless section.settings.show_mobile
+    assign section_classes = section_classes | append: ' boc-wine-club-section--hide-mobile'
+  endunless
+
+  assign one_open = section.settings.one_open_only
+  assign first_open = section.settings.first_item_open
+-%}
+
+<script src="{{ 'boc-wine-club.js' | asset_url }}" defer></script>
+
+<section
+  id="boc-wine-club-faq-{{ section.id }}"
+  class="{{ section_classes }}"
+  data-boc-wine-club
+  style="
+    --boc-wc-bg: {{ section.settings.background_color }};
+    --boc-wc-pt-d: {{ section.settings.padding_top_desktop }}px;
+    --boc-wc-pb-d: {{ section.settings.padding_bottom_desktop }}px;
+    --boc-wc-pt-t: {{ section.settings.padding_top_tablet }}px;
+    --boc-wc-pb-t: {{ section.settings.padding_bottom_tablet }}px;
+    --boc-wc-pt-m: {{ section.settings.padding_top_mobile }}px;
+    --boc-wc-pb-m: {{ section.settings.padding_bottom_mobile }}px;
+    --boc-wc-heading: {{ section.settings.heading_color }};
+  "
+>
+  <div class="boc-wine-club-section__inner">
+    <div class="boc-wine-club-faq__layout">
+      <div>
+        {%- if section.settings.eyebrow != blank -%}
+          <span class="boc-eyebrow boc-wine-club-section__eyebrow">{{ section.settings.eyebrow }}</span>
+        {%- endif -%}
+        {%- if section.settings.heading != blank -%}
+          <h2 class="boc-wine-club-section__heading">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+      </div>
+
+      {%- if section.blocks.size > 0 -%}
+        <div
+          class="boc-wine-club-faq__list"
+          data-boc-wine-club-faq
+          data-one-open="{% if one_open %}true{% else %}false{% endif %}"
+        >
+          {%- for block in section.blocks -%}
+            {%- liquid
+              assign open_item = false
+              if block.settings.open_by_default
+                assign open_item = true
+              elsif first_open and forloop.first
+                assign open_item = true
+              endif
+            -%}
+            {% render 'boc-faq-item',
+              block: block,
+              section_id: section.id,
+              is_open: open_item,
+              divider_color: section.settings.divider_color,
+              question_color: section.settings.question_color,
+              answer_color: section.settings.answer_color,
+              icon_color: section.settings.icon_color
+            %}
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "BOC — Wine Club FAQ",
+  "tag": "section",
+  "class": "boc-wine-club-faq-section",
+  "max_blocks": 20,
+  "settings": [
+    { "type": "checkbox", "id": "section_enabled", "label": "Enable section", "default": true },
+    { "type": "checkbox", "id": "show_desktop", "label": "Show on desktop", "default": true },
+    { "type": "checkbox", "id": "show_tablet", "label": "Show on tablet", "default": true },
+    { "type": "checkbox", "id": "show_mobile", "label": "Show on mobile", "default": true },
+    {
+      "type": "select",
+      "id": "container_width",
+      "label": "Container width",
+      "options": [
+        { "value": "container", "label": "Standard width" },
+        { "value": "narrow", "label": "Narrow width" },
+        { "value": "full", "label": "Full width" }
+      ],
+      "default": "container"
+    },
+    { "type": "color", "id": "background_color", "label": "Background colour", "default": "#FFFFFF" },
+    { "type": "color", "id": "heading_color", "label": "Heading colour", "default": "#212121" },
+    { "type": "color", "id": "divider_color", "label": "Divider colour", "default": "#E8E2D9" },
+    { "type": "color", "id": "question_color", "label": "Question colour", "default": "#212121" },
+    { "type": "color", "id": "answer_color", "label": "Answer colour", "default": "#575962" },
+    { "type": "color", "id": "icon_color", "label": "Plus/minus colour", "default": "#212121" },
+    { "type": "checkbox", "id": "one_open_only", "label": "Allow one open item only", "default": true },
+    { "type": "checkbox", "id": "first_item_open", "label": "First item open by default", "default": true },
+    { "type": "range", "id": "padding_top_desktop", "label": "Desktop padding top", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 120 },
+    { "type": "range", "id": "padding_bottom_desktop", "label": "Desktop padding bottom", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 120 },
+    { "type": "range", "id": "padding_top_tablet", "label": "Tablet padding top", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 100 },
+    { "type": "range", "id": "padding_bottom_tablet", "label": "Tablet padding bottom", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 100 },
+    { "type": "range", "id": "padding_top_mobile", "label": "Mobile padding top", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 82 },
+    { "type": "range", "id": "padding_bottom_mobile", "label": "Mobile padding bottom", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 82 },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Wine club FAQs" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Good to know." }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "FAQ item",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Question", "default": "Question" },
+        { "type": "richtext", "id": "answer", "label": "Answer", "default": "<p>Answer copy.</p>" },
+        { "type": "checkbox", "id": "open_by_default", "label": "Open by default", "default": false }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "BOC — Wine Club FAQ",
+      "blocks": [
+        {
+          "type": "faq",
+          "settings": {
+            "question": "Is there a joining fee?",
+            "answer": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Membership details, eligibility and final joining terms will be added when the Shopify wine club setup is confirmed.</p>",
+            "open_by_default": true
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "Can I choose my own wines?",
+            "answer": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Members will be able to review and customise eligible wines before each scheduled shipment.</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "How often will I receive wine?",
+            "answer": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Delivery frequency, processing dates and notification timing will be confirmed during implementation.</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "Can I pause or update my membership?",
+            "answer": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Account controls for pausing, updating and managing membership details will be connected to the selected Shopify subscription solution.</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "Can I give a membership as a gift?",
+            "answer": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Gift membership options and redemption rules will be finalised before launch.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

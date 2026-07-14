@@ -1,0 +1,85 @@
+{%- liquid
+  assign section_classes = 'boc-about-section boc-about-family boc-about-section--full'
+  unless section.settings.section_enabled
+    assign section_classes = section_classes | append: ' boc-about-section--disabled'
+  endunless
+  unless section.settings.show_desktop
+    assign section_classes = section_classes | append: ' boc-about-section--hide-desktop'
+  endunless
+  unless section.settings.show_tablet
+    assign section_classes = section_classes | append: ' boc-about-section--hide-tablet'
+  endunless
+  unless section.settings.show_mobile
+    assign section_classes = section_classes | append: ' boc-about-section--hide-mobile'
+  endunless
+-%}
+
+<section
+  id="boc-about-family-{{ section.id }}"
+  class="{{ section_classes }}"
+  data-boc-about
+>
+  {% render 'boc-about-feature-split',
+    section: section,
+    anchor_id: section.settings.section_anchor_id | default: 'boc-about-family',
+    reverse: false,
+    dark_copy: false,
+    image_fallback: 'boc-estate-visit.jpg'
+  %}
+</section>
+
+{% schema %}
+{
+  "name": "BOC — About Family",
+  "tag": "section",
+  "class": "boc-about-family-section",
+  "max_blocks": 8,
+  "settings": [
+    { "type": "checkbox", "id": "section_enabled", "label": "Enable section", "default": true },
+    { "type": "checkbox", "id": "show_desktop", "label": "Show on desktop", "default": true },
+    { "type": "checkbox", "id": "show_tablet", "label": "Show on tablet", "default": true },
+    { "type": "checkbox", "id": "show_mobile", "label": "Show on mobile", "default": true },
+    { "type": "text", "id": "section_anchor_id", "label": "Section anchor ID", "default": "boc-about-family" },
+    { "type": "text", "id": "team_anchor", "label": "Team anchor for button", "default": "boc-about-team" },
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "image_picker", "id": "mobile_image", "label": "Mobile image" },
+    { "type": "text", "id": "split_ratio", "label": "Split ratio", "default": "1fr 1fr" },
+    { "type": "range", "id": "desktop_image_height", "label": "Desktop image height", "min": 360, "max": 900, "step": 20, "unit": "px", "default": 720 },
+    { "type": "range", "id": "tablet_image_height", "label": "Tablet image height", "min": 300, "max": 700, "step": 20, "unit": "px", "default": 520 },
+    { "type": "range", "id": "mobile_image_height", "label": "Mobile image height", "min": 280, "max": 600, "step": 20, "unit": "px", "default": 380 },
+    { "type": "select", "id": "mobile_stack_order", "label": "Mobile stack order", "options": [{"value":"image_first","label":"Image first"},{"value":"copy_first","label":"Copy first"}],"default": "image_first" },
+    { "type": "color", "id": "copy_background_color", "label": "Copy background", "default": "#FAF8F5" },
+    { "type": "color", "id": "copy_text_color", "label": "Copy text", "default": "#212121" },
+    { "type": "color", "id": "copy_body_color", "label": "Body text", "default": "#575962" },
+    { "type": "color", "id": "detail_border_color", "label": "Detail border", "default": "#E8E2D9" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "The Graham family" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Built carefully, carried forward personally." },
+    { "type": "textarea", "id": "body", "label": "Body", "default": "What began as a family vision has grown into a working estate where vineyard, cellar door, restaurant and events all share one identity. Today, the next generation continues to evolve Boat O'Craigo while protecting the warmth and independence that guests value." },
+    { "type": "checkbox", "id": "button_enabled", "label": "Enable button", "default": true },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Meet the people" },
+    { "type": "text", "id": "button_url", "label": "Button URL or anchor", "default": "#boc-about-team" },
+    { "type": "select", "id": "button_style", "label": "Button style", "options": [{"value":"primary","label":"Primary"},{"value":"light","label":"Light"}],"default": "primary" },
+    { "type": "checkbox", "id": "button_new_tab", "label": "Open in new tab", "default": false }
+  ],
+  "blocks": [
+    {
+      "type": "detail",
+      "name": "Detail",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label", "default": "Label" },
+        { "type": "text", "id": "value", "label": "Value", "default": "Value" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "BOC — About Family",
+      "blocks": [
+        { "type": "detail", "settings": { "label": "Ownership", "value": "Second generation" } },
+        { "type": "detail", "settings": { "label": "Approach", "value": "Independent and hands-on" } },
+        { "type": "detail", "settings": { "label": "Focus", "value": "Wine, place and hospitality" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

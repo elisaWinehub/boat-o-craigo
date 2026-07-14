@@ -1,0 +1,1142 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Boat O'Craigo — Wines Collection Concept</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Libre+Caslon+Display&display=swap" rel="stylesheet">
+<style>
+:root{--sand:#B99E7E;--ink:#212121;--slate:#575962;--cream:#FAF8F5;--line:#E8E2D9;--white:#fff;--serif:'Libre Caslon Display',Georgia,serif;--sans:'DM Sans',Arial,sans-serif;--max:1420px}
+*{box-sizing:border-box}html{scroll-behavior:smooth;overflow-x:hidden}body{margin:0;background:#fff;color:var(--ink);font:16px/1.55 var(--sans);overflow-x:hidden}a{color:inherit;text-decoration:none}img{display:block;width:100%;object-fit:cover}button,input{font:inherit}.container{width:min(calc(100% - 48px),var(--max));margin:auto}.display{font:400 clamp(2.9rem,5vw,5.4rem)/.98 var(--serif);letter-spacing:-.03em}.eyebrow{font-size:.7rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 24px;border:1px solid var(--ink);font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;transition:.25s}.btn:hover{background:var(--ink);color:#fff}.btn.light{border-color:#fff;color:#fff}.btn.light:hover{background:#fff;color:var(--ink)}.btn.sand{background:#212121;border-color:#212121;color:#fff;background:var(--sand);border-color:var(--sand);color:#fff}.text-link{font-size:.7rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;border-bottom:1px solid;padding-bottom:4px}.icon-btn{width:40px;height:40px;border:0;background:transparent;display:grid;place-items:center;cursor:pointer}.icon-btn svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.6}
+.announcement{height:34px;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;position:relative}.announcement button{position:absolute;right:18px;border:0;background:none;color:#fff;font-size:18px}.site-header{height:88px;background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:30}.header-inner{height:100%;display:grid;grid-template-columns:190px 1fr auto;gap:22px;align-items:center}.brand .logo{width:170px;height:auto;max-height:60px;object-fit:contain;object-position:left center}.desktop-nav{height:100%;display:flex;align-items:center;justify-content:center;gap:24px}.nav-item{height:100%;display:flex;align-items:center;position:relative}.nav-link{font-size:.69rem;letter-spacing:.11em;text-transform:uppercase;white-space:nowrap}.nav-link:after{content:"";position:absolute;left:0;right:0;bottom:24px;height:1px;background:var(--ink);transform:scaleX(0);transition:.2s}.nav-item:hover>.nav-link:after{transform:scaleX(1)}.dropdown{position:absolute;top:87px;left:50%;transform:translate(-50%,8px);min-width:220px;padding:16px;background:#fff;border:1px solid var(--line);box-shadow:0 18px 40px rgba(0,0,0,.08);opacity:0;visibility:hidden;transition:.2s}.nav-item:hover .dropdown{opacity:1;visibility:visible;transform:translate(-50%,0)}.dropdown a{display:block;padding:8px 4px;font-size:.82rem}.dropdown a:hover{color:var(--sand)}.header-actions{display:flex;align-items:center;gap:2px}.book-link{margin-right:6px;padding:12px 16px;background:var(--ink);color:#fff;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase}.mobile-trigger{display:none}
+.hero{height:min(92vh,940px);min-height:700px;color:#fff;position:relative;overflow:hidden}.hero-slide{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .75s ease,visibility .75s ease;background-position:center;background-size:cover}.hero-slide:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,10,10,.58) 0%,rgba(10,10,10,.30) 48%,rgba(10,10,10,.18) 100%)}.hero-slide.active{opacity:1;visibility:visible}.hero-slide .hero-content{position:relative;z-index:2;height:100%;display:flex;align-items:center;padding-top:54px;padding-bottom:82px}.hero-copy{max-width:790px}.hero h1{margin:12px 0 22px;font-size:clamp(4rem,8vw,7.7rem)}.hero p{max-width:570px;font-size:1rem;margin:0 0 30px}.hero-actions{display:flex;gap:12px;flex-wrap:wrap}.hero-controls{position:absolute;z-index:4;right:max(24px,calc((100vw - var(--max))/2));bottom:28px;display:flex;align-items:center;gap:8px}.hero-arrow{width:42px;height:42px;border:1px solid rgba(255,255,255,.75);background:rgba(0,0,0,.2);color:#fff;display:grid;place-items:center;cursor:pointer}.hero-dots{display:flex;gap:7px;margin-right:8px}.hero-dot{width:30px;height:3px;border:0;background:rgba(255,255,255,.38);cursor:pointer}.hero-dot.active{background:#fff}
+.quick-links{padding:30px 0 0;background:#fff}.quick-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.quick-card{min-height:126px;border:1px solid var(--line);padding:0;display:flex;flex-direction:column;justify-content:space-between;transition:.25s}.quick-card:hover{background:var(--cream);transform:translateY(-3px)}.quick-card h3{font:400 1.45rem var(--serif);margin:0}.quick-card span{font-size:.68rem;letter-spacing:.13em;text-transform:uppercase;color:var(--slate)}
+.section{padding:120px 0}.section-head{display:flex;align-items:end;justify-content:space-between;gap:30px;margin-bottom:42px}.section-head h2{margin:8px 0 0}.section-head p{max-width:430px;color:var(--slate)}
+.wine-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}.wine-card{min-width:0;display:flex;flex-direction:column;text-align:center;position:relative}.wine-image{height:430px;background:#fff;display:flex;align-items:center;justify-content:center;padding:38px;overflow:hidden}.wine-image img{height:100%;width:auto;object-fit:contain;filter:drop-shadow(0 18px 15px rgba(0,0,0,.16));transition:none}.wine-card:hover .wine-image img{transform:translateY(-8px)}.wine-info{padding:22px 8px;display:flex;flex-direction:column;align-items:center;flex:1}.wine-info h3{font:400 1.35rem var(--serif);margin:0 0 7px}.wine-info p{font-size:.75rem;color:var(--slate);margin:0 0 12px}.price{font-weight:600;margin-top:auto}.quick-add{position:absolute;left:18px;right:18px;top:370px;background:var(--ink);color:#fff;padding:11px;font-size:.67rem;letter-spacing:.12em;text-transform:uppercase;opacity:0;transform:translateY(10px);transition:.25s}.wine-card:hover .quick-add{opacity:1;transform:none}
+.story{background:var(--ink);color:#fff}.story-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:8vw;align-items:center}.story-media{position:relative}.story-media img{height:660px}.story-badge{position:absolute;right:-30px;bottom:40px;width:185px;height:185px;border-radius:50%;background:var(--sand);display:grid;place-items:center;text-align:center;padding:24px;font:400 1.1rem/1.2 var(--serif)}.story-copy p{color:#d1d1d1;max-width:560px}.story-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:42px 0 34px}.story-stat{border-top:1px solid #5c5c5c;padding-top:16px}.story-stat strong{display:block;font:400 1.35rem var(--serif)}.story-stat span{font-size:.72rem;color:#aaa}
+.experience-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.experience-card{min-height:600px;position:relative;color:#fff;overflow:hidden}.experience-card img{height:100%;transition:.6s}.experience-card:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 35%,rgba(0,0,0,.72))}.experience-card:hover img{transform:scale(1.035)}.experience-copy{position:absolute;z-index:2;left:36px;right:36px;bottom:34px}.experience-copy h3{font:400 clamp(2.3rem,4vw,4.1rem)/1 var(--serif);margin:8px 0 14px}.experience-copy p{max-width:470px;margin:0 0 18px}
+.club{background:var(--sand);color:#fff}.club-grid{display:grid;grid-template-columns:1.05fr .95fr}.club-image{min-height:690px;background:url('https://fusws.api.aspedia.io/boatocraigo-website/banners/Banner%20-%20Join%20our%20Wine%20Club.png?preset=carousel-image&t=1779852284584') center/cover}.club-copy{padding:90px max(50px,8vw);display:flex;flex-direction:column;justify-content:center}.club-copy h2{margin:10px 0 24px}.club-copy p{max-width:480px}.club-list{list-style:none;padding:0;margin:32px 0 36px}.club-list li{display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.35)}
+.weddings{position:relative;min-height:700px;color:#fff;display:flex;align-items:center;background:linear-gradient(90deg,rgba(0,0,0,.58),rgba(0,0,0,.14)),url('https://fusws.api.aspedia.io/boatocraigo-website/pages/Homepage/BoatO_April_2026-36.jpg?preset=grid-image-two-third&t=1779852577988') center/cover}.weddings-copy{max-width:690px}.weddings-copy h2{margin:10px 0 24px}.weddings-copy p{max-width:520px;margin-bottom:30px}
+.events{background:var(--cream)}.cards-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}.content-card{display:flex;flex-direction:column}.content-card img{height:310px}.content-card .meta{font-size:.67rem;letter-spacing:.12em;text-transform:uppercase;color:var(--slate);margin-top:20px}.content-card h3{font:400 1.75rem/1.08 var(--serif);margin:10px 0}.content-card p{color:var(--slate);font-size:.87rem}.journal{background:#fff}
+.newsletter{padding:76px 0;background:var(--sand);color:#fff}.newsletter-inner{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}.newsletter h2{font:400 clamp(2.4rem,4vw,4rem)/1 var(--serif);margin:8px 0 0}.newsletter form{display:flex;border-bottom:1px solid rgba(255,255,255,.7)}.newsletter input{flex:1;padding:16px 0;border:0;background:transparent;color:#fff;outline:none}.newsletter input::placeholder{color:rgba(255,255,255,.75)}.newsletter button{border:0;background:none;color:#fff;font-size:.7rem;letter-spacing:.13em;text-transform:uppercase}
+.footer{background:#171717;color:#fff;padding:72px 0 28px}.footer-top{display:grid;grid-template-columns:1.4fr repeat(3,1fr);gap:60px}.footer .logo{filter:brightness(0) invert(1)}.footer h4{font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;margin:0 0 18px}.footer a{display:block;color:#aaa;font-size:.82rem;margin:9px 0}.footer-bottom{border-top:1px solid #353535;margin-top:58px;padding-top:22px;display:flex;justify-content:space-between;gap:20px;color:#777;font-size:.7rem}.mobile-panel{position:fixed;inset:0;background:#fff;z-index:50;transform:translateX(100%);transition:none}.mobile-panel.open{transform:none}.mobile-panel-head{height:88px;padding:0 22px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}.mobile-panel-head .logo{width:150px}.mobile-menu{padding:24px}.mobile-menu>a,.mobile-group>a{display:flex;justify-content:space-between;padding:15px 0;border-bottom:1px solid var(--line);font:400 1.45rem var(--serif)}.mobile-sub{display:none;padding:10px 0 10px 18px}.mobile-group.open .mobile-sub{display:block}.mobile-sub a{display:block;padding:8px 0;color:var(--slate)}
+@media(max-width:1100px){.desktop-nav{display:none}.header-inner{grid-template-columns:1fr auto}.mobile-trigger{display:grid}.quick-grid{grid-template-columns:repeat(2,1fr)}.wine-grid{grid-template-columns:repeat(2,1fr)}.story-grid{grid-template-columns:1fr}.story-badge{right:20px}.club-grid{grid-template-columns:1fr}.club-image{min-height:540px}.footer-top{grid-template-columns:1.3fr 1fr 1fr}.footer-top>div:last-child{display:none}}
+@media(max-width:720px){.container{width:min(calc(100% - 32px),var(--max))}.site-header{height:78px}.brand .logo{width:145px}.book-link,.header-actions .icon-btn:not(.mobile-trigger){display:none}.hero{height:720px}.hero-content{padding-bottom:80px}.hero h1{font-size:3.6rem}.quick-links{padding-top:16px}.quick-grid{grid-template-columns:1fr 1fr;gap:10px}.quick-card{min-height:112px;padding:20px}.section{padding:84px 0}.section-head{display:block}.section-head .text-link{display:inline-block;margin-top:18px}.wine-grid{grid-template-columns:1fr 1fr;gap:12px}.wine-image{height:300px;padding:24px}.quick-add{display:none}.wine-info h3{font-size:1.1rem}.story-media img{height:500px}.story-badge{width:140px;height:140px;font-size:.9rem}.story-stats{grid-template-columns:1fr 1fr}.experience-grid{grid-template-columns:1fr}.experience-card{min-height:500px}.club-copy{padding:70px 24px}.cards-grid{grid-template-columns:1fr}.newsletter-inner{grid-template-columns:1fr}.footer-top{grid-template-columns:1fr 1fr}.footer-top>div:first-child{grid-column:1/-1}.footer-bottom{display:block}.footer-bottom span{display:block;margin-bottom:8px}}
+
+/* Collection page */
+.collection-hero{
+  min-height:400px;
+  display:flex;
+  align-items:flex-end;
+  color:#fff;
+  background:
+    linear-gradient(90deg,rgba(18,18,18,.60),rgba(18,18,18,.18)),
+    url('https://fusws.api.aspedia.io/boatocraigo-website/banners/home-page/Banner%20-%20Wine.png?preset=carousel-image&t=1779852084540') center/cover no-repeat;
+}
+.collection-hero-inner{max-width:760px;padding:90px 0 52px}
+.collection-hero h1{margin:12px 0 18px}
+.collection-hero p{max-width:590px;font-size:1rem;margin:0}
+
+.collection-toolbar{
+  position:sticky;
+  top:88px;
+  z-index:18;
+  background:#fff;
+  border-bottom:1px solid var(--line)
+}
+.collection-toolbar-inner{
+  min-height:74px;
+  display:grid;
+  grid-template-columns:1fr auto;
+  align-items:center;
+  gap:24px
+}
+.collection-summary{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  min-width:0
+}
+.collection-summary strong{font:400 1.35rem var(--serif)}
+.collection-summary span{color:var(--slate);font-size:.8rem}
+.collection-controls{display:flex;align-items:center;gap:10px}
+.collection-control-btn,
+.collection-sort{
+  min-height:42px;
+  border:1px solid var(--line);
+  background:#fff;
+  padding:0 14px;
+  font-size:.68rem;
+  font-weight:600;
+  letter-spacing:.11em;
+  text-transform:uppercase;
+  cursor:pointer
+}
+.collection-sort{padding-right:38px}
+.collection-control-btn.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+
+.collection-section{padding:72px 0 110px}
+.collection-layout{
+  display:grid;
+  grid-template-columns:270px minmax(0,1fr);
+  gap:48px;
+  align-items:start
+}
+.filter-panel{
+  position:sticky;
+  top:184px;
+  border-top:1px solid var(--line)
+}
+.filter-group{border-bottom:1px solid var(--line)}
+.filter-toggle{
+  width:100%;
+  border:0;
+  background:#fff;
+  padding:20px 0;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  text-align:left;
+  cursor:pointer;
+  font-size:.72rem;
+  font-weight:600;
+  letter-spacing:.12em;
+  text-transform:uppercase
+}
+.filter-options{padding:0 0 20px;display:grid;gap:10px}
+.filter-group.closed .filter-options{display:none}
+.filter-option{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  color:var(--slate);
+  font-size:.84rem
+}
+.filter-option input{accent-color:var(--ink)}
+.filter-count{margin-left:auto;font-size:.72rem;color:#999}
+.filter-clear{
+  width:100%;
+  margin-top:18px;
+  min-height:42px;
+  border:1px solid var(--ink);
+  background:#fff;
+  font-size:.68rem;
+  font-weight:600;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  cursor:pointer
+}
+
+.collection-main{min-width:0}
+.active-filters{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  min-height:0;
+  margin-bottom:24px
+}
+.active-filter{
+  border:1px solid var(--line);
+  background:var(--cream);
+  padding:9px 12px;
+  font-size:.72rem;
+  display:flex;
+  gap:10px;
+  align-items:center
+}
+.active-filter button{border:0;background:none;cursor:pointer;font-size:1rem;line-height:1}
+
+.collection-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:34px 20px
+}
+.collection-grid.list-view{grid-template-columns:1fr}
+.collection-product{
+  min-width:0;
+  display:flex;
+  z-index:0;
+  flex-direction:column;
+  text-align:center;
+  position:relative
+}
+.collection-product-image{
+  height:430px;
+  background:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:0;
+  overflow:hidden;
+  position:relative
+}
+.collection-product-image img{
+  width:auto;
+  height:100%;
+  object-fit:contain;
+  transition:none
+}
+.collection-product:hover .collection-product-image img{transform:none}
+.product-badge{
+  position:absolute;
+  top:18px;
+  left:18px;
+  z-index:5;
+  background:var(--ink);
+  color:#fff;
+  padding:8px 10px;
+  font-size:.62rem;
+  letter-spacing:.11em;
+  text-transform:uppercase
+}
+.product-badge.sand{background:var(--sand)}
+.collection-product-info{
+  padding:20px 10px 0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  flex:1
+}
+.collection-product-info h3{
+  font:400 1.35rem/1.15 var(--serif);
+  margin:0 0 7px
+}
+.product-meta{
+  color:var(--slate);
+  font-size:.72rem;
+  margin-bottom:12px
+}
+.product-price{font-weight:600;margin-bottom:16px}
+.product-actions{display:flex;gap:8px;width:100%;margin-top:auto}
+.product-actions .btn{flex:1;min-height:42px;padding:0 12px}
+
+.quantity-control{
+  flex:1;
+  min-height:42px;
+  border:1px solid var(--ink);
+  display:grid;
+  grid-template-columns:42px 1fr 42px;
+  align-items:center;
+  background:#fff
+}
+.quantity-control button{
+  height:100%;
+  border:0;
+  background:transparent;
+  cursor:pointer;
+  font-size:1rem
+}
+.quantity-control span{
+  text-align:center;
+  font-size:.82rem;
+  font-weight:600
+}
+
+
+.collection-grid.list-view .collection-product{
+  display:grid;
+  grid-template-columns:260px 1fr;
+  text-align:left;
+  border-bottom:1px solid var(--line);
+  padding-bottom:28px
+}
+.collection-grid.list-view .collection-product-image{height:300px}
+.collection-grid.list-view .collection-product-info{
+  align-items:flex-start;
+  padding:28px 30px
+}
+.collection-grid.list-view .product-actions{max-width:360px}
+
+.collection-empty{
+  display:none;
+  padding:70px 20px;
+  text-align:center;
+  background:var(--cream)
+}
+.collection-empty h3{font:400 2rem var(--serif);margin:0 0 12px}
+.collection-empty p{color:var(--slate)}
+
+.pagination{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  margin-top:58px
+}
+.page-btn{
+  width:42px;
+  height:42px;
+  border:1px solid var(--line);
+  background:#fff;
+  cursor:pointer
+}
+.page-btn.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+.page-btn:disabled{opacity:.35;cursor:not-allowed}
+
+.mobile-filter-drawer{
+  position:fixed;
+  inset:0;
+  z-index:80;
+  display:none
+}
+.mobile-filter-drawer.open{display:block}
+.mobile-filter-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.55)}
+.mobile-filter-panel{
+  position:absolute;
+  top:0;
+  right:0;
+  height:100%;
+  width:min(390px,92vw);
+  background:#fff;
+  padding:0;
+  overflow:auto
+}
+.mobile-filter-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:18px
+}
+.mobile-filter-head h3{font:400 1.8rem var(--serif);margin:0}
+.mobile-filter-close{border:0;background:none;font-size:1.6rem;cursor:pointer}
+.mobile-filter-actions{
+  position:sticky;
+  bottom:0;
+  background:#fff;
+  padding-top:18px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px
+}
+
+@media(max-width:1100px){
+  .collection-layout{grid-template-columns:1fr}
+  .filter-panel{display:none}
+  .collection-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:720px){
+  .collection-hero{min-height:360px}
+  .collection-hero-inner{padding:70px 0 42px}
+  .collection-toolbar{top:78px}
+  .collection-toolbar-inner{grid-template-columns:1fr;gap:10px;padding:13px 0}
+  .collection-controls{justify-content:space-between}
+  .collection-sort{flex:1}
+  .collection-section{padding:48px 0 82px}
+  .collection-grid{grid-template-columns:1fr 1fr;gap:26px 10px}
+  .collection-product-image{height:300px;padding:26px}
+  .collection-product-info h3{font-size:1.08rem}
+  .product-actions{display:block}
+  .product-actions .btn{width:100%;margin-top:6px}
+  .collection-grid.list-view .collection-product{grid-template-columns:120px 1fr}
+  .collection-grid.list-view .collection-product-image{height:190px;padding:0}
+  .collection-grid.list-view .collection-product-info{padding:12px 16px}
+}
+
+
+.product-actions .btn.sand{
+  background:#212121 !important;
+  border-color:#212121 !important;
+  color:#fff !important;
+}
+.product-actions .btn.sand:hover{
+  background:#111 !important;
+  border-color:#111 !important;
+}
+
+</style>
+</head>
+<body>
+<div class="announcement">Free shipping on 12+ bottles to Victoria, Sydney, Adelaide & Brisbane <button aria-label="Close">×</button></div>
+<header class="site-header"><div class="container header-inner">
+<a class="brand" href="#"><img src="https://www.boatocraigo.com.au/dist/logos/website/logo.svg" title="BOAT OCRAIGO Logo" alt="Boat O'Craigo" class="logo"></a>
+<nav class="desktop-nav">
+<div class="nav-item"><a class="nav-link" href="#wines">Shop</a><div class="dropdown"><a href="#wines">Wines</a><a href="#experiences">Experiences</a><a href="#">Gift Packs</a><a href="#">Gift Cards</a></div></div>
+<div class="nav-item"><a class="nav-link" href="#club">Wine Club</a></div><div class="nav-item"><a class="nav-link" href="#experiences">Visit</a></div><div class="nav-item"><a class="nav-link" href="#events">What's On</a></div><div class="nav-item"><a class="nav-link" href="#story">About</a></div><div class="nav-item"><a class="nav-link" href="#contact">Contact</a></div>
+</nav>
+<div class="header-actions"><a class="book-link" href="#experiences">Book a visit</a><button class="icon-btn" aria-label="Search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/></svg></button><button class="icon-btn" aria-label="Account"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5 21c.6-4.3 3-6.5 7-6.5s6.4 2.2 7 6.5"/></svg></button><button class="icon-btn" aria-label="Cart"><svg viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6L5 8Z"/><path d="M9 8a3 3 0 0 1 6 0"/></svg></button><button class="icon-btn mobile-trigger" aria-label="Menu" onclick="document.getElementById('mobilePanel').classList.add('open')"><svg viewBox="0 0 24 24"><path d="M3 7h18M3 12h18M3 17h18"/></svg></button></div>
+</div></header>
+
+<main>
+<section class="collection-hero">
+  <div class="container">
+    <div class="collection-hero-inner">
+      <span class="eyebrow">Shop our wines</span>
+      <h1 class="display">Explore the range.</h1>
+      <p>Discover current releases, sparkling wines, reserve bottlings and museum vintages from Boat O'Craigo's Healesville and Kangaroo Ground vineyards.</p>
+    </div>
+  </div>
+</section>
+
+<div class="collection-toolbar">
+  <div class="container collection-toolbar-inner">
+    <div class="collection-summary">
+      <strong>Wines</strong>
+      <span id="resultCount">24 products</span>
+    </div>
+    <div class="collection-controls">
+      <button class="collection-control-btn" id="filterOpen" type="button">Filters</button>
+      <select class="collection-sort" id="sortProducts" aria-label="Sort products">
+        <option value="featured">Sort: Featured</option>
+        <option value="name-asc">Name: A–Z</option>
+        <option value="price-asc">Price: Low to high</option>
+        <option value="price-desc">Price: High to low</option>
+        <option value="vintage-desc">Vintage: Newest</option>
+      </select>
+      <button class="collection-control-btn active" id="gridView" type="button" aria-label="Grid view">Grid</button>
+      <button class="collection-control-btn" id="listView" type="button" aria-label="List view">List</button>
+    </div>
+  </div>
+</div>
+
+<section class="collection-section">
+  <div class="container collection-layout">
+    <aside class="filter-panel" aria-label="Product filters">
+      <div class="filter-group">
+        <button class="filter-toggle" type="button"><span>Wine type</span><span>−</span></button>
+        <div class="filter-options">
+          <label class="filter-option"><input type="checkbox" name="type" value="Sparkling"><span>Sparkling</span><span class="filter-count">3</span></label><label class="filter-option"><input type="checkbox" name="type" value="White"><span>White</span><span class="filter-count">7</span></label><label class="filter-option"><input type="checkbox" name="type" value="Rosé"><span>Rosé</span><span class="filter-count">1</span></label><label class="filter-option"><input type="checkbox" name="type" value="Red"><span>Red</span><span class="filter-count">7</span></label><label class="filter-option"><input type="checkbox" name="type" value="Reserve"><span>Reserve</span><span class="filter-count">1</span></label><label class="filter-option"><input type="checkbox" name="type" value="Museum"><span>Museum</span><span class="filter-count">5</span></label>
+        </div>
+      </div>
+      <div class="filter-group">
+        <button class="filter-toggle" type="button"><span>Vintage</span><span>−</span></button>
+        <div class="filter-options">
+          <label class="filter-option"><input type="checkbox" name="vintage" value="2025"><span>2025</span><span class="filter-count">3</span></label><label class="filter-option"><input type="checkbox" name="vintage" value="2024"><span>2024</span><span class="filter-count">9</span></label><label class="filter-option"><input type="checkbox" name="vintage" value="2023"><span>2023</span><span class="filter-count">3</span></label><label class="filter-option"><input type="checkbox" name="vintage" value="2022"><span>2022</span><span class="filter-count">2</span></label><label class="filter-option"><input type="checkbox" name="vintage" value="2021"><span>2021</span><span class="filter-count">2</span></label><label class="filter-option"><input type="checkbox" name="vintage" value="2018"><span>2018</span><span class="filter-count">1</span></label><label class="filter-option"><input type="checkbox" name="vintage" value="2017"><span>2017</span><span class="filter-count">1</span></label><label class="filter-option"><input type="checkbox" name="vintage" value="2016"><span>2016</span><span class="filter-count">1</span></label><label class="filter-option"><input type="checkbox" name="vintage" value="2015"><span>2015</span><span class="filter-count">1</span></label><label class="filter-option"><input type="checkbox" name="vintage" value="2014"><span>2014</span><span class="filter-count">1</span></label>
+        </div>
+      </div>
+      <div class="filter-group">
+        <button class="filter-toggle" type="button"><span>Price</span><span>−</span></button>
+        <div class="filter-options">
+          <label class="filter-option"><input type="checkbox" name="price" value="under40"><span>Under $40</span></label>
+          <label class="filter-option"><input type="checkbox" name="price" value="40to59"><span>$40–$59</span></label>
+          <label class="filter-option"><input type="checkbox" name="price" value="60plus"><span>$60+</span></label>
+        </div>
+      </div>
+      <button class="filter-clear" id="clearFilters" type="button">Clear all filters</button>
+    </aside>
+
+    <div class="collection-main">
+      <div class="active-filters" id="activeFilters"></div>
+
+      <div class="collection-grid" id="productGrid">
+        
+      <article class="collection-product" data-type="Sparkling" data-vintage="2024" data-price="50.00" data-name="2024 méthode traditionnelle sparkling">
+        <div class="collection-product-image">
+          <span class="product-badge sand">New release</span>
+          <img src="https://fusws.api.aspedia.io/boatocraigo-website/products/bottles/GrunerVelt_NV.jpg?preset=wineproductteaser&t=1659678953242" alt="2024 Méthode Traditionnelle Sparkling">
+        </div>
+        <div class="collection-product-info">
+          <h3>2024 Méthode Traditionnelle Sparkling</h3>
+          <div class="product-meta">Sparkling · 2024</div>
+          <div class="product-price">$50.00</div>
+          <div class="product-actions">
+            <div class="quantity-control" aria-label="Quantity selector">
+              <button class="qty-minus" type="button" aria-label="Decrease quantity">−</button>
+              <span class="qty-value">1</span>
+              <button class="qty-plus" type="button" aria-label="Increase quantity">+</button>
+            </div>
+            <button class="btn sand" type="button">Add to cart</button>
+          </div>
+        </div>
+      </article>
+    
+      <article class="collection-product" data-type="White" data-vintage="2024" data-price="30.00" data-name="2024 black spur grüner veltliner">
+        <div class="collection-product-image">
+          
+          <img src="https://fusws.api.aspedia.io/boatocraigo-website/products/bottles/GrunerVelt_NV.jpg?preset=wineproductteaser&t=1659678953242" alt="2024 Black Spur Grüner Veltliner">
+        </div>
+        <div class="collection-product-info">
+          <h3>2024 Black Spur Grüner Veltliner</h3>
+          <div class="product-meta">White · 2024</div>
+          <div class="product-price">$30.00</div>
+          <div class="product-actions">
+            <div class="quantity-control" aria-label="Quantity selector">
+              <button class="qty-minus" type="button" aria-label="Decrease quantity">−</button>
+              <span class="qty-value">1</span>
+              <button class="qty-plus" type="button" aria-label="Increase quantity">+</button>
+            </div>
+            <button class="btn sand" type="button">Add to cart</button>
+          </div>
+        </div>
+      </article>
+    
+      <article class="collection-product" data-type="White" data-vintage="2025" data-price="30.00" data-name="2025 black spur pinot gris">
+        <div class="collection-product-image">
+          
+          <img src="https://fusws.api.aspedia.io/boatocraigo-website/products/bottles/GrunerVelt_NV.jpg?preset=wineproductteaser&t=1659678953242" alt="2025 Black Spur Pinot Gris">
+        </div>
+        <div class="collection-product-info">
+          <h3>2025 Black Spur Pinot Gris</h3>
+          <div class="product-meta">White · 2025</div>
+          <div class="product-price">$30.00</div>
+          <div class="product-actions">
+            <div class="quantity-control" aria-label="Quantity selector">
+              <button class="qty-minus" type="button" aria-label="Decrease quantity">−</button>
+              <span class="qty-value">1</span>
+              <button class="qty-plus" type="button" aria-label="Increase quantity">+</button>
+            </div>
+            <button class="btn sand" type="button">Add to cart</button>
+          </div>
+        </div>
+      </article>
+    
+      <article class="collection-product" data-type="White" data-vintage="2024" data-price="30.00" data-name="2024 black spur gewürztraminer">
+        <div class="collection-product-image">
+          
+          <img src="https://fusws.api.aspedia.io/boatocraigo-website/products/bottles/GrunerVelt_NV.jpg?preset=wineproductteaser&t=1659678953242" alt="2024 Black Spur Gewürztraminer">
+        </div>
+        <div class="collection-product-info">
+          <h3>2024 Black Spur Gewürztraminer</h3>
+          <div class="product-meta">White · 2024</div>
+          <div class="product-price">$30.00</div>
+          <div class="product-actions">
+            <div class="quantity-control" aria-label="Quantity selector">
+              <button class="qty-minus" type="button" aria-label="Decrease quantity">−</button>
+              <span class="qty-value">1</span>
+              <button class="qty-plus" type="button" aria-label="Increase quantity">+</button>
+            </div>
+            <button class="btn sand" type="button">Add to cart</button>
+          </div>
+        </div>
+      </article>
+    
+      <article class="collection-product" data-type="White" data-vintage="2025" data-price="30.00" data-name="2025 black spur sauvignon blanc">
+        <div class="collection-product-image">
+          <span class="product-badge sand">New release</span>
+          <img src="https://fusws.api.aspedia.io/boatocraigo-website/products/bottles/GrunerVelt_NV.jpg?preset=wineproductteaser&t=1659678953242" alt="2025 Black Spur Sauvignon Blanc">
+        </div>
+        <div class="collection-product-info">
+          <h3>2025 Black Spur Sauvignon Blanc</h3>
+          <div class="product-meta">White · 2025</div>
+          <div class="product-price">$30.00</div>
+          <div class="product-actions">
+            <div class="quantity-control" aria-label="Quantity selector">
+              <button class="qty-minus" type="button" aria-label="Decrease quantity">−</button>
+              <span class="qty-value">1</span>
+              <button class="qty-plus" type="button" aria-label="Increase quantity">+</button>
+            </div>
+            <button class="btn sand" type="button">Add to cart</button>
+          </div>
+        </div>
+      </article>
+    
+      <article class="collection-product" data-type="Rosé" data-vintage="2025" data-price="30.00" data-name="2025 black spur rosé">
+        <div class="collection-product-image">
+          
+          <img src="https://fusws.api.aspedia.io/boatocraigo-website/products/bottles/GrunerVelt_NV.jpg?preset=wineproductteaser&t=1659678953242" alt="2025 Black Spur Rosé">
+        </div>
+        <div class="collection-product-info">
+          <h3>2025 Black Spur Rosé</h3>
+          <div class="product-meta">Rosé · 2025</div>
+          <div class="product-price">$30.00</div>
+          <div class="product-actions">
+            <div class="quantity-control" aria-label="Quantity selector">
+              <button class="qty-minus" type="button" aria-label="Decrease quantity">−</button>
+              <span class="qty-value">1</span>
+              <button class="qty-plus" type="button" aria-label="Increase quantity">+</button>
+            </div>
+            <button class="btn sand" type="button">Add to cart</button>
+          </div>
+        </div>
+      </article>
+    
+      <article class="collection-product" data-type="White" data-vintage="2024" data-price="45.00" data-name="2024 black spur chardonnay">
+        <div class="collection-product-image">
+          
+          <img src="https://fusws.api.aspedia.io/boatocraigo-website/products/bottles/GrunerVelt_NV.jpg?preset=wineproductteaser&t=1659678953242" alt="2024 Black Spur Chardonnay">
+        </div>
+        <div class="collection-product-info">
+          <h3>2024 Black Spur Chardonnay</h3>
+          <div class="product-meta">White · 2024</div>
+          <div class="product-price">$45.00</div>
+          <div class="product-actions">
+            <div class="quantity-control" aria-label="Quantity selector">
+              <button class="qty-minus" type="button" aria-label="Decrease quantity">−</button>
+              <span class="qty-value">1</span>
+              <button class="qty-plus" type="button" aria-label="Increase quantity">+</button>
+            </div>
+            <button class="btn sand" type="button">Add to cart</button>
+          </div>
+        </div>
+      </article>
+    
+      <article class="collection-product" data-type="White" data-vintage="2024" data-price="30.00" data-name="2024 black spur field blend">
+        <div class="collection-product-image">
+          
+          <img src="https://fusws.api.aspedia.io/boatocraigo-website/products/bottles/GrunerVelt_NV.jpg?preset=wineproductteaser&t=1659678953242" alt="2024 Black Spur Field Blend">
+        </div>
+        <div class="collection-product-info">
+          <h3>2024 Black Spur Field Blend</h3>
+          <div class="product-meta">White · 2024</div>
+          <div class="product-price">$30.00</div>
+          <div class="product-actions">
+            <div class="quantity-control" aria-label="Quantity selector">
+              <button class="qty-minus" type="button" aria-label="Decrease quantity">−</button>
+              <span class="qty-value">1</span>
+              <button class="qty-plus" type="button" aria-label="Increase quantity">+</button>
+            </div>
+            <button class="btn sand" type="button">Add to cart</button>
+          </div>
+        </div>
+      </article>
+    
+      <article class="collection-product" data-type="Red" data-vintage="2024" data-price="45.00" data-name="2024 black spur pinot noir">
+        <div class="collection-product-image">
+          
+          <img src="https://fusws.api.aspedia.io/boatocraigo-website/products/bottles/GrunerVelt_NV.jpg?preset=wineproductteaser&t=1659678953242" alt="2024 Black Spur Pinot Noir">
+        </div>
+        <div class="collection-product-info">
+          <h3>2024 Black Spur Pinot Noir</h3>
+          <div class="product-meta">Red · 2024</div>
+          <div class="product-price">$45.00</div>
+          <div class="product-actions">
+            <div class="quantity-control" aria-label="Quantity selector">
+              <button class="qty-minus" type="button" aria-label="Decrease quantity">−</button>
+              <span class="qty-value">1</span>
+              <button class="qty-plus" type="button" aria-label="Increase quantity">+</button>
+            </div>
+            <button class="btn sand" type="button">Add to cart</button>
+          </div>
+        </div>
+      </article>
+    
+      <article class="collection-product" data-type="Red" data-vintage="2024" data-price="45.00" data-name="2024 nillumbik gamay">
+        <div class="collection-product-image">
+          
+          <img src="https://fusws.api.aspedia.io/boatocraigo-website/products/bottles/GrunerVelt_NV.jpg?preset=wineproductteaser&t=1659678953242" alt="2024 Nillumbik Gamay">
+        </div>
+        <div class="collection-product-info">
+          <h3>2024 Nillumbik Gamay</h3>
+          <div class="product-meta">Red · 2024</div>
+          <div class="product-price">$45.00</div>
+          <div class="product-actions">
+            <div class="quantity-control" aria-label="Quantity selector">
+              <button class="qty-minus" type="button" aria-label="Decrease quantity">−</button>
+              <span class="qty-value">1</span>
+              <button class="qty-plus" type="button" aria-label="Increase quantity">+</button>
+            </div>
+            <button class="btn sand" type="button">Add to cart</button>
+          </div>
+        </div>
+      </article>
+    
+      <article class="collection-product" data-type="Red" data-vintage="2024" data-price="45.00" data-name="2024 rob roy pinot noir">
+        <div class="collection-product-image">
+          
+          <img src="https://fusws.api.aspedia.io/boatocraigo-website/products/bottles/GrunerVelt_NV.jpg?preset=wineproductteaser&t=1659678953242" alt="2024 Rob Roy Pinot Noir">
+        </div>
+        <div class="collection-product-info">
+          <h3>2024 Rob Roy Pinot Noir</h3>
+          <div class="product-meta">Red · 2024</div>
+          <div class="product-price">$45.00</div>
+          <div class="product-actions">
+            <div class="quantity-control" aria-label="Quantity selector">
+              <button class="qty-minus" type="button" aria-label="Decrease quantity">−</button>
+              <span class="qty-value">1</span>
+              <button class="qty-plus" type="button" aria-label="Increase quantity">+</button>
+            </div>
+            <button class="btn sand" type="button">Add to cart</button>
+          </div>
+        </div>
+      </article>
+    
+      <article class="collection-product" data-type="Red" data-vintage="2023" data-price="45.00" data-name="2023 kangaroo ground grenache">
+        <div class="collection-product-image">
+          
+          <img src="https://fusws.api.aspedia.io/boatocraigo-website/products/bottles/GrunerVelt_NV.jpg?preset=wineproductteaser&t=1659678953242" alt="2023 Kangaroo Ground Grenache">
+        </div>
+        <div class="collection-product-info">
+          <h3>2023 Kangaroo Ground Grenache</h3>
+          <div class="product-meta">Red · 2023</div>
+          <div class="product-price">$45.00</div>
+          <div class="product-actions">
+            <div class="quantity-control" aria-label="Quantity selector">
+              <button class="qty-minus" type="button" aria-label="Decrease quantity">−</button>
+              <span class="qty-value">1</span>
+              <button class="qty-plus" type="button" aria-label="Increase quantity">+</button>
+            </div>
+            <button class="btn sand" type="button">Add to cart</button>
+          </div>
+        </div>
+      </article>
+    
+      <article class="collection-product" data-type="Red" data-vintage="2023" data-price="45.00" data-name="2023 black cameron shiraz">
+        <div class="collection-product-image">
+          
+          <img src="https://fusws.api.aspedia.io/boatocraigo-website/products/bottles/GrunerVelt_NV.jpg?preset=wineproductteaser&t=1659678953242" alt="2023 Black Cameron Shiraz">
+        </div>
+        <div class="collection-product-info">
+          <h3>2023 Black Cameron Shiraz</h3>
+          <div class="product-meta">Red · 2023</div>
+          <div class="product-price">$45.00</div>
+          <div class="product-actions">
+            <div class="quantity-control" aria-label="Quantity selector">
+              <button class="qty-minus" type="button" aria-label="Decrease quantity">−</button>
+              <span class="qty-value">1</span>
+              <button class="qty-plus" type="button" aria-label="Increase quantity">+</button>
+            </div>
+            <button class="btn sand" type="button">Add to cart</button>
+          </div>
+        </div>
+      </article>
+    
+      <article class="collection-product" data-type="Red" data-vintage="2021" data-price="45.00" data-name="2021 bruchart cabernet sauvignon">
+        <div class="collection-product-image">
+          
+          <img src="https://fusws.api.aspedia.io/boatocraigo-website/products/bottles/GrunerVelt_NV.jpg?preset=wineproductteaser&t=1659678953242" alt="2021 Bruchart Cabernet Sauvignon">
+        </div>
+        <div class="collection-product-info">
+          <h3>2021 Bruchart Cabernet Sauvignon</h3>
+          <div class="product-meta">Red · 2021</div>
+          <div class="product-price">$45.00</div>
+          <div class="product-actions">
+            <div class="quantity-control" aria-label="Quantity selector">
+              <button class="qty-minus" type="button" aria-label="Decrease quantity">−</button>
+              <span class="qty-value">1</span>
+              <button class="qty-plus" type="button" aria-label="Increase quantity">+</button>
+            </div>
+            <button class="btn sand" type="button">Add to cart</button>
+          </div>
+        </div>
+      </article>
+    
+      <article class="collection-product" data-type="Reserve" data-vintage="2022" data-price="65.00" data-name="2022 first duke reserve shiraz">
+        <div class="collection-product-image">
+          <span class="product-badge">Reserve</span>
+          <img src="https://fusws.api.aspedia.io/boatocraigo-website/products/bottles/GrunerVelt_NV.jpg?preset=wineproductteaser&t=1659678953242" alt="2022 First Duke Reserve Shiraz">
+        </div>
+        <div class="collection-product-info">
+          <h3>2022 First Duke Reserve Shiraz</h3>
+          <div class="product-meta">Reserve · 2022</div>
+          <div class="product-price">$65.00</div>
+          <div class="product-actions">
+            <div class="quantity-control" aria-label="Quantity selector">
+              <button class="qty-minus" type="button" aria-label="Decrease quantity">−</button>
+              <span class="qty-value">1</span>
+              <button class="qty-plus" type="button" aria-label="Increase quantity">+</button>
+            </div>
+            <button class="btn sand" type="button">Add to cart</button>
+          </div>
+        </div>
+      </article>
+    
+      <article class="collection-product" data-type="Sparkling" data-vintage="2022" data-price="50.00" data-name="2022 sparkling shiraz">
+        <div class="collection-product-image">
+          
+          <img src="https://fusws.api.aspedia.io/boatocraigo-website/products/bottles/GrunerVelt_NV.jpg?preset=wineproductteaser&t=1659678953242" alt="2022 Sparkling Shiraz">
+        </div>
+        <div class="collection-product-info">
+          <h3>2022 Sparkling Shiraz</h3>
+          <div class="product-meta">Sparkling · 2022</div>
+          <div class="product-price">$50.00</div>
+          <div class="product-actions">
+            <div class="quantity-control" aria-label="Quantity selector">
+              <button class="qty-minus" type="button" aria-label="Decrease quantity">−</button>
+              <span class="qty-value">1</span>
+              <button class="qty-plus" type="button" aria-label="Increase quantity">+</button>
+            </div>
+            <button class="btn sand" type="button">Add to cart</button>
+          </div>
+        </div>
+      </article>
+    
+      <article class="collection-product" data-type="Sparkling" data-vintage="2021" data-price="80.00" data-name="2021 méthode traditionnelle sparkling">
+        <div class="collection-product-image">
+          <span class="product-badge">Reserve</span>
+          <img src="https://fusws.api.aspedia.io/boatocraigo-website/products/bottles/GrunerVelt_NV.jpg?preset=wineproductteaser&t=1659678953242" alt="2021 Méthode Traditionnelle Sparkling">
+        </div>
+        <div class="collection-product-info">
+          <h3>2021 Méthode Traditionnelle Sparkling</h3>
+          <div class="product-meta">Sparkling · 2021</div>
+          <div class="product-price">$80.00</div>
+          <div class="product-actions">
+            <div class="quantity-control" aria-label="Quantity selector">
+              <button class="qty-minus" type="button" aria-label="Decrease quantity">−</button>
+              <span class="qty-value">1</span>
+              <button class="qty-plus" type="button" aria-label="Increase quantity">+</button>
+            </div>
+            <button class="btn sand" type="button">Add to cart</button>
+          </div>
+        </div>
+      </article>
+    
+      <article class="collection-product" data-type="Museum" data-vintage="2017" data-price="60.00" data-name="2017 black spur chardonnay">
+        <div class="collection-product-image">
+          <span class="product-badge">Museum wine</span>
+          <img src="https://fusws.api.aspedia.io/boatocraigo-website/products/bottles/GrunerVelt_NV.jpg?preset=wineproductteaser&t=1659678953242" alt="2017 Black Spur Chardonnay">
+        </div>
+        <div class="collection-product-info">
+          <h3>2017 Black Spur Chardonnay</h3>
+          <div class="product-meta">Museum · 2017</div>
+          <div class="product-price">$60.00</div>
+          <div class="product-actions">
+            <div class="quantity-control" aria-label="Quantity selector">
+              <button class="qty-minus" type="button" aria-label="Decrease quantity">−</button>
+              <span class="qty-value">1</span>
+              <button class="qty-plus" type="button" aria-label="Increase quantity">+</button>
+            </div>
+            <button class="btn sand" type="button">Add to cart</button>
+          </div>
+        </div>
+      </article>
+    
+      <article class="collection-product" data-type="Museum" data-vintage="2015" data-price="60.00" data-name="2015 black spur chardonnay">
+        <div class="collection-product-image">
+          <span class="product-badge">Museum wine</span>
+          <img src="https://fusws.api.aspedia.io/boatocraigo-website/products/bottles/GrunerVelt_NV.jpg?preset=wineproductteaser&t=1659678953242" alt="2015 Black Spur Chardonnay">
+        </div>
+        <div class="collection-product-info">
+          <h3>2015 Black Spur Chardonnay</h3>
+          <div class="product-meta">Museum · 2015</div>
+          <div class="product-price">$60.00</div>
+          <div class="product-actions">
+            <div class="quantity-control" aria-label="Quantity selector">
+              <button class="qty-minus" type="button" aria-label="Decrease quantity">−</button>
+              <span class="qty-value">1</span>
+              <button class="qty-plus" type="button" aria-label="Increase quantity">+</button>
+            </div>
+            <button class="btn sand" type="button">Add to cart</button>
+          </div>
+        </div>
+      </article>
+    
+      <article class="collection-product" data-type="Museum" data-vintage="2014" data-price="60.00" data-name="2014 black spur pinot noir">
+        <div class="collection-product-image">
+          <span class="product-badge">Museum wine</span>
+          <img src="https://fusws.api.aspedia.io/boatocraigo-website/products/bottles/GrunerVelt_NV.jpg?preset=wineproductteaser&t=1659678953242" alt="2014 Black Spur Pinot Noir">
+        </div>
+        <div class="collection-product-info">
+          <h3>2014 Black Spur Pinot Noir</h3>
+          <div class="product-meta">Museum · 2014</div>
+          <div class="product-price">$60.00</div>
+          <div class="product-actions">
+            <div class="quantity-control" aria-label="Quantity selector">
+              <button class="qty-minus" type="button" aria-label="Decrease quantity">−</button>
+              <span class="qty-value">1</span>
+              <button class="qty-plus" type="button" aria-label="Increase quantity">+</button>
+            </div>
+            <button class="btn sand" type="button">Add to cart</button>
+          </div>
+        </div>
+      </article>
+    
+      <article class="collection-product" data-type="Museum" data-vintage="2018" data-price="80.00" data-name="2018 bruchart cabernet sauvignon">
+        <div class="collection-product-image">
+          <span class="product-badge">Museum wine</span>
+          <img src="https://fusws.api.aspedia.io/boatocraigo-website/products/bottles/GrunerVelt_NV.jpg?preset=wineproductteaser&t=1659678953242" alt="2018 Bruchart Cabernet Sauvignon">
+        </div>
+        <div class="collection-product-info">
+          <h3>2018 Bruchart Cabernet Sauvignon</h3>
+          <div class="product-meta">Museum · 2018</div>
+          <div class="product-price">$80.00</div>
+          <div class="product-actions">
+            <div class="quantity-control" aria-label="Quantity selector">
+              <button class="qty-minus" type="button" aria-label="Decrease quantity">−</button>
+              <span class="qty-value">1</span>
+              <button class="qty-plus" type="button" aria-label="Increase quantity">+</button>
+            </div>
+            <button class="btn sand" type="button">Add to cart</button>
+          </div>
+        </div>
+      </article>
+    
+      <article class="collection-product" data-type="Museum" data-vintage="2016" data-price="80.00" data-name="2016 first duke reserve shiraz">
+        <div class="collection-product-image">
+          <span class="product-badge">Museum wine</span>
+          <img src="https://fusws.api.aspedia.io/boatocraigo-website/products/bottles/GrunerVelt_NV.jpg?preset=wineproductteaser&t=1659678953242" alt="2016 First Duke Reserve Shiraz">
+        </div>
+        <div class="collection-product-info">
+          <h3>2016 First Duke Reserve Shiraz</h3>
+          <div class="product-meta">Museum · 2016</div>
+          <div class="product-price">$80.00</div>
+          <div class="product-actions">
+            <div class="quantity-control" aria-label="Quantity selector">
+              <button class="qty-minus" type="button" aria-label="Decrease quantity">−</button>
+              <span class="qty-value">1</span>
+              <button class="qty-plus" type="button" aria-label="Increase quantity">+</button>
+            </div>
+            <button class="btn sand" type="button">Add to cart</button>
+          </div>
+        </div>
+      </article>
+    
+      <article class="collection-product" data-type="Red" data-vintage="2023" data-price="48.00" data-name="2023 estate pinot noir">
+        <div class="collection-product-image">
+          
+          <img src="https://fusws.api.aspedia.io/boatocraigo-website/products/bottles/GrunerVelt_NV.jpg?preset=wineproductteaser&t=1659678953242" alt="2023 Estate Pinot Noir">
+        </div>
+        <div class="collection-product-info">
+          <h3>2023 Estate Pinot Noir</h3>
+          <div class="product-meta">Red · 2023</div>
+          <div class="product-price">$48.00</div>
+          <div class="product-actions">
+            <div class="quantity-control" aria-label="Quantity selector">
+              <button class="qty-minus" type="button" aria-label="Decrease quantity">−</button>
+              <span class="qty-value">1</span>
+              <button class="qty-plus" type="button" aria-label="Increase quantity">+</button>
+            </div>
+            <button class="btn sand" type="button">Add to cart</button>
+          </div>
+        </div>
+      </article>
+    
+      <article class="collection-product" data-type="White" data-vintage="2024" data-price="42.00" data-name="2024 estate chardonnay">
+        <div class="collection-product-image">
+          
+          <img src="https://fusws.api.aspedia.io/boatocraigo-website/products/bottles/GrunerVelt_NV.jpg?preset=wineproductteaser&t=1659678953242" alt="2024 Estate Chardonnay">
+        </div>
+        <div class="collection-product-info">
+          <h3>2024 Estate Chardonnay</h3>
+          <div class="product-meta">White · 2024</div>
+          <div class="product-price">$42.00</div>
+          <div class="product-actions">
+            <div class="quantity-control" aria-label="Quantity selector">
+              <button class="qty-minus" type="button" aria-label="Decrease quantity">−</button>
+              <span class="qty-value">1</span>
+              <button class="qty-plus" type="button" aria-label="Increase quantity">+</button>
+            </div>
+            <button class="btn sand" type="button">Add to cart</button>
+          </div>
+        </div>
+      </article>
+    
+      </div>
+
+      <div class="collection-empty" id="emptyState">
+        <h3>No wines found.</h3>
+        <p>Try removing one or more filters to see more products.</p>
+        <button class="btn" id="emptyClear" type="button">Clear filters</button>
+      </div>
+
+      <nav class="pagination" id="pagination" aria-label="Product pagination"></nav>
+    </div>
+  </div>
+</section>
+</main>
+
+<div class="mobile-filter-drawer" id="mobileFilterDrawer" aria-hidden="true">
+  <div class="mobile-filter-backdrop"></div>
+  <div class="mobile-filter-panel">
+    <div class="mobile-filter-head">
+      <h3>Filter wines</h3>
+      <button class="mobile-filter-close" type="button" aria-label="Close filters">×</button>
+    </div>
+    <div id="mobileFilterContent"></div>
+    <div class="mobile-filter-actions">
+      <button class="btn" id="mobileClear" type="button">Clear</button>
+      <button class="btn sand" id="mobileApply" type="button">View results</button>
+    </div>
+  </div>
+</div>
+
+<footer class="footer" id="contact"><div class="container"><div class="footer-top"><div><a class="brand" href="#"><img src="https://www.boatocraigo.com.au/dist/logos/website/logo.svg" title="BOAT OCRAIGO Logo" alt="Boat O'Craigo" class="logo"></a><p style="max-width:340px;color:#999;font-size:.82rem;margin-top:22px">458 Maroondah Highway, Healesville VIC 3777<br>hello@boatocraigo.com.au · (03) 5962 6899</p></div><div><h4>Shop</h4><a href="#wines">Wines</a><a href="#">Gift Packs</a><a href="#">Gift Cards</a><a href="#club">Wine Club</a></div><div><h4>Visit</h4><a href="#experiences">Cellar Door</a><a href="#experiences">Restaurant</a><a href="#weddings">Weddings & Events</a><a href="#experiences">Book a Visit</a></div><div><h4>Discover</h4><a href="#story">Our Story</a><a href="#events">What's On</a><a href="#contact">Contact</a><a href="#">FAQs</a></div></div><div class="footer-bottom"><span>© 2026 Boat O'Craigo · Liquor Licence No. 32809777</span><span>Terms · Privacy · Shipping</span></div></div></footer>
+<div class="mobile-panel" id="mobilePanel"><div class="mobile-panel-head"><a class="brand" href="#"><img src="https://www.boatocraigo.com.au/dist/logos/website/logo.svg" title="BOAT OCRAIGO Logo" alt="Boat O'Craigo" class="logo"></a><button class="icon-btn" aria-label="Close" onclick="document.getElementById('mobilePanel').classList.remove('open')"><svg viewBox="0 0 24 24"><path d="M4 4l16 16M20 4 4 20"/></svg></button></div><nav class="mobile-menu"><div class="mobile-group"><a href="#" onclick="this.parentNode.classList.toggle('open');return false">Shop <span>+</span></a><div class="mobile-sub"><a href="#wines">Wines</a><a href="#experiences">Experiences</a><a href="#">Gift Packs & Cards</a></div></div><a href="#club">Wine Club</a><a href="#experiences">Visit</a><a href="#events">What's On</a><a href="#story">About</a><a href="#contact">Contact</a><a href="#experiences">Book a Visit</a></nav></div>
+<script>
+const slides=[...document.querySelectorAll('.hero-slide')],dots=[...document.querySelectorAll('.hero-dot')];let current=0,timer;
+function show(i){current=(i+slides.length)%slides.length;slides.forEach((s,n)=>s.classList.toggle('active',n===current));dots.forEach((d,n)=>d.classList.toggle('active',n===current))}
+function restart(){clearInterval(timer);timer=setInterval(()=>show(current+1),6000)}
+document.querySelector('.hero-prev').onclick=()=>{show(current-1);restart()};document.querySelector('.hero-next').onclick=()=>{show(current+1);restart()};dots.forEach((d,i)=>d.onclick=()=>{show(i);restart()});restart();
+document.querySelectorAll('.mobile-menu a[href^="#"]').forEach(a=>a.addEventListener('click',()=>{if(a.getAttribute('href')!=='#')document.getElementById('mobilePanel').classList.remove('open')}));
+
+const productGrid = document.getElementById('productGrid');
+const allProducts = [...document.querySelectorAll('.collection-product')];
+const resultCount = document.getElementById('resultCount');
+const pagination = document.getElementById('pagination');
+const activeFilters = document.getElementById('activeFilters');
+const emptyState = document.getElementById('emptyState');
+const sortProducts = document.getElementById('sortProducts');
+const gridView = document.getElementById('gridView');
+const listView = document.getElementById('listView');
+const clearFilters = document.getElementById('clearFilters');
+const emptyClear = document.getElementById('emptyClear');
+const pageSize = 9;
+let currentPage = 1;
+
+function getChecked(name) {
+  return [...document.querySelectorAll(`input[name="${name}"]:checked`)].map(input => input.value);
+}
+
+function matchesPrice(product, ranges) {
+  if (!ranges.length) return true;
+  const price = Number(product.dataset.price);
+  return ranges.some(range => {
+    if (range === 'under40') return price < 40;
+    if (range === '40to59') return price >= 40 && price < 60;
+    if (range === '60plus') return price >= 60;
+    return true;
+  });
+}
+
+function getFilteredProducts() {
+  const types = getChecked('type');
+  const vintages = getChecked('vintage');
+  const prices = getChecked('price');
+
+  let products = allProducts.filter(product => {
+    const typeMatch = !types.length || types.includes(product.dataset.type);
+    const vintageMatch = !vintages.length || vintages.includes(product.dataset.vintage);
+    return typeMatch && vintageMatch && matchesPrice(product, prices);
+  });
+
+  const sort = sortProducts.value;
+  products.sort((a, b) => {
+    if (sort === 'name-asc') return a.dataset.name.localeCompare(b.dataset.name);
+    if (sort === 'price-asc') return Number(a.dataset.price) - Number(b.dataset.price);
+    if (sort === 'price-desc') return Number(b.dataset.price) - Number(a.dataset.price);
+    if (sort === 'vintage-desc') return Number(b.dataset.vintage) - Number(a.dataset.vintage);
+    return allProducts.indexOf(a) - allProducts.indexOf(b);
+  });
+
+  return products;
+}
+
+function renderActiveFilters() {
+  activeFilters.innerHTML = '';
+  document.querySelectorAll('.filter-panel input:checked').forEach(input => {
+    const label = input.closest('label').querySelector('span').textContent;
+    const chip = document.createElement('span');
+    chip.className = 'active-filter';
+    chip.innerHTML = `${label}<button type="button" aria-label="Remove ${label}">×</button>`;
+    chip.querySelector('button').addEventListener('click', () => {
+      document.querySelectorAll(`input[name="${input.name}"][value="${input.value}"]`).forEach(match => match.checked = false);
+      currentPage = 1;
+      renderCollection();
+      syncMobileFilters();
+    });
+    activeFilters.appendChild(chip);
+  });
+}
+
+function renderPagination(totalItems) {
+  const pages = Math.ceil(totalItems / pageSize);
+  pagination.innerHTML = '';
+  if (pages <= 1) return;
+
+  const createButton = (label, page, disabled = false, active = false) => {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = `page-btn${active ? ' active' : ''}`;
+    button.textContent = label;
+    button.disabled = disabled;
+    button.addEventListener('click', () => {
+      currentPage = page;
+      renderCollection();
+      document.querySelector('.collection-toolbar').scrollIntoView({behavior:'smooth'});
+    });
+    pagination.appendChild(button);
+  };
+
+  createButton('‹', currentPage - 1, currentPage === 1);
+  for (let page = 1; page <= pages; page++) createButton(page, page, false, page === currentPage);
+  createButton('›', currentPage + 1, currentPage === pages);
+}
+
+function renderCollection() {
+  const filtered = getFilteredProducts();
+  const pages = Math.max(1, Math.ceil(filtered.length / pageSize));
+  currentPage = Math.min(currentPage, pages);
+  const start = (currentPage - 1) * pageSize;
+  const visible = filtered.slice(start, start + pageSize);
+
+  allProducts.forEach(product => product.style.display = 'none');
+  visible.forEach(product => {
+    product.style.display = '';
+    productGrid.appendChild(product);
+  });
+
+  resultCount.textContent = `${filtered.length} product${filtered.length === 1 ? '' : 's'}`;
+  emptyState.style.display = filtered.length ? 'none' : 'block';
+  productGrid.style.display = filtered.length ? '' : 'none';
+
+  renderActiveFilters();
+  renderPagination(filtered.length);
+}
+
+document.querySelectorAll('.filter-panel input').forEach(input => {
+  input.addEventListener('change', () => {
+    currentPage = 1;
+    renderCollection();
+    syncMobileFilters();
+  });
+});
+
+document.querySelectorAll('.filter-toggle').forEach(button => {
+  button.addEventListener('click', () => {
+    const group = button.closest('.filter-group');
+    group.classList.toggle('closed');
+    button.lastElementChild.textContent = group.classList.contains('closed') ? '+' : '−';
+  });
+});
+
+sortProducts.addEventListener('change', () => {
+  currentPage = 1;
+  renderCollection();
+});
+
+gridView.addEventListener('click', () => {
+  productGrid.classList.remove('list-view');
+  gridView.classList.add('active');
+  listView.classList.remove('active');
+});
+
+listView.addEventListener('click', () => {
+  productGrid.classList.add('list-view');
+  listView.classList.add('active');
+  gridView.classList.remove('active');
+});
+
+function resetFilters() {
+  document.querySelectorAll('input[name="type"],input[name="vintage"],input[name="price"]').forEach(input => input.checked = false);
+  currentPage = 1;
+  renderCollection();
+  syncMobileFilters();
+}
+clearFilters.addEventListener('click', resetFilters);
+emptyClear.addEventListener('click', resetFilters);
+
+const drawer = document.getElementById('mobileFilterDrawer');
+const mobileContent = document.getElementById('mobileFilterContent');
+
+function syncMobileFilters() {
+  mobileContent.innerHTML = document.querySelector('.filter-panel').innerHTML;
+  mobileContent.querySelectorAll('input').forEach(input => {
+    const desktop = document.querySelector(`.filter-panel input[name="${input.name}"][value="${input.value}"]`);
+    input.checked = desktop ? desktop.checked : false;
+  });
+}
+
+document.getElementById('filterOpen').addEventListener('click', () => {
+  syncMobileFilters();
+  drawer.classList.add('open');
+  drawer.setAttribute('aria-hidden','false');
+  document.body.style.overflow = 'hidden';
+});
+
+function closeDrawer() {
+  drawer.classList.remove('open');
+  drawer.setAttribute('aria-hidden','true');
+  document.body.style.overflow = '';
+}
+document.querySelector('.mobile-filter-close').addEventListener('click', closeDrawer);
+document.querySelector('.mobile-filter-backdrop').addEventListener('click', closeDrawer);
+
+document.getElementById('mobileApply').addEventListener('click', () => {
+  mobileContent.querySelectorAll('input').forEach(input => {
+    const desktop = document.querySelector(`.filter-panel input[name="${input.name}"][value="${input.value}"]`);
+    if (desktop) desktop.checked = input.checked;
+  });
+  currentPage = 1;
+  renderCollection();
+  closeDrawer();
+});
+
+document.getElementById('mobileClear').addEventListener('click', () => {
+  mobileContent.querySelectorAll('input').forEach(input => input.checked = false);
+});
+
+renderCollection();
+
+</script>
+</body>
+</html>

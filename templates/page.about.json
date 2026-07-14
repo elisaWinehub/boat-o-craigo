@@ -1,0 +1,559 @@
+{
+  "sections": {
+    "boc_about_hero": {
+      "type": "boc-about-hero",
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "family_anchor": "boc-about-family",
+        "careers_anchor": "boc-about-careers",
+        "overlay_opacity": 100,
+        "height_desktop": 720,
+        "height_tablet": 620,
+        "height_mobile": 600,
+        "image_focal_point": "center",
+        "content_width": 780,
+        "eyebrow": "Our story",
+        "heading": "Rooted in family. Shaped by place.",
+        "body": "Discover the family, vineyards, winemakers and people behind Boat O'Craigo—an independent Yarra Valley estate built around thoughtful wine, genuine hospitality and two distinctive vineyard sites.",
+        "text_alignment_desktop": "left",
+        "text_alignment_mobile": "left",
+        "button_1_enabled": true,
+        "button_1_label": "Discover our story",
+        "button_1_style": "accent",
+        "button_2_enabled": true,
+        "button_2_label": "Work with us",
+        "button_2_style": "light"
+      }
+    },
+    "boc_about_nav": {
+      "type": "boc-about-anchor-nav",
+      "blocks": {
+        "nav_family": {
+          "type": "link",
+          "settings": {
+            "label": "The family",
+            "anchor_id": "boc-about-family"
+          }
+        },
+        "nav_vineyards": {
+          "type": "link",
+          "settings": {
+            "label": "The vineyards",
+            "anchor_id": "boc-about-vineyards"
+          }
+        },
+        "nav_winemaking": {
+          "type": "link",
+          "settings": {
+            "label": "Winemaking",
+            "anchor_id": "boc-about-winemaking"
+          }
+        },
+        "nav_team": {
+          "type": "link",
+          "settings": {
+            "label": "Our team",
+            "anchor_id": "boc-about-team"
+          }
+        },
+        "nav_careers": {
+          "type": "link",
+          "settings": {
+            "label": "Careers",
+            "anchor_id": "boc-about-careers"
+          }
+        }
+      },
+      "block_order": [
+        "nav_family",
+        "nav_vineyards",
+        "nav_winemaking",
+        "nav_team",
+        "nav_careers"
+      ],
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "sticky_enabled": true,
+        "active_tracking": true,
+        "background_color": "#FFFFFF",
+        "text_color": "#212121",
+        "active_color": "#B99E7E",
+        "aria_label": "About page navigation"
+      }
+    },
+    "boc_about_intro": {
+      "type": "boc-about-intro",
+      "blocks": {
+        "stat_sites": {
+          "type": "stat",
+          "settings": {
+            "value": "2",
+            "label": "Yarra Valley vineyard sites",
+            "accent_color": "#212121"
+          }
+        },
+        "stat_acres": {
+          "type": "stat",
+          "settings": {
+            "value": "50+",
+            "label": "Acres under vine",
+            "accent_color": "#212121"
+          }
+        },
+        "stat_years": {
+          "type": "stat",
+          "settings": {
+            "value": "20+",
+            "label": "Years of estate history",
+            "accent_color": "#212121"
+          }
+        },
+        "stat_family": {
+          "type": "stat",
+          "settings": {
+            "value": "Family",
+            "label": "Owned and operated",
+            "accent_color": "#212121"
+          }
+        }
+      },
+      "block_order": [
+        "stat_sites",
+        "stat_acres",
+        "stat_years",
+        "stat_family"
+      ],
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "section_anchor_id": "boc-about-intro",
+        "background_color": "#FFFFFF",
+        "text_color": "#212121",
+        "body_color": "#575962",
+        "column_ratio": "0.85fr 1.15fr",
+        "statistics_columns": 4,
+        "padding_top_desktop": 120,
+        "padding_bottom_desktop": 96,
+        "padding_top_tablet": 96,
+        "padding_bottom_tablet": 80,
+        "padding_top_mobile": 80,
+        "padding_bottom_mobile": 80,
+        "eyebrow": "Boat O'Craigo",
+        "heading": "A family estate with a clear sense of place.",
+        "body": "<p>Boat O'Craigo is a second-generation, family-owned winery with vineyards in Healesville and Kangaroo Ground. Since the early 2000s, the estate has focused on small-batch wines that reflect the conditions, character and cool-climate personality of each site.</p><p>The Graham family continues to guide the business with the same practical spirit that shaped its beginning: care for the vineyard, respect for the fruit and a welcoming experience for every visitor.</p>"
+      }
+    },
+    "boc_about_family": {
+      "type": "boc-about-family",
+      "blocks": {
+        "detail_ownership": {
+          "type": "detail",
+          "settings": {
+            "label": "Ownership",
+            "value": "Second generation"
+          }
+        },
+        "detail_approach": {
+          "type": "detail",
+          "settings": {
+            "label": "Approach",
+            "value": "Independent and hands-on"
+          }
+        },
+        "detail_focus": {
+          "type": "detail",
+          "settings": {
+            "label": "Focus",
+            "value": "Wine, place and hospitality"
+          }
+        }
+      },
+      "block_order": [
+        "detail_ownership",
+        "detail_approach",
+        "detail_focus"
+      ],
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "section_anchor_id": "boc-about-family",
+        "team_anchor": "boc-about-team",
+        "split_ratio": "1fr 1fr",
+        "desktop_image_height": 720,
+        "tablet_image_height": 520,
+        "mobile_image_height": 380,
+        "mobile_stack_order": "image_first",
+        "copy_background_color": "#FAF8F5",
+        "copy_text_color": "#212121",
+        "copy_body_color": "#575962",
+        "detail_border_color": "#E8E2D9",
+        "eyebrow": "The Graham family",
+        "heading": "Built carefully, carried forward personally.",
+        "body": "What began as a family vision has grown into a working estate where vineyard, cellar door, restaurant and events all share one identity. Today, the next generation continues to evolve Boat O'Craigo while protecting the warmth and independence that guests value.",
+        "button_enabled": true,
+        "button_label": "Meet the people",
+        "button_url": "#boc-about-team",
+        "button_style": "primary",
+        "button_new_tab": false
+      }
+    },
+    "boc_about_vineyards": {
+      "type": "boc-about-vineyards",
+      "blocks": {
+        "vineyard_healesville": {
+          "type": "vineyard",
+          "settings": {
+            "eyebrow": "Estate site",
+            "heading": "Healesville",
+            "body": "<p>Nestled near the foothills of the Black Spur, the Healesville vineyard benefits from a cooler site and varied elevation. It is home to varieties including Pinot Noir, Chardonnay and aromatic whites.</p>",
+            "card_background_color": "#f5f2ee",
+            "text_color": "#212121"
+          }
+        },
+        "vineyard_kangaroo_ground": {
+          "type": "vineyard",
+          "settings": {
+            "eyebrow": "Western site",
+            "heading": "Kangaroo Ground",
+            "body": "<p>Warmer and more exposed, Kangaroo Ground supports generous, structured varieties while still retaining the freshness associated with the Yarra Valley's cool-climate conditions.</p>",
+            "card_background_color": "#f5f2ee",
+            "text_color": "#212121"
+          }
+        }
+      },
+      "block_order": [
+        "vineyard_healesville",
+        "vineyard_kangaroo_ground"
+      ],
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "section_anchor_id": "boc-about-vineyards",
+        "background_color": "#FFFFFF",
+        "columns_desktop": 2,
+        "padding_top_desktop": 120,
+        "padding_bottom_desktop": 120,
+        "padding_top_tablet": 96,
+        "padding_bottom_tablet": 96,
+        "padding_top_mobile": 80,
+        "padding_bottom_mobile": 80,
+        "eyebrow": "The vineyards",
+        "heading": "Two sites. Distinct expressions.",
+        "body": "Different elevations, aspects and soils give each vineyard its own rhythm—and each wine its own unmistakable character."
+      }
+    },
+    "boc_about_winemaking": {
+      "type": "boc-about-winemaking",
+      "blocks": {
+        "detail_style": {
+          "type": "detail",
+          "settings": {
+            "label": "Winemaking style",
+            "value": "Small-batch and site-led"
+          }
+        },
+        "detail_fruit": {
+          "type": "detail",
+          "settings": {
+            "label": "Fruit source",
+            "value": "Healesville and Kangaroo Ground"
+          }
+        },
+        "detail_purpose": {
+          "type": "detail",
+          "settings": {
+            "label": "Purpose",
+            "value": "Clarity, balance and character"
+          }
+        }
+      },
+      "block_order": [
+        "detail_style",
+        "detail_fruit",
+        "detail_purpose"
+      ],
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "section_anchor_id": "boc-about-winemaking",
+        "split_ratio": "1fr 1fr",
+        "desktop_image_height": 720,
+        "tablet_image_height": 520,
+        "mobile_image_height": 380,
+        "mobile_stack_order": "image_first",
+        "copy_background_color": "#333333",
+        "copy_text_color": "#FFFFFF",
+        "copy_body_color": "#cfcfcf",
+        "detail_border_color": "#484848",
+        "eyebrow": "Winemaking",
+        "heading": "Let the vineyard lead.",
+        "body": "Our wines are shaped by close attention to site, season and fruit. The winemaking approach is measured rather than heavy-handed, preserving natural varietal character and the individuality of each vineyard.",
+        "button_enabled": true,
+        "button_label": "Explore our wines",
+        "button_url": "/collections/wines",
+        "button_style": "light",
+        "button_new_tab": false
+      }
+    },
+    "boc_about_team": {
+      "type": "boc-about-team",
+      "blocks": {
+        "member_rob_hall": {
+          "type": "member",
+          "settings": {
+            "featured": true,
+            "name": "Rob Hall",
+            "role": "Winemaker",
+            "summary": "Rob brings deep Yarra Valley experience and a restrained, site-conscious approach to each vintage.",
+            "biography": "<p>Growing up in Healesville, Rob started his winemaking career at Yarra Ridge and Punt Road before becoming winemaker at Mount Mary. He now leads Boat O'Craigo's winemaking with a restrained, site-conscious approach that allows each vineyard and vintage to speak clearly.</p>"
+          }
+        },
+        "member_ben_craig": {
+          "type": "member",
+          "settings": {
+            "featured": true,
+            "name": "Ben Craig",
+            "role": "Vineyard Manager",
+            "summary": "Ben oversees the health, development and seasonal work of the estate's two vineyard sites.",
+            "biography": "<p>Ben oversees the health, development and seasonal work of the Healesville and Kangaroo Ground vineyards. His hands-on approach and close attention to detail help shape the quality and character of every estate-grown wine.</p>"
+          }
+        },
+        "member_frederic_lamagere": {
+          "type": "member",
+          "settings": {
+            "featured": false,
+            "name": "Frederic Lamagere",
+            "role": "Venue Manager",
+            "summary": "Frederic leads the guest experience across the cellar door, restaurant and private events.",
+            "biography": "<p>Frederic is an experienced hospitality professional with a background in luxury venues. He leads the guest experience across the cellar door, restaurant and private events, helping the team deliver warm and memorable visits.</p>"
+          }
+        },
+        "member_ange_bush": {
+          "type": "member",
+          "settings": {
+            "featured": false,
+            "name": "Ange Bush",
+            "role": "Wholesale, Operations & Partnerships Manager",
+            "summary": "Ange connects the day-to-day business with customers, trade partners and the broader wine community.",
+            "biography": "<p>Ange brings extensive experience across wholesale, operations and partnerships. Her role connects the day-to-day business with customers, trade partners and the broader wine community.</p>"
+          }
+        },
+        "member_caity_clarkson": {
+          "type": "member",
+          "settings": {
+            "featured": false,
+            "name": "Caity Clarkson",
+            "role": "Weddings, Events & Marketing Manager",
+            "summary": "Caity coordinates weddings, private events and marketing across the estate.",
+            "biography": "<p>Caity coordinates weddings, private events and marketing. She works closely with couples and guests to plan thoughtful, relaxed celebrations that make the most of the estate setting.</p>"
+          }
+        },
+        "member_prue_donaldson": {
+          "type": "member",
+          "settings": {
+            "featured": false,
+            "name": "Prue Donaldson",
+            "role": "Cellar Door 2IC",
+            "summary": "Prue supports the cellar door team and is passionate about creating welcoming tasting experiences.",
+            "biography": "<p>Prue supports the cellar door team and is passionate about creating welcoming tasting experiences. Her knowledge of the wines and friendly service help visitors feel at home.</p>"
+          }
+        },
+        "member_kristy_warren": {
+          "type": "member",
+          "settings": {
+            "featured": false,
+            "name": "Kristy Warren",
+            "role": "Kitchen Supervisor",
+            "summary": "Kristy brings organisation, consistency and care to the Glasshouse kitchen.",
+            "biography": "<p>Kristy is a skilled kitchen supervisor who brings organisation, consistency and care to the Glasshouse kitchen, supporting seasonal menus, restaurant service and special events.</p>"
+          }
+        },
+        "member_dakotah_heatherich": {
+          "type": "member",
+          "settings": {
+            "featured": false,
+            "name": "Dakotah Heatherich",
+            "role": "Cellar Door Supervisor",
+            "summary": "Dakotah brings a friendly, approachable style to the cellar door.",
+            "biography": "<p>Dakotah brings a friendly, approachable style to the cellar door. She supports daily operations and helps ensure each visitor receives an engaging and personal wine experience.</p>"
+          }
+        },
+        "member_bec_kerridge": {
+          "type": "member",
+          "settings": {
+            "featured": false,
+            "name": "Bec Kerridge",
+            "role": "Wine Club & Assistant Marketing Manager",
+            "summary": "Bec supports Wine Club members and the marketing team.",
+            "biography": "<p>Bec supports Wine Club members and the marketing team, helping keep customers connected with new releases, member benefits, estate events and the latest news from Boat O'Craigo.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "member_rob_hall",
+        "member_ben_craig",
+        "member_frederic_lamagere",
+        "member_ange_bush",
+        "member_caity_clarkson",
+        "member_prue_donaldson",
+        "member_kristy_warren",
+        "member_dakotah_heatherich",
+        "member_bec_kerridge"
+      ],
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "section_anchor_id": "boc-about-team",
+        "background_color": "#333333",
+        "text_color": "#FFFFFF",
+        "intro_color": "#bdbdbd",
+        "featured_card_background": "#2a2a2a",
+        "carousel_card_background": "#FFFFFF",
+        "card_image_height": 310,
+        "padding_top_desktop": 120,
+        "padding_bottom_desktop": 120,
+        "padding_top_tablet": 96,
+        "padding_bottom_tablet": 96,
+        "padding_top_mobile": 80,
+        "padding_bottom_mobile": 80,
+        "eyebrow": "The people behind the wine",
+        "heading": "Meet the team.",
+        "body": "Rob Hall and Ben Craig lead the wine and vineyard story. Select any profile to read more about the wider Boat O'Craigo team.",
+        "show_carousel": true,
+        "show_controls": true,
+        "cards_visible_desktop": 4,
+        "cards_visible_tablet": 2,
+        "cards_visible_mobile": 1,
+        "scroll_amount": 1,
+        "carousel_eyebrow": "Hospitality, events and operations",
+        "carousel_heading": "The wider team",
+        "carousel_aria_label": "Boat O'Craigo team carousel"
+      }
+    },
+    "boc_about_careers": {
+      "type": "boc-about-careers",
+      "blocks": {
+        "job_wine_tasting": {
+          "type": "job",
+          "settings": {
+            "job_title": "Wine Tasting & Sales",
+            "summary": "We are looking for an engaging hospitality professional who enjoys wine, storytelling and creating relaxed guest experiences.",
+            "description": "<p>We are looking for an engaging hospitality professional who enjoys wine, storytelling and creating relaxed guest experiences.</p>",
+            "requirements": "<ul><li>Weekend availability preferred</li><li>Wine knowledge welcomed but training can be provided</li><li>Casual and part-time opportunities may be available</li></ul>",
+            "status": "open",
+            "open_by_default": true,
+            "application_method": "email",
+            "application_email": "info@boatocraigo.com.au",
+            "application_new_tab": false
+          }
+        },
+        "job_kitchenhand": {
+          "type": "job",
+          "settings": {
+            "job_title": "Junior Kitchenhand",
+            "summary": "Join a supportive kitchen team working across lunch service, events and seasonal menus in the Glasshouse.",
+            "description": "<p>Join a supportive kitchen team working across lunch service, events and seasonal menus in the Glasshouse.</p>",
+            "requirements": "<ul><li>Reliable and organised</li><li>Comfortable in a fast-paced environment</li><li>Weekend availability essential</li></ul>",
+            "status": "open",
+            "open_by_default": false,
+            "application_method": "email",
+            "application_email": "info@boatocraigo.com.au",
+            "application_new_tab": false
+          }
+        },
+        "job_front_of_house": {
+          "type": "job",
+          "settings": {
+            "job_title": "Front of House Hospitality",
+            "summary": "Help deliver warm, attentive service across the restaurant, cellar door and private events.",
+            "description": "<p>Help deliver warm, attentive service across the restaurant, cellar door and private events.</p>",
+            "requirements": "<ul><li>Strong communication skills</li><li>Hospitality experience preferred</li><li>Interest in food and wine</li></ul>",
+            "status": "open",
+            "open_by_default": false,
+            "application_method": "email",
+            "application_email": "info@boatocraigo.com.au",
+            "application_new_tab": false
+          }
+        }
+      },
+      "block_order": [
+        "job_wine_tasting",
+        "job_kitchenhand",
+        "job_front_of_house"
+      ],
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "section_anchor_id": "boc-about-careers",
+        "background_color": "#FFFFFF",
+        "one_open_only": true,
+        "show_closed_jobs": false,
+        "empty_state_text": "There are currently no open positions.",
+        "padding_top_desktop": 120,
+        "padding_bottom_desktop": 120,
+        "padding_top_tablet": 96,
+        "padding_bottom_tablet": 96,
+        "padding_top_mobile": 80,
+        "padding_bottom_mobile": 80,
+        "eyebrow": "Work with us",
+        "heading": "Join the Boat O'Craigo team.",
+        "body": "Explore current opportunities across hospitality, cellar door, events, wine and vineyard operations."
+      }
+    },
+    "boc_about_final_cta": {
+      "type": "boc-about-final-cta",
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "overlay_color": "#000000",
+        "overlay_opacity": 55,
+        "height_desktop": 520,
+        "content_width": 780,
+        "eyebrow": "Experience the estate",
+        "heading": "Come and meet us in the Yarra Valley.",
+        "body": "The best way to understand Boat O'Craigo is to taste the wines, see the vineyards and spend some time at the estate.",
+        "button_1_enabled": true,
+        "button_1_label": "Plan your visit",
+        "button_1_url": "/pages/visit",
+        "button_1_style": "accent",
+        "button_1_new_tab": false,
+        "button_2_enabled": true,
+        "button_2_label": "Shop our wines",
+        "button_2_url": "/collections/wines",
+        "button_2_style": "light",
+        "button_2_new_tab": false
+      }
+    }
+  },
+  "order": [
+    "boc_about_hero",
+    "boc_about_nav",
+    "boc_about_intro",
+    "boc_about_family",
+    "boc_about_vineyards",
+    "boc_about_winemaking",
+    "boc_about_team",
+    "boc_about_careers",
+    "boc_about_final_cta"
+  ]
+}

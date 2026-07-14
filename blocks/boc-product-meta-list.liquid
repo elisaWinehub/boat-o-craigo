@@ -1,0 +1,51 @@
+{%- liquid
+  assign product = closest.product | default: product
+  assign variety = product.metafields.wine.variety_blend
+  assign region = product.metafields.wine.region
+  assign abv = product.metafields.wine.abv
+  assign has_meta = false
+  if variety != blank or region != blank or abv != blank
+    assign has_meta = true
+  endif
+-%}
+
+{%- if has_meta -%}
+  <div class="product-meta-list" {{ block.shopify_attributes }}>
+    {%- if variety != blank -%}
+      <div class="product-meta-item">
+        <span>{{ block.settings.variety_label | default: 'Variety' }}</span>
+        <strong>{{ variety }}</strong>
+      </div>
+    {%- endif -%}
+    {%- if region != blank -%}
+      <div class="product-meta-item">
+        <span>{{ block.settings.region_label | default: 'Region' }}</span>
+        <strong>{{ region }}</strong>
+      </div>
+    {%- endif -%}
+    {%- if abv != blank -%}
+      <div class="product-meta-item">
+        <span>{{ block.settings.abv_label | default: 'Alcohol' }}</span>
+        <strong>{{ abv }}%</strong>
+      </div>
+    {%- endif -%}
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "BOC — Meta list",
+  "tag": null,
+  "settings": [
+    { "type": "text", "id": "variety_label", "label": "Variety label", "default": "Variety" },
+    { "type": "text", "id": "region_label", "label": "Region label", "default": "Region" },
+    { "type": "text", "id": "abv_label", "label": "Alcohol label", "default": "Alcohol" }
+  ],
+  "presets": [
+    {
+      "name": "BOC — Meta list",
+      "category": "Product"
+    }
+  ]
+}
+{% endschema %}

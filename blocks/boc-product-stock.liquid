@@ -1,0 +1,45 @@
+{%- liquid
+  assign product = closest.product | default: product
+  assign variant = product.selected_or_first_available_variant
+  assign in_stock = variant.available
+  assign stock_message = block.settings.in_stock_text | default: 'In stock and ready to ship'
+  assign out_of_stock_message = block.settings.out_of_stock_text | default: 'Currently unavailable'
+-%}
+
+<div class="product-stock" {{ block.shopify_attributes }}>
+  <span class="stock-dot{% unless in_stock %} stock-dot--out{% endunless %}"></span>
+  <span>
+    {%- if in_stock -%}
+      {{ stock_message }}
+    {%- else -%}
+      {{ out_of_stock_message }}
+    {%- endif -%}
+  </span>
+</div>
+
+{% schema %}
+{
+  "name": "BOC — Stock indicator",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "in_stock_text",
+      "label": "In stock message",
+      "default": "In stock and ready to ship"
+    },
+    {
+      "type": "text",
+      "id": "out_of_stock_text",
+      "label": "Out of stock message",
+      "default": "Currently unavailable"
+    }
+  ],
+  "presets": [
+    {
+      "name": "BOC — Stock indicator",
+      "category": "Product"
+    }
+  ]
+}
+{% endschema %}

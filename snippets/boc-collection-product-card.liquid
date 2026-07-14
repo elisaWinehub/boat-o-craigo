@@ -1,0 +1,24 @@
+{%- doc -%}
+  Collection product card wrapper.
+
+  @param {product} product - Shopify product
+  @param {object} [collection] - Parent collection
+  @param {object} section - Section settings
+{%- enddoc -%}
+
+{% render 'boc-product-card',
+  product: product,
+  collection: collection,
+  section: section,
+  show_vendor: section.settings.show_vendor,
+  show_vintage: section.settings.show_vintage,
+  show_wine_type: section.settings.show_wine_type,
+  show_badges: section.settings.show_badges,
+  show_price: section.settings.show_price,
+  show_compare_at: section.settings.show_compare_at,
+  show_quantity: section.settings.show_quantity,
+  show_add_to_cart: section.settings.show_add_to_cart,
+  enable_quick_add: section.settings.enable_quick_add,
+  card_context: 'collection',
+  card_class: 'boc-product-card--collection'
+%}

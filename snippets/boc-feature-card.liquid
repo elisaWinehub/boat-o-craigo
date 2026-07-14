@@ -1,0 +1,65 @@
+{%- doc -%}
+  Renders a celebration or discover feature card.
+
+  @param {object} block - Block with settings
+  @param {string} [variant] - celebration | discover
+{%- enddoc -%}
+
+{%- liquid
+  assign card_variant = variant | default: 'celebration'
+  assign image_url = 'boc-estate-vineyard.jpg' | asset_url
+  if block.settings.image != blank
+    assign image_url = block.settings.image | image_url: width: 1400
+  endif
+
+  assign card_url = block.settings.button_url | default: block.settings.link | default: '#'
+  assign card_tag = 'article'
+  if card_variant == 'discover' and card_url != '#'
+    assign card_tag = 'a'
+  endif
+-%}
+
+<{{ card_tag }}
+  class="boc-whats-on-feature-card boc-whats-on-feature-card--{{ card_variant }}"
+  {% if card_tag == 'a' %}href="{{ card_url }}"{% endif %}
+  style="--boc-wo-card-height: {{ block.settings.card_height | default: 660 }}px;"
+  {{ block.shopify_attributes }}
+>
+  <div class="boc-whats-on-feature-card__media">
+    {%- if block.settings.image != blank or block.settings.mobile_image != blank -%}
+      {% render 'boc-responsive-image',
+        image: block.settings.image,
+        mobile_image: block.settings.mobile_image,
+        alt: block.settings.image.alt | default: block.settings.heading,
+        loading: 'lazy',
+        sizes: '(min-width: 1050px) 50vw, 100vw'
+      %}
+    {%- else -%}
+      <img src="{{ image_url }}" alt="{{ block.settings.heading | escape }}" loading="lazy" width="1200" height="660">
+    {%- endif -%}
+  </div>
+  <div class="boc-whats-on-feature-card__overlay" aria-hidden="true"></div>
+  <div class="boc-whats-on-feature-card__copy">
+    {%- if block.settings.eyebrow != blank -%}
+      <span class="boc-eyebrow">{{ block.settings.eyebrow }}</span>
+    {%- endif -%}
+    {%- if block.settings.heading != blank -%}
+      <h3 class="boc-whats-on-feature-card__heading">{{ block.settings.heading }}</h3>
+    {%- endif -%}
+    {%- if block.settings.body != blank -%}
+      <p>{{ block.settings.body }}</p>
+    {%- endif -%}
+    {%- if card_variant == 'celebration' and block.settings.button_label != blank -%}
+      <a
+        href="#{{ block.settings.button_anchor | default: 'boc-whats-on-enquiry' }}"
+        class="boc-btn boc-btn--{{ block.settings.button_style | default: 'light' }}"
+        data-boc-whats-on-enquiry-tab="{{ block.settings.enquiry_type | default: 'wedding' }}"
+        data-boc-whats-on-scroll
+      >
+        {{ block.settings.button_label }}
+      </a>
+    {%- elsif card_variant == 'discover' and block.settings.link_label != blank -%}
+      <span class="boc-home-text-link">{{ block.settings.link_label }}</span>
+    {%- endif -%}
+  </div>
+</{{ card_tag }}>

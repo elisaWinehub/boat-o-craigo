@@ -1,145 +1,530 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */{
+{
   "sections": {
-    "main": {
-      "type": "main-page",
-      "blocks": {
-        "title": {
-          "type": "text",
-          "name": "t:names.title",
-          "settings": {
-            "text": "<h1>{{ closest.page.title }}</h1>",
-            "width": "100%",
-            "max_width": "normal",
-            "alignment": "center",
-            "type_preset": "h2",
-            "font": "var(--font-primary--family)",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        },
-        "content": {
-          "type": "text",
-          "name": "t:names.content",
-          "settings": {
-            "text": "{{ closest.page.content }}",
-            "width": "100%",
-            "max_width": "narrow",
-            "alignment": "center",
-            "type_preset": "rte",
-            "font": "var(--font-primary--family)",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "title",
-        "content"
-      ],
+    "boc_contact_hero": {
+      "type": "boc-contact-hero",
       "settings": {
-        "content_direction": "column",
-        "gap": 32,
-        "background_color": "{{ settings.color_palette.background }}",
-        "padding-block-start": 40,
-        "padding-block-end": 0
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "form_anchor": "boc-contact-form",
+        "faq_anchor": "boc-contact-faq",
+        "overlay_opacity": 100,
+        "height_desktop": 640,
+        "height_tablet": 620,
+        "height_mobile": 560,
+        "image_focal_point": "center",
+        "content_width": 760,
+        "eyebrow": "Contact Boat O'Craigo",
+        "heading": "How can we help?",
+        "body": "Whether you are planning a visit, asking about an order, joining the Wine Club or organising an event, this page brings the right contact details and answers together in one place.",
+        "text_alignment_desktop": "left",
+        "text_alignment_mobile": "left",
+        "button_1_enabled": true,
+        "button_1_label": "Send an enquiry",
+        "button_1_style": "accent",
+        "button_2_enabled": true,
+        "button_2_label": "Browse FAQs",
+        "button_2_style": "light"
       }
     },
-    "form": {
-      "type": "section",
+    "boc_contact_nav": {
+      "type": "boc-contact-anchor-nav",
       "blocks": {
-        "contact_form_UwiCkQ": {
-          "type": "contact-form",
+        "nav_pathways": {
+          "type": "link",
           "settings": {
-            "width": "custom",
-            "custom_width": 50,
-            "width_mobile": "custom",
-            "custom_width_mobile": 100,
-            "input_style": "default",
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {
-            "submit-button": {
-              "type": "contact-form-submit-button",
-              "static": true,
-              "settings": {
-                "label": "Submit",
-                "style_class": "button",
-                "width": "fit-content",
-                "custom_width": 100,
-                "width_mobile": "fit-content",
-                "custom_width_mobile": 100
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": []
+            "label": "Contact options",
+            "anchor_id": "boc-contact-pathways"
+          }
+        },
+        "nav_details": {
+          "type": "link",
+          "settings": {
+            "label": "Details & hours",
+            "anchor_id": "boc-contact-details"
+          }
+        },
+        "nav_form": {
+          "type": "link",
+          "settings": {
+            "label": "Enquiry form",
+            "anchor_id": "boc-contact-form"
+          }
+        },
+        "nav_faq": {
+          "type": "link",
+          "settings": {
+            "label": "FAQs",
+            "anchor_id": "boc-contact-faq"
+          }
+        },
+        "nav_location": {
+          "type": "link",
+          "settings": {
+            "label": "Getting here",
+            "anchor_id": "boc-contact-location"
+          }
         }
       },
       "block_order": [
-        "contact_form_UwiCkQ"
+        "nav_pathways",
+        "nav_details",
+        "nav_form",
+        "nav_faq",
+        "nav_location"
       ],
-      "name": "t:names.contact_form",
       "settings": {
-        "content_direction": "column",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "flex-start",
-        "vertical_alignment": "center",
-        "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "center",
-        "vertical_alignment_flex_direction_column": "center",
-        "gap": 32,
-        "section_width": "page-width",
-        "section_height_custom": 50,
-        "background_media": "none",
-        "background_color": "{{ settings.color_palette.background }}",
-        "video_position": "cover",
-        "background_image_position": "cover",
-        "border": "none",
-        "border_width": 1,
-        "border_opacity": 100,
-        "border_radius": 0,
-        "toggle_overlay": false,
-        "overlay_color": "#00000026",
-        "overlay_style": "solid",
-        "gradient_direction": "to top",
-        "padding-block-start": 32,
-        "padding-block-end": 84
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "sticky_enabled": true,
+        "active_tracking": true,
+        "background_color": "#FFFFFF",
+        "text_color": "#212121",
+        "active_color": "#B99E7E",
+        "aria_label": "Contact page navigation"
+      }
+    },
+    "boc_contact_pathways": {
+      "type": "boc-contact-pathways",
+      "blocks": {
+        "pathway_bookings": {
+          "type": "pathway",
+          "settings": {
+            "eyebrow": "Reservations",
+            "heading": "Bookings",
+            "description": "Reserve a wine tasting or table, or review an existing restaurant booking.",
+            "link_label": "Make a booking",
+            "action_type": "page_url",
+            "url": "/pages/book-now",
+            "email_source": "custom",
+            "enquiry_topic": "restaurant-tasting",
+            "open_new_tab": false,
+            "background_color": "#FFFFFF",
+            "hover_background_color": "#FAF8F5",
+            "text_color": "#212121",
+            "hover_text_color": "#212121"
+          }
+        },
+        "pathway_wine_club": {
+          "type": "pathway",
+          "settings": {
+            "eyebrow": "Membership",
+            "heading": "Wine Club",
+            "description": "Ask about memberships, account access, wine selections or upcoming club deliveries.",
+            "link_label": "Email Wine Club",
+            "action_type": "email",
+            "email_source": "wine_club",
+            "enquiry_topic": "wine-club",
+            "open_new_tab": false,
+            "background_color": "#FFFFFF",
+            "hover_background_color": "#FAF8F5",
+            "text_color": "#212121",
+            "hover_text_color": "#212121"
+          }
+        },
+        "pathway_events": {
+          "type": "pathway",
+          "settings": {
+            "eyebrow": "Celebrations",
+            "heading": "Weddings & Events",
+            "description": "Enquire about weddings, private events, venue spaces, menus and group options.",
+            "link_label": "Contact Events",
+            "action_type": "email",
+            "email_source": "events",
+            "enquiry_topic": "weddings-events",
+            "open_new_tab": false,
+            "background_color": "#FFFFFF",
+            "hover_background_color": "#FAF8F5",
+            "text_color": "#212121",
+            "hover_text_color": "#212121"
+          }
+        },
+        "pathway_orders": {
+          "type": "pathway",
+          "settings": {
+            "eyebrow": "Shop support",
+            "heading": "Orders & Delivery",
+            "description": "Get help with online orders, delivery timing, damaged items or payment questions.",
+            "link_label": "Send an enquiry",
+            "action_type": "form_topic",
+            "email_source": "custom",
+            "enquiry_topic": "order-support",
+            "open_new_tab": false,
+            "background_color": "#FFFFFF",
+            "hover_background_color": "#FAF8F5",
+            "text_color": "#212121",
+            "hover_text_color": "#212121"
+          }
+        }
+      },
+      "block_order": [
+        "pathway_bookings",
+        "pathway_wine_club",
+        "pathway_events",
+        "pathway_orders"
+      ],
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "section_anchor_id": "boc-contact-pathways",
+        "form_anchor": "boc-contact-form",
+        "background_color": "#FFFFFF",
+        "columns_desktop": 4,
+        "columns_tablet": 2,
+        "padding_top_desktop": 120,
+        "padding_bottom_desktop": 120,
+        "padding_top_tablet": 96,
+        "padding_bottom_tablet": 96,
+        "padding_top_mobile": 80,
+        "padding_bottom_mobile": 80,
+        "eyebrow": "Start here",
+        "heading": "Choose the right enquiry.",
+        "body": "Instead of sending every visitor through one general form, this page directs each request to the right team or next action."
+      }
+    },
+    "boc_contact_details": {
+      "type": "boc-contact-details",
+      "blocks": {
+        "detail_address": {
+          "type": "detail",
+          "settings": {
+            "heading": "Address",
+            "label": "Boat O'Craigo",
+            "content": "458 Maroondah Highway\nHealesville VIC 3777",
+            "card_background_color": "#FFFFFF",
+            "text_color": "#212121"
+          }
+        },
+        "detail_phone": {
+          "type": "detail",
+          "settings": {
+            "heading": "Phone",
+            "phone_label": "General enquiries",
+            "phone": "03 5962 6899",
+            "card_background_color": "#FFFFFF",
+            "text_color": "#212121"
+          }
+        },
+        "detail_cellar": {
+          "type": "detail",
+          "settings": {
+            "heading": "Cellar Door",
+            "detail_1_label": "Sales",
+            "detail_1_value": "Thursday–Monday, 10am–5pm",
+            "detail_2_label": "Wine Tastings",
+            "detail_2_value": "Thursday–Monday, 10am–4pm",
+            "card_background_color": "#FFFFFF",
+            "text_color": "#212121"
+          }
+        },
+        "detail_restaurant": {
+          "type": "detail",
+          "settings": {
+            "heading": "Glasshouse Restaurant",
+            "detail_1_label": "Weekdays",
+            "detail_1_value": "12pm–3pm",
+            "detail_2_label": "Weekends",
+            "detail_2_value": "11am–4pm",
+            "card_background_color": "#FFFFFF",
+            "text_color": "#212121"
+          }
+        },
+        "detail_email": {
+          "type": "detail",
+          "settings": {
+            "heading": "Email",
+            "detail_1_label": "Bookings",
+            "detail_1_value": "bookings@boatocraigo.com.au",
+            "detail_2_label": "Wine Club",
+            "detail_2_value": "wineclub@boatocraigo.com.au",
+            "card_background_color": "#FFFFFF",
+            "text_color": "#212121"
+          }
+        },
+        "detail_postal": {
+          "type": "detail",
+          "settings": {
+            "heading": "Postal Address",
+            "label": "Mail",
+            "content": "PO Box 231\nWarrandyte VIC 3113",
+            "card_background_color": "#FFFFFF",
+            "text_color": "#212121"
+          }
+        }
+      },
+      "block_order": [
+        "detail_address",
+        "detail_phone",
+        "detail_cellar",
+        "detail_restaurant",
+        "detail_email",
+        "detail_postal"
+      ],
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "section_anchor_id": "boc-contact-details",
+        "background_color": "#FFFFFF",
+        "padding_top_desktop": 120,
+        "padding_bottom_desktop": 120,
+        "padding_top_tablet": 96,
+        "padding_bottom_tablet": 96,
+        "padding_top_mobile": 80,
+        "padding_bottom_mobile": 80,
+        "eyebrow": "Contact details",
+        "heading": "Visit, call or email.",
+        "body": "Find the right contact details, opening hours and address information for your visit or enquiry."
+      }
+    },
+    "boc_contact_form": {
+      "type": "boc-contact-form",
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "section_anchor_id": "boc-contact-form",
+        "form_provider_mode": "native_contact",
+        "background_color": "#FFFFFF",
+        "form_background": "#F6F6F6",
+        "field_background": "#FFFFFF",
+        "field_border": "#EDEDED",
+        "padding_top_desktop": 120,
+        "padding_bottom_desktop": 120,
+        "padding_top_tablet": 96,
+        "padding_bottom_tablet": 96,
+        "padding_top_mobile": 80,
+        "padding_bottom_mobile": 80,
+        "eyebrow": "General enquiry",
+        "heading": "Send us a message.",
+        "body": "Use the form for general questions, order support or anything that does not fit the dedicated booking, Wine Club or events pathways above.",
+        "note_heading": "Already have a reservation?",
+        "note_text": "Changes and cancellations should be completed through the confirmation email wherever possible.",
+        "show_order_number": true,
+        "show_booking_reference": true,
+        "message_placeholder": "Tell us how we can help.",
+        "submit_label": "Send enquiry",
+        "success_message": "Thank you. Our team will be in touch shortly.",
+        "privacy_text": "Your details will only be used to respond to your enquiry."
+      }
+    },
+    "boc_contact_faq": {
+      "type": "boc-contact-faq",
+      "blocks": {
+        "faq_hours": {
+          "type": "faq",
+          "settings": {
+            "category": "Cellar Door & Restaurant",
+            "question": "What are your opening hours?",
+            "answer": "<p>The Cellar Door is generally open Thursday to Monday from 10am to 5pm, with tastings available until 4pm. Restaurant service times vary between weekdays and weekends.</p>",
+            "open_by_default": true
+          }
+        },
+        "faq_tasting_book": {
+          "type": "faq",
+          "settings": {
+            "category": "Cellar Door & Restaurant",
+            "question": "Do I need to book a wine tasting?",
+            "answer": "<p>Walk-ins may be accepted when space allows, but bookings are recommended—especially on weekends and public holidays.</p>",
+            "open_by_default": false
+          }
+        },
+        "faq_dietary": {
+          "type": "faq",
+          "settings": {
+            "category": "Cellar Door & Restaurant",
+            "question": "Can you accommodate dietary requirements?",
+            "answer": "<p>Most common dietary requirements can be accommodated with notice. Add them during booking or contact the team before your visit.</p>",
+            "open_by_default": false
+          }
+        },
+        "faq_wc_update": {
+          "type": "faq",
+          "settings": {
+            "category": "Wine Club & Our Wines",
+            "question": "How do I update my Wine Club details?",
+            "answer": "<p>Members can update account information through the customer portal or contact the Wine Club team for assistance.</p>",
+            "open_by_default": false
+          }
+        },
+        "faq_vegan": {
+          "type": "faq",
+          "settings": {
+            "category": "Wine Club & Our Wines",
+            "question": "Do you offer vegan wines?",
+            "answer": "<p>Some wines may be suitable for vegan customers. Final production copy should be confirmed against current winemaking and product information.</p>",
+            "open_by_default": false
+          }
+        },
+        "faq_storage": {
+          "type": "faq",
+          "settings": {
+            "category": "Wine Club & Our Wines",
+            "question": "How should I store my wine?",
+            "answer": "<p>Store wine in a cool, dark place with a consistent temperature. Bottles sealed with cork should generally be stored on their side.</p>",
+            "open_by_default": false
+          }
+        },
+        "faq_vouchers": {
+          "type": "faq",
+          "settings": {
+            "category": "Orders & Delivery",
+            "question": "Can I buy gift vouchers online?",
+            "answer": "<p>Yes. Gift vouchers and gift products can be purchased through the online store, subject to the final Shopify catalogue setup.</p>",
+            "open_by_default": false
+          }
+        },
+        "faq_delivery": {
+          "type": "faq",
+          "settings": {
+            "category": "Orders & Delivery",
+            "question": "How long will delivery take?",
+            "answer": "<p>Delivery timing depends on the destination and fulfilment schedule. Order confirmation and tracking information will be sent by email.</p>",
+            "open_by_default": false
+          }
+        },
+        "faq_damaged": {
+          "type": "faq",
+          "settings": {
+            "category": "Orders & Delivery",
+            "question": "What should I do if my order arrives damaged?",
+            "answer": "<p>Photograph the damaged packaging and products, keep the items, and contact the team with your order number so they can assist.</p>",
+            "open_by_default": false
+          }
+        }
+      },
+      "block_order": [
+        "faq_hours",
+        "faq_tasting_book",
+        "faq_dietary",
+        "faq_wc_update",
+        "faq_vegan",
+        "faq_storage",
+        "faq_vouchers",
+        "faq_delivery",
+        "faq_damaged"
+      ],
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "section_anchor_id": "boc-contact-faq",
+        "container_width": "standard",
+        "background_color": "#333333",
+        "text_color": "#FFFFFF",
+        "category_color": "#FFFFFF",
+        "divider_color": "#4A4A4A",
+        "question_color": "#FFFFFF",
+        "answer_color": "#BFBFBF",
+        "icon_color": "#FFFFFF",
+        "one_open_only": true,
+        "first_item_open": true,
+        "heading_column_ratio": "0.72fr 1.28fr",
+        "category_order": "Cellar Door & Restaurant|Wine Club & Our Wines|Orders & Delivery",
+        "padding_top_desktop": 120,
+        "padding_bottom_desktop": 120,
+        "padding_top_tablet": 96,
+        "padding_bottom_tablet": 96,
+        "padding_top_mobile": 80,
+        "padding_bottom_mobile": 80,
+        "eyebrow": "Frequently asked questions",
+        "heading": "Answers before you need to ask."
+      }
+    },
+    "boc_contact_location": {
+      "type": "boc-contact-location",
+      "blocks": {
+        "loc_address": {
+          "type": "detail_row",
+          "settings": {
+            "label": "Address",
+            "value": "458 Maroondah Highway"
+          }
+        },
+        "loc_town": {
+          "type": "detail_row",
+          "settings": {
+            "label": "Town",
+            "value": "Healesville VIC 3777"
+          }
+        },
+        "loc_parking": {
+          "type": "detail_row",
+          "settings": {
+            "label": "Parking",
+            "value": "Available on site"
+          }
+        }
+      },
+      "block_order": [
+        "loc_address",
+        "loc_town",
+        "loc_parking"
+      ],
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "section_anchor_id": "boc-contact-location",
+        "image_side": "left",
+        "mobile_stack_order": "image_first",
+        "split_ratio": "1.05fr 0.95fr",
+        "desktop_image_height": 620,
+        "tablet_image_height": 480,
+        "copy_background_color": "#B99E7E",
+        "text_color": "#FFFFFF",
+        "media_background_color": "#DCC6A2",
+        "google_maps_url": "https://www.google.com/maps/search/?api=1&query=458+Maroondah+Highway,+Healesville+VIC+3777",
+        "eyebrow": "Getting here",
+        "heading": "Find us in Healesville.",
+        "body": "Boat O'Craigo is a short drive from central Healesville, at the foot of the Black Spur ranges.",
+        "button_enabled": true,
+        "button_label": "Get directions",
+        "button_new_tab": true
+      }
+    },
+    "boc_contact_final": {
+      "type": "boc-contact-final-cta",
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "form_anchor": "boc-contact-form",
+        "overlay_color": "#000000",
+        "overlay_opacity": 55,
+        "height_desktop": 440,
+        "content_width": 760,
+        "eyebrow": "Still need help?",
+        "heading": "We would love to hear from you.",
+        "body": "Send a general enquiry or speak directly with the team responsible for your booking, membership, event or order.",
+        "button_1_enabled": true,
+        "button_1_label": "Send an enquiry",
+        "button_1_style": "accent",
+        "button_2_enabled": true,
+        "button_2_label": "Call 03 5962 6899",
+        "phone_number": "03 5962 6899",
+        "button_2_style": "light"
       }
     }
   },
   "order": [
-    "main",
-    "form"
+    "boc_contact_hero",
+    "boc_contact_nav",
+    "boc_contact_pathways",
+    "boc_contact_details",
+    "boc_contact_form",
+    "boc_contact_faq",
+    "boc_contact_location",
+    "boc_contact_final"
   ]
 }

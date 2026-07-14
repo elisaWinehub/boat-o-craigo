@@ -1,0 +1,117 @@
+{%- liquid
+  assign section_classes = 'boc-contact-section boc-contact-pathways boc-contact-section--standard'
+  unless section.settings.section_enabled
+    assign section_classes = section_classes | append: ' boc-contact-section--disabled'
+  endunless
+  unless section.settings.show_desktop
+    assign section_classes = section_classes | append: ' boc-contact-section--hide-desktop'
+  endunless
+  unless section.settings.show_tablet
+    assign section_classes = section_classes | append: ' boc-contact-section--hide-tablet'
+  endunless
+  unless section.settings.show_mobile
+    assign section_classes = section_classes | append: ' boc-contact-section--hide-mobile'
+  endunless
+  assign form_anchor = section.settings.form_anchor | default: 'boc-contact-form'
+-%}
+
+<section
+  id="{{ section.settings.section_anchor_id | default: 'boc-contact-pathways' }}"
+  class="{{ section_classes }}"
+  data-boc-contact
+  style="
+    --boc-ct-bg: {{ section.settings.background_color }};
+    --boc-ct-path-cols-d: {{ section.settings.columns_desktop }};
+    --boc-ct-path-cols-t: {{ section.settings.columns_tablet }};
+    --boc-ct-pad-top-d: {{ section.settings.padding_top_desktop }}px;
+    --boc-ct-pad-bottom-d: {{ section.settings.padding_bottom_desktop }}px;
+    --boc-ct-pad-top-t: {{ section.settings.padding_top_tablet }}px;
+    --boc-ct-pad-bottom-t: {{ section.settings.padding_bottom_tablet }}px;
+    --boc-ct-pad-top-m: {{ section.settings.padding_top_mobile }}px;
+    --boc-ct-pad-bottom-m: {{ section.settings.padding_bottom_mobile }}px;
+  "
+>
+  <div class="boc-contact-section__inner">
+    <div class="boc-contact-section__head">
+      <div>
+        {%- if section.settings.eyebrow != blank -%}<span class="boc-eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+        {%- if section.settings.heading != blank -%}<h2 class="boc-contact-section__heading">{{ section.settings.heading }}</h2>{%- endif -%}
+      </div>
+      {%- if section.settings.body != blank -%}<p>{{ section.settings.body }}</p>{%- endif -%}
+    </div>
+    <div class="boc-contact-pathways__grid">
+      {%- for block in section.blocks -%}
+        {% render 'boc-contact-path-card', block: block, form_anchor: form_anchor %}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "BOC — Contact Paths",
+  "tag": "section",
+  "class": "boc-contact-pathways-section",
+  "max_blocks": 8,
+  "settings": [
+    { "type": "checkbox", "id": "section_enabled", "label": "Enable section", "default": true },
+    { "type": "checkbox", "id": "show_desktop", "label": "Show on desktop", "default": true },
+    { "type": "checkbox", "id": "show_tablet", "label": "Show on tablet", "default": true },
+    { "type": "checkbox", "id": "show_mobile", "label": "Show on mobile", "default": true },
+    { "type": "text", "id": "section_anchor_id", "label": "Section anchor ID", "default": "boc-contact-pathways" },
+    { "type": "text", "id": "form_anchor", "label": "Form anchor", "default": "boc-contact-form" },
+    { "type": "color", "id": "background_color", "label": "Background", "default": "#FFFFFF" },
+    { "type": "range", "id": "columns_desktop", "label": "Columns (desktop)", "min": 1, "max": 4, "step": 1, "default": 4 },
+    { "type": "range", "id": "columns_tablet", "label": "Columns (tablet)", "min": 1, "max": 4, "step": 1, "default": 2 },
+    { "type": "range", "id": "padding_top_desktop", "label": "Desktop padding top", "min": 40, "max": 160, "step": 8, "unit": "px", "default": 120 },
+    { "type": "range", "id": "padding_bottom_desktop", "label": "Desktop padding bottom", "min": 40, "max": 160, "step": 8, "unit": "px", "default": 120 },
+    { "type": "range", "id": "padding_top_tablet", "label": "Tablet padding top", "min": 40, "max": 128, "step": 8, "unit": "px", "default": 96 },
+    { "type": "range", "id": "padding_bottom_tablet", "label": "Tablet padding bottom", "min": 40, "max": 128, "step": 8, "unit": "px", "default": 96 },
+    { "type": "range", "id": "padding_top_mobile", "label": "Mobile padding top", "min": 40, "max": 120, "step": 8, "unit": "px", "default": 80 },
+    { "type": "range", "id": "padding_bottom_mobile", "label": "Mobile padding bottom", "min": 40, "max": 120, "step": 8, "unit": "px", "default": 80 },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Start here" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Choose the right enquiry." },
+    { "type": "textarea", "id": "body", "label": "Body", "default": "Instead of sending every visitor through one general form, this page directs each request to the right team or next action." }
+  ],
+  "blocks": [
+    {
+      "type": "pathway",
+      "name": "Pathway",
+      "settings": [
+        { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Category" },
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Pathway" },
+        { "type": "textarea", "id": "description", "label": "Description" },
+        { "type": "text", "id": "link_label", "label": "Link label", "default": "Learn more" },
+        { "type": "select", "id": "action_type", "label": "Action type", "options": [
+          {"value":"page_url","label":"Page URL"},
+          {"value":"email","label":"Email"},
+          {"value":"phone","label":"Phone"},
+          {"value":"scroll_form","label":"Scroll to form"},
+          {"value":"form_topic","label":"Open form with topic"}
+        ], "default": "page_url" },
+        { "type": "url", "id": "url", "label": "Page URL" },
+        { "type": "text", "id": "email", "label": "Email address" },
+        { "type": "select", "id": "email_source", "label": "Email fallback", "options": [
+          {"value":"custom","label":"Use field above"},
+          {"value":"wine_club","label":"Theme Wine Club email"},
+          {"value":"events","label":"Theme Events email"}
+        ], "default": "custom" },
+        { "type": "text", "id": "phone", "label": "Phone number" },
+        { "type": "select", "id": "enquiry_topic", "label": "Enquiry topic", "options": [
+          {"value":"general","label":"General enquiry"},
+          {"value":"order-support","label":"Order support"},
+          {"value":"wine-club","label":"Wine Club"},
+          {"value":"weddings-events","label":"Weddings & events"},
+          {"value":"restaurant-tasting","label":"Restaurant or tasting"}
+        ], "default": "general" },
+        { "type": "checkbox", "id": "open_new_tab", "label": "Open in new tab", "default": false },
+        { "type": "color", "id": "background_color", "label": "Card background", "default": "#FFFFFF" },
+        { "type": "color", "id": "hover_background_color", "label": "Hover background", "default": "#FAF8F5" },
+        { "type": "color", "id": "text_color", "label": "Text colour", "default": "#212121" },
+        { "type": "color", "id": "hover_text_color", "label": "Hover text colour", "default": "#212121" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "BOC — Contact Paths" }]
+}
+{% endschema %}

@@ -1,0 +1,20 @@
+{%- doc -%}
+  Resolves a booking URL from theme settings with optional section override.
+
+  @param {string} [type] - default, tasting, restaurant, or group
+  @param {string} [override_url] - Section-level URL override
+{%- enddoc -%}
+
+{%- liquid
+  assign resolved_url = settings.boc_default_booking_url
+  if override_url != blank
+    assign resolved_url = override_url
+  elsif type == 'tasting' and settings.boc_tasting_booking_url != blank
+    assign resolved_url = settings.boc_tasting_booking_url
+  elsif type == 'restaurant' and settings.boc_restaurant_booking_url != blank
+    assign resolved_url = settings.boc_restaurant_booking_url
+  elsif type == 'group' and settings.boc_group_enquiry_url != blank
+    assign resolved_url = settings.boc_group_enquiry_url
+  endif
+-%}
+{{- resolved_url -}}

@@ -1,0 +1,50 @@
+{%- doc -%}
+  Renders a form field for What's On enquiry forms.
+
+  @param {string} id - Field id
+  @param {string} name - Input name attribute
+  @param {string} label - Label text
+  @param {string} [type] - text | email | tel | date | number | select | textarea
+  @param {string} [value] - Default value
+  @param {string} [placeholder] - Placeholder
+  @param {boolean} [full_width] - Span full grid width
+  @param {string} [options] - Pipe-separated select options
+  @param {boolean} [required] - Required field
+{%- enddoc -%}
+
+{%- liquid
+  assign field_type = type | default: 'text'
+  assign field_class = 'boc-whats-on-enquiry__field'
+  if full_width
+    assign field_class = field_class | append: ' boc-whats-on-enquiry__field--full'
+  endif
+-%}
+
+<div class="{{ field_class }}">
+  <label for="{{ id }}">{{ label }}</label>
+  {%- case field_type -%}
+    {%- when 'textarea' -%}
+      <textarea
+        id="{{ id }}"
+        name="{{ name }}"
+        placeholder="{{ placeholder }}"
+        {% if required %}required{% endif %}
+      >{{ value }}</textarea>
+    {%- when 'select' -%}
+      <select id="{{ id }}" name="{{ name }}" {% if required %}required{% endif %}>
+        {%- assign option_list = options | split: '|' -%}
+        {%- for option in option_list -%}
+          <option value="{{ option | strip }}">{{ option | strip }}</option>
+        {%- endfor -%}
+      </select>
+    {%- else -%}
+      <input
+        id="{{ id }}"
+        type="{{ field_type }}"
+        name="{{ name }}"
+        value="{{ value }}"
+        placeholder="{{ placeholder }}"
+        {% if required %}required{% endif %}
+      >
+  {%- endcase -%}
+</div>

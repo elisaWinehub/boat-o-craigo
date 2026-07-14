@@ -1,0 +1,19 @@
+{%- doc -%}
+  Renders a label/value detail list for Visit feature sections.
+
+  @param {object[]} blocks - Detail blocks with label and value settings
+  @param {boolean} [dark] - Dark theme border styling
+{%- enddoc -%}
+
+{%- if blocks.size > 0 -%}
+  <ul class="boc-visit-detail-list{% if dark %} boc-visit-detail-list--dark{% endif %}">
+    {%- for block in blocks -%}
+      {%- if block.settings.label != blank or block.settings.value != blank -%}
+        <li {{ block.shopify_attributes }}>
+          <span>{{ block.settings.label }}</span>
+          <strong>{{ block.settings.value }}</strong>
+        </li>
+      {%- endif -%}
+    {%- endfor -%}
+  </ul>
+{%- endif -%}

@@ -1,0 +1,16 @@
+mutation AssignContactTemplate {
+  pageUpdate(
+    id: "gid://shopify/Page/111871950932"
+    page: { templateSuffix: "contact" }
+  ) {
+    page {
+      id
+      handle
+      templateSuffix
+    }
+    userErrors {
+      field
+      message
+    }
+  }
+}

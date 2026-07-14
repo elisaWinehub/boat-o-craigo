@@ -1,0 +1,100 @@
+{%- liquid
+  assign section_classes = 'boc-visit-section boc-visit-hero boc-visit-section--full'
+  unless section.settings.section_enabled
+    assign section_classes = section_classes | append: ' boc-visit-section--disabled'
+  endunless
+  unless section.settings.show_desktop
+    assign section_classes = section_classes | append: ' boc-visit-section--hide-desktop'
+  endunless
+  unless section.settings.show_tablet
+    assign section_classes = section_classes | append: ' boc-visit-section--hide-tablet'
+  endunless
+  unless section.settings.show_mobile
+    assign section_classes = section_classes | append: ' boc-visit-section--hide-mobile'
+  endunless
+  assign image_fallback = 'boc-estate-visit.jpg' | asset_url
+  assign book_url = section.settings.book_now_url | default: '/pages/book-now'
+-%}
+
+{{ 'boc-visit.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'boc-visit.js' | asset_url }}" defer></script>
+
+<section
+  id="boc-visit-hero-{{ section.id }}"
+  class="{{ section_classes }}"
+  data-boc-visit
+  style="
+    --boc-v-overlay-opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }};
+    --boc-v-hero-min-h: {{ section.settings.height_desktop }}px;
+    --boc-v-hero-min-h-t: {{ section.settings.height_tablet }}px;
+    --boc-v-hero-min-h-m: {{ section.settings.height_mobile }}px;
+    --boc-v-focal: {{ section.settings.image_focal_point }};
+    --boc-v-content-width: {{ section.settings.content_width }}px;
+    --boc-v-align-d: {{ section.settings.text_alignment_desktop }};
+    --boc-v-align-m: {{ section.settings.text_alignment_mobile }};
+  "
+>
+  <div class="boc-visit-hero__media">
+    {%- if section.settings.image != blank -%}
+      {% render 'boc-responsive-image', image: section.settings.image, mobile_image: section.settings.mobile_image, alt: section.settings.heading, loading: 'eager', sizes: '100vw' %}
+    {%- else -%}
+      <img src="{{ image_fallback }}" alt="{{ section.settings.heading | escape }}" loading="eager" width="2400" height="720">
+    {%- endif -%}
+  </div>
+  <div class="boc-visit-hero__overlay" aria-hidden="true"></div>
+  <div class="boc-container boc-visit-hero__content">
+    {%- if section.settings.eyebrow != blank -%}<span class="boc-eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+    {%- if section.settings.heading != blank -%}<h1 class="boc-visit-section__heading">{{ section.settings.heading }}</h1>{%- endif -%}
+    {%- if section.settings.body != blank -%}<p>{{ section.settings.body }}</p>{%- endif -%}
+    <div class="boc-visit-hero__actions">
+      {%- if section.settings.button_1_enabled and section.settings.button_1_label != blank -%}
+        <a href="{{ section.settings.button_1_url | default: book_url }}" class="boc-btn boc-btn--{{ section.settings.button_1_style }}"
+          {%- if section.settings.button_1_new_tab -%} target="_blank" rel="noopener noreferrer"{%- endif -%}
+        >{{ section.settings.button_1_label }}</a>
+      {%- endif -%}
+      {%- if section.settings.button_2_enabled and section.settings.button_2_label != blank -%}
+        <a href="#{{ section.settings.button_2_anchor | default: 'boc-visit-tasting' }}" class="boc-btn boc-btn--{{ section.settings.button_2_style }}" data-boc-visit-scroll>{{ section.settings.button_2_label }}</a>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "BOC — Visit Hero",
+  "tag": "section",
+  "class": "boc-visit-hero-section",
+  "settings": [
+    { "type": "checkbox", "id": "section_enabled", "label": "Enable section", "default": true },
+    { "type": "checkbox", "id": "show_desktop", "label": "Show on desktop", "default": true },
+    { "type": "checkbox", "id": "show_tablet", "label": "Show on tablet", "default": true },
+    { "type": "checkbox", "id": "show_mobile", "label": "Show on mobile", "default": true },
+    { "type": "url", "id": "book_now_url", "label": "Book Now page URL" },
+    { "type": "image_picker", "id": "image", "label": "Desktop image" },
+    { "type": "image_picker", "id": "mobile_image", "label": "Mobile image" },
+    { "type": "range", "id": "overlay_opacity", "label": "Overlay opacity", "min": 0, "max": 100, "step": 5, "unit": "%", "default": 100 },
+    { "type": "range", "id": "height_desktop", "label": "Desktop height", "min": 400, "max": 1000, "step": 20, "unit": "px", "default": 720 },
+    { "type": "range", "id": "height_tablet", "label": "Tablet height", "min": 400, "max": 900, "step": 20, "unit": "px", "default": 680 },
+    { "type": "range", "id": "height_mobile", "label": "Mobile height", "min": 360, "max": 800, "step": 20, "unit": "px", "default": 560 },
+    { "type": "select", "id": "image_focal_point", "label": "Image focal point", "options": [{"value":"center","label":"Center"},{"value":"62% center","label":"Mobile crop"}],"default": "center" },
+    { "type": "range", "id": "content_width", "label": "Content max width", "min": 480, "max": 960, "step": 20, "unit": "px", "default": 760 },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Visit Boat O'Craigo" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Wine, food and the Yarra Valley at its best." },
+    { "type": "textarea", "id": "body", "label": "Body", "default": "Spend the day overlooking our Healesville vineyards with a guided tasting, a relaxed meal in the Glasshouse and time to take in the views." },
+    { "type": "select", "id": "text_alignment_desktop", "label": "Desktop alignment", "options": [{"value":"left","label":"Left"},{"value":"center","label":"Center"}],"default": "left" },
+    { "type": "select", "id": "text_alignment_mobile", "label": "Mobile alignment", "options": [{"value":"left","label":"Left"},{"value":"center","label":"Center"}],"default": "left" },
+    { "type": "header", "content": "Primary button" },
+    { "type": "checkbox", "id": "button_1_enabled", "label": "Enable", "default": true },
+    { "type": "text", "id": "button_1_label", "label": "Label", "default": "Book your visit" },
+    { "type": "url", "id": "button_1_url", "label": "URL" },
+    { "type": "select", "id": "button_1_style", "label": "Style", "options": [{"value":"accent","label":"Accent"},{"value":"light","label":"Light"}],"default": "accent" },
+    { "type": "checkbox", "id": "button_1_new_tab", "label": "Open in new tab", "default": false },
+    { "type": "header", "content": "Secondary button" },
+    { "type": "checkbox", "id": "button_2_enabled", "label": "Enable", "default": true },
+    { "type": "text", "id": "button_2_label", "label": "Label", "default": "Explore experiences" },
+    { "type": "text", "id": "button_2_anchor", "label": "Scroll anchor", "default": "boc-visit-tasting" },
+    { "type": "select", "id": "button_2_style", "label": "Style", "options": [{"value":"light","label":"Light"},{"value":"accent","label":"Accent"}],"default": "light" }
+  ],
+  "presets": [{ "name": "BOC — Visit Hero" }]
+}
+{% endschema %}

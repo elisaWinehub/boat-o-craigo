@@ -1,0 +1,27 @@
+{%- doc -%}
+  Quantity selector for BOC product cards.
+
+  @param {string} id_prefix - Unique prefix for input id
+  @param {number} [min_qty] - Minimum quantity
+{%- enddoc -%}
+
+{%- liquid
+  assign qty_id = id_prefix | append: '-qty'
+  assign min = min_qty | default: 1
+-%}
+
+<div class="boc-product-card__quantity" data-boc-qty>
+  <button type="button" class="boc-product-card__qty-btn" data-boc-qty-minus aria-label="Decrease quantity">−</button>
+  <input
+    type="number"
+    id="{{ qty_id }}"
+    name="quantity"
+    value="{{ min }}"
+    min="{{ min }}"
+    inputmode="numeric"
+    class="boc-product-card__qty-input"
+    aria-label="Quantity"
+    data-boc-qty-input
+  >
+  <button type="button" class="boc-product-card__qty-btn" data-boc-qty-plus aria-label="Increase quantity">+</button>
+</div>

@@ -1,0 +1,274 @@
+mutation CreateWineMetafieldDefinitions {
+  vintage: metafieldDefinitionCreate(
+    definition: {
+      namespace: "wine"
+      key: "vintage"
+      name: "Vintage"
+      type: "number_integer"
+      ownerType: PRODUCT
+    }
+  ) {
+    createdDefinition { key }
+    userErrors { field message code }
+  }
+
+  region: metafieldDefinitionCreate(
+    definition: {
+      namespace: "wine"
+      key: "region"
+      name: "Region"
+      type: "single_line_text_field"
+      ownerType: PRODUCT
+    }
+  ) {
+    createdDefinition { key }
+    userErrors { field message code }
+  }
+
+  subregion: metafieldDefinitionCreate(
+    definition: {
+      namespace: "wine"
+      key: "subregion"
+      name: "Subregion"
+      type: "single_line_text_field"
+      ownerType: PRODUCT
+    }
+  ) {
+    createdDefinition { key }
+    userErrors { field message code }
+  }
+
+  country: metafieldDefinitionCreate(
+    definition: {
+      namespace: "wine"
+      key: "country"
+      name: "Country"
+      type: "single_line_text_field"
+      ownerType: PRODUCT
+    }
+  ) {
+    createdDefinition { key }
+    userErrors { field message code }
+  }
+
+  variety_blend: metafieldDefinitionCreate(
+    definition: {
+      namespace: "wine"
+      key: "variety_blend"
+      name: "Variety / Blend"
+      type: "single_line_text_field"
+      ownerType: PRODUCT
+    }
+  ) {
+    createdDefinition { key }
+    userErrors { field message code }
+  }
+
+  abv: metafieldDefinitionCreate(
+    definition: {
+      namespace: "wine"
+      key: "abv"
+      name: "Alcohol by Volume (%)"
+      type: "number_decimal"
+      ownerType: PRODUCT
+    }
+  ) {
+    createdDefinition { key }
+    userErrors { field message code }
+  }
+
+  bottle_size_ml: metafieldDefinitionCreate(
+    definition: {
+      namespace: "wine"
+      key: "bottle_size_ml"
+      name: "Bottle Size (mL)"
+      type: "number_integer"
+      ownerType: PRODUCT
+    }
+  ) {
+    createdDefinition { key }
+    userErrors { field message code }
+  }
+
+  closure: metafieldDefinitionCreate(
+    definition: {
+      namespace: "wine"
+      key: "closure"
+      name: "Closure Type"
+      type: "single_line_text_field"
+      ownerType: PRODUCT
+    }
+  ) {
+    createdDefinition { key }
+    userErrors { field message code }
+  }
+
+  standard_drinks: metafieldDefinitionCreate(
+    definition: {
+      namespace: "wine"
+      key: "standard_drinks"
+      name: "Standard Drinks"
+      type: "number_decimal"
+      ownerType: PRODUCT
+    }
+  ) {
+    createdDefinition { key }
+    userErrors { field message code }
+  }
+
+  winemaker: metafieldDefinitionCreate(
+    definition: {
+      namespace: "wine"
+      key: "winemaker"
+      name: "Winemaker"
+      type: "single_line_text_field"
+      ownerType: PRODUCT
+    }
+  ) {
+    createdDefinition { key }
+    userErrors { field message code }
+  }
+
+  label_range: metafieldDefinitionCreate(
+    definition: {
+      namespace: "wine"
+      key: "label_range"
+      name: "Label / Range"
+      type: "single_line_text_field"
+      ownerType: PRODUCT
+    }
+  ) {
+    createdDefinition { key }
+    userErrors { field message code }
+  }
+
+  serving_temp_c: metafieldDefinitionCreate(
+    definition: {
+      namespace: "wine"
+      key: "serving_temp_c"
+      name: "Serving Temperature (°C)"
+      type: "number_integer"
+      ownerType: PRODUCT
+    }
+  ) {
+    createdDefinition { key }
+    userErrors { field message code }
+  }
+
+  ph: metafieldDefinitionCreate(
+    definition: {
+      namespace: "wine"
+      key: "ph"
+      name: "pH"
+      type: "number_decimal"
+      ownerType: PRODUCT
+    }
+  ) {
+    createdDefinition { key }
+    userErrors { field message code }
+  }
+
+  acidity: metafieldDefinitionCreate(
+    definition: {
+      namespace: "wine"
+      key: "acidity"
+      name: "Acidity (g/L)"
+      type: "number_decimal"
+      ownerType: PRODUCT
+    }
+  ) {
+    createdDefinition { key }
+    userErrors { field message code }
+  }
+
+  tasting_eyes: metafieldDefinitionCreate(
+    definition: {
+      namespace: "wine"
+      key: "tasting_eyes"
+      name: "Tasting Note — Appearance"
+      type: "multi_line_text_field"
+      ownerType: PRODUCT
+    }
+  ) {
+    createdDefinition { key }
+    userErrors { field message code }
+  }
+
+  tasting_nose: metafieldDefinitionCreate(
+    definition: {
+      namespace: "wine"
+      key: "tasting_nose"
+      name: "Tasting Note — Aroma"
+      type: "multi_line_text_field"
+      ownerType: PRODUCT
+    }
+  ) {
+    createdDefinition { key }
+    userErrors { field message code }
+  }
+
+  tasting_mouth: metafieldDefinitionCreate(
+    definition: {
+      namespace: "wine"
+      key: "tasting_mouth"
+      name: "Tasting Note — Palate"
+      type: "multi_line_text_field"
+      ownerType: PRODUCT
+    }
+  ) {
+    createdDefinition { key }
+    userErrors { field message code }
+  }
+
+  winemaking_notes: metafieldDefinitionCreate(
+    definition: {
+      namespace: "wine"
+      key: "winemaking_notes"
+      name: "Winemaking Notes"
+      type: "rich_text_field"
+      ownerType: PRODUCT
+    }
+  ) {
+    createdDefinition { key }
+    userErrors { field message code }
+  }
+
+  ageing_process: metafieldDefinitionCreate(
+    definition: {
+      namespace: "wine"
+      key: "ageing_process"
+      name: "Ageing Process"
+      type: "rich_text_field"
+      ownerType: PRODUCT
+    }
+  ) {
+    createdDefinition { key }
+    userErrors { field message code }
+  }
+
+  harvest_date: metafieldDefinitionCreate(
+    definition: {
+      namespace: "wine"
+      key: "harvest_date"
+      name: "Harvest Date"
+      type: "date"
+      ownerType: PRODUCT
+    }
+  ) {
+    createdDefinition { key }
+    userErrors { field message code }
+  }
+
+  release_date: metafieldDefinitionCreate(
+    definition: {
+      namespace: "wine"
+      key: "release_date"
+      name: "Release Date"
+      type: "date"
+      ownerType: PRODUCT
+    }
+  ) {
+    createdDefinition { key }
+    userErrors { field message code }
+  }
+}

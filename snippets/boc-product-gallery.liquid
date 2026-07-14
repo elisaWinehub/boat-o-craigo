@@ -1,0 +1,115 @@
+{%- doc -%}
+  Product media gallery — thumbnail rail + main image.
+
+  @param {product} product - Shopify product
+  @param {string} section_id - Section ID for unique element IDs
+{%- enddoc -%}
+
+{%- liquid
+  assign product = product | default: closest.product
+  assign variant = product.selected_or_first_available_variant
+  assign badge_label = product.metafields.wine.badge_label
+  assign badge_style = product.metafields.wine.badge_style | default: 'sand'
+  assign show_discount = false
+  assign discount_pct = 0
+
+  if variant.compare_at_price > variant.price and variant.compare_at_price > 0
+    assign show_discount = true
+    assign savings = variant.compare_at_price | minus: variant.price
+    assign discount_pct = savings | times: 100.0 | divided_by: variant.compare_at_price | round
+  endif
+
+  assign first_media = product.media.first
+  if first_media == blank and product.featured_image
+    assign first_media = product.featured_image
+  endif
+-%}
+
+<div class="product-gallery" data-block-type="product-media-gallery">
+  {%- if product.media.size > 0 -%}
+    <div class="product-thumbs" aria-label="Product images">
+      {%- for media in product.media -%}
+        {%- liquid
+          assign thumb_active = false
+          if forloop.first
+            assign thumb_active = true
+          endif
+          assign media_url = media | image_url: width: 1200
+          assign media_alt = media.alt | default: product.title
+        -%}
+        <button
+          class="product-thumb{% if thumb_active %} active{% endif %}"
+          type="button"
+          data-boc-product-thumb
+          data-media-id="{{ media.id }}"
+          data-media-type="{{ media.media_type }}"
+          data-image="{{ media_url }}"
+          aria-label="{{ media_alt | escape }}"
+          aria-current="{% if thumb_active %}true{% else %}false{% endif %}"
+        >
+          {%- case media.media_type -%}
+            {%- when 'video' -%}
+              {{ media.preview_image | image_url: width: 200 | image_tag: alt: media_alt, loading: 'lazy', widths: '200' }}
+            {%- when 'model' -%}
+              {{ media.preview_image | image_url: width: 200 | image_tag: alt: media_alt, loading: 'lazy', widths: '200' }}
+            {%- else -%}
+              {{ media | image_url: width: 200 | image_tag: alt: media_alt, loading: 'lazy', widths: '200' }}
+          {%- endcase -%}
+        </button>
+      {%- endfor -%}
+    </div>
+
+    <div class="product-main-image" data-boc-product-main>
+      {%- if badge_label != blank -%}
+        <span class="product-main-badge product-main-badge--{{ badge_style }}">{{ badge_label }}</span>
+      {%- endif -%}
+      {%- if show_discount -%}
+        <span class="product-main-discount">Save {{ discount_pct }}%</span>
+      {%- endif -%}
+
+      <div class="product-main-image__media" data-boc-product-main-media>
+        {%- assign main_media = product.media.first -%}
+        {%- assign main_image_id = 'productMainImage-' | append: section_id -%}
+        {%- case main_media.media_type -%}
+          {%- when 'video' -%}
+            {{ main_media | video_tag: image_size: '1200x', autoplay: false, loop: false, controls: true, class: 'product-main-image__video' }}
+          {%- when 'model' -%}
+            {{ main_media | model_viewer_tag: image_size: '1200x', reveal: 'interaction', toggleable: true }}
+          {%- else -%}
+            {{
+              main_media
+              | image_url: width: 1600
+              | image_tag: id: main_image_id, class: 'product-main-image__img', alt: main_media.alt | default: product.title, loading: 'eager', widths: '800, 1200, 1600'
+            }}
+        {%- endcase -%}
+      </div>
+    </div>
+  {%- elsif product.featured_image -%}
+    <div class="product-main-image product-main-image--single" data-boc-product-main>
+      {%- if badge_label != blank -%}
+        <span class="product-main-badge product-main-badge--{{ badge_style }}">{{ badge_label }}</span>
+      {%- endif -%}
+      {%- if show_discount -%}
+        <span class="product-main-discount">Save {{ discount_pct }}%</span>
+      {%- endif -%}
+      {%- assign main_image_id = 'productMainImage-' | append: section_id -%}
+      {{
+        product.featured_image
+        | image_url: width: 1600
+        | image_tag: id: main_image_id, class: 'product-main-image__img', alt: product.featured_image.alt | default: product.title, loading: 'eager', widths: '800, 1200, 1600'
+      }}
+    </div>
+  {%- else -%}
+    <div class="product-main-image product-main-image--placeholder" data-boc-product-main>
+      <img
+        id="productMainImage-{{ section_id }}"
+        class="product-main-image__img"
+        src="{{ 'boc-placeholder-gruner-veltliner.jpg' | asset_url }}"
+        alt="{{ product.title | escape }}"
+        loading="eager"
+        width="800"
+        height="680"
+      >
+    </div>
+  {%- endif -%}
+</div>

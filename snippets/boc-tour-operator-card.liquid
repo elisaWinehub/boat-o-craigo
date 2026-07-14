@@ -1,0 +1,42 @@
+{%- doc -%}
+  Renders a tour operator card for the Visit getting-here section.
+
+  @param {object} block - Operator block
+{%- enddoc -%}
+
+{%- liquid
+  assign operator_url = block.settings.url | default: '#'
+  assign has_link = false
+  if block.settings.url != blank
+    assign has_link = true
+  endif
+  assign tag = 'div'
+  if has_link
+    assign tag = 'a'
+  endif
+-%}
+
+<{{ tag }}
+  class="boc-visit-operator"
+  {% if has_link %}href="{{ operator_url }}"{% endif %}
+  {% if block.settings.open_new_tab and has_link %}target="_blank" rel="noopener noreferrer"{% endif %}
+  {{ block.shopify_attributes }}
+>
+  {%- if block.settings.logo != blank -%}
+    <img
+      src="{{ block.settings.logo | image_url: width: 200 }}"
+      alt="{{ block.settings.name | escape }}"
+      loading="lazy"
+      width="200"
+      height="40"
+    >
+  {%- elsif block.settings.name != blank -%}
+    <strong>{{ block.settings.name }}</strong>
+  {%- endif -%}
+  {%- if block.settings.description != blank -%}
+    <p>{{ block.settings.description }}</p>
+  {%- endif -%}
+  {%- if block.settings.phone != blank -%}
+    <span>{{ block.settings.phone }}</span>
+  {%- endif -%}
+</{{ tag }}>

@@ -1,0 +1,47 @@
+{%- liquid
+  assign button_url = block.settings.url | default: '/pages/wine-club'
+  assign button_label = block.settings.label | default: 'Join Wine Club & Save More'
+-%}
+
+{%- if button_label != blank -%}
+  <a
+    href="{{ button_url }}"
+    class="product-secondary"
+    {% if block.settings.open_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}
+    {{ block.shopify_attributes }}
+  >
+    {{ button_label }}
+  </a>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "BOC — Secondary CTA",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Button label",
+      "default": "Join Wine Club & Save More"
+    },
+    {
+      "type": "url",
+      "id": "url",
+      "label": "Button link"
+    },
+    {
+      "type": "checkbox",
+      "id": "open_new_tab",
+      "label": "Open in new tab",
+      "default": false
+    }
+  ],
+  "presets": [
+    {
+      "name": "BOC — Secondary CTA",
+      "category": "Product"
+    }
+  ]
+}
+{% endschema %}

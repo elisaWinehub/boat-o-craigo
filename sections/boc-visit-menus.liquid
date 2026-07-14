@@ -1,0 +1,110 @@
+{%- liquid
+  assign section_classes = 'boc-visit-section boc-visit-menus boc-visit-section--standard'
+  unless section.settings.section_enabled
+    assign section_classes = section_classes | append: ' boc-visit-section--disabled'
+  endunless
+  unless section.settings.show_desktop
+    assign section_classes = section_classes | append: ' boc-visit-section--hide-desktop'
+  endunless
+  unless section.settings.show_tablet
+    assign section_classes = section_classes | append: ' boc-visit-section--hide-tablet'
+  endunless
+  unless section.settings.show_mobile
+    assign section_classes = section_classes | append: ' boc-visit-section--hide-mobile'
+  endunless
+
+  assign grid_class = 'boc-visit-menus__grid'
+  if section.blocks.size > 2
+    assign grid_class = grid_class | append: ' boc-visit-menus__grid--multi'
+  endif
+-%}
+
+<section
+  id="{{ section.settings.section_anchor_id | default: 'boc-visit-menus' }}"
+  class="{{ section_classes }}"
+  data-boc-visit
+  style="
+    --boc-v-bg: {{ section.settings.background_color }};
+    --boc-v-pt-d: {{ section.settings.padding_top_desktop }}px;
+    --boc-v-pb-d: {{ section.settings.padding_bottom_desktop }}px;
+    --boc-v-pt-t: {{ section.settings.padding_top_tablet }}px;
+    --boc-v-pb-t: {{ section.settings.padding_bottom_tablet }}px;
+    --boc-v-pt-m: {{ section.settings.padding_top_mobile }}px;
+    --boc-v-pb-m: {{ section.settings.padding_bottom_mobile }}px;
+    --boc-v-menu-cols-d: {{ section.settings.columns_desktop }};
+  "
+>
+  <div class="boc-visit-section__inner">
+    <div class="boc-visit-section__head">
+      <div class="boc-visit-section__head-text">
+        {%- if section.settings.eyebrow != blank -%}<span class="boc-eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+        {%- if section.settings.heading != blank -%}<h2 class="boc-visit-section__heading">{{ section.settings.heading }}</h2>{%- endif -%}
+      </div>
+      {%- if section.settings.intro_body != blank -%}<p class="boc-visit-section__head-aside">{{ section.settings.intro_body }}</p>{%- endif -%}
+    </div>
+
+    <div class="{{ grid_class }}">
+      {%- for block in section.blocks -%}
+        {% render 'boc-menu-card', block: block, settings: section.settings %}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "BOC — Visit Menus",
+  "tag": "section",
+  "class": "boc-visit-menus-section",
+  "max_blocks": 6,
+  "settings": [
+    { "type": "checkbox", "id": "section_enabled", "label": "Enable section", "default": true },
+    { "type": "checkbox", "id": "show_desktop", "label": "Show on desktop", "default": true },
+    { "type": "checkbox", "id": "show_tablet", "label": "Show on tablet", "default": true },
+    { "type": "checkbox", "id": "show_mobile", "label": "Show on mobile", "default": true },
+    { "type": "text", "id": "section_anchor_id", "label": "Section anchor ID", "default": "boc-visit-menus" },
+    { "type": "color", "id": "background_color", "label": "Background", "default": "#FFFFFF" },
+    { "type": "range", "id": "columns_desktop", "label": "Desktop columns", "min": 1, "max": 4, "step": 1, "default": 2 },
+    { "type": "range", "id": "default_card_height", "label": "Default card height", "min": 360, "max": 700, "step": 20, "unit": "px", "default": 520 },
+    { "type": "range", "id": "padding_top_desktop", "label": "Desktop padding top", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 120 },
+    { "type": "range", "id": "padding_bottom_desktop", "label": "Desktop padding bottom", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 120 },
+    { "type": "range", "id": "padding_top_tablet", "label": "Tablet padding top", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 96 },
+    { "type": "range", "id": "padding_bottom_tablet", "label": "Tablet padding bottom", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 96 },
+    { "type": "range", "id": "padding_top_mobile", "label": "Mobile padding top", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 80 },
+    { "type": "range", "id": "padding_bottom_mobile", "label": "Mobile padding bottom", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 80 },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Eat and drink" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Explore our menus." },
+    { "type": "textarea", "id": "intro_body", "label": "Intro", "default": "Our offering changes with the seasons and is designed to be shared alongside a bottle from the estate." }
+  ],
+  "blocks": [
+    {
+      "type": "menu",
+      "name": "Menu card",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "image_picker", "id": "mobile_image", "label": "Mobile image" },
+        { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Seasonal" },
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Food menu" },
+        { "type": "textarea", "id": "description", "label": "Description" },
+        { "type": "text", "id": "link_label", "label": "Link label", "default": "View menu" },
+        { "type": "select", "id": "link_type", "label": "Link type", "options": [{"value":"page","label":"Shopify page"},{"value":"url","label":"External URL"},{"value":"file","label":"File / PDF"}],"default": "url" },
+        { "type": "page", "id": "page", "label": "Page" },
+        { "type": "url", "id": "url", "label": "URL" },
+        { "type": "url", "id": "file_url", "label": "File URL" },
+        { "type": "range", "id": "card_height", "label": "Card height", "min": 360, "max": 700, "step": 20, "unit": "px", "default": 520 },
+        { "type": "range", "id": "overlay_opacity", "label": "Overlay opacity", "min": 0, "max": 100, "step": 5, "unit": "%", "default": 100 },
+        { "type": "checkbox", "id": "open_new_tab", "label": "Open in new tab", "default": false }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "BOC — Visit Menus",
+      "blocks": [
+        { "type": "menu", "settings": { "eyebrow": "Seasonal", "heading": "Food menu", "link_label": "View food menu" } },
+        { "type": "menu", "settings": { "eyebrow": "Estate wines", "heading": "Beverage menu", "link_label": "View beverage menu" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

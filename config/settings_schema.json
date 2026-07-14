@@ -2116,5 +2116,253 @@
         "default": "equal-width-buttons"
       }
     ]
+  },
+  {
+    "name": "Boat O'Craigo — Global Design",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Brand colours"
+      },
+      {
+        "type": "color",
+        "id": "boc_color_ink",
+        "label": "Ink",
+        "default": "#212121"
+      },
+      {
+        "type": "color",
+        "id": "boc_color_slate",
+        "label": "Slate",
+        "default": "#575962"
+      },
+      {
+        "type": "color",
+        "id": "boc_color_sand",
+        "label": "Sand",
+        "default": "#B99E7E"
+      },
+      {
+        "type": "color",
+        "id": "boc_color_cream",
+        "label": "Cream",
+        "default": "#FAF8F5"
+      },
+      {
+        "type": "color",
+        "id": "boc_color_white",
+        "label": "White",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "color",
+        "id": "boc_color_line",
+        "label": "Line",
+        "default": "#E8E2D9"
+      },
+      {
+        "type": "header",
+        "content": "Layout"
+      },
+      {
+        "type": "range",
+        "id": "boc_max_width",
+        "label": "Maximum content width",
+        "min": 1200,
+        "max": 1600,
+        "step": 20,
+        "unit": "px",
+        "default": 1420
+      },
+      {
+        "type": "range",
+        "id": "boc_container_padding_desktop",
+        "label": "Container side padding (desktop)",
+        "min": 24,
+        "max": 80,
+        "step": 4,
+        "unit": "px",
+        "default": 48
+      },
+      {
+        "type": "range",
+        "id": "boc_container_padding_mobile",
+        "label": "Container side padding (mobile)",
+        "min": 16,
+        "max": 48,
+        "step": 4,
+        "unit": "px",
+        "default": 32
+      },
+      {
+        "type": "range",
+        "id": "boc_section_padding_desktop",
+        "label": "Section vertical padding (desktop)",
+        "min": 72,
+        "max": 160,
+        "step": 4,
+        "unit": "px",
+        "default": 120
+      },
+      {
+        "type": "range",
+        "id": "boc_section_padding_mobile",
+        "label": "Section vertical padding (mobile)",
+        "min": 48,
+        "max": 120,
+        "step": 4,
+        "unit": "px",
+        "default": 72
+      },
+      {
+        "type": "header",
+        "content": "Buttons"
+      },
+      {
+        "type": "range",
+        "id": "boc_button_min_height",
+        "label": "Minimum height",
+        "min": 40,
+        "max": 56,
+        "step": 2,
+        "unit": "px",
+        "default": 48
+      },
+      {
+        "type": "range",
+        "id": "boc_button_padding_inline",
+        "label": "Horizontal padding",
+        "min": 16,
+        "max": 40,
+        "step": 2,
+        "unit": "px",
+        "default": 24
+      },
+      {
+        "type": "select",
+        "id": "boc_button_default_style",
+        "label": "Default button style",
+        "options": [
+          {
+            "value": "primary",
+            "label": "Primary (ink)"
+          },
+          {
+            "value": "accent",
+            "label": "Accent (sand)"
+          },
+          {
+            "value": "outline",
+            "label": "Outline"
+          }
+        ],
+        "default": "primary"
+      }
+    ]
+  },
+  {
+    "name": "Boat O'Craigo — Bookings",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Now Book It"
+      },
+      {
+        "type": "text",
+        "id": "boc_booking_provider_name",
+        "label": "Booking provider name",
+        "default": "Now Book It"
+      },
+      {
+        "type": "text",
+        "id": "boc_default_booking_url",
+        "label": "Default booking URL",
+        "default": "https://bookings.nowbookit.com/?accountid=20cb5efb-4257-47a2-a7c9-7c23eceb2feb&venueid=6523&theme=light&colors=hex,000000&font=PT%20Serif"
+      },
+      {
+        "type": "url",
+        "id": "boc_tasting_booking_url",
+        "label": "Wine tasting booking URL"
+      },
+      {
+        "type": "url",
+        "id": "boc_restaurant_booking_url",
+        "label": "Restaurant booking URL"
+      },
+      {
+        "type": "url",
+        "id": "boc_group_enquiry_url",
+        "label": "Group enquiry URL"
+      },
+      {
+        "type": "checkbox",
+        "id": "boc_booking_open_new_tab",
+        "label": "Open external bookings in new tab",
+        "default": false
+      }
+    ]
+  },
+  {
+    "name": "Boat O'Craigo — Contact",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Business details"
+      },
+      {
+        "type": "text",
+        "id": "boc_business_name",
+        "label": "Business name",
+        "default": "Boat O'Craigo"
+      },
+      {
+        "type": "textarea",
+        "id": "boc_street_address",
+        "label": "Street address",
+        "default": "458 Maroondah Highway\nHealesville VIC 3777"
+      },
+      {
+        "type": "textarea",
+        "id": "boc_postal_address",
+        "label": "Postal address",
+        "default": "PO Box 231\nWarrandyte VIC 3113"
+      },
+      {
+        "type": "text",
+        "id": "boc_general_phone",
+        "label": "General phone",
+        "default": "03 5962 6899"
+      },
+      {
+        "type": "text",
+        "id": "boc_general_email",
+        "label": "General email",
+        "default": "hello@boatocraigo.com.au"
+      },
+      {
+        "type": "text",
+        "id": "boc_bookings_email",
+        "label": "Bookings email",
+        "default": "bookings@boatocraigo.com.au"
+      },
+      {
+        "type": "text",
+        "id": "boc_wine_club_email",
+        "label": "Wine Club email",
+        "default": "wineclub@boatocraigo.com.au"
+      },
+      {
+        "type": "text",
+        "id": "boc_events_email",
+        "label": "Events email",
+        "default": "events@boatocraigo.com.au"
+      },
+      {
+        "type": "text",
+        "id": "boc_google_maps_url",
+        "label": "Google Maps directions URL",
+        "default": "https://www.google.com/maps/search/?api=1&query=458+Maroondah+Highway,+Healesville+VIC+3777"
+      }
+    ]
   }
 ]

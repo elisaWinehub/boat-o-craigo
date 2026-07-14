@@ -1,0 +1,59 @@
+{%- liquid
+  assign product = closest.product | default: product
+  assign variant = product.selected_or_first_available_variant
+  assign min_qty = variant.quantity_rule.min | default: 1
+  assign form_id = 'boc-product-form-' | append: section.id
+  assign can_add = variant.available
+  assign button_label = block.settings.button_label | default: 'Add to cart'
+  if can_add == false
+    assign button_label = 'Sold out'
+  endif
+-%}
+
+<div class="product-purchase-row" data-block-type="product-form" {{ block.shopify_attributes }}>
+  <product-form-component
+    data-section-id="{{ section.id }}"
+    data-product-id="{{ product.id }}"
+    data-product-url="{{ product.url }}"
+    on:submit="/handleSubmit"
+    data-quantity-default="{{ min_qty }}"
+  >
+    <div class="visually-hidden" aria-live="assertive" role="status" aria-atomic="true" ref="liveRegion"></div>
+    {%- form 'product', product, id: form_id, data-type: 'add-to-cart-form', data-boc-product-form: '' -%}
+      <input type="hidden" name="id" ref="variantId" value="{{ variant.id }}">
+      <input type="hidden" name="selling_plan" value="" data-boc-selling-plan-input>
+
+      <div class="product-quantity" aria-label="Quantity selector" data-boc-product-qty>
+        <button type="button" data-boc-qty-minus aria-label="Decrease quantity">−</button>
+        <span data-boc-qty-value>{{ min_qty }}</span>
+        <input type="hidden" name="quantity" value="{{ min_qty }}" data-boc-qty-input>
+        <button type="button" data-boc-qty-plus aria-label="Increase quantity">+</button>
+      </div>
+
+      <button class="product-add" type="submit" ref="addToCartButton" {% unless can_add %}disabled{% endunless %}>
+        {{ button_label }} · {% render 'format-price', price: variant.price %}
+      </button>
+    {%- endform -%}
+  </product-form-component>
+</div>
+
+{% schema %}
+{
+  "name": "BOC — Product form",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Add to cart label",
+      "default": "Add to cart"
+    }
+  ],
+  "presets": [
+    {
+      "name": "BOC — Product form",
+      "category": "Product"
+    }
+  ]
+}
+{% endschema %}

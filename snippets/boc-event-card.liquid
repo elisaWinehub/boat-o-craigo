@@ -1,0 +1,72 @@
+{%- doc -%}
+  Renders an event card for What's On.
+
+  @param {object} [article] - Shopify article
+  @param {object} [block] - Manual event block
+  @param {object} settings - Section settings for display toggles
+{%- enddoc -%}
+
+{%- liquid
+  if article != blank
+    assign card_title = article.title
+    assign card_excerpt = article.excerpt | default: article.content
+    assign card_url = article.url
+    assign card_image = article.image
+    assign card_meta = article.metafields.custom.event_category.value | default: article.tags.first
+
+    assign event_date = article.metafields.custom.event_date.value
+    if event_date == blank
+      assign event_date = article.published_at
+    endif
+    assign booking_url = article.metafields.custom.event_booking_url.value | default: article.url
+  else
+    assign card_title = block.settings.title
+    assign card_excerpt = block.settings.excerpt
+    assign card_url = block.settings.link | default: '#'
+    assign card_image = block.settings.image
+    assign card_meta = block.settings.category
+    assign event_date = block.settings.event_date
+    assign booking_url = block.settings.booking_url | default: block.settings.link | default: '#'
+  endif
+
+  if card_image != blank
+    assign image_url = card_image | image_url: width: 900
+    assign image_alt = card_image.alt | default: card_title
+  else
+    assign image_url = 'boc-estate-visit.jpg' | asset_url
+    assign image_alt = card_title
+  endif
+
+  if event_date != blank
+    assign day_num = event_date | date: '%-d'
+    assign month_label = event_date | date: '%b'
+  endif
+-%}
+
+<article class="boc-whats-on-events__card" {% if block %}{{ block.shopify_attributes }}{% endif %}>
+  <a href="{{ booking_url }}" class="boc-whats-on-events__media">
+    <img src="{{ image_url }}" alt="{{ image_alt | escape }}" loading="lazy" width="900" height="320">
+    {%- if settings.show_date and event_date != blank -%}
+      <div class="boc-whats-on-events__date">
+        <strong>{{ day_num }}</strong>
+        <span>{{ month_label }}</span>
+      </div>
+    {%- endif -%}
+  </a>
+  <div class="boc-whats-on-events__body">
+    {%- if settings.show_category and card_meta != blank -%}
+      <span class="boc-whats-on-events__meta">{{ card_meta }}</span>
+    {%- endif -%}
+    {%- if card_title != blank -%}
+      <h3 class="boc-whats-on-events__title">
+        <a href="{{ card_url }}">{{ card_title }}</a>
+      </h3>
+    {%- endif -%}
+    {%- if settings.show_excerpt and card_excerpt != blank -%}
+      <p class="boc-whats-on-events__excerpt">{{ card_excerpt | strip_html | truncate: 160 }}</p>
+    {%- endif -%}
+    {%- if settings.show_cta -%}
+      <a href="{{ booking_url }}" class="boc-home-text-link">{{ settings.card_cta_label | default: 'View event' }}</a>
+    {%- endif -%}
+  </div>
+</article>

@@ -1,0 +1,113 @@
+{%- doc -%}
+  Renders a Wine Club membership plan card.
+
+  @param {object} block - Plan block with settings
+{%- enddoc -%}
+
+{%- liquid
+  assign tier = block.settings.tier_type | default: 'bronze'
+  case tier
+    when 'gold'
+      assign tier_color = block.settings.tier_color_override | default: '#B4A546'
+      assign tier_label = 'Gold'
+    when 'silver'
+      assign tier_color = block.settings.tier_color_override | default: '#90A7C1'
+      assign tier_label = 'Silver'
+    else
+      assign tier_color = block.settings.tier_color_override | default: '#C16C38'
+      assign tier_label = 'Bronze'
+  endcase
+
+  assign featured_class = ''
+  if block.settings.featured
+    assign featured_class = ' boc-wine-club-plan-card--featured'
+  endif
+
+  assign image_url = 'boc-estate-vineyard.jpg' | asset_url
+  if block.settings.image != blank
+    assign image_url = block.settings.image | image_url: width: 1200
+  endif
+
+  assign card_bg = block.settings.card_background | default: '#FFFFFF'
+  assign card_text = block.settings.text_color | default: '#212121'
+  assign badge_text = block.settings.badge_text
+  if badge_text == blank and block.settings.discount_percent != blank
+    assign badge_text = block.settings.discount_percent | append: '% off'
+  endif
+
+  assign plan_button_url = '#'
+  if block.settings.button_action_type == 'product' and block.settings.button_product != blank
+    assign plan_button_url = block.settings.button_product.url
+  elsif block.settings.button_action_type == 'page' and block.settings.button_page != blank
+    assign plan_button_url = block.settings.button_page.url
+  elsif block.settings.button_action_type != 'app_block'
+    assign plan_button_url = block.settings.button_url | default: '#'
+  endif
+-%}
+
+<article
+  class="boc-wine-club-plan-card{{ featured_class }}"
+  style="--boc-plan-tier-color: {{ tier_color }}; --boc-plan-card-bg: {{ card_bg }}; --boc-plan-text: {{ card_text }};"
+  {{ block.shopify_attributes }}
+>
+  <div class="boc-wine-club-plan-card__media">
+    <img
+      src="{{ image_url }}"
+      alt="{{ block.settings.image.alt | default: block.settings.plan_name | escape }}"
+      loading="lazy"
+      width="800"
+      height="560"
+    >
+    {%- if badge_text != blank -%}
+      <span class="boc-wine-club-plan-card__badge">{{ badge_text }}</span>
+    {%- endif -%}
+  </div>
+
+  <div class="boc-wine-club-plan-card__body">
+    <p class="boc-wine-club-plan-card__tier">{{ tier_label }}</p>
+    {%- if block.settings.plan_name != blank -%}
+      <h3 class="boc-wine-club-plan-card__title">{{ block.settings.plan_name }}</h3>
+    {%- endif -%}
+
+    {%- assign sub_parts = '' -%}
+    {%- if block.settings.bottle_quantity != blank -%}
+      {%- assign sub_parts = block.settings.bottle_quantity -%}
+    {%- endif -%}
+    {%- if block.settings.frequency != blank -%}
+      {%- if sub_parts != blank -%}
+        {%- assign sub_parts = sub_parts | append: ' · ' | append: block.settings.frequency -%}
+      {%- else -%}
+        {%- assign sub_parts = block.settings.frequency -%}
+      {%- endif -%}
+    {%- endif -%}
+    {%- if sub_parts != blank -%}
+      <p class="boc-wine-club-plan-card__sub">{{ sub_parts }}</p>
+    {%- endif -%}
+
+    {%- if block.settings.description != blank -%}
+      <p class="boc-wine-club-plan-card__description">{{ block.settings.description }}</p>
+    {%- endif -%}
+
+    {%- assign benefits = block.settings.benefit_1 | append: '||' | append: block.settings.benefit_2 | append: '||' | append: block.settings.benefit_3 | append: '||' | append: block.settings.benefit_4 | append: '||' | append: block.settings.benefit_5 | append: '||' | append: block.settings.benefit_6 | split: '||' -%}
+    <ul class="boc-wine-club-plan-card__list">
+      {%- for benefit in benefits -%}
+        {%- if benefit != blank -%}
+          <li>{{ benefit }}</li>
+        {%- endif -%}
+      {%- endfor -%}
+    </ul>
+
+    {%- if block.settings.button_label != blank -%}
+      {%- if block.settings.button_action_type == 'app_block' -%}
+        <p class="boc-wine-club-plan-card__app-note">{{ block.settings.app_block_note | default: 'Membership join action will connect to the Wine Club app when confirmed.' }}</p>
+      {%- endif -%}
+      {%- render 'boc-button',
+        label: block.settings.button_label,
+        url: plan_button_url,
+        style: block.settings.button_style | default: 'outline',
+        new_tab: block.settings.button_new_tab,
+        class: 'boc-wine-club-plan-card__button'
+      -%}
+    {%- endif -%}
+  </div>
+</article>

@@ -1,0 +1,67 @@
+<div class="product-benefits" {{ block.shopify_attributes }}>
+  {%- for i in (1..3) -%}
+    {%- liquid
+      assign title_key = 'benefit_' | append: i | append: '_title'
+      assign text_key = 'benefit_' | append: i | append: '_text'
+      assign title = block.settings[title_key]
+      assign text = block.settings[text_key]
+    -%}
+    {%- if title != blank -%}
+      <div class="product-benefit">
+        <strong>{{ title }}</strong>
+        {%- if text != blank -%}<span>{{ text }}</span>{%- endif -%}
+      </div>
+    {%- endif -%}
+  {%- endfor -%}
+</div>
+
+{% schema %}
+{
+  "name": "BOC — Benefits grid",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "benefit_1_title",
+      "label": "Benefit 1 title",
+      "default": "Free shipping"
+    },
+    {
+      "type": "text",
+      "id": "benefit_1_text",
+      "label": "Benefit 1 text",
+      "default": "On qualifying 12+ bottle orders."
+    },
+    {
+      "type": "text",
+      "id": "benefit_2_title",
+      "label": "Benefit 2 title",
+      "default": "Secure checkout"
+    },
+    {
+      "type": "text",
+      "id": "benefit_2_text",
+      "label": "Benefit 2 text",
+      "default": "Shopify-powered payments."
+    },
+    {
+      "type": "text",
+      "id": "benefit_3_title",
+      "label": "Benefit 3 title",
+      "default": "Member benefits"
+    },
+    {
+      "type": "text",
+      "id": "benefit_3_text",
+      "label": "Benefit 3 text",
+      "default": "Exclusive Wine Club pricing."
+    }
+  ],
+  "presets": [
+    {
+      "name": "BOC — Benefits grid",
+      "category": "Product"
+    }
+  ]
+}
+{% endschema %}

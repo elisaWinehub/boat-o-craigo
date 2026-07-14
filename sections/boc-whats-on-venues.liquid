@@ -1,0 +1,170 @@
+{%- liquid
+  assign section_classes = 'boc-whats-on-section boc-whats-on-venues boc-whats-on-section--standard'
+  unless section.settings.section_enabled
+    assign section_classes = section_classes | append: ' boc-whats-on-section--disabled'
+  endunless
+  unless section.settings.show_desktop
+    assign section_classes = section_classes | append: ' boc-whats-on-section--hide-desktop'
+  endunless
+  unless section.settings.show_tablet
+    assign section_classes = section_classes | append: ' boc-whats-on-section--hide-tablet'
+  endunless
+  unless section.settings.show_mobile
+    assign section_classes = section_classes | append: ' boc-whats-on-section--hide-mobile'
+  endunless
+
+  assign layout_class = 'boc-whats-on-venues__layout'
+  if section.blocks.size > 3
+    assign layout_class = layout_class | append: ' boc-whats-on-venues__layout--grid'
+  endif
+
+  assign featured_block = nil
+-%}
+
+<section
+  id="{{ section.settings.section_anchor_id | default: 'boc-whats-on-venues' }}"
+  class="{{ section_classes }}"
+  data-boc-whats-on
+  style="
+    --boc-wo-bg: {{ section.settings.background_color }};
+    --boc-wo-pt-d: {{ section.settings.padding_top_desktop }}px;
+    --boc-wo-pb-d: {{ section.settings.padding_bottom_desktop }}px;
+    --boc-wo-pt-t: {{ section.settings.padding_top_tablet }}px;
+    --boc-wo-pb-t: {{ section.settings.padding_bottom_tablet }}px;
+    --boc-wo-pt-m: {{ section.settings.padding_top_mobile }}px;
+    --boc-wo-pb-m: {{ section.settings.padding_bottom_mobile }}px;
+  "
+>
+  <div class="boc-whats-on-section__inner">
+    <div class="boc-whats-on-section__head">
+      <div class="boc-whats-on-section__head-text">
+        {%- if section.settings.eyebrow != blank -%}<span class="boc-eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+        {%- if section.settings.heading != blank -%}<h2 class="boc-whats-on-section__heading">{{ section.settings.heading }}</h2>{%- endif -%}
+      </div>
+      {%- if section.settings.intro_body != blank -%}<p class="boc-whats-on-section__head-aside">{{ section.settings.intro_body }}</p>{%- endif -%}
+    </div>
+
+    <div class="{{ layout_class }}">
+      {%- if section.blocks.size <= 3 -%}
+        {%- for block in section.blocks -%}
+          {%- if block.settings.layout_size == 'featured' and featured_block == nil -%}
+            {%- assign featured_block = block -%}
+          {%- endif -%}
+        {%- endfor -%}
+        {%- if featured_block == nil and section.blocks.size > 0 -%}
+          {%- assign featured_block = section.blocks.first -%}
+        {%- endif -%}
+
+        {%- if featured_block -%}
+          {%- liquid
+            assign venue_url = featured_block.settings.link | default: '#'
+            assign venue_image = 'boc-estate-visit.jpg' | asset_url
+            if featured_block.settings.image != blank
+              assign venue_image = featured_block.settings.image | image_url: width: 1600
+            endif
+          -%}
+          <a href="{{ venue_url }}" class="boc-whats-on-venue boc-whats-on-venue--featured" {{ featured_block.shopify_attributes }}>
+            <img src="{{ venue_image }}" alt="{{ featured_block.settings.name | escape }}" loading="lazy" width="1200" height="680">
+            <div class="boc-whats-on-venue__caption">
+              <h3>{{ featured_block.settings.name }}</h3>
+              {%- if featured_block.settings.description != blank -%}<p>{{ featured_block.settings.description }}</p>{%- endif -%}
+            </div>
+          </a>
+        {%- endif -%}
+
+        <div class="boc-whats-on-venues__side">
+          {%- for block in section.blocks -%}
+            {%- if block.id != featured_block.id -%}
+              {%- liquid
+                assign venue_url = block.settings.link | default: '#'
+                assign venue_image = 'boc-estate-vineyard.jpg' | asset_url
+                if block.settings.image != blank
+                  assign venue_image = block.settings.image | image_url: width: 900
+                endif
+              -%}
+              <a href="{{ venue_url }}" class="boc-whats-on-venue boc-whats-on-venue--standard" {{ block.shopify_attributes }}>
+                <img src="{{ venue_image }}" alt="{{ block.settings.name | escape }}" loading="lazy" width="900" height="331">
+                <div class="boc-whats-on-venue__caption">
+                  <h3>{{ block.settings.name }}</h3>
+                  {%- if block.settings.description != blank -%}<p>{{ block.settings.description }}</p>{%- endif -%}
+                </div>
+              </a>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      {%- else -%}
+        {%- for block in section.blocks -%}
+          {%- liquid
+            assign venue_url = block.settings.link | default: '#'
+            assign venue_image = 'boc-estate-visit.jpg' | asset_url
+            if block.settings.image != blank
+              assign venue_image = block.settings.image | image_url: width: 1200
+            endif
+            assign venue_class = 'boc-whats-on-venue boc-whats-on-venue--standard'
+            if block.settings.layout_size == 'featured'
+              assign venue_class = 'boc-whats-on-venue boc-whats-on-venue--featured'
+            endif
+          -%}
+          <a href="{{ venue_url }}" class="{{ venue_class }}" {{ block.shopify_attributes }}>
+            <img src="{{ venue_image }}" alt="{{ block.settings.name | escape }}" loading="lazy" width="1200" height="400">
+            <div class="boc-whats-on-venue__caption">
+              <h3>{{ block.settings.name }}</h3>
+              {%- if block.settings.description != blank -%}<p>{{ block.settings.description }}</p>{%- endif -%}
+            </div>
+          </a>
+        {%- endfor -%}
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "BOC — WO Venues",
+  "tag": "section",
+  "class": "boc-whats-on-venues-section",
+  "max_blocks": 8,
+  "settings": [
+    { "type": "checkbox", "id": "section_enabled", "label": "Enable section", "default": true },
+    { "type": "checkbox", "id": "show_desktop", "label": "Show on desktop", "default": true },
+    { "type": "checkbox", "id": "show_tablet", "label": "Show on tablet", "default": true },
+    { "type": "checkbox", "id": "show_mobile", "label": "Show on mobile", "default": true },
+    { "type": "text", "id": "section_anchor_id", "label": "Section anchor ID", "default": "boc-whats-on-venues" },
+    { "type": "color", "id": "background_color", "label": "Background", "default": "#FFFFFF" },
+    { "type": "range", "id": "padding_top_desktop", "label": "Desktop padding top", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 120 },
+    { "type": "range", "id": "padding_bottom_desktop", "label": "Desktop padding bottom", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 120 },
+    { "type": "range", "id": "padding_top_tablet", "label": "Tablet padding top", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 96 },
+    { "type": "range", "id": "padding_bottom_tablet", "label": "Tablet padding bottom", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 96 },
+    { "type": "range", "id": "padding_top_mobile", "label": "Mobile padding top", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 80 },
+    { "type": "range", "id": "padding_bottom_mobile", "label": "Mobile padding bottom", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 80 },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Our spaces" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "A setting for every moment." },
+    { "type": "textarea", "id": "intro_body", "label": "Intro", "default": "Choose from light-filled indoor spaces, intimate ceremony settings and vineyard backdrops framed by the Yarra Ranges." }
+  ],
+  "blocks": [
+    {
+      "type": "venue",
+      "name": "Venue",
+      "settings": [
+        { "type": "text", "id": "name", "label": "Name", "default": "Venue name" },
+        { "type": "textarea", "id": "description", "label": "Description" },
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "url", "id": "link", "label": "Link" },
+        { "type": "select", "id": "layout_size", "label": "Layout size", "options": [{"value":"featured","label":"Featured"},{"value":"standard","label":"Standard"}],"default": "standard" },
+        { "type": "text", "id": "capacity", "label": "Capacity (optional)" },
+        { "type": "text", "id": "venue_type", "label": "Venue type (optional)" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "BOC — WO Venues",
+      "blocks": [
+        { "type": "venue", "settings": { "name": "The Glasshouse", "description": "Light-filled dining and reception space with panoramic vineyard views.", "layout_size": "featured" } },
+        { "type": "venue", "settings": { "name": "The Pavilion", "description": "An intimate setting for ceremonies and smaller gatherings." } },
+        { "type": "venue", "settings": { "name": "The Vineyard", "description": "A dramatic natural backdrop for portraits and outdoor moments." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,21 @@
+mutation CreateGiftCardProduct {
+  productCreate(
+    product: {
+      title: "Gift Card"
+      handle: "gift-card"
+      productType: "Gift Card"
+      status: ACTIVE
+      descriptionHtml: "<p>Boat O'Craigo gift card.</p>"
+    }
+  ) {
+    product {
+      id
+      handle
+      title
+    }
+    userErrors {
+      field
+      message
+    }
+  }
+}

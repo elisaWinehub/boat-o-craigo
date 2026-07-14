@@ -1,0 +1,24 @@
+{%- doc -%}
+  Grid/list view controls for collection toolbar.
+
+  @param {object} section - Parent section
+{%- enddoc -%}
+
+{%- if section.settings.enable_view_toggle -%}
+  <div class="boc-collection-view" data-boc-collection-view role="group" aria-label="Product view">
+    <button
+      type="button"
+      class="boc-collection-view__btn{% if section.settings.default_view == 'grid' %} is-active{% endif %}"
+      data-boc-collection-view-btn="grid"
+      aria-pressed="{% if section.settings.default_view == 'grid' %}true{% else %}false{% endif %}"
+      aria-label="Grid view"
+    >Grid</button>
+    <button
+      type="button"
+      class="boc-collection-view__btn{% if section.settings.default_view == 'list' %} is-active{% endif %}"
+      data-boc-collection-view-btn="list"
+      aria-pressed="{% if section.settings.default_view == 'list' %}true{% else %}false{% endif %}"
+      aria-label="List view"
+    >List</button>
+  </div>
+{%- endif -%}

@@ -1,0 +1,22 @@
+{%- doc -%}
+  Collection empty states.
+
+  @param {string} type - empty_collection | no_results
+  @param {object} [collection] - Collection object
+  @param {object} section - Section settings
+{%- enddoc -%}
+
+<div class="boc-collection-empty">
+  {%- if type == 'no_results' -%}
+    <h2 class="boc-collection-empty__heading">{{ section.settings.no_results_heading | default: 'No wines found.' }}</h2>
+    <p>{{ section.settings.no_results_body | default: 'Try removing one or more filters to see more products.' }}</p>
+    {%- if collection.url != blank -%}
+      <a href="{{ collection.url }}" class="boc-btn boc-btn--primary">{{ section.settings.clear_filters_label | default: 'Clear filters' }}</a>
+    {%- endif -%}
+  {%- else -%}
+    <h2 class="boc-collection-empty__heading">{{ section.settings.empty_heading | default: 'No products are available in this collection yet.' }}</h2>
+    {%- if section.settings.empty_button_label != blank -%}
+      <a href="{{ section.settings.empty_button_url | default: routes.all_products_collection_url }}" class="boc-btn boc-btn--primary">{{ section.settings.empty_button_label }}</a>
+    {%- endif -%}
+  {%- endif -%}
+</div>

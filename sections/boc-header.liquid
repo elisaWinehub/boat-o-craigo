@@ -1,0 +1,242 @@
+<script
+  src="{{ 'boc-header.js' | asset_url }}"
+  defer
+></script>
+
+{%- liquid
+  assign menu = section.settings.menu
+  assign book_label = section.settings.book_label | default: 'Book a visit'
+  assign book_url = section.settings.book_url
+  assign logo_width = section.settings.logo_width | default: 170
+-%}
+
+<header
+  class="boc-header shopify-section"
+  data-boc-header
+  id="boc-header-{{ section.id }}"
+  {{ section.shopify_attributes }}
+>
+  <div class="boc-container boc-header__inner">
+    <a class="boc-header__logo" href="{{ routes.root_url }}" aria-label="{{ shop.name }}">
+      {%- if section.settings.logo != blank -%}
+        {{
+          section.settings.logo
+          | image_url: width: 400
+          | image_tag:
+            class: 'boc-header__logo-image',
+            alt: shop.name,
+            widths: '170, 250, 340',
+            loading: 'eager'
+        }}
+      {%- else -%}
+        <img
+          class="boc-header__logo-image"
+          src="{{ 'boc-logo.svg' | asset_url }}"
+          alt="{{ shop.name }}"
+          width="{{ logo_width }}"
+          height="90"
+          loading="eager"
+        >
+      {%- endif -%}
+    </a>
+
+    {%- if menu != blank -%}
+      <nav class="boc-header__nav" aria-label="{{ 'accessibility.header_navigation_label' | t }}">
+        {%- for link in linklists[menu].links -%}
+          <div class="boc-header__nav-item{% if link.links.size > 0 %} boc-header__nav-item--has-dropdown{% endif %}">
+            <a class="boc-header__nav-link" href="{{ link.url }}"{% if link.active %} aria-current="page"{% endif %}>
+              {{- link.title -}}
+            </a>
+
+            {%- if link.links.size > 0 -%}
+              <div class="boc-header__dropdown" role="group" aria-label="{{ link.title }}">
+                {%- for child in link.links -%}
+                  <a class="boc-header__dropdown-link" href="{{ child.url }}">{{ child.title }}</a>
+                {%- endfor -%}
+              </div>
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+      </nav>
+    {%- endif -%}
+
+    <div class="boc-header__actions">
+      <div class="boc-header__actions-desktop">
+        {%- if book_url != blank -%}
+          <a class="boc-header__book-cta" href="{{ book_url }}">{{ book_label }}</a>
+        {%- endif -%}
+
+        {% render 'search', style: 'modal', display_style: 'icon', class: 'boc-header__search' %}
+        {% render 'header-actions', section: section, display_style: 'icon' %}
+      </div>
+
+      <div class="boc-header__actions-mobile">
+        {% render 'header-actions', section: section, display_style: 'icon' %}
+
+        <button
+          type="button"
+          class="boc-header__icon-btn boc-header__menu-toggle"
+          data-boc-header-open
+          aria-expanded="false"
+          aria-controls="boc-header-drawer-{{ section.id }}"
+          aria-label="{{ 'accessibility.menu' | t }}"
+        >
+          {% render 'boc-icon', name: 'menu' %}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="boc-header__drawer-backdrop" data-boc-header-backdrop hidden></div>
+
+  <div
+    class="boc-header__drawer"
+    id="boc-header-drawer-{{ section.id }}"
+    data-boc-header-drawer
+    role="dialog"
+    aria-modal="true"
+    aria-label="{{ 'accessibility.menu' | t }}"
+    hidden
+  >
+    <div class="boc-header__drawer-head">
+      <a class="boc-header__logo" href="{{ routes.root_url }}" data-boc-header-close>
+        {%- if section.settings.logo != blank -%}
+          {{
+            section.settings.logo
+            | image_url: width: 300
+            | image_tag: class: 'boc-header__logo-image', alt: shop.name, loading: 'eager'
+          }}
+        {%- else -%}
+          <img
+            class="boc-header__logo-image"
+            src="{{ 'boc-logo.svg' | asset_url }}"
+            alt="{{ shop.name }}"
+            width="150"
+            height="79"
+          >
+        {%- endif -%}
+      </a>
+
+      <button
+        type="button"
+        class="boc-header__icon-btn"
+        data-boc-header-close
+        aria-label="{{ 'accessibility.close_dialog' | t }}"
+      >
+        {% render 'boc-icon', name: 'close' %}
+      </button>
+    </div>
+
+    <div class="boc-header__drawer-body">
+      {%- if menu != blank -%}
+        {%- for link in linklists[menu].links -%}
+          {%- if link.links.size > 0 -%}
+            <div class="boc-header__drawer-group" data-boc-header-submenu>
+              <button
+                type="button"
+                class="boc-header__drawer-group-toggle"
+                data-boc-header-submenu-toggle
+                aria-expanded="false"
+              >
+                <span>{{ link.title }}</span>
+                {% render 'boc-icon', name: 'chevron' %}
+              </button>
+              <div class="boc-header__drawer-sub">
+                <a class="boc-header__drawer-sub-link boc-header__drawer-link" href="{{ link.url }}" data-boc-header-close>
+                  {{- link.title -}}
+                </a>
+                {%- for child in link.links -%}
+                  <a class="boc-header__drawer-sub-link" href="{{ child.url }}" data-boc-header-close>
+                    {{- child.title -}}
+                  </a>
+                {%- endfor -%}
+              </div>
+            </div>
+          {%- else -%}
+            <a class="boc-header__drawer-link" href="{{ link.url }}" data-boc-header-close>
+              {{- link.title -}}
+            </a>
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endif -%}
+    </div>
+
+    <div class="boc-header__drawer-footer">
+      {%- if book_url != blank -%}
+        <a class="boc-btn boc-btn--primary" href="{{ book_url }}" data-boc-header-close>{{ book_label }}</a>
+      {%- endif -%}
+
+      <div class="boc-header__drawer-search">
+        {% render 'search', style: 'modal', display_style: 'text', class: 'boc-header__drawer-search-action' %}
+      </div>
+
+      {%- if shop.customer_accounts_enabled -%}
+        <a class="boc-header__drawer-account boc-text-link" href="{{ routes.account_url }}" data-boc-header-close>
+          {{ 'content.account_title' | t }}
+        </a>
+      {%- endif -%}
+    </div>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "BOC — Header",
+  "tag": "section",
+  "class": "boc-header-section",
+  "enabled_on": {
+    "groups": ["header"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Logo"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo image"
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "label": "Logo width",
+      "min": 100,
+      "max": 250,
+      "step": 5,
+      "unit": "px",
+      "default": 170
+    },
+    {
+      "type": "header",
+      "content": "Navigation"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu",
+      "default": "main-menu"
+    },
+    {
+      "type": "header",
+      "content": "Book a visit CTA"
+    },
+    {
+      "type": "text",
+      "id": "book_label",
+      "label": "Button label",
+      "default": "Book a visit"
+    },
+    {
+      "type": "url",
+      "id": "book_url",
+      "label": "Button link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "BOC header"
+    }
+  ]
+}
+{% endschema %}

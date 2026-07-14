@@ -1,0 +1,12 @@
+{%- doc -%}
+  Estate statistic for About intro section.
+
+  @param {object} block - Stat block with value, label, prefix, suffix, accent_color
+{%- enddoc -%}
+
+<div class="boc-about-stat" {{ block.shopify_attributes }} style="--boc-ab-stat-accent: {{ block.settings.accent_color | default: '#212121' }};">
+  <strong class="boc-about-stat__value">{{ block.settings.prefix }}{{ block.settings.value }}{{ block.settings.suffix }}</strong>
+  {%- if block.settings.label != blank -%}
+    <span class="boc-about-stat__label">{{ block.settings.label }}</span>
+  {%- endif -%}
+</div>

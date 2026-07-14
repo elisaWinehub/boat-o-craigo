@@ -1,0 +1,98 @@
+{%- liquid
+  assign section_classes = 'boc-about-section boc-about-vineyards boc-about-section--standard'
+  unless section.settings.section_enabled
+    assign section_classes = section_classes | append: ' boc-about-section--disabled'
+  endunless
+  unless section.settings.show_desktop
+    assign section_classes = section_classes | append: ' boc-about-section--hide-desktop'
+  endunless
+  unless section.settings.show_tablet
+    assign section_classes = section_classes | append: ' boc-about-section--hide-tablet'
+  endunless
+  unless section.settings.show_mobile
+    assign section_classes = section_classes | append: ' boc-about-section--hide-mobile'
+  endunless
+-%}
+
+<section
+  id="{{ section.settings.section_anchor_id | default: 'boc-about-vineyards' }}"
+  class="{{ section_classes }}"
+  data-boc-about
+  style="
+    --boc-ab-bg: {{ section.settings.background_color }};
+    --boc-ab-vine-cols: {{ section.settings.columns_desktop }};
+    --boc-ab-pad-top-d: {{ section.settings.padding_top_desktop }}px;
+    --boc-ab-pad-bottom-d: {{ section.settings.padding_bottom_desktop }}px;
+    --boc-ab-pad-top-t: {{ section.settings.padding_top_tablet }}px;
+    --boc-ab-pad-bottom-t: {{ section.settings.padding_bottom_tablet }}px;
+    --boc-ab-pad-top-m: {{ section.settings.padding_top_mobile }}px;
+    --boc-ab-pad-bottom-m: {{ section.settings.padding_bottom_mobile }}px;
+  "
+>
+  <div class="boc-about-section__inner">
+    <div class="boc-about-vineyards__head">
+      <div>
+        {%- if section.settings.eyebrow != blank -%}<span class="boc-eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+        {%- if section.settings.heading != blank -%}<h2 class="boc-about-section__heading">{{ section.settings.heading }}</h2>{%- endif -%}
+      </div>
+      {%- if section.settings.body != blank -%}<p>{{ section.settings.body }}</p>{%- endif -%}
+    </div>
+    <div class="boc-about-vineyards__grid">
+      {%- for block in section.blocks -%}
+        {% render 'boc-vineyard-card', block: block, image_fallback: 'boc-estate-vineyard.jpg' %}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "BOC — About Vineyards",
+  "tag": "section",
+  "class": "boc-about-vineyards-section",
+  "max_blocks": 4,
+  "settings": [
+    { "type": "checkbox", "id": "section_enabled", "label": "Enable section", "default": true },
+    { "type": "checkbox", "id": "show_desktop", "label": "Show on desktop", "default": true },
+    { "type": "checkbox", "id": "show_tablet", "label": "Show on tablet", "default": true },
+    { "type": "checkbox", "id": "show_mobile", "label": "Show on mobile", "default": true },
+    { "type": "text", "id": "section_anchor_id", "label": "Section anchor ID", "default": "boc-about-vineyards" },
+    { "type": "color", "id": "background_color", "label": "Background", "default": "#FFFFFF" },
+    { "type": "range", "id": "columns_desktop", "label": "Columns (desktop)", "min": 1, "max": 3, "step": 1, "default": 2 },
+    { "type": "range", "id": "padding_top_desktop", "label": "Desktop padding top", "min": 40, "max": 160, "step": 8, "unit": "px", "default": 120 },
+    { "type": "range", "id": "padding_bottom_desktop", "label": "Desktop padding bottom", "min": 40, "max": 160, "step": 8, "unit": "px", "default": 120 },
+    { "type": "range", "id": "padding_top_tablet", "label": "Tablet padding top", "min": 40, "max": 128, "step": 8, "unit": "px", "default": 96 },
+    { "type": "range", "id": "padding_bottom_tablet", "label": "Tablet padding bottom", "min": 40, "max": 128, "step": 8, "unit": "px", "default": 96 },
+    { "type": "range", "id": "padding_top_mobile", "label": "Mobile padding top", "min": 40, "max": 120, "step": 8, "unit": "px", "default": 80 },
+    { "type": "range", "id": "padding_bottom_mobile", "label": "Mobile padding bottom", "min": 40, "max": 120, "step": 8, "unit": "px", "default": 80 },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "The vineyards" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Two sites. Distinct expressions." },
+    { "type": "textarea", "id": "body", "label": "Body", "default": "Different elevations, aspects and soils give each vineyard its own rhythm—and each wine its own unmistakable character." }
+  ],
+  "blocks": [
+    {
+      "type": "vineyard",
+      "name": "Vineyard",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "image_picker", "id": "mobile_image", "label": "Mobile image" },
+        { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Estate site" },
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Vineyard" },
+        { "type": "richtext", "id": "body", "label": "Body" },
+        { "type": "url", "id": "location_url", "label": "Location URL" },
+        { "type": "color", "id": "card_background_color", "label": "Card background", "default": "#f5f2ee" },
+        { "type": "color", "id": "text_color", "label": "Text colour", "default": "#212121" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "BOC — About Vineyards",
+      "blocks": [
+        { "type": "vineyard", "settings": { "eyebrow": "Estate site", "heading": "Healesville", "body": "<p>Nestled near the foothills of the Black Spur, the Healesville vineyard benefits from a cooler site and varied elevation. It is home to varieties including Pinot Noir, Chardonnay and aromatic whites.</p>" } },
+        { "type": "vineyard", "settings": { "eyebrow": "Western site", "heading": "Kangaroo Ground", "body": "<p>Warmer and more exposed, Kangaroo Ground supports generous, structured varieties while still retaining the freshness associated with the Yarra Valley's cool-climate conditions.</p>" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

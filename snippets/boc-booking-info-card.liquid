@@ -1,0 +1,53 @@
+{%- doc -%}
+  Renders a booking information card.
+
+  @param {object} block - Info card block
+{%- enddoc -%}
+
+{%- liquid
+  assign card_class = 'boc-booking-info__card'
+  if block.settings.card_style == 'dark'
+    assign card_class = card_class | append: ' boc-booking-info__card--dark'
+  elsif block.settings.card_style == 'accent'
+    assign card_class = card_class | append: ' boc-booking-info__card--accent'
+  endif
+-%}
+
+<article
+  class="{{ card_class }}"
+  style="--boc-bk-info-bg: {{ block.settings.background_color }}; --boc-bk-info-text: {{ block.settings.text_color }}; --boc-bk-info-link: {{ block.settings.link_color }};"
+  {{ block.shopify_attributes }}
+>
+  {%- if block.settings.eyebrow != blank -%}<span class="boc-eyebrow">{{ block.settings.eyebrow }}</span>{%- endif -%}
+  {%- if block.settings.heading != blank -%}<h3>{{ block.settings.heading }}</h3>{%- endif -%}
+  {%- if block.settings.body != blank -%}<p>{{ block.settings.body }}</p>{%- endif -%}
+
+  {%- if block.settings.detail_1_label != blank or block.settings.detail_1_value != blank -%}
+    <ul class="boc-booking-info__details">
+      {%- if block.settings.detail_1_label != blank -%}
+        <li><span>{{ block.settings.detail_1_label }}</span><strong>{{ block.settings.detail_1_value }}</strong></li>
+      {%- endif -%}
+      {%- if block.settings.detail_2_label != blank -%}
+        <li><span>{{ block.settings.detail_2_label }}</span><strong>{{ block.settings.detail_2_value }}</strong></li>
+      {%- endif -%}
+      {%- if block.settings.detail_3_label != blank -%}
+        <li><span>{{ block.settings.detail_3_label }}</span><strong>{{ block.settings.detail_3_value }}</strong></li>
+      {%- endif -%}
+      {%- if block.settings.detail_4_label != blank -%}
+        <li><span>{{ block.settings.detail_4_label }}</span><strong>{{ block.settings.detail_4_value }}</strong></li>
+      {%- endif -%}
+    </ul>
+  {%- endif -%}
+
+  {%- if block.settings.button_enabled and block.settings.button_label != blank -%}
+    {% render 'boc-button',
+      label: block.settings.button_label,
+      url: block.settings.button_url,
+      style: block.settings.button_style | default: 'primary',
+      new_tab: block.settings.button_new_tab,
+      class: 'boc-booking-info__button'
+    %}
+  {%- elsif block.settings.link_label != blank and block.settings.link_url != blank -%}
+    <a href="{{ block.settings.link_url }}" class="boc-home-text-link"{% if block.settings.link_new_tab %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ block.settings.link_label }}</a>
+  {%- endif -%}
+</article>

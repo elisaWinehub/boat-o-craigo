@@ -1,0 +1,125 @@
+{%- liquid
+  assign section_classes = 'boc-home-section boc-home-weddings boc-home-section--full'
+  unless section.settings.section_enabled
+    assign section_classes = section_classes | append: ' boc-home-section--disabled'
+  endunless
+  unless section.settings.show_desktop
+    assign section_classes = section_classes | append: ' boc-home-section--hide-desktop'
+  endunless
+  unless section.settings.show_tablet
+    assign section_classes = section_classes | append: ' boc-home-section--hide-tablet'
+  endunless
+  unless section.settings.show_mobile
+    assign section_classes = section_classes | append: ' boc-home-section--hide-mobile'
+  endunless
+
+  assign image_url = 'boc-estate-vineyard.jpg' | asset_url
+  if section.settings.image != blank
+    assign image_url = section.settings.image | image_url: width: 2400
+  endif
+-%}
+
+<section
+  id="boc-home-weddings-{{ section.id }}"
+  class="{{ section_classes }}"
+  style="--boc-section-bg: {{ section.settings.background_color }}; --boc-section-pt: {{ section.settings.padding_top }}px; --boc-section-pb: {{ section.settings.padding_bottom }}px;"
+>
+  <div class="boc-home-weddings__bg">
+    <img src="{{ image_url }}" alt="{{ section.settings.image.alt | default: section.settings.heading | escape }}" loading="lazy" width="2400" height="700">
+  </div>
+  <div class="boc-home-weddings__overlay"></div>
+
+  <div class="boc-container boc-home-weddings__copy">
+    {%- if section.settings.eyebrow != blank -%}
+      <span class="boc-eyebrow">{{ section.settings.eyebrow }}</span>
+    {%- endif -%}
+    {%- if section.settings.heading != blank -%}
+      <h2 class="boc-home-section__heading">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+    {%- if section.settings.body != blank -%}
+      <p>{{ section.settings.body }}</p>
+    {%- endif -%}
+
+    {%- if section.settings.button_1_label != blank or section.settings.button_2_label != blank -%}
+      <div class="boc-home-hero__actions">
+        {%- if section.settings.button_1_label != blank -%}
+          <a href="{{ section.settings.button_1_link | default: '#' }}" class="boc-btn boc-btn--{{ section.settings.button_1_style }}">
+            {{ section.settings.button_1_label }}
+          </a>
+        {%- endif -%}
+        {%- if section.settings.button_2_label != blank -%}
+          <a href="{{ section.settings.button_2_link | default: '#' }}" class="boc-btn boc-btn--{{ section.settings.button_2_style }}">
+            {{ section.settings.button_2_label }}
+          </a>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "BOC — Weddings",
+  "tag": "section",
+  "class": "boc-home-weddings-section",
+  "settings": [
+    { "type": "checkbox", "id": "section_enabled", "label": "Enable section", "default": true },
+    { "type": "checkbox", "id": "show_desktop", "label": "Show on desktop", "default": true },
+    { "type": "checkbox", "id": "show_tablet", "label": "Show on tablet", "default": true },
+    { "type": "checkbox", "id": "show_mobile", "label": "Show on mobile", "default": true },
+    {
+      "type": "select",
+      "id": "container_width",
+      "label": "Container width",
+      "options": [
+        { "value": "container", "label": "Contained" },
+        { "value": "full", "label": "Full width" }
+      ],
+      "default": "full"
+    },
+    { "type": "color", "id": "background_color", "label": "Background color", "default": "#212121" },
+    { "type": "range", "id": "padding_top", "label": "Padding top", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 120 },
+    { "type": "range", "id": "padding_bottom", "label": "Padding bottom", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 120 },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Weddings & Private Events" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Celebrate among the vines." },
+    {
+      "type": "textarea",
+      "id": "body",
+      "label": "Body",
+      "default": "Host your day in a setting that feels relaxed, intimate and unmistakably Yarra Valley."
+    },
+    { "type": "image_picker", "id": "image", "label": "Background image" },
+    { "type": "text", "id": "button_1_label", "label": "Button 1 label", "default": "Book an inspection" },
+    { "type": "url", "id": "button_1_link", "label": "Button 1 link" },
+    {
+      "type": "select",
+      "id": "button_1_style",
+      "label": "Button 1 style",
+      "options": [
+        { "value": "light", "label": "Light outline" },
+        { "value": "accent", "label": "Accent" },
+        { "value": "primary", "label": "Primary" }
+      ],
+      "default": "light"
+    },
+    { "type": "text", "id": "button_2_label", "label": "Button 2 label", "default": "Explore weddings" },
+    { "type": "url", "id": "button_2_link", "label": "Button 2 link" },
+    {
+      "type": "select",
+      "id": "button_2_style",
+      "label": "Button 2 style",
+      "options": [
+        { "value": "light", "label": "Light outline" },
+        { "value": "accent", "label": "Accent" },
+        { "value": "primary", "label": "Primary" }
+      ],
+      "default": "accent"
+    }
+  ],
+  "presets": [
+    {
+      "name": "BOC — Weddings"
+    }
+  ]
+}
+{% endschema %}

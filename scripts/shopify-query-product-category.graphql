@@ -1,0 +1,13 @@
+query {
+  products(first: 3) {
+    nodes {
+      id
+      title
+      category {
+        id
+        name
+        fullName
+      }
+    }
+  }
+}

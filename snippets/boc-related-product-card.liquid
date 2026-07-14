@@ -1,0 +1,64 @@
+{%- doc -%}
+  Related product card for product detail recommendations grid.
+
+  @param {product} product - Shopify product
+  @param {object} section - Parent section
+{%- enddoc -%}
+
+{%- liquid
+  assign variant = product.selected_or_first_available_variant
+  assign vintage = product.metafields.wine.vintage
+  assign wine_type = product.type
+  assign meta_parts = ''
+  if wine_type != blank
+    assign meta_parts = wine_type
+  endif
+  if vintage != blank
+    if meta_parts != blank
+      assign meta_parts = meta_parts | append: ' · ' | append: vintage
+    else
+      assign meta_parts = vintage
+    endif
+  endif
+
+  if product.featured_image
+    assign image_url = product.featured_image | image_url: width: 800
+    assign image_alt = product.featured_image.alt | default: product.title
+  else
+    assign image_url = 'boc-placeholder-gruner-veltliner.jpg' | asset_url
+    assign image_alt = product.title
+  endif
+
+  assign form_id = 'boc-related-form-' | append: section.id | append: '-' | append: product.id
+-%}
+
+<article class="related-card">
+  <a href="{{ product.url }}" class="related-image">
+    <img src="{{ image_url }}" alt="{{ image_alt | escape }}" loading="lazy" width="400" height="390">
+  </a>
+  <div class="related-info">
+    <h3><a href="{{ product.url }}">{{ product.title }}</a></h3>
+    {%- if meta_parts != blank -%}<p>{{ meta_parts }}</p>{%- endif -%}
+    <strong>{% render 'format-price', price: variant.price %}</strong>
+
+    {%- if product.has_only_default_variant and variant.available -%}
+      <product-form-component
+        data-section-id="{{ section.id }}"
+        data-product-id="{{ product.id }}"
+        data-product-url="{{ product.url }}"
+        on:submit="/handleSubmit"
+      >
+        <div class="visually-hidden" aria-live="assertive" role="status" aria-atomic="true" ref="liveRegion"></div>
+        {%- form 'product', product, id: form_id, data-type: 'add-to-cart-form' -%}
+          <input type="hidden" name="id" ref="variantId" value="{{ variant.id }}">
+          <input type="hidden" name="quantity" value="1">
+          <button class="product-add" type="submit">Add to cart</button>
+        {%- endform -%}
+      </product-form-component>
+    {%- elsif variant.available -%}
+      <a href="{{ product.url }}" class="product-add">Choose options</a>
+    {%- else -%}
+      <button class="product-add" type="button" disabled>Sold out</button>
+    {%- endif -%}
+  </div>
+</article>

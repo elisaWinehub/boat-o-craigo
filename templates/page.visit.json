@@ -1,0 +1,607 @@
+{
+  "sections": {
+    "boc_visit_hero": {
+      "type": "boc-visit-hero",
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "book_now_url": "/pages/book-now",
+        "overlay_opacity": 100,
+        "height_desktop": 720,
+        "height_tablet": 680,
+        "height_mobile": 560,
+        "image_focal_point": "center",
+        "content_width": 760,
+        "eyebrow": "Visit Boat O'Craigo",
+        "heading": "Wine, food and the Yarra Valley at its best.",
+        "body": "Spend the day overlooking our Healesville vineyards with a guided tasting, a relaxed meal in the Glasshouse and time to take in the views.",
+        "text_alignment_desktop": "left",
+        "text_alignment_mobile": "left",
+        "button_1_enabled": true,
+        "button_1_label": "Book your visit",
+        "button_1_url": "/pages/book-now",
+        "button_1_style": "accent",
+        "button_1_new_tab": false,
+        "button_2_enabled": true,
+        "button_2_label": "Explore experiences",
+        "button_2_anchor": "boc-visit-tasting",
+        "button_2_style": "light"
+      }
+    },
+    "boc_visit_nav": {
+      "type": "boc-visit-anchor-nav",
+      "blocks": {
+        "nav_tasting": {
+          "type": "link",
+          "settings": {
+            "label": "Wine tastings",
+            "anchor_id": "boc-visit-tasting"
+          }
+        },
+        "nav_glasshouse": {
+          "type": "link",
+          "settings": {
+            "label": "Glasshouse",
+            "anchor_id": "boc-visit-glasshouse"
+          }
+        },
+        "nav_menus": {
+          "type": "link",
+          "settings": {
+            "label": "Menus",
+            "anchor_id": "boc-visit-menus"
+          }
+        },
+        "nav_groups": {
+          "type": "link",
+          "settings": {
+            "label": "Group bookings",
+            "anchor_id": "boc-visit-groups"
+          }
+        },
+        "nav_getting_here": {
+          "type": "link",
+          "settings": {
+            "label": "Getting here",
+            "anchor_id": "boc-visit-getting-here"
+          }
+        }
+      },
+      "block_order": [
+        "nav_tasting",
+        "nav_glasshouse",
+        "nav_menus",
+        "nav_groups",
+        "nav_getting_here"
+      ],
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "sticky_enabled": true,
+        "active_tracking": true,
+        "background_color": "#FFFFFF",
+        "text_color": "#212121",
+        "active_color": "#B99E7E",
+        "aria_label": "Visit page navigation"
+      }
+    },
+    "boc_visit_intro": {
+      "type": "boc-visit-intro",
+      "blocks": {
+        "pathway_taste": {
+          "type": "pathway",
+          "settings": {
+            "heading": "Taste",
+            "description": "Guided flights of estate-grown, single-vineyard wines.",
+            "link_label": "Wine tastings",
+            "link_type": "anchor",
+            "anchor_id": "boc-visit-tasting",
+            "background_color": "#FFFFFF",
+            "hover_background_color": "#FAF8F5",
+            "text_color": "#212121",
+            "hover_text_color": "#212121"
+          }
+        },
+        "pathway_dine": {
+          "type": "pathway",
+          "settings": {
+            "heading": "Dine",
+            "description": "Seasonal food, local producers and vineyard views.",
+            "link_label": "The Glasshouse",
+            "link_type": "anchor",
+            "anchor_id": "boc-visit-glasshouse",
+            "background_color": "#FFFFFF",
+            "hover_background_color": "#FAF8F5",
+            "text_color": "#212121",
+            "hover_text_color": "#212121"
+          }
+        },
+        "pathway_explore": {
+          "type": "pathway",
+          "settings": {
+            "heading": "Explore",
+            "description": "Directions, transport options and local tour partners.",
+            "link_label": "Getting here",
+            "link_type": "anchor",
+            "anchor_id": "boc-visit-getting-here",
+            "background_color": "#FFFFFF",
+            "hover_background_color": "#FAF8F5",
+            "text_color": "#212121",
+            "hover_text_color": "#212121"
+          }
+        }
+      },
+      "block_order": [
+        "pathway_taste",
+        "pathway_dine",
+        "pathway_explore"
+      ],
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "background_color": "#FFFFFF",
+        "columns_desktop": 3,
+        "columns_tablet": 3,
+        "padding_top_desktop": 120,
+        "padding_bottom_desktop": 120,
+        "padding_top_tablet": 96,
+        "padding_bottom_tablet": 96,
+        "padding_top_mobile": 80,
+        "padding_bottom_mobile": 80,
+        "eyebrow": "Plan your day",
+        "heading": "One estate, three ways to enjoy it.",
+        "body": "Our cellar door and Glasshouse sit above the vineyards at the foot of the Black Spur. Come for a tasting, stay for lunch, or bring a group together for a memorable Yarra Valley experience."
+      }
+    },
+    "boc_visit_tasting": {
+      "type": "boc-visit-tasting",
+      "blocks": {
+        "detail_classic": {
+          "type": "detail",
+          "settings": {
+            "label": "Classic tasting",
+            "value": "5 wines"
+          }
+        },
+        "detail_duration": {
+          "type": "detail",
+          "settings": {
+            "label": "Duration",
+            "value": "Approx. 45 minutes"
+          }
+        },
+        "detail_walkins": {
+          "type": "detail",
+          "settings": {
+            "label": "Walk-ins",
+            "value": "Welcome when available"
+          }
+        },
+        "detail_bookings": {
+          "type": "detail",
+          "settings": {
+            "label": "Bookings",
+            "value": "Recommended"
+          }
+        }
+      },
+      "block_order": [
+        "detail_classic",
+        "detail_duration",
+        "detail_walkins",
+        "detail_bookings"
+      ],
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "section_anchor_id": "boc-visit-tasting",
+        "booking_url": "/pages/book-now",
+        "split_ratio": "1.05fr 0.95fr",
+        "desktop_image_height": 680,
+        "tablet_image_height": 520,
+        "mobile_image_height": 380,
+        "mobile_stack_order": "image_first",
+        "copy_background_color": "#FAF8F5",
+        "copy_text_color": "#212121",
+        "copy_body_color": "#575962",
+        "detail_border_color": "#E8E2D9",
+        "eyebrow": "Cellar door",
+        "heading": "Taste the estate.",
+        "body": "Discover a guided selection of premium wines made from our two Yarra Valley vineyard sites. Our team will take you through the stories, seasons and winemaking behind each glass.",
+        "button_enabled": true,
+        "button_label": "Book a tasting",
+        "button_url": "/pages/book-now",
+        "button_style": "primary",
+        "button_new_tab": false
+      }
+    },
+    "boc_visit_glasshouse": {
+      "type": "boc-visit-glasshouse",
+      "blocks": {
+        "detail_dining": {
+          "type": "detail",
+          "settings": {
+            "label": "Dining style",
+            "value": "Relaxed à la carte"
+          }
+        },
+        "detail_groups": {
+          "type": "detail",
+          "settings": {
+            "label": "Group bookings",
+            "value": "Available for 11+"
+          }
+        },
+        "detail_dietary": {
+          "type": "detail",
+          "settings": {
+            "label": "Dietary needs",
+            "value": "Ask our team"
+          }
+        },
+        "detail_reservations": {
+          "type": "detail",
+          "settings": {
+            "label": "Reservations",
+            "value": "Recommended"
+          }
+        }
+      },
+      "block_order": [
+        "detail_dining",
+        "detail_groups",
+        "detail_dietary",
+        "detail_reservations"
+      ],
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "section_anchor_id": "boc-visit-glasshouse",
+        "booking_url": "/pages/book-now",
+        "split_ratio_reverse": "0.95fr 1.05fr",
+        "desktop_image_height": 680,
+        "tablet_image_height": 520,
+        "mobile_image_height": 380,
+        "mobile_stack_order": "image_first",
+        "copy_background_color": "#333333",
+        "copy_text_color": "#FFFFFF",
+        "copy_body_color": "#CCCCCC",
+        "detail_border_color": "#444444",
+        "eyebrow": "The Glasshouse",
+        "heading": "Come for the view. Stay for the food.",
+        "body": "Our relaxed restaurant pairs estate wines with generous, seasonal dishes. Expect artisan cheeses, charcuterie, pizza and locally sourced produce served in a light-filled room overlooking the vineyard.",
+        "button_enabled": true,
+        "button_label": "Reserve a table",
+        "button_url": "/pages/book-now",
+        "button_style": "light",
+        "button_new_tab": false
+      }
+    },
+    "boc_visit_menus": {
+      "type": "boc-visit-menus",
+      "blocks": {
+        "menu_food": {
+          "type": "menu",
+          "settings": {
+            "eyebrow": "Seasonal",
+            "heading": "Food menu",
+            "link_label": "View food menu",
+            "link_type": "url",
+            "card_height": 520,
+            "overlay_opacity": 100,
+            "open_new_tab": false
+          }
+        },
+        "menu_beverage": {
+          "type": "menu",
+          "settings": {
+            "eyebrow": "Estate wines",
+            "heading": "Beverage menu",
+            "link_label": "View beverage menu",
+            "link_type": "url",
+            "card_height": 520,
+            "overlay_opacity": 100,
+            "open_new_tab": false
+          }
+        }
+      },
+      "block_order": [
+        "menu_food",
+        "menu_beverage"
+      ],
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "section_anchor_id": "boc-visit-menus",
+        "background_color": "#FFFFFF",
+        "columns_desktop": 2,
+        "default_card_height": 520,
+        "padding_top_desktop": 120,
+        "padding_bottom_desktop": 120,
+        "padding_top_tablet": 96,
+        "padding_bottom_tablet": 96,
+        "padding_top_mobile": 80,
+        "padding_bottom_mobile": 80,
+        "eyebrow": "Eat and drink",
+        "heading": "Explore our menus.",
+        "intro_body": "Our offering changes with the seasons and is designed to be shared alongside a bottle from the estate."
+      }
+    },
+    "boc_visit_groups": {
+      "type": "boc-visit-groups",
+      "blocks": {
+        "detail_shared": {
+          "type": "detail",
+          "settings": {
+            "label": "Shared menu",
+            "value": "Seasonal selection"
+          }
+        },
+        "detail_pairing": {
+          "type": "detail",
+          "settings": {
+            "label": "Wine pairing",
+            "value": "Estate list available"
+          }
+        },
+        "detail_large": {
+          "type": "detail",
+          "settings": {
+            "label": "Large groups",
+            "value": "Advance booking required"
+          }
+        }
+      },
+      "block_order": [
+        "detail_shared",
+        "detail_pairing",
+        "detail_large"
+      ],
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "section_anchor_id": "boc-visit-groups",
+        "group_enquiry_url": "/pages/contact",
+        "background_color": "#B99E7E",
+        "text_color": "#FFFFFF",
+        "detail_border_color": "rgba(255,255,255,0.35)",
+        "image_height": 560,
+        "padding_top_desktop": 120,
+        "padding_bottom_desktop": 120,
+        "padding_top_tablet": 96,
+        "padding_bottom_tablet": 96,
+        "padding_top_mobile": 80,
+        "padding_bottom_mobile": 80,
+        "eyebrow": "Groups of 11+",
+        "heading": "Bring the whole table.",
+        "body": "Planning a birthday, team lunch or relaxed celebration? Our group experience combines shared seasonal food, estate wine and sweeping vineyard views.",
+        "button_enabled": true,
+        "button_label": "Enquire about groups",
+        "button_url": "/pages/contact",
+        "button_style": "light",
+        "button_new_tab": false
+      }
+    },
+    "boc_visit_reviews": {
+      "type": "boc-visit-reviews",
+      "blocks": {
+        "testimonial_1": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Beautiful vineyard views, warm service and a tasting that made the wines easy to understand.",
+            "name": "Cellar door guest",
+            "context": "Placeholder review",
+            "rating": 5
+          }
+        },
+        "testimonial_2": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "The Glasshouse was relaxed, generous and exactly what we wanted from a Yarra Valley lunch.",
+            "name": "Restaurant guest",
+            "context": "Placeholder review",
+            "rating": 5
+          }
+        },
+        "testimonial_3": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "A wonderful place to bring visitors—great wine, thoughtful food and an unforgettable outlook.",
+            "name": "Local guest",
+            "context": "Placeholder review",
+            "rating": 5
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_1",
+        "testimonial_2",
+        "testimonial_3"
+      ],
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "enable_app_blocks": false,
+        "background_color": "#FAF8F5",
+        "card_background": "#FFFFFF",
+        "star_color": "#B99E7E",
+        "show_stars": true,
+        "enable_carousel": false,
+        "columns_desktop": 3,
+        "padding_top_desktop": 120,
+        "padding_bottom_desktop": 120,
+        "padding_top_tablet": 96,
+        "padding_bottom_tablet": 96,
+        "padding_top_mobile": 80,
+        "padding_bottom_mobile": 80,
+        "eyebrow": "Guest reviews",
+        "heading": "Worth the drive.",
+        "intro_body": "Placeholder testimonials for the static concept. Final reviews can be connected through Shopify metafields or a review app."
+      }
+    },
+    "boc_visit_getting_here": {
+      "type": "boc-visit-getting-here",
+      "blocks": {
+        "travel_car": {
+          "type": "travel",
+          "settings": {
+            "heading": "Arriving by car",
+            "body": "<p>Boat O'Craigo is approximately a three-minute drive from central Healesville at 458 Maroondah Highway. On-site parking is available.</p>",
+            "button_enabled": false,
+            "button_style": "primary",
+            "button_new_tab": false
+          }
+        },
+        "travel_bus": {
+          "type": "travel",
+          "settings": {
+            "heading": "Arriving by bus",
+            "body": "<p>Public bus services operate from Lilydale Station toward Healesville. Confirm the current route and timetable before travelling.</p>",
+            "button_enabled": false,
+            "button_style": "primary",
+            "button_new_tab": false
+          }
+        },
+        "operator_yarra_valley_x": {
+          "type": "operator",
+          "settings": {
+            "name": "Yarra Valley X",
+            "open_new_tab": true
+          }
+        },
+        "operator_bespoke": {
+          "type": "operator",
+          "settings": {
+            "name": "Bespoke Wine Tours",
+            "open_new_tab": true
+          }
+        },
+        "operator_big_grape": {
+          "type": "operator",
+          "settings": {
+            "name": "Big Grape Winery Tours",
+            "open_new_tab": true
+          }
+        },
+        "operator_evergreen": {
+          "type": "operator",
+          "settings": {
+            "name": "Evergreen Winery Tours",
+            "open_new_tab": true
+          }
+        },
+        "operator_winebus": {
+          "type": "operator",
+          "settings": {
+            "name": "Winebus",
+            "open_new_tab": true
+          }
+        },
+        "operator_red_carpet": {
+          "type": "operator",
+          "settings": {
+            "name": "Red Carpet Wine Tours",
+            "open_new_tab": true
+          }
+        }
+      },
+      "block_order": [
+        "travel_car",
+        "travel_bus",
+        "operator_yarra_valley_x",
+        "operator_bespoke",
+        "operator_big_grape",
+        "operator_evergreen",
+        "operator_winebus",
+        "operator_red_carpet"
+      ],
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "section_anchor_id": "boc-visit-getting-here",
+        "background_color": "#FFFFFF",
+        "image_height": 620,
+        "operator_columns": 3,
+        "padding_top_desktop": 120,
+        "padding_bottom_desktop": 120,
+        "padding_top_tablet": 96,
+        "padding_bottom_tablet": 96,
+        "padding_top_mobile": 80,
+        "padding_bottom_mobile": 80,
+        "eyebrow": "Getting here",
+        "heading": "At the gateway to the Black Spur.",
+        "show_address": true,
+        "address_name": "Boat O'Craigo",
+        "address_line_1": "458 Maroondah Highway",
+        "address_line_2": "Healesville VIC 3777",
+        "operators_heading": "Book a tour operator",
+        "operators_intro": "Prefer to leave the driving to someone else? A range of local operators visit wineries throughout the Yarra Valley.",
+        "directions_button_enabled": true,
+        "directions_button_label": "Get directions",
+        "directions_button_style": "primary",
+        "enable_map_app_block": false
+      }
+    },
+    "boc_visit_final_cta": {
+      "type": "boc-visit-final-cta",
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "section_anchor_id": "boc-visit-book",
+        "book_now_url": "/pages/book-now",
+        "tasting_booking_url": "/pages/book-now",
+        "restaurant_booking_url": "/pages/book-now",
+        "overlay_color": "#000000",
+        "overlay_opacity": 50,
+        "height_desktop": 520,
+        "height_mobile": 480,
+        "content_width": 780,
+        "eyebrow": "Plan your visit",
+        "heading": "Make a day of it.",
+        "body": "Reserve a tasting, book a table in the Glasshouse or speak with our team about a group experience.",
+        "button_1_enabled": true,
+        "button_1_label": "Book a tasting",
+        "button_1_url": "/pages/book-now",
+        "button_1_style": "accent",
+        "button_1_new_tab": false,
+        "button_2_enabled": true,
+        "button_2_label": "Reserve a table",
+        "button_2_url": "/pages/book-now",
+        "button_2_style": "light",
+        "button_2_new_tab": false
+      }
+    }
+  },
+  "order": [
+    "boc_visit_hero",
+    "boc_visit_nav",
+    "boc_visit_intro",
+    "boc_visit_tasting",
+    "boc_visit_glasshouse",
+    "boc_visit_menus",
+    "boc_visit_groups",
+    "boc_visit_reviews",
+    "boc_visit_getting_here",
+    "boc_visit_final_cta"
+  ]
+}

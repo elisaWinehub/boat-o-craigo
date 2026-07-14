@@ -1,0 +1,185 @@
+/* Boat O'Craigo — Footer */
+
+.boc-footer {
+  background: #171717;
+  color: var(--boc-white);
+  padding: 72px 0 28px;
+}
+
+/* Brand + Shop + Visit + Discover — four columns */
+.boc-footer__top {
+  display: grid;
+  grid-template-columns: 1.4fr repeat(3, 1fr);
+  gap: 60px;
+}
+
+.boc-footer__brand-logo {
+  width: 170px;
+  height: auto;
+  filter: brightness(0) invert(1);
+}
+
+.boc-footer__contact {
+  max-width: 340px;
+  margin-top: 22px;
+  color: #999;
+  font-size: 0.82rem;
+  line-height: 1.6;
+}
+
+.boc-footer__contact p {
+  margin: 0;
+}
+
+.boc-footer__contact p + p {
+  margin-top: 0;
+}
+
+.boc-footer__contact a {
+  color: #999;
+  transition: color var(--boc-transition);
+}
+
+.boc-footer__contact a:hover {
+  color: var(--boc-white);
+}
+
+.boc-footer__heading {
+  font-family: var(--boc-sans);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  margin: 0 0 18px;
+}
+
+.boc-footer__menu-link {
+  display: block;
+  color: #aaa;
+  font-size: 0.82rem;
+  margin: 9px 0;
+  transition: color var(--boc-transition);
+}
+
+.boc-footer__menu-link:hover {
+  color: var(--boc-white);
+}
+
+.boc-footer__newsletter {
+  margin-top: var(--boc-space-5);
+  padding-top: var(--boc-space-5);
+  border-top: 1px solid #353535;
+}
+
+.boc-footer__newsletter-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.boc-footer__newsletter-heading {
+  font-family: var(--boc-serif);
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  font-weight: 400;
+  line-height: 1.05;
+  margin: 8px 0 0;
+}
+
+.boc-footer__newsletter-form {
+  display: flex;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+.boc-footer__newsletter-input {
+  flex: 1;
+  padding: 16px 0;
+  border: 0;
+  background: transparent;
+  color: var(--boc-white);
+  outline: none;
+}
+
+.boc-footer__newsletter-input::placeholder {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.boc-footer__newsletter-submit {
+  border: 0;
+  background: none;
+  color: var(--boc-white);
+  font-family: var(--boc-sans);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 16px 0 16px 16px;
+}
+
+.boc-footer__newsletter-submit:hover {
+  color: var(--boc-sand);
+}
+
+.boc-footer__bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 58px;
+  padding-top: 22px;
+  border-top: 1px solid #353535;
+  color: #777;
+  font-size: 0.7rem;
+}
+
+.boc-footer__legal-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0;
+}
+
+.boc-footer__legal-sep {
+  margin-inline: 0.35em;
+  color: #777;
+}
+
+.boc-footer__legal-link {
+  color: #777;
+  transition: color var(--boc-transition);
+}
+
+.boc-footer__legal-link:hover {
+  color: var(--boc-white);
+}
+
+@media (max-width: 720px) {
+  .boc-footer {
+    padding: 60px 0 24px;
+  }
+
+  .boc-footer__top {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+
+  .boc-footer__brand {
+    grid-column: 1 / -1;
+  }
+
+  .boc-footer__newsletter-inner {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .boc-footer__bottom {
+    display: block;
+  }
+
+  .boc-footer__bottom > span,
+  .boc-footer__legal-links {
+    display: block;
+    margin-bottom: 8px;
+  }
+}

@@ -1,0 +1,185 @@
+{%- liquid
+  assign section_classes = 'boc-whats-on-section boc-whats-on-enquiry boc-whats-on-section--standard'
+  unless section.settings.section_enabled
+    assign section_classes = section_classes | append: ' boc-whats-on-section--disabled'
+  endunless
+  unless section.settings.show_desktop
+    assign section_classes = section_classes | append: ' boc-whats-on-section--hide-desktop'
+  endunless
+  unless section.settings.show_tablet
+    assign section_classes = section_classes | append: ' boc-whats-on-section--hide-tablet'
+  endunless
+  unless section.settings.show_mobile
+    assign section_classes = section_classes | append: ' boc-whats-on-section--hide-mobile'
+  endunless
+
+  assign has_app_blocks = false
+  for block in section.blocks
+    if block.type == '@app'
+      assign has_app_blocks = true
+      break
+    endif
+  endfor
+
+  assign show_native = true
+  if section.settings.form_provider_mode == 'app_blocks' and has_app_blocks
+    assign show_native = false
+  endif
+-%}
+
+<section
+  id="{{ section.settings.section_anchor_id | default: 'boc-whats-on-enquiry' }}"
+  class="{{ section_classes }}"
+  data-boc-whats-on
+  data-boc-whats-on-enquiry
+  style="
+    --boc-wo-bg: {{ section.settings.background_color }};
+    --boc-wo-text: {{ section.settings.text_color }};
+    --boc-wo-pt-d: {{ section.settings.padding_top_desktop }}px;
+    --boc-wo-pb-d: {{ section.settings.padding_bottom_desktop }}px;
+    --boc-wo-pt-t: {{ section.settings.padding_top_tablet }}px;
+    --boc-wo-pb-t: {{ section.settings.padding_bottom_tablet }}px;
+    --boc-wo-pt-m: {{ section.settings.padding_top_mobile }}px;
+    --boc-wo-pb-m: {{ section.settings.padding_bottom_mobile }}px;
+    --boc-wo-form-bg: {{ section.settings.form_background }};
+    --boc-wo-field-bg: {{ section.settings.field_background }};
+    --boc-wo-field-border: {{ section.settings.field_border }};
+  "
+>
+  <div class="boc-whats-on-section__inner">
+    <div class="boc-whats-on-enquiry__head">
+      {%- if section.settings.eyebrow != blank -%}<span class="boc-eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+      {%- if section.settings.heading != blank -%}<h2 class="boc-whats-on-section__heading">{{ section.settings.heading }}</h2>{%- endif -%}
+      {%- if section.settings.body != blank -%}<p>{{ section.settings.body }}</p>{%- endif -%}
+    </div>
+
+    {%- if has_app_blocks -%}
+      <div class="boc-whats-on-enquiry__app-blocks">
+        {%- for block in section.blocks -%}
+          {%- if block.type == '@app' -%}
+            {% render block %}
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+    {%- if show_native -%}
+      <div class="boc-whats-on-enquiry__tabs" role="tablist" aria-label="Enquiry type">
+        <button type="button" class="boc-whats-on-enquiry__tab" role="tab" id="boc-tab-wedding-{{ section.id }}" data-tab="wedding" aria-selected="true" aria-controls="boc-panel-wedding-{{ section.id }}">{{ section.settings.wedding_tab_label }}</button>
+        <button type="button" class="boc-whats-on-enquiry__tab" role="tab" id="boc-tab-private-{{ section.id }}" data-tab="private" aria-selected="false" aria-controls="boc-panel-private-{{ section.id }}" tabindex="-1">{{ section.settings.private_tab_label }}</button>
+      </div>
+
+      <div id="boc-panel-wedding-{{ section.id }}" class="boc-whats-on-enquiry__panel" role="tabpanel" data-panel="wedding" aria-labelledby="boc-tab-wedding-{{ section.id }}">
+        <div class="boc-whats-on-enquiry__form-wrap">
+          {%- assign wedding_form_id = 'boc-wedding-form-' | append: section.id -%}
+          {%- form 'contact', id: wedding_form_id -%}
+            <input type="hidden" name="contact[enquiry_type]" value="Wedding enquiry">
+            <input type="hidden" name="contact[tags]" value="event-enquiry,wedding">
+            {%- if form.posted_successfully? -%}
+              <p class="boc-whats-on-enquiry__success" role="status">{{ section.settings.success_message }}</p>
+            {%- endif -%}
+            {%- if form.errors -%}
+              <div class="boc-whats-on-enquiry__errors" role="alert">{{ form.errors | default_errors }}</div>
+            {%- endif -%}
+            <div class="boc-whats-on-enquiry__form-grid">
+              {%- assign w_name_id = 'w-name-' | append: section.id -%}
+              {%- assign w_email_id = 'w-email-' | append: section.id -%}
+              {%- assign w_phone_id = 'w-phone-' | append: section.id -%}
+              {%- assign w_date_id = 'w-date-' | append: section.id -%}
+              {%- assign w_guests_id = 'w-guests-' | append: section.id -%}
+              {%- assign w_style_id = 'w-style-' | append: section.id -%}
+              {%- assign w_message_id = 'w-message-' | append: section.id -%}
+              {% render 'boc-form-field', id: w_name_id, name: 'contact[name]', label: 'Name', required: true %}
+              {% render 'boc-form-field', id: w_email_id, name: 'contact[email]', label: 'Email', type: 'email', required: true %}
+              {% render 'boc-form-field', id: w_phone_id, name: 'contact[phone]', label: 'Phone', type: 'tel' %}
+              {% render 'boc-form-field', id: w_date_id, name: 'contact[preferred_wedding_date]', label: 'Preferred wedding date', type: 'date' %}
+              {% render 'boc-form-field', id: w_guests_id, name: 'contact[estimated_guests]', label: 'Estimated guests', type: 'number', placeholder: 'e.g. 80' %}
+              {% render 'boc-form-field', id: w_style_id, name: 'contact[celebration_style]', label: 'Celebration style', type: 'select', options: 'Ceremony and reception|Reception only|Elopement or intimate wedding' %}
+              {% render 'boc-form-field', id: w_message_id, name: 'contact[body]', label: 'Tell us about your day', type: 'textarea', full_width: true, placeholder: 'Share your ideas, priorities and any important details.' %}
+            </div>
+            <div class="boc-whats-on-enquiry__foot">
+              {%- if section.settings.privacy_text != blank -%}<p>{{ section.settings.privacy_text }}</p>{%- endif -%}
+              <button type="submit" class="boc-btn boc-btn--primary">{{ section.settings.wedding_submit_label }}</button>
+            </div>
+          {%- endform -%}
+        </div>
+      </div>
+
+      <div id="boc-panel-private-{{ section.id }}" class="boc-whats-on-enquiry__panel" role="tabpanel" data-panel="private" aria-labelledby="boc-tab-private-{{ section.id }}" hidden>
+        <div class="boc-whats-on-enquiry__form-wrap">
+          {%- assign private_form_id = 'boc-private-form-' | append: section.id -%}
+          {%- form 'contact', id: private_form_id -%}
+            <input type="hidden" name="contact[enquiry_type]" value="Private event enquiry">
+            <input type="hidden" name="contact[tags]" value="event-enquiry,private">
+            {%- if form.posted_successfully? -%}
+              <p class="boc-whats-on-enquiry__success" role="status">{{ section.settings.success_message }}</p>
+            {%- endif -%}
+            {%- if form.errors -%}
+              <div class="boc-whats-on-enquiry__errors" role="alert">{{ form.errors | default_errors }}</div>
+            {%- endif -%}
+            <div class="boc-whats-on-enquiry__form-grid">
+              {%- assign p_name_id = 'p-name-' | append: section.id -%}
+              {%- assign p_email_id = 'p-email-' | append: section.id -%}
+              {%- assign p_phone_id = 'p-phone-' | append: section.id -%}
+              {%- assign p_type_id = 'p-type-' | append: section.id -%}
+              {%- assign p_date_id = 'p-date-' | append: section.id -%}
+              {%- assign p_guests_id = 'p-guests-' | append: section.id -%}
+              {%- assign p_message_id = 'p-message-' | append: section.id -%}
+              {% render 'boc-form-field', id: p_name_id, name: 'contact[name]', label: 'Name', required: true %}
+              {% render 'boc-form-field', id: p_email_id, name: 'contact[email]', label: 'Email', type: 'email', required: true %}
+              {% render 'boc-form-field', id: p_phone_id, name: 'contact[phone]', label: 'Phone', type: 'tel' %}
+              {% render 'boc-form-field', id: p_type_id, name: 'contact[event_type]', label: 'Type of event', type: 'select', options: 'Birthday or milestone|Corporate event|Family celebration|Other' %}
+              {% render 'boc-form-field', id: p_date_id, name: 'contact[preferred_date]', label: 'Preferred date', type: 'date' %}
+              {% render 'boc-form-field', id: p_guests_id, name: 'contact[estimated_guests]', label: 'Estimated guests', type: 'number', placeholder: 'e.g. 40' %}
+              {% render 'boc-form-field', id: p_message_id, name: 'contact[body]', label: 'Event details', type: 'textarea', full_width: true, placeholder: 'Tell us what you are planning and how we can help.' %}
+            </div>
+            <div class="boc-whats-on-enquiry__foot">
+              {%- if section.settings.privacy_text != blank -%}<p>{{ section.settings.privacy_text }}</p>{%- endif -%}
+              <button type="submit" class="boc-btn boc-btn--primary">{{ section.settings.private_submit_label }}</button>
+            </div>
+          {%- endform -%}
+        </div>
+      </div>
+    {%- elsif section.settings.form_provider_mode == 'app_blocks' and has_app_blocks == false -%}
+      <p class="boc-whats-on-enquiry__errors">Add a Shopify Forms or compatible app block in the Theme Editor, or switch form provider mode to native contact form.</p>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "BOC — WO Enquiry",
+  "tag": "section",
+  "class": "boc-whats-on-enquiry-section",
+  "settings": [
+    { "type": "checkbox", "id": "section_enabled", "label": "Enable section", "default": true },
+    { "type": "checkbox", "id": "show_desktop", "label": "Show on desktop", "default": true },
+    { "type": "checkbox", "id": "show_tablet", "label": "Show on tablet", "default": true },
+    { "type": "checkbox", "id": "show_mobile", "label": "Show on mobile", "default": true },
+    { "type": "text", "id": "section_anchor_id", "label": "Section anchor ID", "default": "boc-whats-on-enquiry" },
+    { "type": "select", "id": "form_provider_mode", "label": "Form provider mode", "options": [{"value":"native_contact","label":"Native Shopify contact form"},{"value":"app_blocks","label":"App blocks only"}],"default": "native_contact", "info": "Use native contact form by default. Switch to app blocks when a Shopify Forms app block is added." },
+    { "type": "color", "id": "background_color", "label": "Background", "default": "#B99E7E" },
+    { "type": "color", "id": "text_color", "label": "Text colour", "default": "#FFFFFF" },
+    { "type": "color", "id": "form_background", "label": "Form background", "default": "#FFFFFF" },
+    { "type": "color", "id": "field_background", "label": "Field background", "default": "#FFFFFF" },
+    { "type": "color", "id": "field_border", "label": "Field border", "default": "#E8E2D9" },
+    { "type": "range", "id": "padding_top_desktop", "label": "Desktop padding top", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 120 },
+    { "type": "range", "id": "padding_bottom_desktop", "label": "Desktop padding bottom", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 120 },
+    { "type": "range", "id": "padding_top_tablet", "label": "Tablet padding top", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 96 },
+    { "type": "range", "id": "padding_bottom_tablet", "label": "Tablet padding bottom", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 96 },
+    { "type": "range", "id": "padding_top_mobile", "label": "Mobile padding top", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 80 },
+    { "type": "range", "id": "padding_bottom_mobile", "label": "Mobile padding bottom", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 80 },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Enquire" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Tell us what you're planning." },
+    { "type": "textarea", "id": "body", "label": "Body", "default": "Choose the type of occasion below and share a few details. Our events team will be in touch to discuss availability and the next steps." },
+    { "type": "text", "id": "wedding_tab_label", "label": "Wedding tab label", "default": "Wedding enquiry" },
+    { "type": "text", "id": "private_tab_label", "label": "Private event tab label", "default": "Private event enquiry" },
+    { "type": "text", "id": "wedding_submit_label", "label": "Wedding submit label", "default": "Send wedding enquiry" },
+    { "type": "text", "id": "private_submit_label", "label": "Private submit label", "default": "Send event enquiry" },
+    { "type": "text", "id": "success_message", "label": "Success message", "default": "Thank you. Our events team will be in touch shortly." },
+    { "type": "textarea", "id": "privacy_text", "label": "Privacy text", "default": "Your details will only be used to respond to your enquiry." }
+  ],
+  "blocks": [{ "type": "@app" }],
+  "presets": [{ "name": "BOC — WO Enquiry" }]
+}
+{% endschema %}

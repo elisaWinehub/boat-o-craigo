@@ -1,0 +1,84 @@
+{%- liquid
+  assign section_classes = 'boc-about-section boc-about-winemaking boc-about-section--full'
+  unless section.settings.section_enabled
+    assign section_classes = section_classes | append: ' boc-about-section--disabled'
+  endunless
+  unless section.settings.show_desktop
+    assign section_classes = section_classes | append: ' boc-about-section--hide-desktop'
+  endunless
+  unless section.settings.show_tablet
+    assign section_classes = section_classes | append: ' boc-about-section--hide-tablet'
+  endunless
+  unless section.settings.show_mobile
+    assign section_classes = section_classes | append: ' boc-about-section--hide-mobile'
+  endunless
+-%}
+
+<section
+  id="boc-about-winemaking-{{ section.id }}"
+  class="{{ section_classes }}"
+  data-boc-about
+>
+  {% render 'boc-about-feature-split',
+    section: section,
+    anchor_id: section.settings.section_anchor_id | default: 'boc-about-winemaking',
+    reverse: true,
+    dark_copy: true,
+    image_fallback: 'boc-hero-wines.png'
+  %}
+</section>
+
+{% schema %}
+{
+  "name": "BOC — About Winemaking",
+  "tag": "section",
+  "class": "boc-about-winemaking-section",
+  "max_blocks": 8,
+  "settings": [
+    { "type": "checkbox", "id": "section_enabled", "label": "Enable section", "default": true },
+    { "type": "checkbox", "id": "show_desktop", "label": "Show on desktop", "default": true },
+    { "type": "checkbox", "id": "show_tablet", "label": "Show on tablet", "default": true },
+    { "type": "checkbox", "id": "show_mobile", "label": "Show on mobile", "default": true },
+    { "type": "text", "id": "section_anchor_id", "label": "Section anchor ID", "default": "boc-about-winemaking" },
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "image_picker", "id": "mobile_image", "label": "Mobile image" },
+    { "type": "text", "id": "split_ratio", "label": "Split ratio", "default": "1fr 1fr" },
+    { "type": "range", "id": "desktop_image_height", "label": "Desktop image height", "min": 360, "max": 900, "step": 20, "unit": "px", "default": 720 },
+    { "type": "range", "id": "tablet_image_height", "label": "Tablet image height", "min": 300, "max": 700, "step": 20, "unit": "px", "default": 520 },
+    { "type": "range", "id": "mobile_image_height", "label": "Mobile image height", "min": 280, "max": 600, "step": 20, "unit": "px", "default": 380 },
+    { "type": "select", "id": "mobile_stack_order", "label": "Mobile stack order", "options": [{"value":"image_first","label":"Image first"},{"value":"copy_first","label":"Copy first"}],"default": "image_first" },
+    { "type": "color", "id": "copy_background_color", "label": "Copy background", "default": "#333333" },
+    { "type": "color", "id": "copy_text_color", "label": "Copy text", "default": "#FFFFFF" },
+    { "type": "color", "id": "copy_body_color", "label": "Body text", "default": "#cfcfcf" },
+    { "type": "color", "id": "detail_border_color", "label": "Detail border", "default": "#484848" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Winemaking" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Let the vineyard lead." },
+    { "type": "textarea", "id": "body", "label": "Body", "default": "Our wines are shaped by close attention to site, season and fruit. The winemaking approach is measured rather than heavy-handed, preserving natural varietal character and the individuality of each vineyard." },
+    { "type": "checkbox", "id": "button_enabled", "label": "Enable button", "default": true },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Explore our wines" },
+    { "type": "url", "id": "button_url", "label": "Button URL" },
+    { "type": "select", "id": "button_style", "label": "Button style", "options": [{"value":"light","label":"Light"},{"value":"primary","label":"Primary"}],"default": "light" },
+    { "type": "checkbox", "id": "button_new_tab", "label": "Open in new tab", "default": false }
+  ],
+  "blocks": [
+    {
+      "type": "detail",
+      "name": "Detail",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label", "default": "Label" },
+        { "type": "text", "id": "value", "label": "Value", "default": "Value" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "BOC — About Winemaking",
+      "blocks": [
+        { "type": "detail", "settings": { "label": "Winemaking style", "value": "Small-batch and site-led" } },
+        { "type": "detail", "settings": { "label": "Fruit source", "value": "Healesville and Kangaroo Ground" } },
+        { "type": "detail", "settings": { "label": "Purpose", "value": "Clarity, balance and character" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

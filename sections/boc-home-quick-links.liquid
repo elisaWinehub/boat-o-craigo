@@ -1,0 +1,109 @@
+{%- liquid
+  assign section_classes = 'boc-home-section boc-home-quick-links boc-home-section--' | append: section.settings.container_width
+  unless section.settings.section_enabled
+    assign section_classes = section_classes | append: ' boc-home-section--disabled'
+  endunless
+  unless section.settings.show_desktop
+    assign section_classes = section_classes | append: ' boc-home-section--hide-desktop'
+  endunless
+  unless section.settings.show_tablet
+    assign section_classes = section_classes | append: ' boc-home-section--hide-tablet'
+  endunless
+  unless section.settings.show_mobile
+    assign section_classes = section_classes | append: ' boc-home-section--hide-mobile'
+  endunless
+-%}
+
+<section
+  id="boc-home-quick-links-{{ section.id }}"
+  class="{{ section_classes }}"
+  style="--boc-section-bg: {{ section.settings.background_color }}; --boc-section-pt: {{ section.settings.padding_top }}px; --boc-section-pb: {{ section.settings.padding_bottom }}px;"
+>
+  <div class="boc-home-section__inner">
+    {%- if section.settings.eyebrow != blank or section.settings.heading != blank -%}
+      <div class="boc-home-section__head">
+        <div class="boc-home-section__head-text">
+          {%- if section.settings.eyebrow != blank -%}
+            <span class="boc-eyebrow">{{ section.settings.eyebrow }}</span>
+          {%- endif -%}
+          {%- if section.settings.heading != blank -%}
+            <h2 class="boc-home-section__heading">{{ section.settings.heading }}</h2>
+          {%- endif -%}
+          {%- if section.settings.body != blank -%}
+            <p class="boc-home-section__body">{{ section.settings.body }}</p>
+          {%- endif -%}
+        </div>
+      </div>
+    {%- endif -%}
+
+    <div class="boc-home-quick-links__grid">
+      {%- for block in section.blocks -%}
+        <a
+          href="{{ block.settings.link | default: '#' }}"
+          class="boc-home-quick-links__card"
+          {{ block.shopify_attributes }}
+        >
+          {%- if block.settings.title != blank -%}
+            <h3 class="boc-home-quick-links__title">{{ block.settings.title }}</h3>
+          {%- endif -%}
+          {%- if block.settings.label != blank -%}
+            <span class="boc-home-quick-links__label">{{ block.settings.label }}</span>
+          {%- endif -%}
+        </a>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "BOC — Quick links",
+  "tag": "section",
+  "class": "boc-home-quick-links-section",
+  "max_blocks": 6,
+  "settings": [
+    { "type": "checkbox", "id": "section_enabled", "label": "Enable section", "default": true },
+    { "type": "checkbox", "id": "show_desktop", "label": "Show on desktop", "default": true },
+    { "type": "checkbox", "id": "show_tablet", "label": "Show on tablet", "default": true },
+    { "type": "checkbox", "id": "show_mobile", "label": "Show on mobile", "default": true },
+    {
+      "type": "select",
+      "id": "container_width",
+      "label": "Container width",
+      "options": [
+        { "value": "container", "label": "Contained" },
+        { "value": "full", "label": "Full width" }
+      ],
+      "default": "container"
+    },
+    { "type": "color", "id": "background_color", "label": "Background color", "default": "#FFFFFF" },
+    { "type": "range", "id": "padding_top", "label": "Padding top", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 32 },
+    { "type": "range", "id": "padding_bottom", "label": "Padding bottom", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 0 },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow" },
+    { "type": "text", "id": "heading", "label": "Heading" },
+    { "type": "textarea", "id": "body", "label": "Body" }
+  ],
+  "blocks": [
+    {
+      "type": "link",
+      "name": "Quick link",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title", "default": "Link title" },
+        { "type": "text", "id": "label", "label": "Link label", "default": "Explore →" },
+        { "type": "url", "id": "link", "label": "Link" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "BOC — Quick links",
+      "blocks": [
+        { "type": "link", "settings": { "title": "Shop Wines", "label": "Explore the range →", "link": "shopify://collections/all" } },
+        { "type": "link", "settings": { "title": "Glasshouse Restaurant", "label": "View dining →", "link": "/pages/visit" } },
+        { "type": "link", "settings": { "title": "Weddings & Events", "label": "Celebrate with us →", "link": "/pages/visit" } },
+        { "type": "link", "settings": { "title": "Wine Club", "label": "Become a member →", "link": "/pages/wine-club" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

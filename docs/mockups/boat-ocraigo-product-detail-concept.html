@@ -1,0 +1,1335 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Boat O'Craigo — Product Detail Concept</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Libre+Caslon+Display&display=swap" rel="stylesheet">
+<style>
+:root{--sand:#B99E7E;--ink:#212121;--slate:#575962;--cream:#FAF8F5;--line:#E8E2D9;--white:#fff;--serif:'Libre Caslon Display',Georgia,serif;--sans:'DM Sans',Arial,sans-serif;--max:1420px}
+*{box-sizing:border-box}html{scroll-behavior:smooth;overflow-x:hidden}body{margin:0;background:#fff;color:var(--ink);font:16px/1.55 var(--sans);overflow-x:hidden}a{color:inherit;text-decoration:none}img{display:block;width:100%;object-fit:cover}button,input{font:inherit}.container{width:min(calc(100% - 48px),var(--max));margin:auto}.display{font:400 clamp(2.9rem,5vw,5.4rem)/.98 var(--serif);letter-spacing:-.03em}.eyebrow{font-size:.7rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 24px;border:1px solid var(--ink);font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;transition:.25s}.btn:hover{background:var(--ink);color:#fff}.btn.light{border-color:#fff;color:#fff}.btn.light:hover{background:#fff;color:var(--ink)}.btn.sand{background:#212121;border-color:#212121;color:#fff;background:var(--sand);border-color:var(--sand);color:#fff}.text-link{font-size:.7rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;border-bottom:1px solid;padding-bottom:4px}.icon-btn{width:40px;height:40px;border:0;background:transparent;display:grid;place-items:center;cursor:pointer}.icon-btn svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.6}
+.announcement{height:34px;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;position:relative}.announcement button{position:absolute;right:18px;border:0;background:none;color:#fff;font-size:18px}.site-header{height:88px;background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:30}.header-inner{height:100%;display:grid;grid-template-columns:190px 1fr auto;gap:22px;align-items:center}.brand .logo{width:170px;height:auto;max-height:60px;object-fit:contain;object-position:left center}.desktop-nav{height:100%;display:flex;align-items:center;justify-content:center;gap:24px}.nav-item{height:100%;display:flex;align-items:center;position:relative}.nav-link{font-size:.69rem;letter-spacing:.11em;text-transform:uppercase;white-space:nowrap}.nav-link:after{content:"";position:absolute;left:0;right:0;bottom:24px;height:1px;background:var(--ink);transform:scaleX(0);transition:.2s}.nav-item:hover>.nav-link:after{transform:scaleX(1)}.dropdown{position:absolute;top:87px;left:50%;transform:translate(-50%,8px);min-width:220px;padding:16px;background:#fff;border:1px solid var(--line);box-shadow:0 18px 40px rgba(0,0,0,.08);opacity:0;visibility:hidden;transition:.2s}.nav-item:hover .dropdown{opacity:1;visibility:visible;transform:translate(-50%,0)}.dropdown a{display:block;padding:8px 4px;font-size:.82rem}.dropdown a:hover{color:var(--sand)}.header-actions{display:flex;align-items:center;gap:2px}.book-link{margin-right:6px;padding:12px 16px;background:var(--ink);color:#fff;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase}.mobile-trigger{display:none}
+.hero{height:min(92vh,940px);min-height:700px;color:#fff;position:relative;overflow:hidden}.hero-slide{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .75s ease,visibility .75s ease;background-position:center;background-size:cover}.hero-slide:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,10,10,.58) 0%,rgba(10,10,10,.30) 48%,rgba(10,10,10,.18) 100%)}.hero-slide.active{opacity:1;visibility:visible}.hero-slide .hero-content{position:relative;z-index:2;height:100%;display:flex;align-items:center;padding-top:54px;padding-bottom:82px}.hero-copy{max-width:790px}.hero h1{margin:12px 0 22px;font-size:clamp(4rem,8vw,7.7rem)}.hero p{max-width:570px;font-size:1rem;margin:0 0 30px}.hero-actions{display:flex;gap:12px;flex-wrap:wrap}.hero-controls{position:absolute;z-index:4;right:max(24px,calc((100vw - var(--max))/2));bottom:28px;display:flex;align-items:center;gap:8px}.hero-arrow{width:42px;height:42px;border:1px solid rgba(255,255,255,.75);background:rgba(0,0,0,.2);color:#fff;display:grid;place-items:center;cursor:pointer}.hero-dots{display:flex;gap:7px;margin-right:8px}.hero-dot{width:30px;height:3px;border:0;background:rgba(255,255,255,.38);cursor:pointer}.hero-dot.active{background:#fff}
+.quick-links{padding:30px 0 0;background:#fff}.quick-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.quick-card{min-height:126px;border:1px solid var(--line);padding:0;display:flex;flex-direction:column;justify-content:space-between;transition:.25s}.quick-card:hover{background:var(--cream);transform:translateY(-3px)}.quick-card h3{font:400 1.45rem var(--serif);margin:0}.quick-card span{font-size:.68rem;letter-spacing:.13em;text-transform:uppercase;color:var(--slate)}
+.section{padding:120px 0}.section-head{display:flex;align-items:end;justify-content:space-between;gap:30px;margin-bottom:42px}.section-head h2{margin:8px 0 0}.section-head p{max-width:430px;color:var(--slate)}
+.wine-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}.wine-card{min-width:0;display:flex;flex-direction:column;text-align:center;position:relative}.wine-image{height:430px;background:#fff;display:flex;align-items:center;justify-content:center;padding:38px;overflow:hidden}.wine-image img{height:100%;width:auto;object-fit:contain;filter:drop-shadow(0 18px 15px rgba(0,0,0,.16));transition:none}.wine-card:hover .wine-image img{transform:translateY(-8px)}.wine-info{padding:22px 8px;display:flex;flex-direction:column;align-items:center;flex:1}.wine-info h3{font:400 1.35rem var(--serif);margin:0 0 7px}.wine-info p{font-size:.75rem;color:var(--slate);margin:0 0 12px}.price{font-weight:600;margin-top:auto}.quick-add{position:absolute;left:18px;right:18px;top:370px;background:var(--ink);color:#fff;padding:11px;font-size:.67rem;letter-spacing:.12em;text-transform:uppercase;opacity:0;transform:translateY(10px);transition:.25s}.wine-card:hover .quick-add{opacity:1;transform:none}
+.story{background:var(--ink);color:#fff}.story-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:8vw;align-items:center}.story-media{position:relative}.story-media img{height:660px}.story-badge{position:absolute;right:-30px;bottom:40px;width:185px;height:185px;border-radius:50%;background:var(--sand);display:grid;place-items:center;text-align:center;padding:24px;font:400 1.1rem/1.2 var(--serif)}.story-copy p{color:#d1d1d1;max-width:560px}.story-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:42px 0 34px}.story-stat{border-top:1px solid #5c5c5c;padding-top:16px}.story-stat strong{display:block;font:400 1.35rem var(--serif)}.story-stat span{font-size:.72rem;color:#aaa}
+.experience-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.experience-card{min-height:600px;position:relative;color:#fff;overflow:hidden}.experience-card img{height:100%;transition:.6s}.experience-card:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 35%,rgba(0,0,0,.72))}.experience-card:hover img{transform:scale(1.035)}.experience-copy{position:absolute;z-index:2;left:36px;right:36px;bottom:34px}.experience-copy h3{font:400 clamp(2.3rem,4vw,4.1rem)/1 var(--serif);margin:8px 0 14px}.experience-copy p{max-width:470px;margin:0 0 18px}
+.club{background:var(--sand);color:#fff}.club-grid{display:grid;grid-template-columns:1.05fr .95fr}.club-image{min-height:690px;background:url('https://fusws.api.aspedia.io/boatocraigo-website/banners/Banner%20-%20Join%20our%20Wine%20Club.png?preset=carousel-image&t=1779852284584') center/cover}.club-copy{padding:90px max(50px,8vw);display:flex;flex-direction:column;justify-content:center}.club-copy h2{margin:10px 0 24px}.club-copy p{max-width:480px}.club-list{list-style:none;padding:0;margin:32px 0 36px}.club-list li{display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.35)}
+.weddings{position:relative;min-height:700px;color:#fff;display:flex;align-items:center;background:linear-gradient(90deg,rgba(0,0,0,.58),rgba(0,0,0,.14)),url('https://fusws.api.aspedia.io/boatocraigo-website/pages/Homepage/BoatO_April_2026-36.jpg?preset=grid-image-two-third&t=1779852577988') center/cover}.weddings-copy{max-width:690px}.weddings-copy h2{margin:10px 0 24px}.weddings-copy p{max-width:520px;margin-bottom:30px}
+.events{background:var(--cream)}.cards-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}.content-card{display:flex;flex-direction:column}.content-card img{height:310px}.content-card .meta{font-size:.67rem;letter-spacing:.12em;text-transform:uppercase;color:var(--slate);margin-top:20px}.content-card h3{font:400 1.75rem/1.08 var(--serif);margin:10px 0}.content-card p{color:var(--slate);font-size:.87rem}.journal{background:#fff}
+.newsletter{padding:76px 0;background:var(--sand);color:#fff}.newsletter-inner{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}.newsletter h2{font:400 clamp(2.4rem,4vw,4rem)/1 var(--serif);margin:8px 0 0}.newsletter form{display:flex;border-bottom:1px solid rgba(255,255,255,.7)}.newsletter input{flex:1;padding:16px 0;border:0;background:transparent;color:#fff;outline:none}.newsletter input::placeholder{color:rgba(255,255,255,.75)}.newsletter button{border:0;background:none;color:#fff;font-size:.7rem;letter-spacing:.13em;text-transform:uppercase}
+.footer{background:#171717;color:#fff;padding:72px 0 28px}.footer-top{display:grid;grid-template-columns:1.4fr repeat(3,1fr);gap:60px}.footer .logo{filter:brightness(0) invert(1)}.footer h4{font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;margin:0 0 18px}.footer a{display:block;color:#aaa;font-size:.82rem;margin:9px 0}.footer-bottom{border-top:1px solid #353535;margin-top:58px;padding-top:22px;display:flex;justify-content:space-between;gap:20px;color:#777;font-size:.7rem}.mobile-panel{position:fixed;inset:0;background:#fff;z-index:50;transform:translateX(100%);transition:none}.mobile-panel.open{transform:none}.mobile-panel-head{height:88px;padding:0 22px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}.mobile-panel-head .logo{width:150px}.mobile-menu{padding:24px}.mobile-menu>a,.mobile-group>a{display:flex;justify-content:space-between;padding:15px 0;border-bottom:1px solid var(--line);font:400 1.45rem var(--serif)}.mobile-sub{display:none;padding:10px 0 10px 18px}.mobile-group.open .mobile-sub{display:block}.mobile-sub a{display:block;padding:8px 0;color:var(--slate)}
+@media(max-width:1100px){.desktop-nav{display:none}.header-inner{grid-template-columns:1fr auto}.mobile-trigger{display:grid}.quick-grid{grid-template-columns:repeat(2,1fr)}.wine-grid{grid-template-columns:repeat(2,1fr)}.story-grid{grid-template-columns:1fr}.story-badge{right:20px}.club-grid{grid-template-columns:1fr}.club-image{min-height:540px}.footer-top{grid-template-columns:1.3fr 1fr 1fr}.footer-top>div:last-child{display:none}}
+@media(max-width:720px){.container{width:min(calc(100% - 32px),var(--max))}.site-header{height:78px}.brand .logo{width:145px}.book-link,.header-actions .icon-btn:not(.mobile-trigger){display:none}.hero{height:720px}.hero-content{padding-bottom:80px}.hero h1{font-size:3.6rem}.quick-links{padding-top:16px}.quick-grid{grid-template-columns:1fr 1fr;gap:10px}.quick-card{min-height:112px;padding:20px}.section{padding:84px 0}.section-head{display:block}.section-head .text-link{display:inline-block;margin-top:18px}.wine-grid{grid-template-columns:1fr 1fr;gap:12px}.wine-image{height:300px;padding:24px}.quick-add{display:none}.wine-info h3{font-size:1.1rem}.story-media img{height:500px}.story-badge{width:140px;height:140px;font-size:.9rem}.story-stats{grid-template-columns:1fr 1fr}.experience-grid{grid-template-columns:1fr}.experience-card{min-height:500px}.club-copy{padding:70px 24px}.cards-grid{grid-template-columns:1fr}.newsletter-inner{grid-template-columns:1fr}.footer-top{grid-template-columns:1fr 1fr}.footer-top>div:first-child{grid-column:1/-1}.footer-bottom{display:block}.footer-bottom span{display:block;margin-bottom:8px}}
+
+/* Collection page */
+.collection-hero{
+  min-height:400px;
+  display:flex;
+  align-items:flex-end;
+  color:#fff;
+  background:
+    linear-gradient(90deg,rgba(18,18,18,.60),rgba(18,18,18,.18)),
+    url('https://fusws.api.aspedia.io/boatocraigo-website/banners/home-page/Banner%20-%20Wine.png?preset=carousel-image&t=1779852084540') center/cover no-repeat;
+}
+.collection-hero-inner{max-width:760px;padding:90px 0 52px}
+.collection-hero h1{margin:12px 0 18px}
+.collection-hero p{max-width:590px;font-size:1rem;margin:0}
+
+.collection-toolbar{
+  position:sticky;
+  top:88px;
+  z-index:18;
+  background:#fff;
+  border-bottom:1px solid var(--line)
+}
+.collection-toolbar-inner{
+  min-height:74px;
+  display:grid;
+  grid-template-columns:1fr auto;
+  align-items:center;
+  gap:24px
+}
+.collection-summary{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  min-width:0
+}
+.collection-summary strong{font:400 1.35rem var(--serif)}
+.collection-summary span{color:var(--slate);font-size:.8rem}
+.collection-controls{display:flex;align-items:center;gap:10px}
+.collection-control-btn,
+.collection-sort{
+  min-height:42px;
+  border:1px solid var(--line);
+  background:#fff;
+  padding:0 14px;
+  font-size:.68rem;
+  font-weight:600;
+  letter-spacing:.11em;
+  text-transform:uppercase;
+  cursor:pointer
+}
+.collection-sort{padding-right:38px}
+.collection-control-btn.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+
+.collection-section{padding:72px 0 110px}
+.collection-layout{
+  display:grid;
+  grid-template-columns:270px minmax(0,1fr);
+  gap:48px;
+  align-items:start
+}
+.filter-panel{
+  position:sticky;
+  top:184px;
+  border-top:1px solid var(--line)
+}
+.filter-group{border-bottom:1px solid var(--line)}
+.filter-toggle{
+  width:100%;
+  border:0;
+  background:#fff;
+  padding:20px 0;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  text-align:left;
+  cursor:pointer;
+  font-size:.72rem;
+  font-weight:600;
+  letter-spacing:.12em;
+  text-transform:uppercase
+}
+.filter-options{padding:0 0 20px;display:grid;gap:10px}
+.filter-group.closed .filter-options{display:none}
+.filter-option{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  color:var(--slate);
+  font-size:.84rem
+}
+.filter-option input{accent-color:var(--ink)}
+.filter-count{margin-left:auto;font-size:.72rem;color:#999}
+.filter-clear{
+  width:100%;
+  margin-top:18px;
+  min-height:42px;
+  border:1px solid var(--ink);
+  background:#fff;
+  font-size:.68rem;
+  font-weight:600;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  cursor:pointer
+}
+
+.collection-main{min-width:0}
+.active-filters{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  min-height:0;
+  margin-bottom:24px
+}
+.active-filter{
+  border:1px solid var(--line);
+  background:var(--cream);
+  padding:9px 12px;
+  font-size:.72rem;
+  display:flex;
+  gap:10px;
+  align-items:center
+}
+.active-filter button{border:0;background:none;cursor:pointer;font-size:1rem;line-height:1}
+
+.collection-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:34px 20px
+}
+.collection-grid.list-view{grid-template-columns:1fr}
+.collection-product{
+  min-width:0;
+  display:flex;
+  z-index:0;
+  flex-direction:column;
+  text-align:center;
+  position:relative
+}
+.collection-product-image{
+  height:430px;
+  background:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:0;
+  overflow:hidden;
+  position:relative
+}
+.collection-product-image img{
+  width:auto;
+  height:100%;
+  object-fit:contain;
+  transition:none
+}
+.collection-product:hover .collection-product-image img{transform:none}
+.product-badge{
+  position:absolute;
+  top:18px;
+  left:18px;
+  z-index:5;
+  background:var(--ink);
+  color:#fff;
+  padding:8px 10px;
+  font-size:.62rem;
+  letter-spacing:.11em;
+  text-transform:uppercase
+}
+.product-badge.sand{background:var(--sand)}
+.collection-product-info{
+  padding:20px 10px 0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  flex:1
+}
+.collection-product-info h3{
+  font:400 1.35rem/1.15 var(--serif);
+  margin:0 0 7px
+}
+.product-meta{
+  color:var(--slate);
+  font-size:.72rem;
+  margin-bottom:12px
+}
+.product-price{font-weight:600;margin-bottom:16px}
+.product-actions{display:flex;gap:8px;width:100%;margin-top:auto}
+.product-actions .btn{flex:1;min-height:42px;padding:0 12px}
+
+.quantity-control{
+  flex:1;
+  min-height:42px;
+  border:1px solid var(--ink);
+  display:grid;
+  grid-template-columns:42px 1fr 42px;
+  align-items:center;
+  background:#fff
+}
+.quantity-control button{
+  height:100%;
+  border:0;
+  background:transparent;
+  cursor:pointer;
+  font-size:1rem
+}
+.quantity-control span{
+  text-align:center;
+  font-size:.82rem;
+  font-weight:600
+}
+
+
+.collection-grid.list-view .collection-product{
+  display:grid;
+  grid-template-columns:260px 1fr;
+  text-align:left;
+  border-bottom:1px solid var(--line);
+  padding-bottom:28px
+}
+.collection-grid.list-view .collection-product-image{height:300px}
+.collection-grid.list-view .collection-product-info{
+  align-items:flex-start;
+  padding:28px 30px
+}
+.collection-grid.list-view .product-actions{max-width:360px}
+
+.collection-empty{
+  display:none;
+  padding:70px 20px;
+  text-align:center;
+  background:var(--cream)
+}
+.collection-empty h3{font:400 2rem var(--serif);margin:0 0 12px}
+.collection-empty p{color:var(--slate)}
+
+.pagination{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  margin-top:58px
+}
+.page-btn{
+  width:42px;
+  height:42px;
+  border:1px solid var(--line);
+  background:#fff;
+  cursor:pointer
+}
+.page-btn.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+.page-btn:disabled{opacity:.35;cursor:not-allowed}
+
+.mobile-filter-drawer{
+  position:fixed;
+  inset:0;
+  z-index:80;
+  display:none
+}
+.mobile-filter-drawer.open{display:block}
+.mobile-filter-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.55)}
+.mobile-filter-panel{
+  position:absolute;
+  top:0;
+  right:0;
+  height:100%;
+  width:min(390px,92vw);
+  background:#fff;
+  padding:0;
+  overflow:auto
+}
+.mobile-filter-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:18px
+}
+.mobile-filter-head h3{font:400 1.8rem var(--serif);margin:0}
+.mobile-filter-close{border:0;background:none;font-size:1.6rem;cursor:pointer}
+.mobile-filter-actions{
+  position:sticky;
+  bottom:0;
+  background:#fff;
+  padding-top:18px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px
+}
+
+@media(max-width:1100px){
+  .collection-layout{grid-template-columns:1fr}
+  .filter-panel{display:none}
+  .collection-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:720px){
+  .collection-hero{min-height:360px}
+  .collection-hero-inner{padding:70px 0 42px}
+  .collection-toolbar{top:78px}
+  .collection-toolbar-inner{grid-template-columns:1fr;gap:10px;padding:13px 0}
+  .collection-controls{justify-content:space-between}
+  .collection-sort{flex:1}
+  .collection-section{padding:48px 0 82px}
+  .collection-grid{grid-template-columns:1fr 1fr;gap:26px 10px}
+  .collection-product-image{height:300px;padding:26px}
+  .collection-product-info h3{font-size:1.08rem}
+  .product-actions{display:block}
+  .product-actions .btn{width:100%;margin-top:6px}
+  .collection-grid.list-view .collection-product{grid-template-columns:120px 1fr}
+  .collection-grid.list-view .collection-product-image{height:190px;padding:0}
+  .collection-grid.list-view .collection-product-info{padding:12px 16px}
+}
+
+
+.product-actions .btn.sand{
+  background:#212121 !important;
+  border-color:#212121 !important;
+  color:#fff !important;
+}
+.product-actions .btn.sand:hover{
+  background:#111 !important;
+  border-color:#111 !important;
+}
+
+
+/* Product detail page */
+.product-main{
+  padding:54px 0 100px;
+  background:#fff
+}
+.product-breadcrumbs{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-bottom:30px;
+  color:var(--slate);
+  font-size:.72rem
+}
+.product-breadcrumbs a:hover{color:var(--ink)}
+.product-layout{
+  display:grid;
+  grid-template-columns:minmax(0,1.08fr) minmax(420px,.92fr);
+  gap:72px;
+  align-items:start
+}
+.product-gallery{
+  display:grid;
+  grid-template-columns:88px minmax(0,1fr);
+  gap:16px;
+  position:sticky;
+  top:122px
+}
+.product-thumbs{
+  display:grid;
+  gap:10px;
+  align-content:start
+}
+.product-thumb{
+  border:1px solid var(--line);
+  background:#fff;
+  padding:0;
+  cursor:pointer
+}
+.product-thumb.active{border-color:var(--ink)}
+.product-thumb img{
+  width:100%;
+  height:108px;
+  object-fit:contain
+}
+.product-main-image{
+  min-height:720px;
+  background:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  overflow:hidden
+}
+.product-main-image img{
+  width:auto;
+  max-width:78%;
+  height:680px;
+  object-fit:contain
+}
+.product-main-badge{
+  position:absolute;
+  top:18px;
+  left:18px;
+  z-index:3;
+  background:var(--sand);
+  color:#fff;
+  padding:10px 14px;
+  font-size:.66rem;
+  font-weight:600;
+  letter-spacing:.12em;
+  text-transform:uppercase
+}
+.product-main-discount{
+  position:absolute;
+  top:18px;
+  right:18px;
+  z-index:3;
+  background:var(--ink);
+  color:#fff;
+  padding:10px 14px;
+  font-size:.66rem;
+  font-weight:600;
+  letter-spacing:.12em;
+  text-transform:uppercase
+}
+
+.product-info{
+  min-width:0;
+  padding-top:8px
+}
+.product-kicker{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  margin-bottom:14px
+}
+.product-kicker .eyebrow{color:var(--slate)}
+.product-vintage{
+  color:var(--slate);
+  font-size:.72rem
+}
+.product-title{
+  font:400 clamp(2.8rem,4.8vw,5rem)/1 var(--serif);
+  letter-spacing:-.03em;
+  margin:0 0 18px
+}
+.product-subtitle{
+  color:var(--slate);
+  font-size:1rem;
+  margin:0 0 22px
+}
+.product-rating{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:24px;
+  font-size:.78rem
+}
+.product-stars{color:var(--sand);letter-spacing:.12em}
+.product-price-wrap{
+  display:flex;
+  align-items:end;
+  gap:12px;
+  margin-bottom:12px
+}
+.product-price-current{
+  font:400 2rem var(--serif)
+}
+.product-price-compare{
+  color:#999;
+  text-decoration:line-through;
+  font-size:1rem
+}
+.product-saving{
+  display:inline-flex;
+  background:#F4EFE9;
+  color:var(--ink);
+  padding:7px 10px;
+  font-size:.68rem;
+  font-weight:600;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  margin-bottom:26px
+}
+
+.product-short-copy{
+  color:var(--slate);
+  max-width:620px;
+  margin-bottom:28px
+}
+.product-meta-list{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  margin-bottom:28px
+}
+.product-meta-item{
+  padding:18px 12px 18px 0
+}
+.product-meta-item + .product-meta-item{
+  border-left:1px solid var(--line);
+  padding-left:18px
+}
+.product-meta-item span{
+  display:block;
+  color:var(--slate);
+  font-size:.64rem;
+  letter-spacing:.11em;
+  text-transform:uppercase;
+  margin-bottom:5px
+}
+.product-meta-item strong{
+  font-size:.82rem
+}
+
+.purchase-options{
+  display:grid;
+  gap:12px;
+  margin-bottom:24px
+}
+.purchase-option{
+  border:1px solid var(--line);
+  padding:18px;
+  cursor:pointer;
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  gap:14px;
+  align-items:start
+}
+.purchase-option.active{
+  border-color:var(--ink);
+  background:#FCFAF7
+}
+.purchase-option input{
+  margin-top:4px;
+  accent-color:var(--ink)
+}
+.purchase-option-title{
+  font-weight:600;
+  display:block;
+  margin-bottom:3px
+}
+.purchase-option-copy{
+  color:var(--slate);
+  font-size:.78rem;
+  margin:0
+}
+.purchase-option-price{
+  font-weight:600;
+  white-space:nowrap
+}
+.subscription-placeholder{
+  display:none;
+  border:1px solid var(--line);
+  background:var(--cream);
+  padding:18px;
+  margin-top:-2px
+}
+.subscription-placeholder.open{display:block}
+.subscription-placeholder label{
+  display:block;
+  font-size:.68rem;
+  font-weight:600;
+  letter-spacing:.11em;
+  text-transform:uppercase;
+  margin-bottom:8px
+}
+.subscription-placeholder select{
+  width:100%;
+  border:1px solid var(--line);
+  background:#fff;
+  padding:13px 14px
+}
+
+.product-purchase-row{
+  display:grid;
+  grid-template-columns:150px 1fr;
+  gap:12px;
+  margin-bottom:16px
+}
+.product-quantity{
+  min-height:52px;
+  border:1px solid var(--ink);
+  display:grid;
+  grid-template-columns:44px 1fr 44px;
+  align-items:center
+}
+.product-quantity button{
+  height:100%;
+  border:0;
+  background:#fff;
+  cursor:pointer;
+  font-size:1.1rem
+}
+.product-quantity span{
+  text-align:center;
+  font-weight:600
+}
+.product-add{
+  min-height:52px;
+  border:1px solid var(--ink);
+  background:var(--ink);
+  color:#fff;
+  font-size:.72rem;
+  font-weight:600;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+  cursor:pointer
+}
+.product-add:hover{background:#111}
+.product-secondary{
+  width:100%;
+  min-height:50px;
+  border:1px solid var(--sand);
+  background:var(--sand);
+  color:#fff;
+  font-size:.72rem;
+  font-weight:600;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+  cursor:pointer;
+  margin-bottom:22px
+}
+.product-stock{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  color:var(--slate);
+  font-size:.78rem;
+  margin-bottom:26px
+}
+.stock-dot{
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:#6D8C67
+}
+
+.product-benefits{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  margin-bottom:30px
+}
+.product-benefit{
+  border:1px solid var(--line);
+  padding:16px;
+  min-height:108px
+}
+.product-benefit strong{
+  display:block;
+  font:400 1rem var(--serif);
+  margin-bottom:5px
+}
+.product-benefit span{
+  color:var(--slate);
+  font-size:.72rem
+}
+
+.product-accordions{
+  border-top:1px solid var(--line)
+}
+.product-accordion{
+  border-bottom:1px solid var(--line)
+}
+.product-accordion-btn{
+  width:100%;
+  border:0;
+  background:#fff;
+  padding:20px 0;
+  display:flex;
+  justify-content:space-between;
+  gap:24px;
+  text-align:left;
+  cursor:pointer;
+  font:400 1.15rem var(--serif)
+}
+.product-accordion-panel{
+  display:none;
+  padding:0 34px 22px 0;
+  color:var(--slate);
+  font-size:.88rem
+}
+.product-accordion.open .product-accordion-panel{display:block}
+.product-accordion-panel ul{padding-left:18px}
+
+.product-story{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  min-height:680px;
+  background:var(--ink);
+  color:#fff
+}
+.product-story-media img{
+  height:100%;
+  min-height:680px
+}
+.product-story-copy{
+  padding:90px max(50px,8vw);
+  display:flex;
+  flex-direction:column;
+  justify-content:center
+}
+.product-story-copy h2{margin:10px 0 22px}
+.product-story-copy p{color:#cfcfcf;max-width:560px}
+.product-story-list{
+  list-style:none;
+  padding:0;
+  margin:28px 0 0
+}
+.product-story-list li{
+  display:flex;
+  justify-content:space-between;
+  gap:24px;
+  padding:13px 0;
+  border-bottom:1px solid #444
+}
+.product-story-list span{color:#aaa}
+
+.product-related{
+  background:var(--cream)
+}
+.related-grid{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:20px
+}
+.related-card{
+  min-width:0;
+  text-align:center
+}
+.related-image{
+  height:390px;
+  background:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:0
+}
+.related-image img{
+  width:auto;
+  height:100%;
+  object-fit:contain
+}
+.related-info{padding:20px 8px 0}
+.related-info h3{
+  font:400 1.3rem var(--serif);
+  margin:0 0 6px
+}
+.related-info p{
+  color:var(--slate);
+  font-size:.75rem;
+  margin:0 0 10px
+}
+.related-info strong{display:block;margin-bottom:14px}
+.related-info .btn{
+  width:100%;
+  background:var(--ink);
+  color:#fff;
+  border-color:var(--ink)
+}
+
+@media(max-width:1100px){
+  .product-layout{grid-template-columns:1fr;gap:46px}
+  .product-gallery{position:static}
+  .product-main-image{min-height:620px}
+  .product-main-image img{height:580px}
+  .related-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:760px){
+  .product-main{padding-top:26px}
+  .product-gallery{grid-template-columns:1fr}
+  .product-thumbs{
+    grid-template-columns:repeat(4,1fr);
+    order:2
+  }
+  .product-thumb img{height:88px}
+  .product-main-image{min-height:470px}
+  .product-main-image img{height:440px;max-width:92%}
+  .product-meta-list{grid-template-columns:1fr}
+  .product-meta-item + .product-meta-item{
+    border-left:0;
+    border-top:1px solid var(--line);
+    padding-left:0
+  }
+  .product-purchase-row{grid-template-columns:1fr}
+  .product-benefits{grid-template-columns:1fr}
+  .product-story{grid-template-columns:1fr}
+  .product-story-media img{min-height:420px;height:420px}
+  .product-story-copy{padding:72px 24px}
+  .related-grid{grid-template-columns:1fr 1fr;gap:14px}
+  .related-image{height:300px}
+}
+
+</style>
+</head>
+<body>
+<div class="announcement">Free shipping on 12+ bottles to Victoria, Sydney, Adelaide & Brisbane <button aria-label="Close">×</button></div>
+<header class="site-header"><div class="container header-inner">
+<a class="brand" href="#"><img src="https://www.boatocraigo.com.au/dist/logos/website/logo.svg" title="BOAT OCRAIGO Logo" alt="Boat O'Craigo" class="logo"></a>
+<nav class="desktop-nav">
+<div class="nav-item"><a class="nav-link" href="#wines">Shop</a><div class="dropdown"><a href="#wines">Wines</a><a href="#experiences">Experiences</a><a href="#">Gift Packs</a><a href="#">Gift Cards</a></div></div>
+<div class="nav-item"><a class="nav-link" href="#club">Wine Club</a></div><div class="nav-item"><a class="nav-link" href="#experiences">Visit</a></div><div class="nav-item"><a class="nav-link" href="#events">What's On</a></div><div class="nav-item"><a class="nav-link" href="#story">About</a></div><div class="nav-item"><a class="nav-link" href="#contact">Contact</a></div>
+</nav>
+<div class="header-actions"><a class="book-link" href="#experiences">Book a visit</a><button class="icon-btn" aria-label="Search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/></svg></button><button class="icon-btn" aria-label="Account"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5 21c.6-4.3 3-6.5 7-6.5s6.4 2.2 7 6.5"/></svg></button><button class="icon-btn" aria-label="Cart"><svg viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6L5 8Z"/><path d="M9 8a3 3 0 0 1 6 0"/></svg></button><button class="icon-btn mobile-trigger" aria-label="Menu" onclick="document.getElementById('mobilePanel').classList.add('open')"><svg viewBox="0 0 24 24"><path d="M3 7h18M3 12h18M3 17h18"/></svg></button></div>
+</div></header>
+
+
+<main>
+<!--
+SHOPIFY TEMPLATE MAP
+- Main product section: section-main-product
+- Product gallery block: product-media-gallery
+- Product information blocks: vendor, title, subtitle, rating, price, discount, description
+- Purchase options block: one-time purchase + subscription app placeholder
+- Product form block: quantity selector + add-to-cart button
+- Product accordion blocks: tasting notes, wine details, shipping, PDF/download
+- Product story section: reusable image-with-text section
+- Related products section: Shopify product recommendations
+-->
+<section class="product-main" data-section-type="main-product" data-shopify-section="section-main-product">
+  <div class="container">
+    <nav class="product-breadcrumbs" aria-label="Breadcrumb">
+      <a href="#">Home</a><span>/</span>
+      <a href="#">Wines</a><span>/</span>
+      <span>2024 Black Spur Grüner Veltliner</span>
+    </nav>
+
+    <div class="product-layout">
+      <div class="product-gallery" data-block-type="product-media-gallery">
+        <div class="product-thumbs" aria-label="Product images">
+          <button class="product-thumb active" type="button" data-image="https://fusws.api.aspedia.io/boatocraigo-website/products/bottles/GrunerVelt_NV.jpg?preset=wineproductteaser&t=1659678953242">
+            <img src="https://fusws.api.aspedia.io/boatocraigo-website/products/bottles/GrunerVelt_NV.jpg?preset=wineproductteaser&t=1659678953242" alt="Bottle front">
+          </button>
+          <button class="product-thumb" type="button" data-image="https://fusws.api.aspedia.io/boatocraigo-website/banners/home-page/Banner%20-%20Wine.png?preset=carousel-image&t=1779852084540">
+            <img src="https://fusws.api.aspedia.io/boatocraigo-website/banners/home-page/Banner%20-%20Wine.png?preset=carousel-image&t=1779852084540" alt="Wine lifestyle image">
+          </button>
+          <button class="product-thumb" type="button" data-image="https://fusws.api.aspedia.io/boatocraigo-website/pages/Homepage/N_Breen_2025-20.jpg?preset=carousel-image&t=1766008402350">
+            <img src="https://fusws.api.aspedia.io/boatocraigo-website/pages/Homepage/N_Breen_2025-20.jpg?preset=carousel-image&t=1766008402350" alt="Vineyard image">
+          </button>
+          <button class="product-thumb" type="button" data-image="https://fusws.api.aspedia.io/boatocraigo-website/banners/Banner%20-%20Join%20our%20Wine%20Club.png?preset=carousel-image&t=1779852284584">
+            <img src="https://fusws.api.aspedia.io/boatocraigo-website/banners/Banner%20-%20Join%20our%20Wine%20Club.png?preset=carousel-image&t=1779852284584" alt="Wine club image">
+          </button>
+        </div>
+
+        <div class="product-main-image">
+          <span class="product-main-badge">New release</span>
+          <span class="product-main-discount">Save 10%</span>
+          <img id="productMainImage" src="https://fusws.api.aspedia.io/boatocraigo-website/products/bottles/GrunerVelt_NV.jpg?preset=wineproductteaser&t=1659678953242" alt="2024 Black Spur Grüner Veltliner">
+        </div>
+      </div>
+
+      <div class="product-info" data-block-type="product-information">
+        <div class="product-kicker">
+          <span class="eyebrow">Boat O'Craigo</span>
+          <span class="product-vintage">Vintage 2024</span>
+        </div>
+
+        <h1 class="product-title">2024 Black Spur Grüner Veltliner</h1>
+        <p class="product-subtitle">Estate grown · Healesville Vineyard · Yarra Valley</p>
+
+        <div class="product-rating" data-block-type="product-rating">
+          <span class="product-stars">★★★★★</span>
+          <span>4.9 · 18 reviews</span>
+        </div>
+
+        <div class="product-price-wrap" data-block-type="product-price">
+          <span class="product-price-current">$30.00</span>
+          <span class="product-price-compare">$33.00</span>
+        </div>
+        <span class="product-saving" data-block-type="product-discount">You save $3.00</span>
+
+        <p class="product-short-copy">
+          Bright, aromatic and textural, this cool-climate Grüner Veltliner balances citrus, green apple and delicate spice with a crisp, mineral finish.
+        </p>
+
+        <div class="product-meta-list">
+          <div class="product-meta-item"><span>Variety</span><strong>Grüner Veltliner</strong></div>
+          <div class="product-meta-item"><span>Region</span><strong>Yarra Valley</strong></div>
+          <div class="product-meta-item"><span>Alcohol</span><strong>12.5%</strong></div>
+        </div>
+
+        <div class="purchase-options" data-block-type="selling-plans">
+          <label class="purchase-option active">
+            <input type="radio" name="purchase-option" value="one-time" checked>
+            <span>
+              <span class="purchase-option-title">One-time purchase</span>
+              <span class="purchase-option-copy">Single bottle purchase at the standard price.</span>
+            </span>
+            <span class="purchase-option-price">$30.00</span>
+          </label>
+
+          <label class="purchase-option">
+            <input type="radio" name="purchase-option" value="subscription">
+            <span>
+              <span class="purchase-option-title">Subscribe & save 10%</span>
+              <span class="purchase-option-copy">Subscription placeholder for a future Shopify subscription app.</span>
+            </span>
+            <span class="purchase-option-price">$27.00</span>
+          </label>
+
+          <div class="subscription-placeholder" id="subscriptionOptions">
+            <label for="subscriptionFrequency">Delivery frequency</label>
+            <select id="subscriptionFrequency">
+              <option>Every month</option>
+              <option>Every 2 months</option>
+              <option>Every 3 months</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="product-purchase-row" data-block-type="product-form">
+          <div class="product-quantity" aria-label="Quantity selector">
+            <button id="productQtyMinus" type="button" aria-label="Decrease quantity">−</button>
+            <span id="productQtyValue">1</span>
+            <button id="productQtyPlus" type="button" aria-label="Increase quantity">+</button>
+          </div>
+          <button class="product-add" type="button">Add to cart · $30.00</button>
+        </div>
+
+        <button class="product-secondary" type="button">Join Wine Club & Save More</button>
+
+        <div class="product-stock">
+          <span class="stock-dot"></span>
+          <span>In stock and ready to ship</span>
+        </div>
+
+        <div class="product-benefits">
+          <div class="product-benefit"><strong>Free shipping</strong><span>On qualifying 12+ bottle orders.</span></div>
+          <div class="product-benefit"><strong>Secure checkout</strong><span>Shopify-powered payments.</span></div>
+          <div class="product-benefit"><strong>Member benefits</strong><span>Exclusive Wine Club pricing.</span></div>
+        </div>
+
+        <div class="product-accordions" data-block-type="product-accordions">
+          <article class="product-accordion open">
+            <button class="product-accordion-btn" type="button"><span>Tasting notes</span><span>−</span></button>
+            <div class="product-accordion-panel">
+              <p>Fresh lime, green apple and white pepper lead into a textured palate with subtle orchard fruit, savoury spice and a clean mineral finish.</p>
+            </div>
+          </article>
+
+          <article class="product-accordion">
+            <button class="product-accordion-btn" type="button"><span>Wine details</span><span>+</span></button>
+            <div class="product-accordion-panel">
+              <ul>
+                <li>Vintage: 2024</li>
+                <li>Variety: Grüner Veltliner</li>
+                <li>Vineyard: Healesville</li>
+                <li>Region: Yarra Valley</li>
+                <li>Cellaring: Enjoy now or cellar for 3–5 years</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="product-accordion">
+            <button class="product-accordion-btn" type="button"><span>Food pairing</span><span>+</span></button>
+            <div class="product-accordion-panel">
+              <p>Pairs beautifully with seafood, fresh salads, roast pork, lightly spiced dishes and the seasonal menu served in the Glasshouse Restaurant.</p>
+            </div>
+          </article>
+
+          <article class="product-accordion">
+            <button class="product-accordion-btn" type="button"><span>Shipping & delivery</span><span>+</span></button>
+            <div class="product-accordion-panel">
+              <p>Orders are packed securely and dispatched from the winery. Delivery estimates and free-shipping thresholds can be connected to Shopify shipping settings.</p>
+            </div>
+          </article>
+
+          <article class="product-accordion">
+            <button class="product-accordion-btn" type="button"><span>Download wine information</span><span>+</span></button>
+            <div class="product-accordion-panel">
+              <p>PDF placeholder for a downloadable tasting sheet, technical notes or product specification file stored in a Shopify file metafield.</p>
+              <a class="text-link" href="#">Download PDF</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="product-story" data-section-type="image-with-text" data-shopify-section="section-product-story">
+  <div class="product-story-media">
+    <img src="https://fusws.api.aspedia.io/boatocraigo-website/pages/Homepage/N_Breen_2025-20.jpg?preset=carousel-image&t=1766008402350" alt="Boat O'Craigo vineyard">
+  </div>
+  <div class="product-story-copy">
+    <span class="eyebrow">From the vineyard</span>
+    <h2 class="display">Cool climate. Bright character.</h2>
+    <p>The Healesville vineyard sits near the foothills of the Black Spur, where cooler temperatures and varied elevation help preserve freshness, aromatics and natural acidity.</p>
+    <ul class="product-story-list">
+      <li><span>Vineyard</span><strong>Healesville Estate</strong></li>
+      <li><span>Climate</span><strong>Cool climate</strong></li>
+      <li><span>Winemaking</span><strong>Small batch</strong></li>
+    </ul>
+  </div>
+</section>
+
+<section class="section product-related" data-section-type="related-products" data-shopify-section="section-product-recommendations">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">You may also enjoy</span>
+        <h2 class="display">Related wines.</h2>
+      </div>
+      <a class="text-link" href="#">View all wines</a>
+    </div>
+
+    <div class="related-grid">
+      
+      <article class="related-card">
+        <a href="#" class="related-image"><img src="https://fusws.api.aspedia.io/boatocraigo-website/products/bottles/GrunerVelt_NV.jpg?preset=wineproductteaser&t=1659678953242" alt="2025 Black Spur Pinot Gris"></a>
+        <div class="related-info">
+          <h3>2025 Black Spur Pinot Gris</h3>
+          <p>White · 2025</p>
+          <strong>$30.00</strong>
+          <button class="btn" type="button">Add to cart</button>
+        </div>
+      </article>
+      
+      <article class="related-card">
+        <a href="#" class="related-image"><img src="https://fusws.api.aspedia.io/boatocraigo-website/products/bottles/GrunerVelt_NV.jpg?preset=wineproductteaser&t=1659678953242" alt="2024 Black Spur Chardonnay"></a>
+        <div class="related-info">
+          <h3>2024 Black Spur Chardonnay</h3>
+          <p>White · 2024</p>
+          <strong>$45.00</strong>
+          <button class="btn" type="button">Add to cart</button>
+        </div>
+      </article>
+      
+      <article class="related-card">
+        <a href="#" class="related-image"><img src="https://fusws.api.aspedia.io/boatocraigo-website/products/bottles/GrunerVelt_NV.jpg?preset=wineproductteaser&t=1659678953242" alt="2024 Black Spur Pinot Noir"></a>
+        <div class="related-info">
+          <h3>2024 Black Spur Pinot Noir</h3>
+          <p>Red · 2024</p>
+          <strong>$45.00</strong>
+          <button class="btn" type="button">Add to cart</button>
+        </div>
+      </article>
+      
+      <article class="related-card">
+        <a href="#" class="related-image"><img src="https://fusws.api.aspedia.io/boatocraigo-website/products/bottles/GrunerVelt_NV.jpg?preset=wineproductteaser&t=1659678953242" alt="2022 First Duke Reserve Shiraz"></a>
+        <div class="related-info">
+          <h3>2022 First Duke Reserve Shiraz</h3>
+          <p>Reserve · 2022</p>
+          <strong>$65.00</strong>
+          <button class="btn" type="button">Add to cart</button>
+        </div>
+      </article>
+      
+    </div>
+  </div>
+</section>
+</main>
+
+
+<div class="mobile-filter-drawer" id="mobileFilterDrawer" aria-hidden="true">
+  <div class="mobile-filter-backdrop"></div>
+  <div class="mobile-filter-panel">
+    <div class="mobile-filter-head">
+      <h3>Filter wines</h3>
+      <button class="mobile-filter-close" type="button" aria-label="Close filters">×</button>
+    </div>
+    <div id="mobileFilterContent"></div>
+    <div class="mobile-filter-actions">
+      <button class="btn" id="mobileClear" type="button">Clear</button>
+      <button class="btn sand" id="mobileApply" type="button">View results</button>
+    </div>
+  </div>
+</div>
+
+<footer class="footer" id="contact"><div class="container"><div class="footer-top"><div><a class="brand" href="#"><img src="https://www.boatocraigo.com.au/dist/logos/website/logo.svg" title="BOAT OCRAIGO Logo" alt="Boat O'Craigo" class="logo"></a><p style="max-width:340px;color:#999;font-size:.82rem;margin-top:22px">458 Maroondah Highway, Healesville VIC 3777<br>hello@boatocraigo.com.au · (03) 5962 6899</p></div><div><h4>Shop</h4><a href="#wines">Wines</a><a href="#">Gift Packs</a><a href="#">Gift Cards</a><a href="#club">Wine Club</a></div><div><h4>Visit</h4><a href="#experiences">Cellar Door</a><a href="#experiences">Restaurant</a><a href="#weddings">Weddings & Events</a><a href="#experiences">Book a Visit</a></div><div><h4>Discover</h4><a href="#story">Our Story</a><a href="#events">What's On</a><a href="#contact">Contact</a><a href="#">FAQs</a></div></div><div class="footer-bottom"><span>© 2026 Boat O'Craigo · Liquor Licence No. 32809777</span><span>Terms · Privacy · Shipping</span></div></div></footer>
+<div class="mobile-panel" id="mobilePanel"><div class="mobile-panel-head"><a class="brand" href="#"><img src="https://www.boatocraigo.com.au/dist/logos/website/logo.svg" title="BOAT OCRAIGO Logo" alt="Boat O'Craigo" class="logo"></a><button class="icon-btn" aria-label="Close" onclick="document.getElementById('mobilePanel').classList.remove('open')"><svg viewBox="0 0 24 24"><path d="M4 4l16 16M20 4 4 20"/></svg></button></div><nav class="mobile-menu"><div class="mobile-group"><a href="#" onclick="this.parentNode.classList.toggle('open');return false">Shop <span>+</span></a><div class="mobile-sub"><a href="#wines">Wines</a><a href="#experiences">Experiences</a><a href="#">Gift Packs & Cards</a></div></div><a href="#club">Wine Club</a><a href="#experiences">Visit</a><a href="#events">What's On</a><a href="#story">About</a><a href="#contact">Contact</a><a href="#experiences">Book a Visit</a></nav></div>
+<script>
+const slides=[...document.querySelectorAll('.hero-slide')],dots=[...document.querySelectorAll('.hero-dot')];let current=0,timer;
+function show(i){current=(i+slides.length)%slides.length;slides.forEach((s,n)=>s.classList.toggle('active',n===current));dots.forEach((d,n)=>d.classList.toggle('active',n===current))}
+function restart(){clearInterval(timer);timer=setInterval(()=>show(current+1),6000)}
+document.querySelector('.hero-prev').onclick=()=>{show(current-1);restart()};document.querySelector('.hero-next').onclick=()=>{show(current+1);restart()};dots.forEach((d,i)=>d.onclick=()=>{show(i);restart()});restart();
+document.querySelectorAll('.mobile-menu a[href^="#"]').forEach(a=>a.addEventListener('click',()=>{if(a.getAttribute('href')!=='#')document.getElementById('mobilePanel').classList.remove('open')}));
+
+const productGrid = document.getElementById('productGrid');
+const allProducts = [...document.querySelectorAll('.collection-product')];
+const resultCount = document.getElementById('resultCount');
+const pagination = document.getElementById('pagination');
+const activeFilters = document.getElementById('activeFilters');
+const emptyState = document.getElementById('emptyState');
+const sortProducts = document.getElementById('sortProducts');
+const gridView = document.getElementById('gridView');
+const listView = document.getElementById('listView');
+const clearFilters = document.getElementById('clearFilters');
+const emptyClear = document.getElementById('emptyClear');
+const pageSize = 9;
+let currentPage = 1;
+
+function getChecked(name) {
+  return [...document.querySelectorAll(`input[name="${name}"]:checked`)].map(input => input.value);
+}
+
+function matchesPrice(product, ranges) {
+  if (!ranges.length) return true;
+  const price = Number(product.dataset.price);
+  return ranges.some(range => {
+    if (range === 'under40') return price < 40;
+    if (range === '40to59') return price >= 40 && price < 60;
+    if (range === '60plus') return price >= 60;
+    return true;
+  });
+}
+
+function getFilteredProducts() {
+  const types = getChecked('type');
+  const vintages = getChecked('vintage');
+  const prices = getChecked('price');
+
+  let products = allProducts.filter(product => {
+    const typeMatch = !types.length || types.includes(product.dataset.type);
+    const vintageMatch = !vintages.length || vintages.includes(product.dataset.vintage);
+    return typeMatch && vintageMatch && matchesPrice(product, prices);
+  });
+
+  const sort = sortProducts.value;
+  products.sort((a, b) => {
+    if (sort === 'name-asc') return a.dataset.name.localeCompare(b.dataset.name);
+    if (sort === 'price-asc') return Number(a.dataset.price) - Number(b.dataset.price);
+    if (sort === 'price-desc') return Number(b.dataset.price) - Number(a.dataset.price);
+    if (sort === 'vintage-desc') return Number(b.dataset.vintage) - Number(a.dataset.vintage);
+    return allProducts.indexOf(a) - allProducts.indexOf(b);
+  });
+
+  return products;
+}
+
+function renderActiveFilters() {
+  activeFilters.innerHTML = '';
+  document.querySelectorAll('.filter-panel input:checked').forEach(input => {
+    const label = input.closest('label').querySelector('span').textContent;
+    const chip = document.createElement('span');
+    chip.className = 'active-filter';
+    chip.innerHTML = `${label}<button type="button" aria-label="Remove ${label}">×</button>`;
+    chip.querySelector('button').addEventListener('click', () => {
+      document.querySelectorAll(`input[name="${input.name}"][value="${input.value}"]`).forEach(match => match.checked = false);
+      currentPage = 1;
+      renderCollection();
+      syncMobileFilters();
+    });
+    activeFilters.appendChild(chip);
+  });
+}
+
+function renderPagination(totalItems) {
+  const pages = Math.ceil(totalItems / pageSize);
+  pagination.innerHTML = '';
+  if (pages <= 1) return;
+
+  const createButton = (label, page, disabled = false, active = false) => {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = `page-btn${active ? ' active' : ''}`;
+    button.textContent = label;
+    button.disabled = disabled;
+    button.addEventListener('click', () => {
+      currentPage = page;
+      renderCollection();
+      document.querySelector('.collection-toolbar').scrollIntoView({behavior:'smooth'});
+    });
+    pagination.appendChild(button);
+  };
+
+  createButton('‹', currentPage - 1, currentPage === 1);
+  for (let page = 1; page <= pages; page++) createButton(page, page, false, page === currentPage);
+  createButton('›', currentPage + 1, currentPage === pages);
+}
+
+function renderCollection() {
+  const filtered = getFilteredProducts();
+  const pages = Math.max(1, Math.ceil(filtered.length / pageSize));
+  currentPage = Math.min(currentPage, pages);
+  const start = (currentPage - 1) * pageSize;
+  const visible = filtered.slice(start, start + pageSize);
+
+  allProducts.forEach(product => product.style.display = 'none');
+  visible.forEach(product => {
+    product.style.display = '';
+    productGrid.appendChild(product);
+  });
+
+  resultCount.textContent = `${filtered.length} product${filtered.length === 1 ? '' : 's'}`;
+  emptyState.style.display = filtered.length ? 'none' : 'block';
+  productGrid.style.display = filtered.length ? '' : 'none';
+
+  renderActiveFilters();
+  renderPagination(filtered.length);
+}
+
+document.querySelectorAll('.filter-panel input').forEach(input => {
+  input.addEventListener('change', () => {
+    currentPage = 1;
+    renderCollection();
+    syncMobileFilters();
+  });
+});
+
+document.querySelectorAll('.filter-toggle').forEach(button => {
+  button.addEventListener('click', () => {
+    const group = button.closest('.filter-group');
+    group.classList.toggle('closed');
+    button.lastElementChild.textContent = group.classList.contains('closed') ? '+' : '−';
+  });
+});
+
+sortProducts.addEventListener('change', () => {
+  currentPage = 1;
+  renderCollection();
+});
+
+gridView.addEventListener('click', () => {
+  productGrid.classList.remove('list-view');
+  gridView.classList.add('active');
+  listView.classList.remove('active');
+});
+
+listView.addEventListener('click', () => {
+  productGrid.classList.add('list-view');
+  listView.classList.add('active');
+  gridView.classList.remove('active');
+});
+
+function resetFilters() {
+  document.querySelectorAll('input[name="type"],input[name="vintage"],input[name="price"]').forEach(input => input.checked = false);
+  currentPage = 1;
+  renderCollection();
+  syncMobileFilters();
+}
+clearFilters.addEventListener('click', resetFilters);
+emptyClear.addEventListener('click', resetFilters);
+
+const drawer = document.getElementById('mobileFilterDrawer');
+const mobileContent = document.getElementById('mobileFilterContent');
+
+function syncMobileFilters() {
+  mobileContent.innerHTML = document.querySelector('.filter-panel').innerHTML;
+  mobileContent.querySelectorAll('input').forEach(input => {
+    const desktop = document.querySelector(`.filter-panel input[name="${input.name}"][value="${input.value}"]`);
+    input.checked = desktop ? desktop.checked : false;
+  });
+}
+
+document.getElementById('filterOpen').addEventListener('click', () => {
+  syncMobileFilters();
+  drawer.classList.add('open');
+  drawer.setAttribute('aria-hidden','false');
+  document.body.style.overflow = 'hidden';
+});
+
+function closeDrawer() {
+  drawer.classList.remove('open');
+  drawer.setAttribute('aria-hidden','true');
+  document.body.style.overflow = '';
+}
+document.querySelector('.mobile-filter-close').addEventListener('click', closeDrawer);
+document.querySelector('.mobile-filter-backdrop').addEventListener('click', closeDrawer);
+
+document.getElementById('mobileApply').addEventListener('click', () => {
+  mobileContent.querySelectorAll('input').forEach(input => {
+    const desktop = document.querySelector(`.filter-panel input[name="${input.name}"][value="${input.value}"]`);
+    if (desktop) desktop.checked = input.checked;
+  });
+  currentPage = 1;
+  renderCollection();
+  closeDrawer();
+});
+
+document.getElementById('mobileClear').addEventListener('click', () => {
+  mobileContent.querySelectorAll('input').forEach(input => input.checked = false);
+});
+
+renderCollection();
+
+
+document.querySelectorAll('.product-thumb').forEach(thumb => {
+  thumb.addEventListener('click', () => {
+    document.querySelectorAll('.product-thumb').forEach(item => item.classList.remove('active'));
+    thumb.classList.add('active');
+    const mainImage = document.getElementById('productMainImage');
+    mainImage.src = thumb.dataset.image;
+    mainImage.alt = thumb.querySelector('img').alt;
+  });
+});
+
+document.querySelectorAll('input[name="purchase-option"]').forEach(option => {
+  option.addEventListener('change', () => {
+    document.querySelectorAll('.purchase-option').forEach(label => label.classList.remove('active'));
+    option.closest('.purchase-option').classList.add('active');
+    document.getElementById('subscriptionOptions').classList.toggle('open', option.value === 'subscription');
+  });
+});
+
+const qtyValue = document.getElementById('productQtyValue');
+document.getElementById('productQtyMinus').addEventListener('click', () => {
+  qtyValue.textContent = Math.max(1, Number(qtyValue.textContent) - 1);
+});
+document.getElementById('productQtyPlus').addEventListener('click', () => {
+  qtyValue.textContent = Number(qtyValue.textContent) + 1;
+});
+
+document.querySelectorAll('.product-accordion-btn').forEach(button => {
+  button.addEventListener('click', () => {
+    const item = button.closest('.product-accordion');
+    const shouldOpen = !item.classList.contains('open');
+
+    document.querySelectorAll('.product-accordion.open').forEach(openItem => {
+      openItem.classList.remove('open');
+      const icon = openItem.querySelector('.product-accordion-btn span:last-child');
+      if (icon) icon.textContent = '+';
+    });
+
+    if (shouldOpen) {
+      item.classList.add('open');
+      button.querySelector('span:last-child').textContent = '−';
+    }
+  });
+});
+
+</script>
+</body>
+</html>

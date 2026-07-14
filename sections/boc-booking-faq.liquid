@@ -1,0 +1,128 @@
+{%- liquid
+  assign section_classes = 'boc-booking-section boc-booking-faq boc-booking-section--standard'
+  unless section.settings.section_enabled
+    assign section_classes = section_classes | append: ' boc-booking-section--disabled'
+  endunless
+  unless section.settings.show_desktop
+    assign section_classes = section_classes | append: ' boc-booking-section--hide-desktop'
+  endunless
+  unless section.settings.show_tablet
+    assign section_classes = section_classes | append: ' boc-booking-section--hide-tablet'
+  endunless
+  unless section.settings.show_mobile
+    assign section_classes = section_classes | append: ' boc-booking-section--hide-mobile'
+  endunless
+  assign one_open = section.settings.one_open_only
+  assign first_open = section.settings.first_item_open
+-%}
+
+<section
+  id="{{ section.settings.section_anchor_id | default: 'boc-booking-faq' }}"
+  class="{{ section_classes }}"
+  data-boc-booking
+  style="
+    --boc-bk-bg: {{ section.settings.background_color }};
+    --boc-bk-pt-d: {{ section.settings.padding_top_desktop }}px;
+    --boc-bk-pb-d: {{ section.settings.padding_bottom_desktop }}px;
+    --boc-bk-pt-t: {{ section.settings.padding_top_tablet }}px;
+    --boc-bk-pb-t: {{ section.settings.padding_bottom_tablet }}px;
+    --boc-bk-pt-m: {{ section.settings.padding_top_mobile }}px;
+    --boc-bk-pb-m: {{ section.settings.padding_bottom_mobile }}px;
+    --boc-bk-faq-ratio: {{ section.settings.heading_column_ratio | default: '0.78fr 1.22fr' }};
+  "
+>
+  <div class="boc-booking-section__inner{% if section.settings.container_width == 'narrow' %} boc-booking-section--narrow{% endif %}">
+    <div class="boc-booking-faq__layout">
+      <div>
+        {%- if section.settings.eyebrow != blank -%}<span class="boc-eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+        {%- if section.settings.heading != blank -%}<h2 class="boc-booking-section__heading">{{ section.settings.heading }}</h2>{%- endif -%}
+      </div>
+
+      {%- if section.blocks.size > 0 -%}
+        <div
+          class="boc-booking-faq__list"
+          data-boc-booking-faq
+          data-faq-prefix="boc-booking-faq"
+          data-one-open="{% if one_open %}true{% else %}false{% endif %}"
+        >
+          {%- for block in section.blocks -%}
+            {%- liquid
+              assign open_item = false
+              if block.settings.open_by_default
+                assign open_item = true
+              elsif first_open and forloop.first
+                assign open_item = true
+              endif
+            -%}
+            {% render 'boc-faq-item',
+              block: block,
+              section_id: section.id,
+              is_open: open_item,
+              divider_color: section.settings.divider_color,
+              question_color: section.settings.question_color,
+              answer_color: section.settings.answer_color,
+              icon_color: section.settings.icon_color,
+              namespace: 'booking'
+            %}
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "BOC — Booking FAQ",
+  "tag": "section",
+  "class": "boc-booking-faq-section",
+  "max_blocks": 20,
+  "settings": [
+    { "type": "checkbox", "id": "section_enabled", "label": "Enable section", "default": true },
+    { "type": "checkbox", "id": "show_desktop", "label": "Show on desktop", "default": true },
+    { "type": "checkbox", "id": "show_tablet", "label": "Show on tablet", "default": true },
+    { "type": "checkbox", "id": "show_mobile", "label": "Show on mobile", "default": true },
+    { "type": "text", "id": "section_anchor_id", "label": "Section anchor ID", "default": "boc-booking-faq" },
+    { "type": "select", "id": "container_width", "label": "Container width", "options": [{"value":"standard","label":"Standard"},{"value":"narrow","label":"Narrow"}],"default": "standard" },
+    { "type": "color", "id": "background_color", "label": "Background", "default": "#FFFFFF" },
+    { "type": "color", "id": "divider_color", "label": "Divider colour", "default": "#E8E2D9" },
+    { "type": "color", "id": "question_color", "label": "Question colour", "default": "#212121" },
+    { "type": "color", "id": "answer_color", "label": "Answer colour", "default": "#575962" },
+    { "type": "color", "id": "icon_color", "label": "Plus/minus colour", "default": "#212121" },
+    { "type": "checkbox", "id": "one_open_only", "label": "Allow one open item only", "default": true },
+    { "type": "checkbox", "id": "first_item_open", "label": "First item open by default", "default": true },
+    { "type": "text", "id": "heading_column_ratio", "label": "Heading column ratio", "default": "0.78fr 1.22fr" },
+    { "type": "range", "id": "padding_top_desktop", "label": "Desktop padding top", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 120 },
+    { "type": "range", "id": "padding_bottom_desktop", "label": "Desktop padding bottom", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 120 },
+    { "type": "range", "id": "padding_top_tablet", "label": "Tablet padding top", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 96 },
+    { "type": "range", "id": "padding_bottom_tablet", "label": "Tablet padding bottom", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 96 },
+    { "type": "range", "id": "padding_top_mobile", "label": "Mobile padding top", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 80 },
+    { "type": "range", "id": "padding_bottom_mobile", "label": "Mobile padding bottom", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 80 },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Booking information" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Everything guests need, without the wall of text." }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "FAQ item",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Question", "default": "Question" },
+        { "type": "richtext", "id": "answer", "label": "Answer", "default": "<p>Answer copy.</p>" },
+        { "type": "checkbox", "id": "open_by_default", "label": "Open by default", "default": false }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "BOC — Booking FAQ",
+      "blocks": [
+        { "type": "faq", "settings": { "question": "Can I book a wine tasting and lunch together?", "answer": "<p>Yes. Select the relevant experience in the live booking system, or make separate reservations where required. Placeholder copy can be replaced once the final booking rules are confirmed.</p>", "open_by_default": true } },
+        { "type": "faq", "settings": { "question": "What happens if our group is larger than ten?", "answer": "<p>Groups of 11 or more should contact Boat O'Craigo directly. This allows the team to confirm availability, menu format, deposits and seating arrangements.</p>" } },
+        { "type": "faq", "settings": { "question": "Can dietary requirements be accommodated?", "answer": "<p>Dietary requirements can be added during booking. The final production content should list any notice periods or limitations provided by the venue.</p>" } },
+        { "type": "faq", "settings": { "question": "Are children and non-drinkers welcome?", "answer": "<p>Yes. All guests should be included in the booking count so the venue can prepare the correct table arrangement and service.</p>" } },
+        { "type": "faq", "settings": { "question": "What is the cancellation policy?", "answer": "<p>Temporary placeholder text. The live page should pull the approved cancellation, no-show and deposit terms from Boat O'Craigo.</p>" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

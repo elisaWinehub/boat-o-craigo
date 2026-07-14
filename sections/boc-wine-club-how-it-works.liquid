@@ -1,0 +1,134 @@
+{%- liquid
+  assign section_classes = 'boc-wine-club-section boc-wine-club-how boc-wine-club-section--' | append: section.settings.container_width
+  unless section.settings.section_enabled
+    assign section_classes = section_classes | append: ' boc-wine-club-section--disabled'
+  endunless
+  unless section.settings.show_desktop
+    assign section_classes = section_classes | append: ' boc-wine-club-section--hide-desktop'
+  endunless
+  unless section.settings.show_tablet
+    assign section_classes = section_classes | append: ' boc-wine-club-section--hide-tablet'
+  endunless
+  unless section.settings.show_mobile
+    assign section_classes = section_classes | append: ' boc-wine-club-section--hide-mobile'
+  endunless
+-%}
+
+<section
+  id="boc-wine-club-how-{{ section.id }}"
+  class="{{ section_classes }}"
+  data-boc-wine-club
+  style="
+    --boc-wc-bg: {{ section.settings.background_color }};
+    --boc-wc-pt-d: {{ section.settings.padding_top_desktop }}px;
+    --boc-wc-pb-d: {{ section.settings.padding_bottom_desktop }}px;
+    --boc-wc-pt-t: {{ section.settings.padding_top_tablet }}px;
+    --boc-wc-pb-t: {{ section.settings.padding_bottom_tablet }}px;
+    --boc-wc-pt-m: {{ section.settings.padding_top_mobile }}px;
+    --boc-wc-pb-m: {{ section.settings.padding_bottom_mobile }}px;
+    --boc-wc-step-border: {{ section.settings.step_border_color }};
+    --boc-wc-step-accent: {{ section.settings.step_accent_color }};
+    --boc-wc-heading: {{ section.settings.heading_color }};
+    --boc-wc-body: {{ section.settings.body_color }};
+  "
+>
+  <div class="boc-wine-club-section__inner">
+    <div class="boc-wine-club-section__head">
+      <div class="boc-wine-club-section__head-text">
+        {%- if section.settings.eyebrow != blank -%}
+          <span class="boc-eyebrow boc-wine-club-section__eyebrow">{{ section.settings.eyebrow }}</span>
+        {%- endif -%}
+        {%- if section.settings.heading != blank -%}
+          <h2 class="boc-wine-club-section__heading">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+      </div>
+      {%- if section.settings.intro_body != blank -%}
+        <p class="boc-wine-club-section__head-aside">{{ section.settings.intro_body }}</p>
+      {%- endif -%}
+    </div>
+
+    {%- if section.blocks.size > 0 -%}
+      <div class="boc-wine-club-how__grid">
+        {%- for block in section.blocks -%}
+          <div
+            class="boc-wine-club-how__step"
+            style="--boc-wc-step-accent: {{ block.settings.accent_color | default: section.settings.step_accent_color }};"
+            {{ block.shopify_attributes }}
+          >
+            {%- if block.settings.number != blank -%}
+              <div class="boc-wine-club-how__step-num">{{ block.settings.number }}</div>
+            {%- endif -%}
+            {%- if block.settings.heading != blank -%}
+              <h3 class="boc-wine-club-how__step-title">{{ block.settings.heading }}</h3>
+            {%- endif -%}
+            {%- if block.settings.body != blank -%}
+              <p class="boc-wine-club-how__step-body">{{ block.settings.body }}</p>
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "BOC — WC How It Works",
+  "tag": "section",
+  "class": "boc-wine-club-how-section",
+  "max_blocks": 6,
+  "settings": [
+    { "type": "checkbox", "id": "section_enabled", "label": "Enable section", "default": true },
+    { "type": "checkbox", "id": "show_desktop", "label": "Show on desktop", "default": true },
+    { "type": "checkbox", "id": "show_tablet", "label": "Show on tablet", "default": true },
+    { "type": "checkbox", "id": "show_mobile", "label": "Show on mobile", "default": true },
+    {
+      "type": "select",
+      "id": "container_width",
+      "label": "Container width",
+      "options": [
+        { "value": "container", "label": "Standard width" },
+        { "value": "narrow", "label": "Narrow width" },
+        { "value": "full", "label": "Full width" }
+      ],
+      "default": "container"
+    },
+    { "type": "color", "id": "background_color", "label": "Background colour", "default": "#FFFFFF" },
+    { "type": "color", "id": "heading_color", "label": "Heading colour", "default": "#212121" },
+    { "type": "color", "id": "body_color", "label": "Body colour", "default": "#575962" },
+    { "type": "color", "id": "step_border_color", "label": "Step border colour", "default": "#212121" },
+    { "type": "color", "id": "step_accent_color", "label": "Step number accent", "default": "#B99E7E" },
+    { "type": "range", "id": "padding_top_desktop", "label": "Desktop padding top", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 120 },
+    { "type": "range", "id": "padding_bottom_desktop", "label": "Desktop padding bottom", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 120 },
+    { "type": "range", "id": "padding_top_tablet", "label": "Tablet padding top", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 96 },
+    { "type": "range", "id": "padding_bottom_tablet", "label": "Tablet padding bottom", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 96 },
+    { "type": "range", "id": "padding_top_mobile", "label": "Mobile padding top", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 80 },
+    { "type": "range", "id": "padding_bottom_mobile", "label": "Mobile padding bottom", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 80 },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "How it works" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Simple from the first case." },
+    { "type": "textarea", "id": "intro_body", "label": "Intro body", "default": "No joining fee. No fixed mixed pack. Just the membership and wines that suit you." }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        { "type": "text", "id": "number", "label": "Number", "default": "01" },
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Step title" },
+        { "type": "textarea", "id": "body", "label": "Body" },
+        { "type": "color", "id": "accent_color", "label": "Accent colour" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "BOC — WC How It Works",
+      "blocks": [
+        { "type": "step", "settings": { "number": "01", "heading": "Choose your membership", "body": "Select the bottle quantity and discount level that best fits your cellar." } },
+        { "type": "step", "settings": { "number": "02", "heading": "Build your shipment", "body": "Choose your own wines before each delivery or keep our recommended selection." } },
+        { "type": "step", "settings": { "number": "03", "heading": "Enjoy member access", "body": "Receive your wines and unlock benefits online and whenever you visit the estate." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

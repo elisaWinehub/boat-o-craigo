@@ -1,0 +1,187 @@
+{%- doc -%}
+  Boat O'Craigo product card for homepage, collection, and related grids.
+
+  @param {product} product - Shopify product object
+  @param {object} [collection] - Parent collection for within URLs
+  @param {object} [section] - Parent section for IDs
+  @param {boolean} [show_vendor] - Show vendor metadata
+  @param {boolean} [show_vintage] - Show vintage metafield
+  @param {boolean} [show_wine_type] - Show wine type metadata
+  @param {boolean} [show_badges] - Show product badges
+  @param {boolean} [show_price] - Show product price
+  @param {boolean} [show_compare_at] - Show compare-at price
+  @param {boolean} [show_quantity] - Show quantity selector
+  @param {boolean} [show_add_to_cart] - Show add to cart / choose options
+  @param {boolean} [enable_quick_add] - Use quick-add for multi-variant products
+  @param {string} [card_context] - collection | featured | related | search
+  @param {string} [card_class] - Optional extra class
+{%- enddoc -%}
+
+{%- liquid
+  assign show_vendor = show_vendor | default: true
+  assign show_vintage = show_vintage | default: true
+  assign show_wine_type = show_wine_type | default: true
+  assign show_badges = show_badges | default: true
+  assign show_price = show_price | default: true
+  assign show_compare_at = show_compare_at | default: true
+  assign show_quantity = show_quantity | default: true
+  assign show_add_to_cart = show_add_to_cart | default: true
+  assign enable_quick_add = enable_quick_add | default: true
+  assign card_context = card_context | default: 'featured'
+  assign heading_tag = 'h3'
+  if card_context == 'collection'
+    assign heading_tag = 'h2'
+  endif
+
+  if product == blank
+    assign product_title = 'Product title'
+    assign product_url = '#'
+    assign product_available = false
+    assign variant_id = ''
+    assign product_image = 'boc-placeholder-gruner-veltliner.jpg' | asset_url
+    assign product_image_alt = 'Wine bottle'
+    assign vintage_text = '2024'
+    assign wine_type_text = 'White'
+    assign meta_parts = vintage_text | append: ' · ' | append: wine_type_text
+    assign requires_variant_choice = false
+    assign variants_count = 1
+  else
+    assign product_title = product.title
+    if collection
+      assign product_url = product.url | within: collection
+    else
+      assign product_url = product.url
+    endif
+    assign variant = product.selected_or_first_available_variant
+    assign product_available = variant.available
+    assign variant_id = variant.id
+    assign variants_count = product.variants_count
+    assign requires_variant_choice = false
+    if variants_count > 1
+      assign requires_variant_choice = true
+    endif
+
+    if product.featured_image != blank
+      assign product_image = product.featured_image | image_url: width: 800
+      assign product_image_alt = product.featured_image.alt | default: product.title
+    else
+      assign product_image = 'boc-placeholder-gruner-veltliner.jpg' | asset_url
+      assign product_image_alt = product.title
+    endif
+
+    assign vintage_text = product.metafields.wine.vintage
+    assign wine_type_text = product.metafields.wine.wine_type
+    if wine_type_text == blank
+      assign wine_type_text = product.type
+    endif
+
+    assign meta_parts = ''
+    if show_vintage and vintage_text != blank
+      assign meta_parts = vintage_text
+    endif
+    if show_wine_type and wine_type_text != blank
+      if meta_parts != blank
+        assign meta_parts = meta_parts | append: ' · ' | append: wine_type_text
+      else
+        assign meta_parts = wine_type_text
+      endif
+    elsif show_vendor and product.vendor != blank and meta_parts == blank
+      assign meta_parts = product.vendor
+    endif
+  endif
+
+  assign form_id = 'boc-product-form-' | append: product.id
+  if section.id
+    assign form_id = form_id | append: '-' | append: section.id
+  endif
+  if product.id == blank
+    assign form_id = 'boc-product-form-placeholder'
+  endif
+
+  assign use_ajax_cart = false
+  if card_context == 'collection' and requires_variant_choice == false and section and section.id
+    assign use_ajax_cart = true
+  endif
+-%}
+
+<article class="boc-product-card boc-product-card--{{ card_context }}{% if card_class != blank %} {{ card_class }}{% endif %}">
+  <a href="{{ product_url }}" class="boc-product-card__media-link" aria-label="{{ product_title | escape }}">
+    <div class="boc-product-card__media boc-product-image">
+      {% render 'boc-product-badge', product: product, show_badges: show_badges %}
+      <img
+        src="{{ product_image }}"
+        alt="{{ product_image_alt | escape }}"
+        loading="lazy"
+        width="400"
+        height="430"
+      >
+    </div>
+  </a>
+
+  <div class="boc-product-card__info">
+    <{{ heading_tag }} class="boc-product-card__title">
+      <a href="{{ product_url }}">{{ product_title }}</a>
+    </{{ heading_tag }}>
+
+    {%- if meta_parts != blank -%}
+      <p class="boc-product-card__meta">{{ meta_parts }}</p>
+    {%- endif -%}
+
+    {%- if show_price -%}
+      <p class="boc-product-card__price">
+        {% render 'boc-product-price', product: product, show_compare_at: show_compare_at %}
+      </p>
+    {%- endif -%}
+
+    {%- if show_add_to_cart and product != blank -%}
+      {%- if requires_variant_choice -%}
+        <div class="boc-product-card__actions">
+          <a href="{{ product_url }}" class="boc-btn boc-btn--primary boc-product-card__add">Choose options</a>
+        </div>
+      {%- elsif use_ajax_cart -%}
+        <product-form-component
+          data-section-id="{{ section.id }}"
+          data-product-id="{{ product.id }}"
+          data-product-url="{{ product.url }}"
+          on:submit="/handleSubmit"
+          class="boc-product-card__product-form"
+        >
+          <div class="visually-hidden" aria-live="assertive" role="status" aria-atomic="true" ref="liveRegion"></div>
+          {%- form 'product', product, id: form_id, class: 'boc-product-card__form', data-type: 'add-to-cart-form' -%}
+            <input type="hidden" name="id" ref="variantId" value="{{ variant_id }}">
+            <div class="boc-product-card__actions">
+              {%- if show_quantity -%}
+                {% render 'boc-product-quantity', id_prefix: form_id %}
+              {%- else -%}
+                <input type="hidden" name="quantity" value="1">
+              {%- endif -%}
+              <button
+                type="submit"
+                class="boc-btn boc-btn--primary boc-product-card__add"
+                {% unless product_available %}disabled{% endunless %}
+              >
+                {%- if product_available -%}Add to cart{%- else -%}Sold out{%- endif -%}
+              </button>
+            </div>
+          {%- endform -%}
+        </product-form-component>
+      {%- else -%}
+        {%- form 'product', product, id: form_id, class: 'boc-product-card__form' -%}
+          <input type="hidden" name="id" value="{{ variant_id }}">
+          <div class="boc-product-card__actions">
+            {%- if show_quantity -%}
+              {% render 'boc-product-quantity', id_prefix: form_id %}
+            {%- endif -%}
+            <button type="submit" class="boc-btn boc-btn--primary boc-product-card__add" {% unless product_available %}disabled{% endunless %}>
+              {%- if product_available -%}Add to cart{%- else -%}Sold out{%- endif -%}
+            </button>
+          </div>
+        {%- endform -%}
+      {%- endif -%}
+    {%- elsif show_add_to_cart -%}
+      <div class="boc-product-card__actions">
+        <button type="button" class="boc-btn boc-btn--primary boc-product-card__add" disabled>Add to cart</button>
+      </div>
+    {%- endif -%}
+  </div>
+</article>

@@ -1,0 +1,39 @@
+{%- doc -%}
+  Renders a section header block with optional eyebrow, heading, body, and link.
+
+  @param {string} [eyebrow] - Uppercase eyebrow label
+  @param {string} [heading] - Section heading
+  @param {string} [body] - Supporting copy
+  @param {string} [link_label] - Text link label
+  @param {string} [link_url] - Text link URL
+
+  @example
+  {% render 'boc-section-header',
+    eyebrow: 'From our cellar',
+    heading: 'Explore the range.',
+    link_label: 'Shop all wines',
+    link_url: collections.all.url
+  %}
+{%- enddoc -%}
+
+<div class="boc-section-header">
+  <div class="boc-section-header__content">
+    {%- if eyebrow != blank -%}
+      <p class="boc-eyebrow boc-section-header__eyebrow">{{ eyebrow }}</p>
+    {%- endif -%}
+
+    {%- if heading != blank -%}
+      <h2 class="boc-display boc-section-header__heading">{{ heading }}</h2>
+    {%- endif -%}
+
+    {%- if body != blank -%}
+      <p class="boc-section-header__body">{{ body }}</p>
+    {%- endif -%}
+  </div>
+
+  {%- if link_label != blank and link_url != blank -%}
+    <a class="boc-text-link boc-section-header__link" href="{{ link_url }}">
+      {{- link_label -}}
+    </a>
+  {%- endif -%}
+</div>

@@ -1,0 +1,76 @@
+{%- liquid
+  assign nav_classes = 'boc-visit-nav'
+  unless section.settings.sticky_enabled
+    assign nav_classes = nav_classes | append: ' boc-visit-nav--disabled'
+  endunless
+  unless section.settings.section_enabled
+    assign nav_classes = nav_classes | append: ' boc-visit-section--disabled'
+  endunless
+  unless section.settings.show_desktop
+    assign nav_classes = nav_classes | append: ' boc-visit-section--hide-desktop'
+  endunless
+  unless section.settings.show_tablet
+    assign nav_classes = nav_classes | append: ' boc-visit-section--hide-tablet'
+  endunless
+  unless section.settings.show_mobile
+    assign nav_classes = nav_classes | append: ' boc-visit-section--hide-mobile'
+  endunless
+-%}
+
+<nav
+  class="{{ nav_classes }}"
+  aria-label="{{ section.settings.aria_label | default: 'Visit page navigation' }}"
+  data-boc-visit-nav
+  data-tracking="{{ section.settings.active_tracking }}"
+  style="--boc-v-nav-bg: {{ section.settings.background_color }}; --boc-v-nav-text: {{ section.settings.text_color }}; --boc-v-nav-active: {{ section.settings.active_color }};"
+  data-boc-visit
+>
+  <div class="boc-visit-section__inner boc-visit-nav__inner">
+    {%- for block in section.blocks -%}
+      <a href="#{{ block.settings.anchor_id }}" class="boc-visit-nav__link" data-boc-visit-scroll {{ block.shopify_attributes }}>{{ block.settings.label }}</a>
+    {%- endfor -%}
+  </div>
+</nav>
+
+{% schema %}
+{
+  "name": "BOC — Visit Anchor Nav",
+  "tag": "section",
+  "class": "boc-visit-nav-section",
+  "max_blocks": 8,
+  "settings": [
+    { "type": "checkbox", "id": "section_enabled", "label": "Enable section", "default": true },
+    { "type": "checkbox", "id": "show_desktop", "label": "Show on desktop", "default": true },
+    { "type": "checkbox", "id": "show_tablet", "label": "Show on tablet", "default": true },
+    { "type": "checkbox", "id": "show_mobile", "label": "Show on mobile", "default": true },
+    { "type": "checkbox", "id": "sticky_enabled", "label": "Enable sticky navigation", "default": true },
+    { "type": "checkbox", "id": "active_tracking", "label": "Highlight active section on scroll", "default": true },
+    { "type": "color", "id": "background_color", "label": "Background", "default": "#FFFFFF" },
+    { "type": "color", "id": "text_color", "label": "Text colour", "default": "#212121" },
+    { "type": "color", "id": "active_color", "label": "Active/hover colour", "default": "#B99E7E" },
+    { "type": "text", "id": "aria_label", "label": "ARIA label", "default": "Visit page navigation" }
+  ],
+  "blocks": [
+    {
+      "type": "link",
+      "name": "Nav link",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label", "default": "Link" },
+        { "type": "text", "id": "anchor_id", "label": "Anchor ID", "default": "boc-visit-tasting" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "BOC — Visit Anchor Nav",
+      "blocks": [
+        { "type": "link", "settings": { "label": "Wine tastings", "anchor_id": "boc-visit-tasting" } },
+        { "type": "link", "settings": { "label": "Glasshouse", "anchor_id": "boc-visit-glasshouse" } },
+        { "type": "link", "settings": { "label": "Menus", "anchor_id": "boc-visit-menus" } },
+        { "type": "link", "settings": { "label": "Group bookings", "anchor_id": "boc-visit-groups" } },
+        { "type": "link", "settings": { "label": "Getting here", "anchor_id": "boc-visit-getting-here" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

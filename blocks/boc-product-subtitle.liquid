@@ -1,0 +1,50 @@
+{%- liquid
+  assign product = closest.product | default: product
+  assign subregion = product.metafields.wine.subregion
+  assign region = product.metafields.wine.region
+  assign prefix = block.settings.prefix | default: 'Estate grown'
+  assign subtitle_parts = ''
+
+  if prefix != blank
+    assign subtitle_parts = prefix
+  endif
+  if subregion != blank
+    if subtitle_parts != blank
+      assign subtitle_parts = subtitle_parts | append: ' · ' | append: subregion | append: ' Vineyard'
+    else
+      assign subtitle_parts = subregion | append: ' Vineyard'
+    endif
+  endif
+  if region != blank
+    if subtitle_parts != blank
+      assign subtitle_parts = subtitle_parts | append: ' · ' | append: region
+    else
+      assign subtitle_parts = region
+    endif
+  endif
+-%}
+
+{%- if subtitle_parts != blank -%}
+  <p class="product-subtitle" {{ block.shopify_attributes }}>{{ subtitle_parts }}</p>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "BOC — Product subtitle",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "prefix",
+      "label": "Leading phrase",
+      "default": "Estate grown"
+    }
+  ],
+  "presets": [
+    {
+      "name": "BOC — Product subtitle",
+      "category": "Product"
+    }
+  ]
+}
+{% endschema %}

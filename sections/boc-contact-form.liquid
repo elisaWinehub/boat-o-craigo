@@ -1,0 +1,186 @@
+{%- liquid
+  assign section_classes = 'boc-contact-section boc-contact-form boc-contact-section--standard'
+  unless section.settings.section_enabled
+    assign section_classes = section_classes | append: ' boc-contact-section--disabled'
+  endunless
+  unless section.settings.show_desktop
+    assign section_classes = section_classes | append: ' boc-contact-section--hide-desktop'
+  endunless
+  unless section.settings.show_tablet
+    assign section_classes = section_classes | append: ' boc-contact-section--hide-tablet'
+  endunless
+  unless section.settings.show_mobile
+    assign section_classes = section_classes | append: ' boc-contact-section--hide-mobile'
+  endunless
+
+  assign has_app_blocks = false
+  for block in section.blocks
+    if block.type == '@app'
+      assign has_app_blocks = true
+      break
+    endif
+  endfor
+
+  assign show_native = true
+  if section.settings.form_provider_mode == 'app_blocks' and has_app_blocks
+    assign show_native = false
+  endif
+
+  assign form_id = 'boc-contact-form-' | append: section.id
+  assign fn_id = 'boc-ct-fn-' | append: section.id
+  assign ln_id = 'boc-ct-ln-' | append: section.id
+  assign em_id = 'boc-ct-em-' | append: section.id
+  assign ph_id = 'boc-ct-ph-' | append: section.id
+  assign topic_id = 'boc-ct-topic-' | append: section.id
+  assign order_id = 'boc-ct-order-' | append: section.id
+  assign booking_id = 'boc-ct-booking-' | append: section.id
+  assign msg_id = 'boc-ct-msg-' | append: section.id
+-%}
+
+<section
+  id="{{ section.settings.section_anchor_id | default: 'boc-contact-form' }}"
+  class="{{ section_classes }}"
+  data-boc-contact
+  data-boc-contact-form
+  style="
+    --boc-ct-bg: {{ section.settings.background_color }};
+    --boc-ct-pad-top-d: {{ section.settings.padding_top_desktop }}px;
+    --boc-ct-pad-bottom-d: {{ section.settings.padding_bottom_desktop }}px;
+    --boc-ct-pad-top-t: {{ section.settings.padding_top_tablet }}px;
+    --boc-ct-pad-bottom-t: {{ section.settings.padding_bottom_tablet }}px;
+    --boc-ct-pad-top-m: {{ section.settings.padding_top_mobile }}px;
+    --boc-ct-pad-bottom-m: {{ section.settings.padding_bottom_mobile }}px;
+    --boc-ct-form-bg: {{ section.settings.form_background }};
+    --boc-ct-field-bg: {{ section.settings.field_background }};
+    --boc-ct-field-border: {{ section.settings.field_border }};
+  "
+>
+  <div class="boc-contact-section__inner">
+    <div class="boc-contact-form__layout">
+      <div class="boc-contact-form__copy">
+        {%- if section.settings.eyebrow != blank -%}<span class="boc-eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+        {%- if section.settings.heading != blank -%}<h2 class="boc-contact-section__heading" tabindex="-1">{{ section.settings.heading }}</h2>{%- endif -%}
+        {%- if section.settings.body != blank -%}<p>{{ section.settings.body }}</p>{%- endif -%}
+        {%- if section.settings.note_heading != blank or section.settings.note_text != blank -%}
+          <div class="boc-contact-form__note">
+            {%- if section.settings.note_heading != blank -%}<strong>{{ section.settings.note_heading }}</strong>{%- endif -%}
+            {%- if section.settings.note_text != blank -%}<p>{{ section.settings.note_text }}</p>{%- endif -%}
+          </div>
+        {%- endif -%}
+      </div>
+
+      {%- if has_app_blocks -%}
+        <div class="boc-contact-form__app-blocks">
+          {%- for block in section.blocks -%}
+            {%- if block.type == '@app' -%}
+              {% render block %}
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+
+      {%- if show_native -%}
+        <div class="boc-contact-form__panel">
+          {%- form 'contact', id: form_id -%}
+            <input type="hidden" name="contact[tags]" value="contact-page">
+            {%- if form.posted_successfully? -%}
+              <p class="boc-contact-form__success" role="status">{{ section.settings.success_message }}</p>
+            {%- endif -%}
+            {%- if form.errors -%}
+              <div class="boc-contact-form__errors" role="alert">{{ form.errors | default_errors }}</div>
+            {%- endif -%}
+            <div class="boc-contact-form__grid">
+              <div class="boc-contact-form__field">
+                <label for="{{ fn_id }}">First name <span aria-hidden="true">*</span></label>
+                <input id="{{ fn_id }}" type="text" name="contact[first_name]" autocomplete="given-name" required value="{{ form.first_name }}">
+              </div>
+              <div class="boc-contact-form__field">
+                <label for="{{ ln_id }}">Last name <span aria-hidden="true">*</span></label>
+                <input id="{{ ln_id }}" type="text" name="contact[last_name]" autocomplete="family-name" required value="{{ form.last_name }}">
+              </div>
+              <div class="boc-contact-form__field">
+                <label for="{{ em_id }}">Email <span aria-hidden="true">*</span></label>
+                <input id="{{ em_id }}" type="email" name="contact[email]" autocomplete="email" required value="{{ form.email }}">
+              </div>
+              <div class="boc-contact-form__field">
+                <label for="{{ ph_id }}">Phone</label>
+                <input id="{{ ph_id }}" type="tel" name="contact[phone]" autocomplete="tel" value="{{ form.phone }}">
+              </div>
+              <div class="boc-contact-form__field boc-contact-form__field--full">
+                <label for="{{ topic_id }}">Enquiry type <span aria-hidden="true">*</span></label>
+                <select id="{{ topic_id }}" name="contact[Enquiry type]" required data-boc-contact-topic-select>
+                  <option value="general">General enquiry</option>
+                  <option value="order-support">Order support</option>
+                  <option value="wine-club">Wine Club</option>
+                  <option value="weddings-events">Weddings &amp; events</option>
+                  <option value="restaurant-tasting">Restaurant or tasting</option>
+                </select>
+              </div>
+              {%- if section.settings.show_order_number -%}
+                <div class="boc-contact-form__field">
+                  <label for="{{ order_id }}">Order number</label>
+                  <input id="{{ order_id }}" type="text" name="contact[Order number]" autocomplete="off" value="{{ form['Order number'] }}">
+                </div>
+              {%- endif -%}
+              {%- if section.settings.show_booking_reference -%}
+                <div class="boc-contact-form__field">
+                  <label for="{{ booking_id }}">Booking reference</label>
+                  <input id="{{ booking_id }}" type="text" name="contact[Booking reference]" autocomplete="off" value="{{ form['Booking reference'] }}">
+                </div>
+              {%- endif -%}
+              <div class="boc-contact-form__field boc-contact-form__field--full">
+                <label for="{{ msg_id }}">Message <span aria-hidden="true">*</span></label>
+                <textarea id="{{ msg_id }}" name="contact[body]" required placeholder="{{ section.settings.message_placeholder }}">{{ form.body }}</textarea>
+              </div>
+            </div>
+            <div class="boc-contact-form__foot">
+              {%- if section.settings.privacy_text != blank -%}<small>{{ section.settings.privacy_text }}</small>{%- endif -%}
+              <button type="submit" class="boc-btn boc-btn--accent">{{ section.settings.submit_label }}</button>
+            </div>
+          {%- endform -%}
+        </div>
+      {%- elsif section.settings.form_provider_mode == 'app_blocks' and has_app_blocks == false -%}
+        <p class="boc-contact-form__errors">Add a Shopify Forms or compatible app block in the Theme Editor, or switch form provider mode to native contact form.</p>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "BOC — Contact Form",
+  "tag": "section",
+  "class": "boc-contact-form-section",
+  "settings": [
+    { "type": "checkbox", "id": "section_enabled", "label": "Enable section", "default": true },
+    { "type": "checkbox", "id": "show_desktop", "label": "Show on desktop", "default": true },
+    { "type": "checkbox", "id": "show_tablet", "label": "Show on tablet", "default": true },
+    { "type": "checkbox", "id": "show_mobile", "label": "Show on mobile", "default": true },
+    { "type": "text", "id": "section_anchor_id", "label": "Section anchor ID", "default": "boc-contact-form" },
+    { "type": "select", "id": "form_provider_mode", "label": "Form provider mode", "options": [{"value":"native_contact","label":"Native Shopify contact form"},{"value":"app_blocks","label":"App blocks only"}],"default": "native_contact" },
+    { "type": "color", "id": "background_color", "label": "Background", "default": "#FFFFFF" },
+    { "type": "color", "id": "form_background", "label": "Form background", "default": "#F6F6F6" },
+    { "type": "color", "id": "field_background", "label": "Field background", "default": "#FFFFFF" },
+    { "type": "color", "id": "field_border", "label": "Field border", "default": "#EDEDED" },
+    { "type": "range", "id": "padding_top_desktop", "label": "Desktop padding top", "min": 40, "max": 160, "step": 8, "unit": "px", "default": 120 },
+    { "type": "range", "id": "padding_bottom_desktop", "label": "Desktop padding bottom", "min": 40, "max": 160, "step": 8, "unit": "px", "default": 120 },
+    { "type": "range", "id": "padding_top_tablet", "label": "Tablet padding top", "min": 40, "max": 128, "step": 8, "unit": "px", "default": 96 },
+    { "type": "range", "id": "padding_bottom_tablet", "label": "Tablet padding bottom", "min": 40, "max": 128, "step": 8, "unit": "px", "default": 96 },
+    { "type": "range", "id": "padding_top_mobile", "label": "Mobile padding top", "min": 40, "max": 120, "step": 8, "unit": "px", "default": 80 },
+    { "type": "range", "id": "padding_bottom_mobile", "label": "Mobile padding bottom", "min": 40, "max": 120, "step": 8, "unit": "px", "default": 80 },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "General enquiry" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Send us a message." },
+    { "type": "textarea", "id": "body", "label": "Body", "default": "Use the form for general questions, order support or anything that does not fit the dedicated booking, Wine Club or events pathways above." },
+    { "type": "text", "id": "note_heading", "label": "Note heading", "default": "Already have a reservation?" },
+    { "type": "textarea", "id": "note_text", "label": "Note text", "default": "Changes and cancellations should be completed through the confirmation email wherever possible." },
+    { "type": "checkbox", "id": "show_order_number", "label": "Show order number field", "default": true },
+    { "type": "checkbox", "id": "show_booking_reference", "label": "Show booking reference field", "default": true },
+    { "type": "text", "id": "message_placeholder", "label": "Message placeholder", "default": "Tell us how we can help." },
+    { "type": "text", "id": "submit_label", "label": "Submit label", "default": "Send enquiry" },
+    { "type": "text", "id": "success_message", "label": "Success message", "default": "Thank you. Our team will be in touch shortly." },
+    { "type": "textarea", "id": "privacy_text", "label": "Privacy text", "default": "Your details will only be used to respond to your enquiry." }
+  ],
+  "blocks": [{ "type": "@app" }],
+  "presets": [{ "name": "BOC — Contact Form" }]
+}
+{% endschema %}

@@ -1,0 +1,180 @@
+{%- liquid
+  assign section_classes = 'boc-booking-section boc-booking-integration boc-booking-section--standard'
+  unless section.settings.section_enabled
+    assign section_classes = section_classes | append: ' boc-booking-section--disabled'
+  endunless
+  unless section.settings.show_desktop
+    assign section_classes = section_classes | append: ' boc-booking-section--hide-desktop'
+  endunless
+  unless section.settings.show_tablet
+    assign section_classes = section_classes | append: ' boc-booking-section--hide-tablet'
+  endunless
+  unless section.settings.show_mobile
+    assign section_classes = section_classes | append: ' boc-booking-section--hide-mobile'
+  endunless
+
+  assign booking_url = section.settings.booking_url
+  if booking_url == blank
+    capture booking_url
+      render 'boc-booking-url', type: 'default'
+    endcapture
+    assign booking_url = booking_url | strip
+  endif
+  if booking_url == blank
+    assign booking_url = 'https://bookings.nowbookit.com/?accountid=20cb5efb-4257-47a2-a7c9-7c23eceb2feb&venueid=6523&theme=light&colors=hex,000000&font=PT%20Serif'
+  endif
+
+  assign open_new_tab = section.settings.open_in_new_tab
+  if open_new_tab == false and settings.boc_booking_open_new_tab
+    assign open_new_tab = true
+  endif
+
+  assign integration_mode = section.settings.integration_mode | default: 'iframe'
+  assign provider_label = section.settings.provider_label
+  if provider_label == blank
+    assign provider_label = settings.boc_booking_provider_name | default: 'Now Book It'
+  endif
+
+  assign has_app_blocks = false
+  for block in section.blocks
+    if block.type == '@app'
+      assign has_app_blocks = true
+      break
+    endif
+  endfor
+-%}
+
+<section
+  id="{{ section.settings.section_anchor_id | default: 'boc-booking-widget' }}"
+  class="{{ section_classes }}"
+  data-boc-booking
+  style="
+    --boc-bk-shell-bg: {{ section.settings.section_background_color }};
+    --boc-bk-bg: {{ section.settings.section_background_color }};
+    --boc-bk-pt-d: {{ section.settings.padding_top_desktop }}px;
+    --boc-bk-pb-d: {{ section.settings.padding_bottom_desktop }}px;
+    --boc-bk-pt-t: {{ section.settings.padding_top_tablet }}px;
+    --boc-bk-pb-t: {{ section.settings.padding_bottom_tablet }}px;
+    --boc-bk-pt-m: {{ section.settings.padding_top_mobile }}px;
+    --boc-bk-pb-m: {{ section.settings.padding_bottom_mobile }}px;
+    --boc-bk-widget-bg: {{ section.settings.widget_background_color }};
+    --boc-bk-widget-border: {{ section.settings.widget_border_color }};
+    --boc-bk-iframe-h: {{ section.settings.iframe_height_desktop }}px;
+    --boc-bk-iframe-h-m: {{ section.settings.iframe_height_mobile }}px;
+  "
+>
+  <div class="boc-booking-section__inner{% if section.settings.container_width == 'narrow' %} boc-booking-section--narrow{% endif %}">
+    <div class="boc-booking-section__head">
+      <div class="boc-booking-section__head-text">
+        {%- if section.settings.eyebrow != blank -%}<span class="boc-eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+        {%- if section.settings.heading != blank -%}<h2 class="boc-booking-section__heading">{{ section.settings.heading }}</h2>{%- endif -%}
+      </div>
+      {%- if section.settings.intro_body != blank -%}<p class="boc-booking-section__head-aside">{{ section.settings.intro_body }}</p>{%- endif -%}
+    </div>
+
+    <div class="boc-booking-integration__widget">
+      <div class="boc-booking-integration__head">
+        {%- if section.settings.panel_heading != blank -%}
+          <h3>{{ section.settings.panel_heading }}</h3>
+        {%- else -%}
+          <h3>Boat O'Craigo Reservations</h3>
+        {%- endif -%}
+        {%- if section.settings.show_provider_label and provider_label != blank -%}
+          <span class="boc-booking-integration__provider">{{ section.settings.provider_label_prefix | default: 'Powered by' }} {{ provider_label }}</span>
+        {%- endif -%}
+      </div>
+
+      <div class="boc-booking-integration__body">
+        {%- if integration_mode == 'app_blocks' and has_app_blocks -%}
+          {%- for block in section.blocks -%}
+            {%- if block.type == '@app' -%}
+              {% render block %}
+            {%- endif -%}
+          {%- endfor -%}
+        {%- elsif integration_mode == 'iframe' -%}
+          <div class="boc-booking-integration__iframe-wrap" data-boc-booking-iframe>
+            <iframe
+              class="boc-booking-integration__iframe"
+              src="{{ booking_url }}"
+              title="{{ section.settings.iframe_title | escape }}"
+              loading="{{ section.settings.iframe_loading | default: 'lazy' }}"
+              referrerpolicy="strict-origin-when-cross-origin"
+            ></iframe>
+          </div>
+          <p class="boc-booking-integration__fallback">
+            {%- if section.settings.fallback_text != blank -%}{{ section.settings.fallback_text }}{%- else -%}If the booking form does not load,{%- endif -%}
+            <a href="{{ booking_url }}"{% if open_new_tab %} target="_blank" rel="noopener noreferrer"{% endif %} data-boc-booking-launch data-boc-booking-type="general" data-boc-booking-provider="now-book-it">{{ section.settings.fallback_link_label | default: 'open Now Book It directly' }}</a>{%- if open_new_tab -%}<span class="visually-hidden"> (opens in a new tab)</span>{%- endif -%}.
+          </p>
+        {%- else -%}
+          <div class="boc-booking-integration__panel">
+            {%- if section.settings.panel_body != blank -%}
+              <p>{{ section.settings.panel_body }}</p>
+            {%- else -%}
+              <p>Reserve wine tastings and Glasshouse dining through our secure Now Book It booking system.</p>
+            {%- endif -%}
+            <a
+              href="{{ booking_url }}"
+              class="boc-btn boc-btn--{{ section.settings.launch_button_style | default: 'accent' }}"
+              {% if open_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}
+              data-boc-booking-launch
+              data-boc-booking-action="open-booking"
+              data-boc-booking-type="general"
+              data-boc-booking-provider="now-book-it"
+            >
+              {{ section.settings.launch_button_label | default: 'Open booking system' }}
+              {%- if open_new_tab -%}<span class="visually-hidden"> (opens in a new tab)</span>{%- endif -%}
+            </a>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "BOC — Booking Widget",
+  "tag": "section",
+  "class": "boc-booking-widget-section",
+  "settings": [
+    { "type": "checkbox", "id": "section_enabled", "label": "Enable section", "default": true },
+    { "type": "checkbox", "id": "show_desktop", "label": "Show on desktop", "default": true },
+    { "type": "checkbox", "id": "show_tablet", "label": "Show on tablet", "default": true },
+    { "type": "checkbox", "id": "show_mobile", "label": "Show on mobile", "default": true },
+    { "type": "text", "id": "section_anchor_id", "label": "Section anchor ID", "default": "boc-booking-widget" },
+    { "type": "select", "id": "container_width", "label": "Container width", "options": [{"value":"standard","label":"Standard"},{"value":"narrow","label":"Narrow"}],"default": "standard" },
+    { "type": "color", "id": "section_background_color", "label": "Section background", "default": "#FAF8F5" },
+    { "type": "color", "id": "widget_background_color", "label": "Widget background", "default": "#FFFFFF" },
+    { "type": "color", "id": "widget_border_color", "label": "Widget border", "default": "#E8E2D9" },
+    { "type": "range", "id": "padding_top_desktop", "label": "Desktop padding top", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 120 },
+    { "type": "range", "id": "padding_bottom_desktop", "label": "Desktop padding bottom", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 120 },
+    { "type": "range", "id": "padding_top_tablet", "label": "Tablet padding top", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 96 },
+    { "type": "range", "id": "padding_bottom_tablet", "label": "Tablet padding bottom", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 96 },
+    { "type": "range", "id": "padding_top_mobile", "label": "Mobile padding top", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 80 },
+    { "type": "range", "id": "padding_bottom_mobile", "label": "Mobile padding bottom", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 80 },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Reserve online" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Make a booking." },
+    { "type": "textarea", "id": "intro_body", "label": "Intro", "default": "Use our secure Now Book It system to reserve wine tastings and Glasshouse dining." },
+    { "type": "header", "content": "Integration" },
+    { "type": "select", "id": "integration_mode", "label": "Integration mode", "options": [{"value":"iframe","label":"Embedded iframe"},{"value":"same_tab","label":"Open booking page in same tab"},{"value":"new_tab","label":"Open booking page in new tab"},{"value":"app_blocks","label":"App blocks only"}],"default": "iframe" },
+    { "type": "text", "id": "booking_url", "label": "Booking URL override", "info": "Leave blank to use theme setting Default booking URL." },
+    { "type": "checkbox", "id": "open_in_new_tab", "label": "Open fallback/launch in new tab", "default": false },
+    { "type": "text", "id": "iframe_title", "label": "Iframe title", "default": "Book a wine tasting or restaurant table at Boat O'Craigo" },
+    { "type": "select", "id": "iframe_loading", "label": "Iframe loading", "options": [{"value":"lazy","label":"Lazy"},{"value":"eager","label":"Eager"}],"default": "lazy" },
+    { "type": "range", "id": "iframe_height_desktop", "label": "Iframe min height desktop", "min": 400, "max": 1200, "step": 20, "unit": "px", "default": 720 },
+    { "type": "range", "id": "iframe_height_tablet", "label": "Iframe min height tablet", "min": 400, "max": 1000, "step": 20, "unit": "px", "default": 640 },
+    { "type": "range", "id": "iframe_height_mobile", "label": "Iframe min height mobile", "min": 360, "max": 900, "step": 20, "unit": "px", "default": 560 },
+    { "type": "text", "id": "panel_heading", "label": "Panel heading", "default": "Boat O'Craigo Reservations" },
+    { "type": "textarea", "id": "panel_body", "label": "Launch panel body" },
+    { "type": "text", "id": "launch_button_label", "label": "Launch button label", "default": "Open booking system" },
+    { "type": "select", "id": "launch_button_style", "label": "Launch button style", "options": [{"value":"accent","label":"Accent"},{"value":"primary","label":"Primary"},{"value":"light","label":"Light"}],"default": "accent" },
+    { "type": "checkbox", "id": "show_provider_label", "label": "Show provider label", "default": true },
+    { "type": "text", "id": "provider_label_prefix", "label": "Provider label prefix", "default": "Powered by" },
+    { "type": "text", "id": "provider_label", "label": "Provider label override" },
+    { "type": "text", "id": "fallback_text", "label": "Fallback text prefix", "default": "If the booking form does not load," },
+    { "type": "text", "id": "fallback_link_label", "label": "Fallback link label", "default": "open Now Book It directly" }
+  ],
+  "blocks": [{ "type": "@app" }],
+  "presets": [{ "name": "BOC — Booking Widget" }]
+}
+{% endschema %}

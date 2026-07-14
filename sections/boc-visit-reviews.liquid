@@ -1,0 +1,122 @@
+{%- liquid
+  assign section_classes = 'boc-visit-section boc-visit-reviews boc-visit-section--standard'
+  unless section.settings.section_enabled
+    assign section_classes = section_classes | append: ' boc-visit-section--disabled'
+  endunless
+  unless section.settings.show_desktop
+    assign section_classes = section_classes | append: ' boc-visit-section--hide-desktop'
+  endunless
+  unless section.settings.show_tablet
+    assign section_classes = section_classes | append: ' boc-visit-section--hide-tablet'
+  endunless
+  unless section.settings.show_mobile
+    assign section_classes = section_classes | append: ' boc-visit-section--hide-mobile'
+  endunless
+
+  assign grid_class = 'boc-visit-reviews__grid'
+  if section.settings.enable_carousel
+    assign grid_class = 'boc-visit-reviews__carousel'
+  endif
+-%}
+
+<section
+  id="boc-visit-reviews-{{ section.id }}"
+  class="{{ section_classes }}"
+  data-boc-visit
+  style="
+    --boc-v-bg: {{ section.settings.background_color }};
+    --boc-v-pt-d: {{ section.settings.padding_top_desktop }}px;
+    --boc-v-pb-d: {{ section.settings.padding_bottom_desktop }}px;
+    --boc-v-pt-t: {{ section.settings.padding_top_tablet }}px;
+    --boc-v-pb-t: {{ section.settings.padding_bottom_tablet }}px;
+    --boc-v-pt-m: {{ section.settings.padding_top_mobile }}px;
+    --boc-v-pb-m: {{ section.settings.padding_bottom_mobile }}px;
+    --boc-v-cols-d: {{ section.settings.columns_desktop }};
+    --boc-v-card-bg: {{ section.settings.card_background }};
+    --boc-v-star-color: {{ section.settings.star_color }};
+  "
+>
+  <div class="boc-visit-section__inner">
+    <div class="boc-visit-section__head">
+      <div class="boc-visit-section__head-text">
+        {%- if section.settings.eyebrow != blank -%}<span class="boc-eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+        {%- if section.settings.heading != blank -%}<h2 class="boc-visit-section__heading">{{ section.settings.heading }}</h2>{%- endif -%}
+      </div>
+      {%- if section.settings.intro_body != blank -%}<p class="boc-visit-section__head-aside">{{ section.settings.intro_body }}</p>{%- endif -%}
+    </div>
+
+    <div class="{{ grid_class }}"{% if section.settings.enable_carousel %} data-boc-visit-reviews-carousel{% endif %}>
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'testimonial' -%}
+          {% render 'boc-testimonial-card', block: block, settings: section.settings, variant: 'visit' %}
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+
+  {%- if section.settings.enable_app_blocks -%}
+    <div class="boc-visit-section__inner">
+      {%- for block in section.blocks -%}
+        {%- if block.type == '@app' -%}
+          {% render block %}
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "BOC — Visit Reviews",
+  "tag": "section",
+  "class": "boc-visit-reviews-section",
+  "max_blocks": 9,
+  "settings": [
+    { "type": "checkbox", "id": "section_enabled", "label": "Enable section", "default": true },
+    { "type": "checkbox", "id": "show_desktop", "label": "Show on desktop", "default": true },
+    { "type": "checkbox", "id": "show_tablet", "label": "Show on tablet", "default": true },
+    { "type": "checkbox", "id": "show_mobile", "label": "Show on mobile", "default": true },
+    { "type": "checkbox", "id": "enable_app_blocks", "label": "Enable app blocks area", "default": false },
+    { "type": "color", "id": "background_color", "label": "Background", "default": "#FAF8F5" },
+    { "type": "color", "id": "card_background", "label": "Card background", "default": "#FFFFFF" },
+    { "type": "color", "id": "star_color", "label": "Star colour", "default": "#B99E7E" },
+    { "type": "checkbox", "id": "show_stars", "label": "Show stars", "default": true },
+    { "type": "checkbox", "id": "enable_carousel", "label": "Enable carousel layout", "default": false },
+    { "type": "range", "id": "columns_desktop", "label": "Desktop columns", "min": 1, "max": 4, "step": 1, "default": 3 },
+    { "type": "range", "id": "padding_top_desktop", "label": "Desktop padding top", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 120 },
+    { "type": "range", "id": "padding_bottom_desktop", "label": "Desktop padding bottom", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 120 },
+    { "type": "range", "id": "padding_top_tablet", "label": "Tablet padding top", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 96 },
+    { "type": "range", "id": "padding_bottom_tablet", "label": "Tablet padding bottom", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 96 },
+    { "type": "range", "id": "padding_top_mobile", "label": "Mobile padding top", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 80 },
+    { "type": "range", "id": "padding_bottom_mobile", "label": "Mobile padding bottom", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 80 },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Guest reviews" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Worth the drive." },
+    { "type": "textarea", "id": "intro_body", "label": "Intro", "default": "Placeholder testimonials for the static concept. Final reviews can be connected through Shopify metafields or a review app." }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        { "type": "textarea", "id": "quote", "label": "Quote" },
+        { "type": "text", "id": "name", "label": "Name", "default": "Guest name" },
+        { "type": "text", "id": "context", "label": "Context", "default": "Placeholder review" },
+        { "type": "range", "id": "rating", "label": "Rating", "min": 0, "max": 5, "step": 1, "default": 5 },
+        { "type": "text", "id": "date", "label": "Date (optional)" },
+        { "type": "url", "id": "source_url", "label": "Source URL (optional)" }
+      ]
+    },
+    { "type": "@app" }
+  ],
+  "presets": [
+    {
+      "name": "BOC — Visit Reviews",
+      "blocks": [
+        { "type": "testimonial", "settings": { "quote": "Beautiful vineyard views, warm service and a tasting that made the wines easy to understand.", "name": "Cellar door guest", "context": "Placeholder review" } },
+        { "type": "testimonial", "settings": { "quote": "The Glasshouse was relaxed, generous and exactly what we wanted from a Yarra Valley lunch.", "name": "Restaurant guest", "context": "Placeholder review" } },
+        { "type": "testimonial", "settings": { "quote": "A wonderful place to bring visitors—great wine, thoughtful food and an unforgettable outlook.", "name": "Local guest", "context": "Placeholder review" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

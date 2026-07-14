@@ -1,0 +1,846 @@
+/* Boat O'Craigo — Homepage sections */
+
+.boc-home-section--disabled {
+  display: none !important;
+}
+
+@media (min-width: 1101px) {
+  .boc-home-section--hide-desktop {
+    display: none !important;
+  }
+}
+
+@media (min-width: 721px) and (max-width: 1100px) {
+  .boc-home-section--hide-tablet {
+    display: none !important;
+  }
+}
+
+@media (max-width: 720px) {
+  .boc-home-section--hide-mobile {
+    display: none !important;
+  }
+}
+
+.boc-home-section {
+  background: var(--boc-section-bg, var(--boc-white));
+  padding-top: var(--boc-section-pt, var(--boc-space-9));
+  padding-bottom: var(--boc-section-pb, var(--boc-space-9));
+}
+
+.boc-home-section--full {
+  padding-inline: 0;
+}
+
+.boc-home-section__inner {
+  width: 100%;
+}
+
+.boc-home-section--container .boc-home-section__inner {
+  width: min(calc(100% - 48px), var(--boc-max-width));
+  margin-inline: auto;
+}
+
+@media (max-width: 720px) {
+  .boc-home-section--container .boc-home-section__inner {
+    width: min(calc(100% - 32px), var(--boc-max-width));
+  }
+}
+
+.boc-home-section__head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--boc-space-4);
+  margin-bottom: 42px;
+}
+
+.boc-home-section__head-text {
+  max-width: 640px;
+}
+
+.boc-home-section__heading {
+  font-family: var(--boc-serif);
+  font-size: var(--boc-display-lg);
+  font-weight: 400;
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+  margin: 8px 0 0;
+}
+
+.boc-home-section__body {
+  color: var(--boc-slate);
+  font-size: var(--boc-body);
+  line-height: 1.55;
+  margin: 0;
+}
+
+.boc-home-section__head-aside {
+  max-width: 430px;
+  color: var(--boc-slate);
+}
+
+.boc-home-text-link {
+  display: inline-block;
+  font-family: var(--boc-sans);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 4px;
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Hero slider */
+.boc-home-hero {
+  position: relative;
+  color: var(--boc-white);
+  overflow: hidden;
+  height: var(--boc-hero-height, min(92vh, 940px));
+  min-height: var(--boc-hero-min-height, 700px);
+  padding: 0;
+}
+
+.boc-home-hero__slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.75s ease, visibility 0.75s ease;
+}
+
+.boc-home-hero__slide.is-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.boc-home-hero__media {
+  position: absolute;
+  inset: 0;
+  background-position: center;
+  background-size: cover;
+}
+
+.boc-home-hero__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.boc-home-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(10, 10, 10, 0.58) 0%,
+    rgba(10, 10, 10, 0.3) 48%,
+    rgba(10, 10, 10, 0.18) 100%
+  );
+}
+
+.boc-home-hero__content {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding-top: 54px;
+  padding-bottom: 82px;
+}
+
+.boc-home-hero__copy {
+  max-width: 790px;
+}
+
+.boc-home-hero__heading {
+  font-family: var(--boc-serif);
+  font-size: var(--boc-display-xl);
+  font-weight: 400;
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+  margin: 12px 0 22px;
+}
+
+.boc-home-hero__body {
+  max-width: 570px;
+  font-size: var(--boc-body);
+  margin: 0 0 30px;
+}
+
+.boc-home-hero__actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.boc-home-hero__controls {
+  position: absolute;
+  z-index: 4;
+  right: max(24px, calc((100vw - var(--boc-max-width)) / 2));
+  bottom: 28px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.boc-home-hero__arrow {
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  background: rgba(0, 0, 0, 0.2);
+  color: var(--boc-white);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  padding: 0;
+  font-size: 1rem;
+}
+
+.boc-home-hero__dots {
+  display: flex;
+  gap: 7px;
+  margin-right: 8px;
+}
+
+.boc-home-hero__dot {
+  width: 30px;
+  height: 3px;
+  border: 0;
+  background: rgba(255, 255, 255, 0.38);
+  cursor: pointer;
+  padding: 0;
+}
+
+.boc-home-hero__dot.is-active {
+  background: var(--boc-white);
+}
+
+/* Quick links */
+.boc-home-quick-links {
+  padding-top: 30px;
+  padding-bottom: 0;
+}
+
+.boc-home-quick-links__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.boc-home-quick-links__card {
+  min-height: 126px;
+  border: 1px solid var(--boc-line);
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-decoration: none;
+  color: inherit;
+  transition: background var(--boc-transition);
+}
+
+.boc-home-quick-links__card:hover {
+  background: var(--boc-cream);
+}
+
+.boc-home-quick-links__title {
+  font-family: var(--boc-serif);
+  font-size: 1.45rem;
+  font-weight: 400;
+  margin: 0;
+}
+
+.boc-home-quick-links__label {
+  font-size: 0.68rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--boc-slate);
+}
+
+/* Product card */
+.boc-product-card {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.boc-product-card__media-link {
+  display: block;
+  text-decoration: none;
+}
+
+.boc-product-card__media {
+  height: 430px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.boc-product-badge {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  z-index: 5;
+  padding: 6px 10px;
+  font: 600 0.68rem var(--boc-sans);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.boc-product-badge--taupe {
+  background: var(--boc-taupe, #DCC6A2);
+  color: var(--boc-ink, #212121);
+}
+
+.boc-product-badge--dark {
+  background: var(--boc-ink, #212121);
+  color: var(--boc-white);
+}
+
+.boc-product-price__compare {
+  text-decoration: line-through;
+  opacity: 0.65;
+  margin-right: 8px;
+  font-weight: 400;
+}
+
+.boc-product-card__media img {
+  max-height: 100%;
+  width: auto;
+  object-fit: contain;
+}
+
+.boc-product-card__info {
+  padding: 22px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.boc-product-card__title {
+  font-family: var(--boc-serif);
+  font-size: 1.35rem;
+  font-weight: 400;
+  margin: 0 0 7px;
+}
+
+.boc-product-card__title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.boc-product-card__meta {
+  font-size: 0.75rem;
+  color: var(--boc-slate);
+  margin: 0 0 12px;
+}
+
+.boc-product-card__price {
+  font-weight: 600;
+  margin: 0 0 16px;
+}
+
+.boc-product-card__form {
+  width: 100%;
+}
+
+.boc-product-card__actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.boc-product-card__quantity {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--boc-line);
+}
+
+.boc-product-card__qty-btn {
+  width: 36px;
+  height: 40px;
+  border: 0;
+  background: transparent;
+  font-size: 1rem;
+  cursor: pointer;
+  color: var(--boc-ink);
+}
+
+.boc-product-card__qty-input {
+  width: 36px;
+  height: 40px;
+  border: 0;
+  border-inline: 1px solid var(--boc-line);
+  text-align: center;
+  font-family: var(--boc-sans);
+  font-size: var(--boc-body-sm);
+  -moz-appearance: textfield;
+}
+
+.boc-product-card__qty-input::-webkit-outer-spin-button,
+.boc-product-card__qty-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.boc-product-card__add {
+  flex: 1;
+  min-width: 120px;
+}
+
+/* Featured wines grid */
+.boc-home-featured-wines__grid {
+  display: grid;
+  grid-template-columns: repeat(var(--boc-wine-columns, 4), minmax(0, 1fr));
+  gap: 20px;
+}
+
+/* Story */
+.boc-home-story {
+  color: var(--boc-white);
+}
+
+.boc-home-story__grid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 8vw;
+  align-items: center;
+}
+
+.boc-home-story__grid--image-right .boc-home-story__media {
+  order: 2;
+}
+
+.boc-home-story__grid--image-right .boc-home-story__copy {
+  order: 1;
+}
+
+.boc-home-story__media {
+  position: relative;
+}
+
+.boc-home-story__media img {
+  width: 100%;
+  height: 660px;
+  object-fit: cover;
+}
+
+.boc-home-story__badge {
+  position: absolute;
+  right: -30px;
+  bottom: 40px;
+  width: 185px;
+  height: 185px;
+  border-radius: 50%;
+  background: var(--boc-sand);
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 24px;
+  font-family: var(--boc-serif);
+  font-size: 1.1rem;
+  line-height: 1.2;
+  color: var(--boc-white);
+}
+
+.boc-home-story__copy p {
+  color: #d1d1d1;
+  max-width: 560px;
+}
+
+.boc-home-story__stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin: 42px 0 34px;
+}
+
+.boc-home-story__stat {
+  border-top: 1px solid #5c5c5c;
+  padding-top: 16px;
+}
+
+.boc-home-story__stat strong {
+  display: block;
+  font-family: var(--boc-serif);
+  font-size: 1.35rem;
+  font-weight: 400;
+}
+
+.boc-home-story__stat span {
+  font-size: 0.72rem;
+  color: #aaa;
+}
+
+/* Experiences */
+.boc-home-experiences__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.boc-home-experiences__card {
+  min-height: 600px;
+  position: relative;
+  color: var(--boc-white);
+  overflow: hidden;
+  display: block;
+  text-decoration: none;
+}
+
+.boc-home-experiences__card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  inset: 0;
+}
+
+.boc-home-experiences__card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 35%, rgba(0, 0, 0, 0.72));
+}
+
+.boc-home-experiences__copy {
+  position: absolute;
+  z-index: 2;
+  left: 36px;
+  right: 36px;
+  bottom: 34px;
+}
+
+.boc-home-experiences__copy h3 {
+  font-family: var(--boc-serif);
+  font-size: var(--boc-display-md);
+  font-weight: 400;
+  line-height: 1;
+  margin: 8px 0 14px;
+}
+
+.boc-home-experiences__copy p {
+  max-width: 470px;
+  margin: 0 0 18px;
+}
+
+/* Wine club */
+.boc-home-wine-club {
+  color: var(--boc-white);
+  padding: 0;
+}
+
+.boc-home-wine-club__grid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+}
+
+.boc-home-wine-club__image {
+  min-height: 690px;
+  background-position: center;
+  background-size: cover;
+}
+
+.boc-home-wine-club__image img {
+  width: 100%;
+  height: 100%;
+  min-height: 690px;
+  object-fit: cover;
+}
+
+.boc-home-wine-club__copy {
+  padding: 90px max(50px, 8vw);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.boc-home-wine-club__copy p {
+  max-width: 480px;
+}
+
+.boc-home-wine-club__list {
+  list-style: none;
+  padding: 0;
+  margin: 32px 0 36px;
+}
+
+.boc-home-wine-club__list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+/* Weddings banner */
+.boc-home-weddings {
+  position: relative;
+  min-height: 700px;
+  color: var(--boc-white);
+  display: flex;
+  align-items: center;
+  padding: var(--boc-space-9) 0;
+}
+
+.boc-home-weddings__bg {
+  position: absolute;
+  inset: 0;
+  background-position: center;
+  background-size: cover;
+}
+
+.boc-home-weddings__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.boc-home-weddings__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.58), rgba(0, 0, 0, 0.14));
+}
+
+.boc-home-weddings__copy {
+  position: relative;
+  z-index: 2;
+  max-width: 690px;
+}
+
+.boc-home-weddings__copy p {
+  max-width: 520px;
+  margin-bottom: 30px;
+}
+
+/* Events & journal cards */
+.boc-home-cards__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.boc-home-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.boc-home-card__media img {
+  width: 100%;
+  height: 310px;
+  object-fit: cover;
+}
+
+.boc-home-card__meta {
+  font-size: 0.67rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--boc-slate);
+  margin-top: 20px;
+}
+
+.boc-home-card__title {
+  font-family: var(--boc-serif);
+  font-size: 1.75rem;
+  line-height: 1.08;
+  font-weight: 400;
+  margin: 10px 0;
+}
+
+.boc-home-card__title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.boc-home-card__body {
+  color: var(--boc-slate);
+  font-size: 0.87rem;
+  margin: 0 0 16px;
+}
+
+/* Newsletter */
+.boc-home-newsletter {
+  padding-top: 76px;
+  padding-bottom: 76px;
+  color: var(--boc-white);
+}
+
+.boc-home-newsletter .boc-home-section__body {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.boc-home-newsletter__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.boc-home-newsletter__heading {
+  font-family: var(--boc-serif);
+  font-size: var(--boc-display-md);
+  font-weight: 400;
+  line-height: 1;
+  margin: 8px 0 0;
+}
+
+.boc-home-newsletter__form {
+  display: flex;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+.boc-home-newsletter__input {
+  flex: 1;
+  padding: 16px 0;
+  border: 0;
+  background: transparent;
+  color: var(--boc-white);
+  outline: none;
+  font-family: var(--boc-sans);
+}
+
+.boc-home-newsletter__input::placeholder {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.boc-home-newsletter__submit {
+  border: 0;
+  background: none;
+  color: var(--boc-white);
+  font-size: 0.7rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-family: var(--boc-sans);
+  font-weight: 600;
+}
+
+.boc-home-newsletter__message {
+  margin-top: 12px;
+  font-size: var(--boc-body-sm);
+}
+
+.boc-home-newsletter__message--error {
+  color: #ffd6d6;
+}
+
+/* Responsive */
+@media (max-width: 1100px) {
+  .boc-home-quick-links__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .boc-home-featured-wines__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .boc-home-story__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .boc-home-story__badge {
+    right: 20px;
+  }
+
+  .boc-home-wine-club__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .boc-home-wine-club__image,
+  .boc-home-wine-club__image img {
+    min-height: 540px;
+  }
+}
+
+@media (max-width: 720px) {
+  .boc-home-section {
+    padding-top: var(--boc-section-pt-mobile, 84px);
+    padding-bottom: var(--boc-section-pb-mobile, 84px);
+  }
+
+  .boc-home-section__head {
+    display: block;
+  }
+
+  .boc-home-section__head .boc-home-text-link {
+    margin-top: 18px;
+  }
+
+  .boc-home-hero {
+    height: 720px;
+    min-height: 720px;
+  }
+
+  .boc-home-hero__heading {
+    font-size: 3.6rem;
+  }
+
+  .boc-home-quick-links {
+    padding-top: 16px;
+  }
+
+  .boc-home-quick-links__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .boc-home-quick-links__card {
+    min-height: 112px;
+    padding: 20px;
+  }
+
+  .boc-product-card__media {
+    height: 300px;
+  }
+
+  .boc-product-card__title {
+    font-size: 1.1rem;
+  }
+
+  .boc-home-story__media img {
+    height: 500px;
+  }
+
+  .boc-home-story__badge {
+    width: 140px;
+    height: 140px;
+    font-size: 0.9rem;
+  }
+
+  .boc-home-story__stats {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .boc-home-experiences__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .boc-home-experiences__card {
+    min-height: 500px;
+  }
+
+  .boc-home-wine-club__copy {
+    padding: 70px 24px;
+  }
+
+  .boc-home-cards__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .boc-home-newsletter__inner {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .boc-home-hero__slide {
+    transition: none;
+  }
+}

@@ -1,0 +1,63 @@
+{%- liquid
+  assign product = closest.product | default: product
+-%}
+
+<div class="product-accordions" data-block-type="product-accordions" {{ block.shopify_attributes }}>
+  {% content_for 'blocks', closest.product: product %}
+</div>
+
+{% schema %}
+{
+  "name": "BOC — Accordions",
+  "tag": null,
+  "blocks": [
+    { "type": "boc-product-accordion-item" }
+  ],
+  "settings": [],
+  "presets": [
+    {
+      "name": "BOC — Accordions",
+      "category": "Product",
+      "blocks": {
+        "tasting": {
+          "type": "boc-product-accordion-item",
+          "settings": {
+            "heading": "Tasting notes",
+            "accordion_type": "tasting_notes",
+            "open_by_default": true
+          }
+        },
+        "details": {
+          "type": "boc-product-accordion-item",
+          "settings": {
+            "heading": "Wine details",
+            "accordion_type": "wine_details"
+          }
+        },
+        "pairing": {
+          "type": "boc-product-accordion-item",
+          "settings": {
+            "heading": "Food pairing",
+            "accordion_type": "food_pairing"
+          }
+        },
+        "shipping": {
+          "type": "boc-product-accordion-item",
+          "settings": {
+            "heading": "Shipping & delivery",
+            "accordion_type": "shipping"
+          }
+        },
+        "pdf": {
+          "type": "boc-product-accordion-item",
+          "settings": {
+            "heading": "Download wine information",
+            "accordion_type": "pdf_download"
+          }
+        }
+      },
+      "block_order": ["tasting", "details", "pairing", "shipping", "pdf"]
+    }
+  ]
+}
+{% endschema %}

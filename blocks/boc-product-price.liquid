@@ -1,0 +1,44 @@
+{%- liquid
+  assign product = closest.product | default: product
+  assign variant = product.selected_or_first_available_variant
+  assign show_savings = false
+  if variant.compare_at_price > variant.price
+    assign show_savings = true
+    assign savings_amount = variant.compare_at_price | minus: variant.price
+  endif
+-%}
+
+<div class="boc-product-price-block" {{ block.shopify_attributes }}>
+  <div class="product-price-wrap" data-block-type="product-price">
+    <span class="product-price-current">{% render 'format-price', price: variant.price %}</span>
+    {%- if show_savings -%}
+      <span class="product-price-compare">{% render 'format-price', price: variant.compare_at_price %}</span>
+    {%- endif -%}
+  </div>
+  {%- if show_savings and block.settings.show_savings -%}
+    <span class="product-saving" data-block-type="product-discount">
+      You save {% render 'format-price', price: savings_amount %}
+    </span>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "BOC — Product price",
+  "tag": null,
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_savings",
+      "label": "Show savings badge",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "BOC — Product price",
+      "category": "Product"
+    }
+  ]
+}
+{% endschema %}

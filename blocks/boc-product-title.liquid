@@ -1,0 +1,19 @@
+{%- liquid
+  assign product = closest.product | default: product
+-%}
+
+<h1 class="product-title" {{ block.shopify_attributes }}>{{ product.title }}</h1>
+
+{% schema %}
+{
+  "name": "BOC — Product title",
+  "tag": null,
+  "settings": [],
+  "presets": [
+    {
+      "name": "BOC — Product title",
+      "category": "Product"
+    }
+  ]
+}
+{% endschema %}

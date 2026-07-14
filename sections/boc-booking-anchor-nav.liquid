@@ -1,0 +1,75 @@
+{%- liquid
+  assign nav_classes = 'boc-booking-nav'
+  unless section.settings.sticky_enabled
+    assign nav_classes = nav_classes | append: ' boc-booking-nav--disabled'
+  endunless
+  unless section.settings.section_enabled
+    assign nav_classes = nav_classes | append: ' boc-booking-section--disabled'
+  endunless
+  unless section.settings.show_desktop
+    assign nav_classes = nav_classes | append: ' boc-booking-section--hide-desktop'
+  endunless
+  unless section.settings.show_tablet
+    assign nav_classes = nav_classes | append: ' boc-booking-section--hide-tablet'
+  endunless
+  unless section.settings.show_mobile
+    assign nav_classes = nav_classes | append: ' boc-booking-section--hide-mobile'
+  endunless
+-%}
+
+<nav
+  class="{{ nav_classes }}"
+  aria-label="{{ section.settings.aria_label | default: 'Booking page navigation' }}"
+  data-boc-booking-nav
+  data-tracking="{{ section.settings.active_tracking }}"
+  data-boc-booking
+  style="--boc-bk-nav-bg: {{ section.settings.background_color }}; --boc-bk-nav-text: {{ section.settings.text_color }}; --boc-bk-nav-active: {{ section.settings.active_color }};"
+>
+  <div class="boc-booking-section__inner boc-booking-nav__inner">
+    {%- for block in section.blocks -%}
+      <a href="#{{ block.settings.anchor_id }}" class="boc-booking-nav__link" data-boc-booking-scroll {{ block.shopify_attributes }}>{{ block.settings.label }}</a>
+    {%- endfor -%}
+  </div>
+</nav>
+
+{% schema %}
+{
+  "name": "BOC — Booking Nav",
+  "tag": "section",
+  "class": "boc-booking-nav-section",
+  "max_blocks": 8,
+  "settings": [
+    { "type": "checkbox", "id": "section_enabled", "label": "Enable section", "default": true },
+    { "type": "checkbox", "id": "show_desktop", "label": "Show on desktop", "default": true },
+    { "type": "checkbox", "id": "show_tablet", "label": "Show on tablet", "default": true },
+    { "type": "checkbox", "id": "show_mobile", "label": "Show on mobile", "default": true },
+    { "type": "checkbox", "id": "sticky_enabled", "label": "Enable sticky navigation", "default": true },
+    { "type": "checkbox", "id": "active_tracking", "label": "Highlight active section on scroll", "default": true },
+    { "type": "color", "id": "background_color", "label": "Background", "default": "#FFFFFF" },
+    { "type": "color", "id": "text_color", "label": "Text colour", "default": "#212121" },
+    { "type": "color", "id": "active_color", "label": "Active/hover colour", "default": "#B99E7E" },
+    { "type": "text", "id": "aria_label", "label": "ARIA label", "default": "Booking page navigation" }
+  ],
+  "blocks": [
+    {
+      "type": "link",
+      "name": "Nav link",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label", "default": "Link" },
+        { "type": "text", "id": "anchor_id", "label": "Anchor ID", "default": "boc-booking-widget" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "BOC — Booking Nav",
+      "blocks": [
+        { "type": "link", "settings": { "label": "Experiences", "anchor_id": "boc-booking-pathways" } },
+        { "type": "link", "settings": { "label": "Booking form", "anchor_id": "boc-booking-widget" } },
+        { "type": "link", "settings": { "label": "Important information", "anchor_id": "boc-booking-information" } },
+        { "type": "link", "settings": { "label": "FAQs", "anchor_id": "boc-booking-faq" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

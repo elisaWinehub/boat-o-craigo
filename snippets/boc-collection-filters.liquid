@@ -1,0 +1,12 @@
+{%- doc -%}
+  Reference wrapper for Shopify-native collection filters.
+
+  Production filtering is rendered by the Horizon filters block via
+  {% content_for 'block', type: 'filters' %} in boc-main-collection.liquid.
+  This snippet documents the BOC filter styling hooks applied to .facets classes.
+
+  For standalone filter groups, render list-filter or price-filter snippets
+  with collection.filters from Shopify Search & Discovery.
+{%- enddoc -%}
+
+{%- comment -%} Filters are rendered by blocks/filters.liquid in the main section. {%- endcomment -%}

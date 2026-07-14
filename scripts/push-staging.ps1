@@ -1,7 +1,7 @@
 $ErrorActionPreference = "Stop"
 
 $Store = "boat-o-craigo.myshopify.com"
-$StagingThemeId = "REPLACE_WITH_CONFIRMED_STAGING_THEME_ID"
+$StagingThemeId = "144118677588"
 
 $themeRoot = Split-Path -Parent $PSScriptRoot
 Set-Location $themeRoot

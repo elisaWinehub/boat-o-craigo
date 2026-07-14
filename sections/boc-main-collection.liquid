@@ -55,12 +55,23 @@
               </div>
             {%- endif -%}
             <div class="boc-collection-toolbar-bar__controls">
+              {%- liquid
+                assign toolbar_sort_by = collection.sort_by | default: collection.default_sort_by
+              -%}
+              {% render 'sorting',
+                results: collection,
+                sort_by: toolbar_sort_by,
+                filter_style: 'vertical',
+                suffix: 'desktop',
+                sort_position: 'desktop',
+                should_use_select_on_mobile: false,
+                section_id: section.id
+              %}
               {% render 'boc-collection-toolbar', section: section %}
             </div>
           </div>
           {% render 'boc-collection-toolbar-meta',
             collection: collection,
-            section_id: section.id,
             products_count: collection.products_count
           %}
         </div>

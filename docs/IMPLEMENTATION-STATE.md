@@ -78,6 +78,14 @@ Configured and created in Shopify Admin (2026-07-14):
 
 See [SHOPIFY-NAVIGATION.md](./SHOPIFY-NAVIGATION.md) for full link map and page list.
 
+## Metafield definitions
+
+- Namespace: `wine`
+- Owner type: Product
+- Definitions created: 21 of 21
+- Definitions pending manual Admin API token setup: 0 (created via `shopify store execute` stored auth; `scripts/create-metafields.mjs` ready for `.env` token)
+- Reference: [BOAT-O-CRAIGO-METAFIELDS.md](./BOAT-O-CRAIGO-METAFIELDS.md)
+
 ## Shopify Files
 
 Images are stored in theme `assets/` and deploy with the theme. Upload to **Shopify Admin → Content → Files** is optional and was not performed via API (theme auth only).

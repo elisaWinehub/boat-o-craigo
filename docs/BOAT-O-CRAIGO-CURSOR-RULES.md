@@ -15,6 +15,7 @@ Before editing any Shopify theme file:
 11. Keep page templates modular and AI-readable.
 12. Run `shopify theme check` before reporting completion.
 13. Report any design-system deviation before implementing it.
+14. Reuse the `wine.*` metafield namespace defined in `docs/BOAT-O-CRAIGO-METAFIELDS.md` for all wine product data. Do not create a second namespace or duplicate keys for the same data.
 
 Approved templates:
 

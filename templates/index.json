@@ -1,285 +1,435 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */{
+{
   "sections": {
-    "hero_jVaWmY": {
-      "type": "hero",
+    "boc_home_hero": {
+      "type": "boc-home-hero-slider",
       "blocks": {
-        "text_YLPk4p": {
-          "type": "text",
-          "name": "t:names.heading",
+        "slide_1": {
+          "type": "slide",
           "settings": {
-            "text": "<p>Browse our latest products</p>",
-            "text_color": "{{ settings.color_palette.background }}",
-            "width": "fit-content",
-            "max_width": "normal",
-            "alignment": "left",
-            "type_preset": "h2",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
+            "eyebrow": "Yarra Valley · Victoria",
+            "heading": "Wines shaped by place.",
+            "body": "Discover cool-climate, single-vineyard wines made at our family-owned Yarra Valley estate.",
+            "button_1_label": "Shop wines",
+            "button_1_link": "shopify://collections/all",
+            "button_1_style": "light",
+            "button_2_label": "Our vineyards",
+            "button_2_link": "/pages/about",
+            "button_2_style": "accent",
+            "overlay_opacity": 100
+          }
         },
-        "button_H9gpTf": {
-          "type": "button",
-          "name": "t:names.button",
+        "slide_2": {
+          "type": "slide",
           "settings": {
-            "label": "Shop all",
-            "link": "shopify://collections/all",
-            "open_in_new_tab": false,
-            "style_class": "button-custom",
-            "custom_button_background": "rgba(0,0,0,0)",
-            "custom_button_text": "{{ settings.color_palette.background }}",
-            "custom_button_border": "{{ settings.color_palette.background }}",
-            "width": "fit-content",
-            "custom_width": 100,
-            "width_mobile": "fit-content",
-            "custom_width_mobile": 100
-          },
-          "blocks": {}
+            "eyebrow": "Boat O'Craigo Wine Club",
+            "heading": "Your cellar, curated by ours.",
+            "body": "Enjoy member pricing, flexible deliveries and first access to limited releases.",
+            "button_1_label": "Join the club",
+            "button_1_link": "/pages/wine-club",
+            "button_1_style": "light",
+            "button_2_label": "Explore wines",
+            "button_2_link": "shopify://collections/all",
+            "button_2_style": "accent",
+            "overlay_opacity": 100
+          }
+        },
+        "slide_3": {
+          "type": "slide",
+          "settings": {
+            "eyebrow": "Visit Healesville",
+            "heading": "Come for the wine. Stay for the view.",
+            "body": "Experience guided tastings, warm hospitality and vineyard views at our estate.",
+            "button_1_label": "Book a tasting",
+            "button_1_link": "/pages/visit",
+            "button_1_style": "light",
+            "button_2_label": "Plan your visit",
+            "button_2_link": "/pages/visit",
+            "button_2_style": "accent",
+            "overlay_opacity": 100
+          }
+        },
+        "slide_4": {
+          "type": "slide",
+          "settings": {
+            "eyebrow": "Glasshouse Restaurant",
+            "heading": "Seasonal dining among the vines.",
+            "body": "Relax over local produce, estate wines and sweeping Yarra Valley views.",
+            "button_1_label": "Reserve a table",
+            "button_1_link": "/pages/visit",
+            "button_1_style": "light",
+            "button_2_label": "View dining",
+            "button_2_link": "/pages/visit",
+            "button_2_style": "accent",
+            "overlay_opacity": 100
+          }
+        },
+        "slide_5": {
+          "type": "slide",
+          "settings": {
+            "eyebrow": "Weddings & Private Events",
+            "heading": "Celebrate among the vines.",
+            "body": "A relaxed, intimate Yarra Valley setting for weddings and unforgettable occasions.",
+            "button_1_label": "Explore weddings",
+            "button_1_link": "/pages/visit",
+            "button_1_style": "light",
+            "button_2_label": "Book an inspection",
+            "button_2_link": "/pages/visit",
+            "button_2_style": "accent",
+            "overlay_opacity": 100
+          }
         }
       },
-      "block_order": [
-        "text_YLPk4p",
-        "button_H9gpTf"
-      ],
-      "name": "t:names.hero",
+      "block_order": ["slide_1", "slide_2", "slide_3", "slide_4", "slide_5"],
       "settings": {
-        "media_type_1": "image",
-        "media_type_2": "image",
-        "stack_media_on_mobile": false,
-        "custom_mobile_media": false,
-        "media_type_1_mobile": "image",
-        "media_type_2_mobile": "image",
-        "open_in_new_tab": false,
-        "content_direction": "column",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "space-between",
-        "vertical_alignment": "flex-end",
-        "align_baseline": true,
-        "horizontal_alignment_flex_direction_column": "center",
-        "vertical_alignment_flex_direction_column": "flex-end",
-        "gap": 24,
-        "section_width": "page-width",
-        "section_height": "medium",
-        "section_height_custom": 50,
-        "background_color": "rgba(0,0,0,0)",
-        "toggle_overlay": true,
-        "overlay_color": "#12121266",
-        "overlay_style": "solid",
-        "gradient_direction": "to bottom",
-        "blurred_reflection": false,
-        "reflection_opacity": 75,
-        "padding-block-start": 100,
-        "padding-block-end": 72
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "container_width": "full",
+        "background_color": "#212121",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "height_desktop": 92,
+        "min_height_desktop": 700,
+        "autoplay": true,
+        "autoplay_speed": 6,
+        "show_arrows": true,
+        "show_dots": true,
+        "aria_label": "Featured highlights"
       }
     },
-    "product_list_fa6P9H": {
-      "type": "product-list",
+    "boc_home_quick_links": {
+      "type": "boc-home-quick-links",
       "blocks": {
-        "static-header": {
-          "type": "_product-list-content",
-          "name": "t:names.header",
-          "static": true,
+        "link_1": {
+          "type": "link",
           "settings": {
-            "content_direction": "row",
-            "vertical_on_mobile": false,
-            "horizontal_alignment": "space-between",
-            "vertical_alignment": "flex-end",
-            "align_baseline": true,
-            "horizontal_alignment_flex_direction_column": "flex-start",
-            "vertical_alignment_flex_direction_column": "center",
-            "gap": 12,
-            "width": "fill",
-            "custom_width": 100,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "height": "fit",
-            "custom_height": 100,
-            "background_media": "none",
-            "video_position": "cover",
-            "background_image_position": "cover",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {
-            "product_list_text_YFtzcL": {
-              "type": "_product-list-text",
-              "name": "t:names.collection_title",
-              "settings": {
-                "text": "<h3>{{ closest.collection.title }}</h3>",
-                "width": "fit-content",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "h4",
-                "font": "var(--font-body--family)",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "product_list_button_MWeP9V": {
-              "type": "_product-list-button",
-              "name": "t:names.product_list_button",
-              "settings": {
-                "label": "View all",
-                "open_in_new_tab": false,
-                "style_class": "link",
-                "width": "fit-content",
-                "custom_width": 100,
-                "width_mobile": "fit-content",
-                "custom_width_mobile": 100
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "product_list_text_YFtzcL",
-            "product_list_button_MWeP9V"
-          ]
+            "title": "Shop Wines",
+            "label": "Explore the range →",
+            "link": "shopify://collections/all"
+          }
         },
-        "static-product-card": {
-          "type": "_product-card",
-          "name": "t:names.product_card",
-          "static": true,
+        "link_2": {
+          "type": "link",
           "settings": {
-            "product_card_gap": 4,
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {
-            "product_card_gallery_677WP3": {
-              "type": "_product-card-gallery",
-              "name": "t:names.product_card_media",
-              "settings": {
-                "image_ratio": "adapt",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "product_title_YXxMTj": {
-              "type": "product-title",
-              "name": "t:names.product_title",
-              "settings": {
-                "width": "100%",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "rte",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 4,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "price_JQzVV4": {
-              "type": "price",
-              "name": "t:names.product_price",
-              "settings": {
-                "show_sale_price_first": true,
-                "show_installments": false,
-                "show_tax_info": false,
-                "type_preset": "h6",
-                "width": "100%",
-                "alignment": "left",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "product_card_gallery_677WP3",
-            "product_title_YXxMTj",
-            "price_JQzVV4"
-          ]
+            "title": "Glasshouse Restaurant",
+            "label": "View dining →",
+            "link": "/pages/visit"
+          }
+        },
+        "link_3": {
+          "type": "link",
+          "settings": {
+            "title": "Weddings & Events",
+            "label": "Celebrate with us →",
+            "link": "/pages/visit"
+          }
+        },
+        "link_4": {
+          "type": "link",
+          "settings": {
+            "title": "Wine Club",
+            "label": "Become a member →",
+            "link": "/pages/wine-club"
+          }
         }
       },
-      "name": "Featured collection",
+      "block_order": ["link_1", "link_2", "link_3", "link_4"],
       "settings": {
-        "collection": "all",
-        "layout_type": "grid",
-        "carousel_on_mobile": false,
-        "max_products": 8,
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "container_width": "container",
+        "background_color": "#FFFFFF",
+        "padding_top": 32,
+        "padding_bottom": 0
+      }
+    },
+    "boc_home_featured_wines": {
+      "type": "boc-home-featured-wines",
+      "blocks": {
+        "product_1": { "type": "product", "settings": {} },
+        "product_2": { "type": "product", "settings": {} },
+        "product_3": { "type": "product", "settings": {} },
+        "product_4": { "type": "product", "settings": {} }
+      },
+      "block_order": ["product_1", "product_2", "product_3", "product_4"],
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "container_width": "container",
+        "background_color": "#FFFFFF",
+        "padding_top": 120,
+        "padding_bottom": 120,
+        "eyebrow": "From our cellar",
+        "heading": "Explore the range.",
+        "link_label": "Shop all wines",
+        "link_url": "shopify://collections/all",
+        "source": "manual",
+        "product_limit": 4,
         "columns": 4,
-        "mobile_columns": "2",
-        "mobile_card_size": "60cqw",
-        "columns_gap": 8,
-        "rows_gap": 24,
-        "icons_style": "arrow",
-        "icons_shape": "none",
-        "section_width": "page-width",
-        "horizontal_alignment": "flex-start",
-        "gap": 28,
-        "background_color": "{{ settings.color_palette.background }}",
-        "padding-block-start": 48,
-        "padding-block-end": 48
+        "show_vendor": true,
+        "show_price": true,
+        "show_quantity": true,
+        "show_add_to_cart": true
+      }
+    },
+    "boc_home_story": {
+      "type": "boc-home-story",
+      "blocks": {
+        "stat_1": {
+          "type": "stat",
+          "settings": {
+            "title": "Family Owned",
+            "label": "Independent since 2000"
+          }
+        },
+        "stat_2": {
+          "type": "stat",
+          "settings": {
+            "title": "Single Vineyard",
+            "label": "Site-led winemaking"
+          }
+        },
+        "stat_3": {
+          "type": "stat",
+          "settings": {
+            "title": "Cool Climate",
+            "label": "Yarra Valley character"
+          }
+        },
+        "stat_4": {
+          "type": "stat",
+          "settings": {
+            "title": "Small Batch",
+            "label": "Handcrafted releases"
+          }
+        }
+      },
+      "block_order": ["stat_1", "stat_2", "stat_3", "stat_4"],
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "container_width": "container",
+        "background_color": "#212121",
+        "padding_top": 120,
+        "padding_bottom": 120,
+        "eyebrow": "Our story",
+        "heading": "Wine shaped by place, season and family.",
+        "body": "Boat O'Craigo is a family-owned winery built around two distinctive Yarra Valley vineyard sites. Each wine is made in small parcels to preserve the character of its fruit and the place it comes from.",
+        "image_position": "left",
+        "badge_text": "Family owned.\nYarra Valley grown.",
+        "button_label": "Discover our story",
+        "button_link": "/pages/about"
+      }
+    },
+    "boc_home_experiences": {
+      "type": "boc-home-experiences",
+      "blocks": {
+        "feature_1": {
+          "type": "feature",
+          "settings": {
+            "eyebrow": "Cellar Door",
+            "heading": "Book a tasting",
+            "body": "Explore our current releases and vineyard stories with a guided tasting.",
+            "link_label": "Plan your visit",
+            "link": "/pages/visit"
+          }
+        },
+        "feature_2": {
+          "type": "feature",
+          "settings": {
+            "eyebrow": "Glasshouse Restaurant",
+            "heading": "Seasonal dining",
+            "body": "Relaxed food, estate wines and sweeping views across the vineyard.",
+            "link_label": "View the menu",
+            "link": "/pages/visit"
+          }
+        }
+      },
+      "block_order": ["feature_1", "feature_2"],
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "container_width": "container",
+        "background_color": "#FFFFFF",
+        "padding_top": 120,
+        "padding_bottom": 120,
+        "eyebrow": "Visit the estate",
+        "heading": "Come for the wine. Stay for the moment.",
+        "body": "Cellar door tastings and seasonal dining, set among the vines in Healesville."
+      }
+    },
+    "boc_home_wine_club": {
+      "type": "boc-home-wine-club",
+      "blocks": {
+        "benefit_1": {
+          "type": "benefit",
+          "settings": {
+            "text": "Save up to 30% on wine",
+            "number": "01"
+          }
+        },
+        "benefit_2": {
+          "type": "benefit",
+          "settings": {
+            "text": "Customise every delivery",
+            "number": "02"
+          }
+        },
+        "benefit_3": {
+          "type": "benefit",
+          "settings": {
+            "text": "Complimentary tastings",
+            "number": "03"
+          }
+        },
+        "benefit_4": {
+          "type": "benefit",
+          "settings": {
+            "text": "Member-only releases & events",
+            "number": "04"
+          }
+        }
+      },
+      "block_order": ["benefit_1", "benefit_2", "benefit_3", "benefit_4"],
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "container_width": "full",
+        "background_color": "#B99E7E",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "eyebrow": "Boat O'Craigo Wine Club",
+        "heading": "Your cellar, curated by ours.",
+        "body": "Flexible deliveries, member pricing and first access to limited releases throughout the year.",
+        "button_label": "Join the club",
+        "button_link": "/pages/wine-club"
+      }
+    },
+    "boc_home_weddings": {
+      "type": "boc-home-weddings",
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "container_width": "full",
+        "background_color": "#212121",
+        "padding_top": 120,
+        "padding_bottom": 120,
+        "eyebrow": "Weddings & Private Events",
+        "heading": "Celebrate among the vines.",
+        "body": "Host your day in a setting that feels relaxed, intimate and unmistakably Yarra Valley.",
+        "button_1_label": "Book an inspection",
+        "button_1_style": "light",
+        "button_2_label": "Explore weddings",
+        "button_2_style": "accent"
+      }
+    },
+    "boc_home_events": {
+      "type": "boc-home-events",
+      "blocks": {
+        "event_1": {
+          "type": "event",
+          "settings": {
+            "meta": "Sunday Sessions · Winter",
+            "title": "Live music, vineyard views and a glass in hand.",
+            "body": "Relaxed acoustic afternoons at the estate.",
+            "link_label": "View event"
+          }
+        },
+        "event_2": {
+          "type": "event",
+          "settings": {
+            "meta": "Friday Night Sessions",
+            "title": "Firelight, dinner and late-night cellar door.",
+            "body": "A seasonal evening of local food, music and estate wine.",
+            "link_label": "View event"
+          }
+        },
+        "event_3": {
+          "type": "event",
+          "settings": {
+            "meta": "Special Event",
+            "title": "Meet the makers behind the latest release.",
+            "body": "Join our family and winemaking team for a guided release tasting.",
+            "link_label": "View event"
+          }
+        }
+      },
+      "block_order": ["event_1", "event_2", "event_3"],
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "container_width": "container",
+        "background_color": "#FAF8F5",
+        "padding_top": 120,
+        "padding_bottom": 120,
+        "eyebrow": "What's on",
+        "heading": "At the estate.",
+        "link_label": "View all events",
+        "source": "manual",
+        "article_limit": 3
+      }
+    },
+    "boc_home_journal": {
+      "type": "boc-home-journal",
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "container_width": "container",
+        "background_color": "#FFFFFF",
+        "padding_top": 120,
+        "padding_bottom": 120,
+        "eyebrow": "From the journal",
+        "heading": "Stories from the valley.",
+        "link_label": "Read all stories",
+        "article_limit": 3
+      }
+    },
+    "boc_home_newsletter": {
+      "type": "boc-home-newsletter",
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "container_width": "container",
+        "background_color": "#B99E7E",
+        "padding_top": 72,
+        "padding_bottom": 72,
+        "eyebrow": "From the vineyard",
+        "heading": "Be the first to know.",
+        "input_placeholder": "Your email address",
+        "button_label": "Join the list →",
+        "success_message": "Thanks for subscribing."
       }
     }
   },
   "order": [
-    "hero_jVaWmY",
-    "product_list_fa6P9H"
+    "boc_home_hero",
+    "boc_home_quick_links",
+    "boc_home_featured_wines",
+    "boc_home_story",
+    "boc_home_experiences",
+    "boc_home_wine_club",
+    "boc_home_weddings",
+    "boc_home_events",
+    "boc_home_journal",
+    "boc_home_newsletter"
   ]
 }

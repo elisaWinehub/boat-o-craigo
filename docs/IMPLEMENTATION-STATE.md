@@ -23,6 +23,17 @@ Theme IDs: see [THEME-MAPPING.md](./THEME-MAPPING.md)
 - Estate experience
 - Wine Club FAQ
 - Final CTA
+- What's On page template
+- What's On hero
+- Sticky anchor navigation
+- Dynamic events section
+- Weddings and private events feature section
+- Venue spaces
+- Event details
+- Enquiry tabs and forms
+- Testimonials
+- Yarra Valley discovery section
+- Final enquiry CTA
 
 ## Global component files
 
@@ -88,6 +99,38 @@ Theme IDs: see [THEME-MAPPING.md](./THEME-MAPPING.md)
 - Replace placeholder FAQ copy
 - Confirm final membership terms
 
+## What's On section files
+
+| Section | File |
+|---------|------|
+| Hero | `sections/boc-whats-on-hero.liquid` |
+| Sticky anchor nav | `sections/boc-whats-on-anchor-nav.liquid` |
+| Intro | `sections/boc-whats-on-intro.liquid` |
+| Events | `sections/boc-whats-on-events.liquid` |
+| Celebrations | `sections/boc-whats-on-celebrations.liquid` |
+| Venues | `sections/boc-whats-on-venues.liquid` |
+| Event details | `sections/boc-whats-on-event-details.liquid` |
+| Enquiry | `sections/boc-whats-on-enquiry.liquid` |
+| Testimonials | `sections/boc-whats-on-testimonials.liquid` |
+| Discover | `sections/boc-whats-on-discover.liquid` |
+| Final CTA | `sections/boc-whats-on-final-cta.liquid` |
+| Event card snippet | `snippets/boc-event-card.liquid` |
+| Feature card snippet | `snippets/boc-feature-card.liquid` |
+| Testimonial card snippet | `snippets/boc-testimonial-card.liquid` |
+| Form field snippet | `snippets/boc-form-field.liquid` |
+| Styles / JS | `assets/boc-whats-on.css`, `assets/boc-whats-on.js` |
+| Template | `templates/page.whats-on.json` |
+| Mockup | `docs/mockups/boat-ocraigo-whats-on-concept.html` |
+
+**Global components reused:** announcement bar, header, mobile navigation, footer, design tokens, `boc-button`, `boc-responsive-image`, `boc-eyebrow`, `boc-home-text-link`.
+
+**Pending (What's On):**
+- Confirm final event data model
+- Confirm Shopify blog and event metafields
+- Confirm final form provider
+- Replace placeholder testimonials
+- Confirm wedding and private event enquiry routing
+
 ## Homepage image assets (theme `assets/`)
 
 - `boc-hero-wines.png`
@@ -128,7 +171,6 @@ Images are stored in theme `assets/` and deploy with the theme. Upload to **Shop
 - Collection
 - Product
 - Visit
-- What's On
 - About
 - Book Now
 - Contact

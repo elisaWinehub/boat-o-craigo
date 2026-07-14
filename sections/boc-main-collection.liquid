@@ -48,14 +48,21 @@
         style="--boc-col-toolbar-bg: {{ section.settings.toolbar_background }}; --boc-col-toolbar-border: {{ section.settings.toolbar_border_color }};"
       >
         <div class="boc-collection-section__inner boc-collection-toolbar-bar__inner">
-          {%- if section.settings.show_collection_label -%}
-            <div class="boc-collection-toolbar-bar__summary">
-              <strong>{{ collection.title }}</strong>
+          <div class="boc-collection-toolbar-bar__primary">
+            {%- if section.settings.show_collection_label -%}
+              <div class="boc-collection-toolbar-bar__summary">
+                <strong>{{ collection.title }}</strong>
+              </div>
+            {%- endif -%}
+            <div class="boc-collection-toolbar-bar__controls">
+              {% render 'boc-collection-toolbar', section: section %}
             </div>
-          {%- endif -%}
-          <div class="boc-collection-toolbar-bar__controls">
-            {% render 'boc-collection-toolbar', section: section %}
           </div>
+          {% render 'boc-collection-toolbar-meta',
+            collection: collection,
+            section_id: section.id,
+            products_count: collection.products_count
+          %}
         </div>
       </div>
 
@@ -65,7 +72,8 @@
           id: 'filters',
           results: collection,
           results_size: collection.products_count,
-          filters: collection.filters
+          filters: collection.filters,
+          toolbar_controls_hosted: true
         %}
 
         <div id="ResultsList" class="boc-collection-main main-collection-grid">

@@ -1,0 +1,41 @@
+{%- doc -%}
+  Product count and sort controls for the collection toolbar bar.
+
+  @param {object} collection - The collection (used as sorting results)
+  @param {string} section_id - Parent section ID
+  @param {number} products_count - Filtered product count
+  @param {boolean} [enable_sorting] - Whether to show the sort control
+{%- enddoc -%}
+
+{%- liquid
+  assign toolbar_sort_by = collection.sort_by | default: collection.default_sort_by
+  assign toolbar_products_count = products_count | default: collection.products_count
+  assign toolbar_enable_sorting = enable_sorting | default: true, allow_false: true
+-%}
+
+<div class="boc-collection-toolbar-bar__meta">
+  <div
+    class="products-count-wrapper"
+    data-testid="products-count"
+  >
+    <span role="status">
+      {% if toolbar_products_count > 25000 %}
+        {{- 'content.item_count_cutoff' | t: count: 25000 -}}
+      {% else %}
+        {{- 'content.item_count' | t: count: toolbar_products_count -}}
+      {% endif %}
+    </span>
+  </div>
+
+  {%- if toolbar_enable_sorting -%}
+    {% render 'sorting',
+      results: collection,
+      sort_by: toolbar_sort_by,
+      filter_style: 'vertical',
+      suffix: 'desktop',
+      sort_position: 'desktop',
+      should_use_select_on_mobile: false,
+      section_id: section_id
+    %}
+  {%- endif -%}
+</div>

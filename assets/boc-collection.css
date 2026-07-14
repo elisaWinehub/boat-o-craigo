@@ -101,7 +101,9 @@
   .boc-collection-grid.is-list-view .boc-product-card { grid-template-columns: 120px 1fr; }
   .boc-collection-grid.is-list-view .boc-product-card__media { height: 190px; }
   .boc-collection-grid.is-list-view .boc-product-card__info { padding: 12px 16px; }
-  .boc-collection-toolbar-bar__inner { flex-direction: column; align-items: stretch; }
+  .boc-collection-toolbar-bar__inner { gap: 0; }
+  .boc-collection-toolbar-bar__primary { flex-wrap: wrap; }
+  .boc-collection-toolbar-bar__meta { padding-top: 10px; }
 }
 
 .boc-collection-toolbar-bar {
@@ -109,7 +111,7 @@
 }
 
 .boc-collection-page .boc-collection-toolbar-bar {
-  border-bottom: none;
+  border-bottom: 1px solid var(--boc-col-toolbar-border, var(--boc-line));
 }
 
 .boc-collection-toolbar-bar--sticky {
@@ -120,11 +122,34 @@
 
 .boc-collection-toolbar-bar__inner {
   display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0;
+  padding: 16px 0 14px;
+  min-height: 0;
+}
+
+.boc-collection-toolbar-bar__primary {
+  display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  padding: 16px 0 12px;
-  min-height: 0;
+}
+
+.boc-collection-toolbar-bar__meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-top: 12px;
+}
+
+.boc-collection-toolbar-bar__meta .sorting-filter-component {
+  margin-left: auto;
+}
+
+.boc-collection-toolbar-bar__meta .products-count-wrapper {
+  font-size: 0.8rem;
+  color: var(--boc-slate);
 }
 
 .boc-collection-toolbar-bar__summary strong {
@@ -392,28 +417,7 @@
 .boc-collection-empty p { color: var(--boc-slate); margin: 0 0 20px; }
 
 .boc-collection-page .facets--horizontal.facets-controls-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  width: min(calc(100% - 48px), var(--boc-max-width));
-  margin-inline: auto;
-  padding: 0 0 14px;
-  background: var(--boc-col-toolbar-bg, var(--boc-white));
-  border-top: none;
-  border-bottom: 1px solid var(--boc-col-toolbar-border, var(--boc-line));
-}
-
-.boc-collection-page .facets--horizontal.facets-controls-wrapper > .facets--filters-title {
   display: none !important;
-}
-
-.boc-collection-page .facets--horizontal .sorting-filter-component {
-  margin-left: auto;
-}
-
-.boc-collection-page .products-count-wrapper {
-  font-size: 0.8rem;
-  color: var(--boc-slate);
 }
 
 @media (min-width: 1100px) {

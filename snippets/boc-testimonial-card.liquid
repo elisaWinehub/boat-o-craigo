@@ -3,18 +3,26 @@
 
   @param {object} block - Testimonial block
   @param {object} settings - Section settings
+  @param {string} [variant] - whats-on (default) or visit
 {%- enddoc -%}
 
-<article class="boc-whats-on-testimonials__card" {{ block.shopify_attributes }}>
+{%- liquid
+  assign card_prefix = 'boc-whats-on-testimonials'
+  if variant == 'visit'
+    assign card_prefix = 'boc-visit-reviews'
+  endif
+-%}
+
+<article class="{{ card_prefix }}__card" {{ block.shopify_attributes }}>
   {%- if settings.show_stars and block.settings.rating > 0 -%}
-    <div class="boc-whats-on-testimonials__stars" aria-label="{{ block.settings.rating }} out of 5 stars">
+    <div class="{{ card_prefix }}__stars" aria-label="{{ block.settings.rating }} out of 5 stars">
       {%- for i in (1..block.settings.rating) -%}★{%- endfor -%}
     </div>
   {%- endif -%}
   {%- if block.settings.quote != blank -%}
-    <blockquote class="boc-whats-on-testimonials__quote">{{ block.settings.quote }}</blockquote>
+    <blockquote class="{{ card_prefix }}__quote">{{ block.settings.quote }}</blockquote>
   {%- endif -%}
-  <cite class="boc-whats-on-testimonials__cite">
+  <cite class="{{ card_prefix }}__cite">
     {%- if block.settings.name != blank -%}{{ block.settings.name }}{%- endif -%}
     {%- if block.settings.context != blank -%} · {{ block.settings.context }}{%- endif -%}
   </cite>

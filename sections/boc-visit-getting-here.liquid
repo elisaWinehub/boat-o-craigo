@@ -1,0 +1,193 @@
+{%- liquid
+  assign section_classes = 'boc-visit-section boc-visit-travel boc-visit-section--standard'
+  unless section.settings.section_enabled
+    assign section_classes = section_classes | append: ' boc-visit-section--disabled'
+  endunless
+  unless section.settings.show_desktop
+    assign section_classes = section_classes | append: ' boc-visit-section--hide-desktop'
+  endunless
+  unless section.settings.show_tablet
+    assign section_classes = section_classes | append: ' boc-visit-section--hide-tablet'
+  endunless
+  unless section.settings.show_mobile
+    assign section_classes = section_classes | append: ' boc-visit-section--hide-mobile'
+  endunless
+
+  assign image_fallback = 'boc-estate-vineyard.jpg' | asset_url
+  assign operator_blocks = section.blocks | where: 'type', 'operator'
+  assign travel_blocks = section.blocks | where: 'type', 'travel'
+-%}
+
+<section
+  id="{{ section.settings.section_anchor_id | default: 'boc-visit-getting-here' }}"
+  class="{{ section_classes }}"
+  data-boc-visit
+  style="
+    --boc-v-bg: {{ section.settings.background_color }};
+    --boc-v-pt-d: {{ section.settings.padding_top_desktop }}px;
+    --boc-v-pb-d: {{ section.settings.padding_bottom_desktop }}px;
+    --boc-v-pt-t: {{ section.settings.padding_top_tablet }}px;
+    --boc-v-pb-t: {{ section.settings.padding_bottom_tablet }}px;
+    --boc-v-pt-m: {{ section.settings.padding_top_mobile }}px;
+    --boc-v-pb-m: {{ section.settings.padding_bottom_mobile }}px;
+    --boc-v-travel-img-h: {{ section.settings.image_height }}px;
+    --boc-v-op-cols: {{ section.settings.operator_columns }};
+  "
+>
+  <div class="boc-visit-section__inner">
+    <div class="boc-visit-travel__grid">
+      <div class="boc-visit-travel__media">
+        {%- if section.settings.image != blank -%}
+          {% render 'boc-responsive-image', image: section.settings.image, mobile_image: section.settings.mobile_image, alt: section.settings.heading, loading: 'lazy', sizes: '(min-width: 980px) 55vw, 100vw' %}
+        {%- else -%}
+          <img src="{{ image_fallback }}" alt="{{ section.settings.heading | escape }}" loading="lazy" width="1200" height="620">
+        {%- endif -%}
+      </div>
+
+      <div class="boc-visit-travel__content">
+        {%- if section.settings.eyebrow != blank -%}<span class="boc-eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+        {%- if section.settings.heading != blank -%}<h2 class="boc-visit-section__heading">{{ section.settings.heading }}</h2>{%- endif -%}
+
+        {%- if section.settings.show_address -%}
+          <div class="boc-visit-travel__address">
+            {%- if section.settings.address_name != blank -%}<strong>{{ section.settings.address_name }}</strong><br>{%- endif -%}
+            {%- if section.settings.address_line_1 != blank -%}{{ section.settings.address_line_1 }}<br>{%- endif -%}
+            {%- if section.settings.address_line_2 != blank -%}{{ section.settings.address_line_2 }}{%- endif -%}
+          </div>
+        {%- endif -%}
+
+        {%- for block in travel_blocks -%}
+          <div class="boc-visit-travel__item" {{ block.shopify_attributes }}>
+            {%- if block.settings.heading != blank -%}<h3>{{ block.settings.heading }}</h3>{%- endif -%}
+            {%- if block.settings.body != blank -%}<div class="rte">{{ block.settings.body }}</div>{%- endif -%}
+            {%- if block.settings.button_enabled and block.settings.button_label != blank -%}
+              {% render 'boc-button', label: block.settings.button_label, url: block.settings.button_url, style: block.settings.button_style | default: 'primary', new_tab: block.settings.button_new_tab %}
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+
+        {%- if operator_blocks.size > 0 -%}
+          <div class="boc-visit-travel__item">
+            {%- if section.settings.operators_heading != blank -%}<h3>{{ section.settings.operators_heading }}</h3>{%- endif -%}
+            {%- if section.settings.operators_intro != blank -%}<p>{{ section.settings.operators_intro }}</p>{%- endif -%}
+            <div class="boc-visit-operators">
+              {%- for block in operator_blocks -%}
+                {% render 'boc-tour-operator-card', block: block %}
+              {%- endfor -%}
+            </div>
+          </div>
+        {%- endif -%}
+
+        {%- if section.settings.enable_map_app_block -%}
+          <div class="boc-visit-travel__map">
+            {%- for block in section.blocks -%}
+              {%- if block.type == '@app' -%}
+                {% render block %}
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+
+        <div class="boc-visit-travel__actions">
+          {%- if section.settings.directions_button_enabled and section.settings.directions_button_label != blank -%}
+            {% render 'boc-button', label: section.settings.directions_button_label, url: section.settings.directions_url, style: section.settings.directions_button_style | default: 'primary', new_tab: true %}
+          {%- endif -%}
+          {%- if section.settings.google_maps_url != blank -%}
+            <a href="{{ section.settings.google_maps_url }}" class="boc-btn boc-btn--outline" target="_blank" rel="noopener noreferrer">Google Maps</a>
+          {%- endif -%}
+          {%- if section.settings.apple_maps_url != blank -%}
+            <a href="{{ section.settings.apple_maps_url }}" class="boc-btn boc-btn--outline" target="_blank" rel="noopener noreferrer">Apple Maps</a>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "BOC — Visit Getting Here",
+  "tag": "section",
+  "class": "boc-visit-travel-section",
+  "max_blocks": 16,
+  "settings": [
+    { "type": "checkbox", "id": "section_enabled", "label": "Enable section", "default": true },
+    { "type": "checkbox", "id": "show_desktop", "label": "Show on desktop", "default": true },
+    { "type": "checkbox", "id": "show_tablet", "label": "Show on tablet", "default": true },
+    { "type": "checkbox", "id": "show_mobile", "label": "Show on mobile", "default": true },
+    { "type": "text", "id": "section_anchor_id", "label": "Section anchor ID", "default": "boc-visit-getting-here" },
+    { "type": "color", "id": "background_color", "label": "Background", "default": "#FFFFFF" },
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "image_picker", "id": "mobile_image", "label": "Mobile image" },
+    { "type": "range", "id": "image_height", "label": "Image height", "min": 360, "max": 800, "step": 20, "unit": "px", "default": 620 },
+    { "type": "range", "id": "operator_columns", "label": "Operator columns", "min": 1, "max": 4, "step": 1, "default": 3 },
+    { "type": "range", "id": "padding_top_desktop", "label": "Desktop padding top", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 120 },
+    { "type": "range", "id": "padding_bottom_desktop", "label": "Desktop padding bottom", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 120 },
+    { "type": "range", "id": "padding_top_tablet", "label": "Tablet padding top", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 96 },
+    { "type": "range", "id": "padding_bottom_tablet", "label": "Tablet padding bottom", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 96 },
+    { "type": "range", "id": "padding_top_mobile", "label": "Mobile padding top", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 80 },
+    { "type": "range", "id": "padding_bottom_mobile", "label": "Mobile padding bottom", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 80 },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Getting here" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "At the gateway to the Black Spur." },
+    { "type": "header", "content": "Address" },
+    { "type": "checkbox", "id": "show_address", "label": "Show address", "default": true },
+    { "type": "text", "id": "address_name", "label": "Venue name", "default": "Boat O'Craigo" },
+    { "type": "text", "id": "address_line_1", "label": "Address line 1", "default": "458 Maroondah Highway" },
+    { "type": "text", "id": "address_line_2", "label": "Address line 2", "default": "Healesville VIC 3777" },
+    { "type": "header", "content": "Tour operators" },
+    { "type": "text", "id": "operators_heading", "label": "Operators heading", "default": "Book a tour operator" },
+    { "type": "textarea", "id": "operators_intro", "label": "Operators intro", "default": "Prefer to leave the driving to someone else? A range of local operators visit wineries throughout the Yarra Valley." },
+    { "type": "header", "content": "Directions" },
+    { "type": "checkbox", "id": "directions_button_enabled", "label": "Enable directions button", "default": true },
+    { "type": "text", "id": "directions_button_label", "label": "Directions button label", "default": "Get directions" },
+    { "type": "url", "id": "directions_url", "label": "Directions URL" },
+    { "type": "select", "id": "directions_button_style", "label": "Directions button style", "options": [{"value":"primary","label":"Primary"},{"value":"outline","label":"Outline"}],"default": "primary" },
+    { "type": "url", "id": "google_maps_url", "label": "Google Maps URL" },
+    { "type": "url", "id": "apple_maps_url", "label": "Apple Maps URL" },
+    { "type": "checkbox", "id": "enable_map_app_block", "label": "Enable map app block area", "default": false }
+  ],
+  "blocks": [
+    {
+      "type": "travel",
+      "name": "Travel info",
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Arriving by car" },
+        { "type": "richtext", "id": "body", "label": "Body" },
+        { "type": "checkbox", "id": "button_enabled", "label": "Enable button", "default": false },
+        { "type": "text", "id": "button_label", "label": "Button label" },
+        { "type": "url", "id": "button_url", "label": "Button URL" },
+        { "type": "select", "id": "button_style", "label": "Button style", "options": [{"value":"primary","label":"Primary"},{"value":"outline","label":"Outline"}],"default": "primary" },
+        { "type": "checkbox", "id": "button_new_tab", "label": "Open in new tab", "default": false }
+      ]
+    },
+    {
+      "type": "operator",
+      "name": "Tour operator",
+      "settings": [
+        { "type": "text", "id": "name", "label": "Name", "default": "Tour operator" },
+        { "type": "image_picker", "id": "logo", "label": "Logo" },
+        { "type": "url", "id": "url", "label": "URL" },
+        { "type": "checkbox", "id": "open_new_tab", "label": "Open in new tab", "default": true },
+        { "type": "textarea", "id": "description", "label": "Description" },
+        { "type": "text", "id": "phone", "label": "Phone" }
+      ]
+    },
+    { "type": "@app" }
+  ],
+  "presets": [
+    {
+      "name": "BOC — Visit Getting Here",
+      "blocks": [
+        { "type": "travel", "settings": { "heading": "Arriving by car", "body": "<p>Boat O'Craigo is approximately a three-minute drive from central Healesville at 458 Maroondah Highway. On-site parking is available.</p>" } },
+        { "type": "travel", "settings": { "heading": "Arriving by bus", "body": "<p>Public bus services operate from Lilydale Station toward Healesville. Confirm the current route and timetable before travelling.</p>" } },
+        { "type": "operator", "settings": { "name": "Yarra Valley X" } },
+        { "type": "operator", "settings": { "name": "Bespoke Wine Tours" } },
+        { "type": "operator", "settings": { "name": "Big Grape Winery Tours" } },
+        { "type": "operator", "settings": { "name": "Evergreen Winery Tours" } },
+        { "type": "operator", "settings": { "name": "Winebus" } },
+        { "type": "operator", "settings": { "name": "Red Carpet Wine Tours" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

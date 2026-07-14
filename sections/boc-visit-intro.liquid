@@ -1,0 +1,117 @@
+{%- liquid
+  assign section_classes = 'boc-visit-section boc-visit-intro boc-visit-section--standard'
+  unless section.settings.section_enabled
+    assign section_classes = section_classes | append: ' boc-visit-section--disabled'
+  endunless
+  unless section.settings.show_desktop
+    assign section_classes = section_classes | append: ' boc-visit-section--hide-desktop'
+  endunless
+  unless section.settings.show_tablet
+    assign section_classes = section_classes | append: ' boc-visit-section--hide-tablet'
+  endunless
+  unless section.settings.show_mobile
+    assign section_classes = section_classes | append: ' boc-visit-section--hide-mobile'
+  endunless
+-%}
+
+<section
+  id="boc-visit-intro-{{ section.id }}"
+  class="{{ section_classes }}"
+  data-boc-visit
+  style="
+    --boc-v-bg: {{ section.settings.background_color }};
+    --boc-v-pt-d: {{ section.settings.padding_top_desktop }}px;
+    --boc-v-pb-d: {{ section.settings.padding_bottom_desktop }}px;
+    --boc-v-pt-t: {{ section.settings.padding_top_tablet }}px;
+    --boc-v-pb-t: {{ section.settings.padding_bottom_tablet }}px;
+    --boc-v-pt-m: {{ section.settings.padding_top_mobile }}px;
+    --boc-v-pb-m: {{ section.settings.padding_bottom_mobile }}px;
+    --boc-v-path-cols-d: {{ section.settings.columns_desktop }};
+    --boc-v-path-cols-t: {{ section.settings.columns_tablet }};
+  "
+>
+  <div class="boc-visit-section__inner">
+    <div class="boc-visit-intro__head">
+      {%- if section.settings.eyebrow != blank -%}<span class="boc-eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+      {%- if section.settings.heading != blank -%}<h2 class="boc-visit-section__heading">{{ section.settings.heading }}</h2>{%- endif -%}
+      {%- if section.settings.body != blank -%}<p>{{ section.settings.body }}</p>{%- endif -%}
+    </div>
+
+    <div class="boc-visit-intro__paths">
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign path_href = block.settings.url
+          if block.settings.link_type == 'anchor' and block.settings.anchor_id != blank
+            assign path_href = '#' | append: block.settings.anchor_id
+          endif
+        -%}
+        <a
+          href="{{ path_href | default: '#' }}"
+          class="boc-visit-intro__path"
+          style="--boc-v-path-bg: {{ block.settings.background_color }}; --boc-v-path-bg-hover: {{ block.settings.hover_background_color }}; --boc-v-path-text: {{ block.settings.text_color }}; --boc-v-path-text-hover: {{ block.settings.hover_text_color }};"
+          {% if block.settings.link_type == 'anchor' %}data-boc-visit-scroll{% endif %}
+          {{ block.shopify_attributes }}
+        >
+          {%- if block.settings.heading != blank -%}<h3>{{ block.settings.heading }}</h3>{%- endif -%}
+          {%- if block.settings.description != blank -%}<p>{{ block.settings.description }}</p>{%- endif -%}
+          {%- if block.settings.link_label != blank -%}<span class="boc-home-text-link">{{ block.settings.link_label }}</span>{%- endif -%}
+        </a>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "BOC — Visit Intro",
+  "tag": "section",
+  "class": "boc-visit-intro-section",
+  "max_blocks": 6,
+  "settings": [
+    { "type": "checkbox", "id": "section_enabled", "label": "Enable section", "default": true },
+    { "type": "checkbox", "id": "show_desktop", "label": "Show on desktop", "default": true },
+    { "type": "checkbox", "id": "show_tablet", "label": "Show on tablet", "default": true },
+    { "type": "checkbox", "id": "show_mobile", "label": "Show on mobile", "default": true },
+    { "type": "color", "id": "background_color", "label": "Background", "default": "#FFFFFF" },
+    { "type": "range", "id": "columns_desktop", "label": "Desktop columns", "min": 1, "max": 4, "step": 1, "default": 3 },
+    { "type": "range", "id": "columns_tablet", "label": "Tablet columns", "min": 1, "max": 4, "step": 1, "default": 3 },
+    { "type": "range", "id": "padding_top_desktop", "label": "Desktop padding top", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 120 },
+    { "type": "range", "id": "padding_bottom_desktop", "label": "Desktop padding bottom", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 120 },
+    { "type": "range", "id": "padding_top_tablet", "label": "Tablet padding top", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 96 },
+    { "type": "range", "id": "padding_bottom_tablet", "label": "Tablet padding bottom", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 96 },
+    { "type": "range", "id": "padding_top_mobile", "label": "Mobile padding top", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 80 },
+    { "type": "range", "id": "padding_bottom_mobile", "label": "Mobile padding bottom", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 80 },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Plan your day" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "One estate, three ways to enjoy it." },
+    { "type": "textarea", "id": "body", "label": "Body", "default": "Our cellar door and Glasshouse sit above the vineyards at the foot of the Black Spur. Come for a tasting, stay for lunch, or bring a group together for a memorable Yarra Valley experience." }
+  ],
+  "blocks": [
+    {
+      "type": "pathway",
+      "name": "Pathway card",
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Taste" },
+        { "type": "textarea", "id": "description", "label": "Description" },
+        { "type": "text", "id": "link_label", "label": "Link label", "default": "Learn more" },
+        { "type": "select", "id": "link_type", "label": "Link type", "options": [{"value":"anchor","label":"Page anchor"},{"value":"url","label":"URL"}],"default": "anchor" },
+        { "type": "text", "id": "anchor_id", "label": "Anchor ID", "default": "boc-visit-tasting" },
+        { "type": "url", "id": "url", "label": "URL" },
+        { "type": "color", "id": "background_color", "label": "Background", "default": "#FFFFFF" },
+        { "type": "color", "id": "hover_background_color", "label": "Hover background", "default": "#FAF8F5" },
+        { "type": "color", "id": "text_color", "label": "Text colour", "default": "#212121" },
+        { "type": "color", "id": "hover_text_color", "label": "Hover text colour", "default": "#212121" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "BOC — Visit Intro",
+      "blocks": [
+        { "type": "pathway", "settings": { "heading": "Taste", "description": "Guided flights of estate-grown, single-vineyard wines.", "link_label": "Wine tastings", "anchor_id": "boc-visit-tasting" } },
+        { "type": "pathway", "settings": { "heading": "Dine", "description": "Seasonal food, local producers and vineyard views.", "link_label": "The Glasshouse", "anchor_id": "boc-visit-glasshouse" } },
+        { "type": "pathway", "settings": { "heading": "Explore", "description": "Directions, transport options and local tour partners.", "link_label": "Getting here", "anchor_id": "boc-visit-getting-here" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

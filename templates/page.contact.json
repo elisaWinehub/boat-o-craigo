@@ -10,7 +10,7 @@
         "form_anchor": "boc-contact-form",
         "faq_anchor": "boc-contact-faq",
         "overlay_opacity": 100,
-        "height_desktop": 650,
+        "height_desktop": 640,
         "height_tablet": 620,
         "height_mobile": 560,
         "image_focal_point": "center",

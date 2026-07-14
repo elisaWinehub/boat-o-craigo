@@ -75,6 +75,10 @@ Theme IDs: see [THEME-MAPPING.md](./THEME-MAPPING.md)
 - Contact FAQ (categorised)
 - Contact location
 - Final Contact CTA
+- Replaced Horizon default collection template
+- Dynamic collection hero with collection image and fallback
+- Native Shopify filters, sorting, and pagination
+- Shared BOC product card with badges, metadata, quantity, and AJAX add to cart
 
 | File | Purpose |
 |------|---------|
@@ -307,6 +311,33 @@ Theme IDs: see [THEME-MAPPING.md](./THEME-MAPPING.md)
 - Replace placeholder FAQ copy where needed
 - Confirm department email routing (Shopify Forms / Helpdesk if required)
 
+## Collection section files
+
+| Item | File |
+|------|------|
+| Main section | `sections/boc-main-collection.liquid` |
+| Hero snippet | `snippets/boc-collection-hero.liquid` |
+| Toolbar / view toggle | `snippets/boc-collection-toolbar.liquid` |
+| Active filters | `snippets/boc-collection-active-filters.liquid` |
+| Product card wrapper | `snippets/boc-collection-product-card.liquid` |
+| Shared product card | `snippets/boc-product-card.liquid` |
+| Badge / price / quantity | `snippets/boc-product-badge.liquid`, `boc-product-price.liquid`, `boc-product-quantity.liquid` |
+| Pagination / empty state | `snippets/boc-pagination.liquid`, `boc-empty-state.liquid` |
+| Styles / JS | `assets/boc-collection.css`, `assets/boc-collection.js` |
+| Default template | `templates/collection.json` |
+| Mockup | `docs/mockups/boat-ocraigo-collection-concept.html` |
+| Filter setup docs | `docs/COLLECTION-FILTERS.md` |
+
+**Original Horizon template:** `main-collection` + generic `section` heading (preserved in Git history).
+
+**Commerce:** Reuses Horizon `blocks/filters.liquid`, `facets.js`, `product-form-component` for cart drawer. Nine products per page, no infinite scroll.
+
+**Pending (Collection):**
+- Confirm Search & Discovery filter configuration in Admin
+- Confirm collection hero images per collection
+- Test all collections on staging
+- Optional `wine.wine_type` and badge metafield definitions
+
 ## Homepage image assets (theme `assets/`)
 
 - `boc-hero-wines.png`
@@ -344,7 +375,6 @@ Images are stored in theme `assets/` and deploy with the theme. Upload to **Shop
 
 ## Next approved templates
 
-- Collection
 - Product
 - Customer Account
 

@@ -1,0 +1,11 @@
+{%- doc -%}
+  BOC-styled collection pagination using Shopify paginate object.
+
+  @param {object} paginate - Shopify paginate object
+{%- enddoc -%}
+
+{%- if paginate.pages > 1 -%}
+  <nav class="boc-collection-pagination" aria-label="Collection pagination">
+    {% render 'pagination-controls', paginate: paginate %}
+  </nav>
+{%- endif -%}

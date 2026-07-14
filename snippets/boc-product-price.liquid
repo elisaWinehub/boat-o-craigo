@@ -1,0 +1,28 @@
+{%- doc -%}
+  Product price display for BOC cards.
+
+  @param {product} product - Shopify product
+  @param {boolean} [show_compare_at] - Show compare-at price
+{%- enddoc -%}
+
+{%- liquid
+  assign variant = product.selected_or_first_available_variant
+  assign show_compare = show_compare_at | default: true
+-%}
+
+<span class="boc-product-price">
+  {%- if product == blank -%}
+    $38.00
+  {%- elsif variant -%}
+    {%- if show_compare and variant.compare_at_price > variant.price -%}
+      <span class="boc-product-price__compare">{% render 'format-price', price: variant.compare_at_price %}</span>
+    {%- endif -%}
+    <span class="boc-product-price__current">
+      {%- if product.price_varies and product.variants_count > 1 -%}
+        From {% render 'format-price', price: product.price_min %}
+      {%- else -%}
+        {% render 'format-price', price: variant.price %}
+      {%- endif -%}
+    </span>
+  {%- endif -%}
+</span>

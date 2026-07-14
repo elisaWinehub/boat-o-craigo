@@ -1,0 +1,16 @@
+{%- doc -%}
+  Active filter chips using Shopify filter removal URLs.
+
+  @param {object} filters - collection.filters
+  @param {string} results_url - Base results URL
+  @param {boolean} [show_label] - Show filter label on chips
+{%- enddoc -%}
+
+{%- if filters.size > 0 -%}
+  {% render 'filter-remove-buttons',
+    filters: filters,
+    results_url: results_url,
+    show_filter_label: show_label,
+    should_show_clear_all: true
+  %}
+{%- endif -%}

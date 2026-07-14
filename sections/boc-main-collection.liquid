@@ -1,0 +1,194 @@
+<script
+  src="{{ 'results-list.js' | asset_url }}"
+  type="module"
+  fetchpriority="low"
+></script>
+
+{{ 'boc-collection.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'boc-collection.js' | asset_url }}" defer></script>
+
+{% javascript %}
+  const url = new URL(window.location.href);
+  if (url.hash) {
+    document.addEventListener(
+      'DOMContentLoaded',
+      () => {
+        const card = document.getElementById(url.hash.slice(1));
+        if (card) card.scrollIntoView({ behavior: 'instant' });
+      },
+      { once: true }
+    );
+  }
+{% endjavascript %}
+
+{%- liquid
+  assign section_classes = 'boc-collection-section'
+  unless section.settings.section_enabled
+    assign section_classes = section_classes | append: ' boc-collection-section--disabled'
+  endunless
+
+  assign products_per_page = section.settings.products_per_page | default: 9
+  assign results_url = collection.url
+  assign filters = collection.filters
+-%}
+
+{% render 'boc-collection-hero', collection: collection, section: section %}
+
+<div class="boc-collection-page {{ section_classes }}" data-boc-collection data-section-id="{{ section.id }}">
+  {% # theme-check-disable-next-line UnknownFilter %}
+  <collection-component view-event-payload="{{ collection | standard_event_data: 'view' | escape }}">
+    <results-list
+      class="boc-collection-results"
+      section-id="{{ section.id }}"
+      infinite-scroll="false"
+    >
+      {% render 'skip-to-content-link', href: '#ResultsList', text: 'accessibility.skip_to_results_list' %}
+
+      <div class="boc-collection-toolbar-bar{% if section.settings.sticky_toolbar %} boc-collection-toolbar-bar--sticky{% endif %}"
+        style="--boc-col-toolbar-bg: {{ section.settings.toolbar_background }}; --boc-col-toolbar-border: {{ section.settings.toolbar_border_color }};"
+      >
+        <div class="boc-collection-section__inner boc-collection-toolbar-bar__inner">
+          {%- if section.settings.show_collection_label -%}
+            <div class="boc-collection-toolbar-bar__summary">
+              <strong>{{ collection.title }}</strong>
+            </div>
+          {%- endif -%}
+          <div class="boc-collection-toolbar-bar__controls">
+            {% render 'boc-collection-toolbar', section: section %}
+          </div>
+        </div>
+      </div>
+
+      <div class="collection-wrapper boc-collection-wrapper grid gap-style">
+        {% content_for 'block',
+          type: 'filters',
+          id: 'filters',
+          results: collection,
+          results_size: collection.products_count,
+          filters: collection.filters
+        %}
+
+        <div id="ResultsList" class="boc-collection-main main-collection-grid">
+          {% paginate collection.products by products_per_page %}
+            {%- if collection.products_count == 0 -%}
+              {% render 'boc-empty-state', type: 'empty_collection', section: section %}
+            {%- elsif collection.products.size == 0 -%}
+              {% render 'boc-empty-state', type: 'no_results', collection: collection, section: section %}
+            {%- else -%}
+              {% render 'boc-collection-active-filters',
+                filters: filters,
+                results_url: results_url,
+                show_label: section.settings.show_filter_labels
+              %}
+
+              <ul
+                class="boc-collection-grid product-grid product-grid--{{ section.id }}"
+                data-boc-collection-grid
+                data-testid="product-grid"
+                ref="grid"
+                role="list"
+                data-last-page="{{ paginate.pages }}"
+                style="
+                  --boc-col-cols-d: {{ section.settings.columns_desktop }};
+                  --boc-col-cols-t: {{ section.settings.columns_tablet }};
+                  --boc-col-cols-m: {{ section.settings.columns_mobile }};
+                  --boc-col-gap-h: {{ section.settings.columns_gap_horizontal }}px;
+                  --boc-col-gap-v: {{ section.settings.columns_gap_vertical }}px;
+                "
+              >
+                {%- for product in collection.products -%}
+                  <li
+                    id="{{ section.id }}-{{ product.id }}"
+                    class="product-grid__item boc-collection-grid__item"
+                    data-page="{{ paginate.current_page }}"
+                    data-product-id="{{ product.id }}"
+                    ref="cards[]"
+                  >
+                    {% render 'boc-collection-product-card', product: product, collection: collection, section: section %}
+                  </li>
+                {%- endfor -%}
+              </ul>
+
+              {% render 'boc-pagination', paginate: paginate %}
+            {%- endif -%}
+          {% endpaginate %}
+        </div>
+      </div>
+    </results-list>
+  </collection-component>
+</div>
+
+{% schema %}
+{
+  "name": "BOC — Main Collection",
+  "tag": "section",
+  "class": "boc-main-collection-section",
+  "enabled_on": { "templates": ["collection"] },
+  "settings": [
+    { "type": "checkbox", "id": "section_enabled", "label": "Enable section", "default": true },
+    { "type": "header", "content": "Hero" },
+    { "type": "checkbox", "id": "hero_enabled", "label": "Enable hero", "default": true },
+    { "type": "checkbox", "id": "use_collection_image", "label": "Use collection image", "default": true },
+    { "type": "checkbox", "id": "enable_metafield_overrides", "label": "Enable wine.* hero metafield overrides", "default": false },
+    { "type": "image_picker", "id": "fallback_image", "label": "Fallback desktop image" },
+    { "type": "image_picker", "id": "fallback_mobile_image", "label": "Fallback mobile image" },
+    { "type": "checkbox", "id": "show_eyebrow", "label": "Show eyebrow", "default": true },
+    { "type": "text", "id": "default_eyebrow", "label": "Default eyebrow", "default": "Shop our wines" },
+    { "type": "checkbox", "id": "show_title", "label": "Show collection title", "default": true },
+    { "type": "text", "id": "fallback_heading", "label": "Fallback heading", "default": "Explore the range." },
+    { "type": "checkbox", "id": "show_description", "label": "Show collection description", "default": true },
+    { "type": "textarea", "id": "fallback_description", "label": "Fallback description", "default": "Discover current releases, sparkling wines, reserve bottlings and museum vintages from Boat O'Craigo's Healesville and Kangaroo Ground vineyards." },
+    { "type": "checkbox", "id": "enable_description_expand", "label": "Enable mobile read more", "default": false },
+    { "type": "color", "id": "hero_overlay_color", "label": "Overlay colour", "default": "#000000" },
+    { "type": "range", "id": "hero_overlay_opacity", "label": "Overlay opacity", "min": 0, "max": 100, "step": 5, "unit": "%", "default": 55 },
+    { "type": "color", "id": "hero_text_color", "label": "Text colour", "default": "#FFFFFF" },
+    { "type": "range", "id": "hero_height_desktop", "label": "Desktop hero height", "min": 300, "max": 600, "step": 20, "unit": "px", "default": 400 },
+    { "type": "range", "id": "hero_height_tablet", "label": "Tablet hero height", "min": 280, "max": 520, "step": 20, "unit": "px", "default": 380 },
+    { "type": "range", "id": "hero_height_mobile", "label": "Mobile hero height", "min": 260, "max": 480, "step": 20, "unit": "px", "default": 360 },
+    { "type": "range", "id": "hero_description_width", "label": "Description max width", "min": 400, "max": 720, "step": 20, "unit": "px", "default": 580 },
+    { "type": "select", "id": "hero_text_alignment_desktop", "label": "Desktop text alignment", "options": [{"value":"left","label":"Left"},{"value":"center","label":"Center"}],"default": "left" },
+    { "type": "select", "id": "hero_text_alignment_mobile", "label": "Mobile text alignment", "options": [{"value":"left","label":"Left"},{"value":"center","label":"Center"}],"default": "left" },
+    { "type": "select", "id": "hero_content_horizontal", "label": "Content horizontal position", "options": [{"value":"flex-start","label":"Left"},{"value":"center","label":"Center"}],"default": "flex-start" },
+    { "type": "select", "id": "hero_content_vertical", "label": "Content vertical position", "options": [{"value":"flex-end","label":"Bottom"},{"value":"center","label":"Center"}],"default": "flex-end" },
+    { "type": "header", "content": "Toolbar" },
+    { "type": "checkbox", "id": "sticky_toolbar", "label": "Sticky toolbar", "default": true },
+    { "type": "checkbox", "id": "show_collection_label", "label": "Show collection label in toolbar", "default": true },
+    { "type": "color", "id": "toolbar_background", "label": "Toolbar background", "default": "#FFFFFF" },
+    { "type": "color", "id": "toolbar_border_color", "label": "Toolbar border", "default": "#E8E2D9" },
+    { "type": "checkbox", "id": "enable_view_toggle", "label": "Enable grid/list toggle", "default": true },
+    { "type": "select", "id": "default_view", "label": "Default view", "options": [{"value":"grid","label":"Grid"},{"value":"list","label":"List"}],"default": "grid" },
+    { "type": "header", "content": "Grid" },
+    { "type": "range", "id": "products_per_page", "label": "Products per page", "min": 9, "max": 36, "step": 9, "default": 9 },
+    { "type": "range", "id": "columns_desktop", "label": "Desktop columns", "min": 2, "max": 4, "step": 1, "default": 3 },
+    { "type": "range", "id": "columns_tablet", "label": "Tablet columns", "min": 1, "max": 3, "step": 1, "default": 2 },
+    { "type": "range", "id": "columns_mobile", "label": "Mobile columns", "min": 1, "max": 2, "step": 1, "default": 2 },
+    { "type": "range", "id": "columns_gap_horizontal", "label": "Horizontal gap", "min": 8, "max": 40, "step": 2, "unit": "px", "default": 16 },
+    { "type": "range", "id": "columns_gap_vertical", "label": "Vertical gap", "min": 8, "max": 48, "step": 2, "unit": "px", "default": 24 },
+    { "type": "header", "content": "Product card" },
+    { "type": "checkbox", "id": "show_badges", "label": "Show badges", "default": true },
+    { "type": "checkbox", "id": "show_vendor", "label": "Show vendor fallback", "default": false },
+    { "type": "checkbox", "id": "show_vintage", "label": "Show vintage", "default": true },
+    { "type": "checkbox", "id": "show_wine_type", "label": "Show wine type", "default": true },
+    { "type": "checkbox", "id": "show_price", "label": "Show price", "default": true },
+    { "type": "checkbox", "id": "show_compare_at", "label": "Show compare-at price", "default": true },
+    { "type": "checkbox", "id": "show_quantity", "label": "Show quantity selector", "default": true },
+    { "type": "checkbox", "id": "show_add_to_cart", "label": "Show add to cart", "default": true },
+    { "type": "checkbox", "id": "enable_quick_add", "label": "Enable quick add for multi-variant", "default": false },
+    { "type": "checkbox", "id": "show_filter_labels", "label": "Show labels on active filter chips", "default": true },
+    { "type": "header", "content": "Empty states" },
+    { "type": "text", "id": "empty_heading", "label": "Empty collection heading", "default": "No products are available in this collection yet." },
+    { "type": "text", "id": "empty_button_label", "label": "Empty collection button", "default": "Continue shopping" },
+    { "type": "url", "id": "empty_button_url", "label": "Empty collection button URL" },
+    { "type": "text", "id": "no_results_heading", "label": "No results heading", "default": "No wines found." },
+    { "type": "textarea", "id": "no_results_body", "label": "No results body", "default": "Try removing one or more filters to see more products." },
+    { "type": "text", "id": "clear_filters_label", "label": "Clear filters label", "default": "Clear filters" },
+    { "type": "header", "content": "Spacing" },
+    { "type": "range", "id": "padding_top_desktop", "label": "Desktop padding top", "min": 0, "max": 120, "step": 8, "unit": "px", "default": 0 },
+    { "type": "range", "id": "padding_bottom_desktop", "label": "Desktop padding bottom", "min": 0, "max": 120, "step": 8, "unit": "px", "default": 80 },
+    { "type": "range", "id": "padding_top_mobile", "label": "Mobile padding top", "min": 0, "max": 80, "step": 8, "unit": "px", "default": 0 },
+    { "type": "range", "id": "padding_bottom_mobile", "label": "Mobile padding bottom", "min": 0, "max": 80, "step": 8, "unit": "px", "default": 64 }
+  ],
+  "blocks": [{ "type": "@app" }],
+  "presets": [{ "name": "BOC — Main Collection" }]
+}
+{% endschema %}

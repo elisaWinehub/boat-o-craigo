@@ -1,0 +1,101 @@
+{%- doc -%}
+  Dynamic collection hero with image, title, and description overlay.
+
+  @param {object} collection - Shopify collection
+  @param {object} section - Parent section
+{%- enddoc -%}
+
+{%- unless section.settings.hero_enabled == false -%}
+  {%- liquid
+    assign hero_image = blank
+    assign hero_mobile = blank
+    assign use_metafields = section.settings.enable_metafield_overrides
+
+    if use_metafields and collection.metafields.wine.hero_image != blank
+      assign hero_image = collection.metafields.wine.hero_image
+    elsif collection.image != blank and section.settings.use_collection_image
+      assign hero_image = collection.image
+    elsif section.settings.fallback_image != blank
+      assign hero_image = section.settings.fallback_image
+    endif
+
+    if use_metafields and collection.metafields.wine.hero_mobile_image != blank
+      assign hero_mobile = collection.metafields.wine.hero_mobile_image
+    elsif section.settings.fallback_mobile_image != blank
+      assign hero_mobile = section.settings.fallback_mobile_image
+    endif
+
+    assign hero_eyebrow = section.settings.default_eyebrow
+    if use_metafields and collection.metafields.wine.hero_eyebrow != blank
+      assign hero_eyebrow = collection.metafields.wine.hero_eyebrow
+    endif
+
+    assign hero_heading = collection.title
+    if use_metafields and collection.metafields.wine.hero_heading != blank
+      assign hero_heading = collection.metafields.wine.hero_heading
+    elsif hero_heading == blank
+      assign hero_heading = section.settings.fallback_heading
+    endif
+
+    assign hero_description = collection.description
+    if use_metafields and collection.metafields.wine.hero_description != blank
+      assign hero_description = collection.metafields.wine.hero_description
+    elsif hero_description == blank
+      assign hero_description = section.settings.fallback_description
+    endif
+
+    assign image_fallback = 'boc-estate-vineyard.jpg' | asset_url
+    assign overlay_opacity = section.settings.hero_overlay_opacity
+    if use_metafields and collection.metafields.wine.hero_overlay_opacity != blank
+      assign overlay_opacity = collection.metafields.wine.hero_overlay_opacity
+    endif
+  -%}
+
+  <section
+    class="boc-collection-hero{% unless hero_image %} boc-collection-hero--no-image{% endunless %}"
+    style="
+      --boc-col-hero-h-d: {{ section.settings.hero_height_desktop }}px;
+      --boc-col-hero-h-t: {{ section.settings.hero_height_tablet }}px;
+      --boc-col-hero-h-m: {{ section.settings.hero_height_mobile }}px;
+      --boc-col-hero-overlay: {{ section.settings.hero_overlay_color }};
+      --boc-col-hero-overlay-opacity: {{ overlay_opacity | divided_by: 100.0 }};
+      --boc-col-hero-text: {{ section.settings.hero_text_color }};
+      --boc-col-hero-align-d: {{ section.settings.hero_text_alignment_desktop }};
+      --boc-col-hero-align-m: {{ section.settings.hero_text_alignment_mobile }};
+      --boc-col-hero-desc-width: {{ section.settings.hero_description_width }}px;
+      --boc-col-hero-pos-h: {{ section.settings.hero_content_horizontal }};
+      --boc-col-hero-pos-v: {{ section.settings.hero_content_vertical }};
+    "
+  >
+    <div class="boc-collection-hero__media"{% if hero_image == blank %} aria-hidden="true"{% endif %}>
+      {%- if hero_image != blank -%}
+        {% render 'boc-responsive-image',
+          image: hero_image,
+          mobile_image: hero_mobile,
+          alt: hero_heading,
+          loading: 'eager',
+          sizes: '100vw'
+        %}
+      {%- else -%}
+        <img src="{{ image_fallback }}" alt="" loading="eager" fetchpriority="high" width="2400" height="400">
+      {%- endif -%}
+    </div>
+    <div class="boc-collection-hero__overlay" aria-hidden="true"></div>
+    <div class="boc-collection-section__inner boc-collection-hero__content">
+      {%- if section.settings.show_eyebrow and hero_eyebrow != blank -%}
+        <span class="boc-eyebrow">{{ hero_eyebrow }}</span>
+      {%- endif -%}
+      {%- if section.settings.show_title and hero_heading != blank -%}
+        <h1 class="boc-collection-hero__heading">{{ hero_heading }}</h1>
+      {%- endif -%}
+      {%- if section.settings.show_description and hero_description != blank -%}
+        <div class="boc-collection-hero__description rte" data-boc-collection-desc>
+          {{ hero_description }}
+        </div>
+        {%- if section.settings.enable_description_expand -%}
+          <button type="button" class="boc-collection-hero__read-more" data-boc-collection-desc-toggle aria-expanded="false">Read more</button>
+        {%- endif -%}
+      {%- endif -%}
+    </div>
+  </section>
+{%- endunless -%}

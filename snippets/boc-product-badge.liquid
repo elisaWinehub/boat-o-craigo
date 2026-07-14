@@ -1,0 +1,42 @@
+{%- doc -%}
+  Product badge for collection and featured cards.
+
+  @param {product} product - Shopify product
+  @param {boolean} [show_badges] - Whether badges are enabled
+{%- enddoc -%}
+
+{%- unless show_badges == false -%}
+  {%- liquid
+    assign badge_label = blank
+    assign badge_style = 'dark'
+
+    if product.metafields.wine.badge_label != blank
+      assign badge_label = product.metafields.wine.badge_label
+      if product.metafields.wine.badge_style != blank
+        assign badge_style = product.metafields.wine.badge_style
+      endif
+    elsif product.available == false
+      assign badge_label = 'Sold out'
+      assign badge_style = 'dark'
+    elsif product.compare_at_price > product.price and product.compare_at_price != blank
+      assign badge_label = 'Sale'
+      assign badge_style = 'dark'
+    elsif product.tags contains 'new-release'
+      assign badge_label = 'New release'
+      assign badge_style = 'taupe'
+    elsif product.tags contains 'reserve'
+      assign badge_label = 'Reserve'
+      assign badge_style = 'dark'
+    elsif product.tags contains 'museum'
+      assign badge_label = 'Museum wine'
+      assign badge_style = 'dark'
+    elsif product.tags contains 'limited'
+      assign badge_label = 'Limited'
+      assign badge_style = 'taupe'
+    endif
+  -%}
+
+  {%- if badge_label != blank -%}
+    <span class="boc-product-badge boc-product-badge--{{ badge_style }}">{{ badge_label }}</span>
+  {%- endif -%}
+{%- endunless -%}

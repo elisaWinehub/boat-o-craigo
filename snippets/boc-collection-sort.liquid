@@ -1,0 +1,18 @@
+{%- doc -%}
+  Shopify-native collection sort control wrapper.
+
+  @param {object} results - collection or search results
+  @param {string} sort_by - Current sort_by value
+  @param {string} section_id - Section ID
+  @param {string} [suffix] - desktop | mobile
+{%- enddoc -%}
+
+{% render 'sorting',
+  results: results,
+  sort_by: sort_by,
+  filter_style: 'vertical',
+  suffix: suffix | default: 'desktop',
+  sort_position: suffix | default: 'desktop',
+  should_use_select_on_mobile: false,
+  section_id: section_id
+%}

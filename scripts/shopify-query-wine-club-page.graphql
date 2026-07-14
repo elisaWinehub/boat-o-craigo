@@ -1,0 +1,10 @@
+query GetWineClubPage {
+  pages(first: 5, query: "handle:wine-club") {
+    nodes {
+      id
+      handle
+      title
+      templateSuffix
+    }
+  }
+}

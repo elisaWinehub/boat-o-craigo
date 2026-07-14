@@ -1,0 +1,413 @@
+{
+  "sections": {
+    "boc_wine_club_hero": {
+      "type": "boc-wine-club-hero",
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "container_width": "full",
+        "background_color": "#333333",
+        "padding_top_desktop": 0,
+        "padding_bottom_desktop": 0,
+        "padding_top_tablet": 0,
+        "padding_bottom_tablet": 0,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0,
+        "overlay_color": "#000000",
+        "overlay_opacity": 55,
+        "height_desktop": 760,
+        "height_tablet": 700,
+        "height_mobile": 650,
+        "image_focal_point": "center",
+        "content_width": 760,
+        "eyebrow": "Boat O'Craigo Wine Club",
+        "heading": "A wine club designed around you.",
+        "body": "Select the membership that suits your cellar, customise every delivery and enjoy member pricing, complimentary tastings and early access to limited releases.",
+        "heading_size": "display-lg",
+        "eyebrow_color": "#FFFFFF",
+        "heading_color": "#FFFFFF",
+        "body_color": "#FFFFFF",
+        "text_alignment_desktop": "left",
+        "text_alignment_mobile": "left",
+        "button_enabled": true,
+        "button_label": "View memberships",
+        "scroll_anchor": "boc-wine-club-plans",
+        "button_style": "accent",
+        "button_new_tab": false,
+        "button_bg_color": "#B99E7E",
+        "button_text_color": "#FFFFFF",
+        "button_border_color": "#B99E7E",
+        "button_hover_bg_color": "#212121",
+        "button_hover_text_color": "#FFFFFF",
+        "button_hover_border_color": "#212121"
+      }
+    },
+    "boc_wine_club_plans": {
+      "type": "boc-wine-club-plans",
+      "blocks": {
+        "plan_discovery": {
+          "type": "plan",
+          "settings": {
+            "plan_name": "Discovery",
+            "tier_type": "bronze",
+            "badge_text": "10% off",
+            "bottle_quantity": "3 bottles",
+            "frequency": "Quarterly",
+            "discount_percent": "10",
+            "benefit_1": "Choose any 3 wines",
+            "benefit_2": "10% member discount",
+            "benefit_3": "Complimentary tastings",
+            "benefit_4": "Early access to new releases",
+            "button_label": "Join Discovery",
+            "button_action_type": "url",
+            "button_style": "outline",
+            "featured": false,
+            "card_background": "#FFFFFF",
+            "text_color": "#212121"
+          }
+        },
+        "plan_cellar": {
+          "type": "plan",
+          "settings": {
+            "plan_name": "Cellar",
+            "tier_type": "silver",
+            "badge_text": "Most popular · 20% off",
+            "bottle_quantity": "6 bottles",
+            "frequency": "Quarterly",
+            "discount_percent": "20",
+            "benefit_1": "Choose any 6 wines",
+            "benefit_2": "20% member discount",
+            "benefit_3": "Complimentary tastings",
+            "benefit_4": "Priority access to club events",
+            "button_label": "Join Cellar",
+            "button_action_type": "url",
+            "button_style": "accent",
+            "featured": true,
+            "card_background": "#FFFFFF",
+            "text_color": "#212121"
+          }
+        },
+        "plan_collector": {
+          "type": "plan",
+          "settings": {
+            "plan_name": "Collector",
+            "tier_type": "gold",
+            "badge_text": "30% off",
+            "bottle_quantity": "12 bottles",
+            "frequency": "Quarterly",
+            "discount_percent": "30",
+            "benefit_1": "Choose any 12 wines",
+            "benefit_2": "30% member discount",
+            "benefit_3": "Complimentary tastings",
+            "benefit_4": "First access to museum wines",
+            "button_label": "Join Collector",
+            "button_action_type": "url",
+            "button_style": "outline",
+            "featured": false,
+            "card_background": "#FFFFFF",
+            "text_color": "#212121"
+          }
+        }
+      },
+      "block_order": ["plan_discovery", "plan_cellar", "plan_collector"],
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "container_width": "container",
+        "section_anchor_id": "boc-wine-club-plans",
+        "background_color": "#FFFFFF",
+        "padding_top_desktop": 40,
+        "padding_bottom_desktop": 120,
+        "padding_top_tablet": 32,
+        "padding_bottom_tablet": 100,
+        "padding_top_mobile": 20,
+        "padding_bottom_mobile": 82,
+        "eyebrow": "Membership options",
+        "heading": "Choose your level.",
+        "intro_body": "Every membership includes flexible wine selection, member-only pricing and access to the Boat O'Craigo community.",
+        "heading_color": "#212121",
+        "body_color": "#575962",
+        "text_alignment_desktop": "left",
+        "text_alignment_mobile": "left"
+      }
+    },
+    "boc_wine_club_benefits": {
+      "type": "boc-wine-club-benefits",
+      "blocks": {
+        "benefit_1": {
+          "type": "benefit",
+          "settings": {
+            "heading": "Flexible selections",
+            "description": "Choose your wines before every shipment, or let our team curate a seasonal mix."
+          }
+        },
+        "benefit_2": {
+          "type": "benefit",
+          "settings": {
+            "heading": "Member pricing",
+            "description": "Save between 10% and 30% online and at the cellar door."
+          }
+        },
+        "benefit_3": {
+          "type": "benefit",
+          "settings": {
+            "heading": "Complimentary tastings",
+            "description": "Enjoy hosted tastings when you visit the estate."
+          }
+        },
+        "benefit_4": {
+          "type": "benefit",
+          "settings": {
+            "heading": "Priority access",
+            "description": "Be first to discover limited releases, museum wines and member events."
+          }
+        },
+        "benefit_5": {
+          "type": "benefit",
+          "settings": {
+            "heading": "Easy account management",
+            "description": "Update your wines, delivery details and payment preferences online."
+          }
+        },
+        "benefit_6": {
+          "type": "benefit",
+          "settings": {
+            "heading": "Member experiences",
+            "description": "Receive invitations to seasonal lunches, release tastings and special events."
+          }
+        }
+      },
+      "block_order": ["benefit_1", "benefit_2", "benefit_3", "benefit_4", "benefit_5", "benefit_6"],
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "container_width": "container",
+        "background_color": "#212121",
+        "text_color": "#FFFFFF",
+        "heading_color": "#FFFFFF",
+        "divider_color": "#4B4B4B",
+        "benefit_heading_color": "#FFFFFF",
+        "benefit_body_color": "#BDBDBD",
+        "accent_color": "#B99E7E",
+        "padding_top_desktop": 120,
+        "padding_bottom_desktop": 120,
+        "padding_top_tablet": 100,
+        "padding_bottom_tablet": 100,
+        "padding_top_mobile": 82,
+        "padding_bottom_mobile": 82,
+        "eyebrow": "Member benefits",
+        "heading": "More than a delivery.",
+        "body": "Membership brings you closer to our vineyards, our winemaking team and the seasonal rhythm of the estate."
+      }
+    },
+    "boc_wine_club_how": {
+      "type": "boc-wine-club-how-it-works",
+      "blocks": {
+        "step_1": {
+          "type": "step",
+          "settings": {
+            "number": "01",
+            "heading": "Choose your membership",
+            "body": "Select the bottle quantity and discount level that best fits your cellar."
+          }
+        },
+        "step_2": {
+          "type": "step",
+          "settings": {
+            "number": "02",
+            "heading": "Build your shipment",
+            "body": "Choose your own wines before each delivery or keep our recommended selection."
+          }
+        },
+        "step_3": {
+          "type": "step",
+          "settings": {
+            "number": "03",
+            "heading": "Enjoy member access",
+            "body": "Receive your wines and unlock benefits online and whenever you visit the estate."
+          }
+        }
+      },
+      "block_order": ["step_1", "step_2", "step_3"],
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "container_width": "container",
+        "background_color": "#FFFFFF",
+        "heading_color": "#212121",
+        "body_color": "#575962",
+        "step_border_color": "#212121",
+        "step_accent_color": "#B99E7E",
+        "padding_top_desktop": 120,
+        "padding_bottom_desktop": 120,
+        "padding_top_tablet": 100,
+        "padding_bottom_tablet": 100,
+        "padding_top_mobile": 82,
+        "padding_bottom_mobile": 82,
+        "eyebrow": "How it works",
+        "heading": "Simple from the first case.",
+        "intro_body": "No joining fee. No fixed mixed pack. Just the membership and wines that suit you."
+      }
+    },
+    "boc_wine_club_estate": {
+      "type": "boc-wine-club-estate-experience",
+      "blocks": {
+        "benefit_1": {
+          "type": "benefit",
+          "settings": { "text": "Complimentary cellar door tastings" }
+        },
+        "benefit_2": {
+          "type": "benefit",
+          "settings": { "text": "Exclusive member events and release previews" }
+        },
+        "benefit_3": {
+          "type": "benefit",
+          "settings": { "text": "Priority bookings for selected experiences" }
+        },
+        "benefit_4": {
+          "type": "benefit",
+          "settings": { "text": "Personal support from our wine club team" }
+        }
+      },
+      "block_order": ["benefit_1", "benefit_2", "benefit_3", "benefit_4"],
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "image_side": "left",
+        "mobile_stack_order": "image_first",
+        "split_ratio": "1.08fr 0.92fr",
+        "desktop_image_height": 680,
+        "mobile_image_height": 380,
+        "background_color": "#FFFFFF",
+        "copy_background_color": "#B99E7E",
+        "text_color": "#FFFFFF",
+        "heading_color": "#FFFFFF",
+        "eyebrow": "At the estate",
+        "heading": "Your invitation to come closer.",
+        "body": "Wine club membership is about more than what arrives at your door. It is a way to stay connected to the people, vineyards and stories behind each bottle.",
+        "button_enabled": true,
+        "button_label": "Plan your visit",
+        "button_link": "/pages/visit",
+        "button_style": "light",
+        "button_new_tab": false
+      }
+    },
+    "boc_wine_club_faq": {
+      "type": "boc-wine-club-faq",
+      "blocks": {
+        "faq_1": {
+          "type": "faq",
+          "settings": {
+            "question": "Is there a joining fee?",
+            "answer": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Membership details, eligibility and final joining terms will be added when the Shopify wine club setup is confirmed.</p>",
+            "open_by_default": true
+          }
+        },
+        "faq_2": {
+          "type": "faq",
+          "settings": {
+            "question": "Can I choose my own wines?",
+            "answer": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Members will be able to review and customise eligible wines before each scheduled shipment.</p>"
+          }
+        },
+        "faq_3": {
+          "type": "faq",
+          "settings": {
+            "question": "How often will I receive wine?",
+            "answer": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Delivery frequency, processing dates and notification timing will be confirmed during implementation.</p>"
+          }
+        },
+        "faq_4": {
+          "type": "faq",
+          "settings": {
+            "question": "Can I pause or update my membership?",
+            "answer": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Account controls for pausing, updating and managing membership details will be connected to the selected Shopify subscription solution.</p>"
+          }
+        },
+        "faq_5": {
+          "type": "faq",
+          "settings": {
+            "question": "Can I give a membership as a gift?",
+            "answer": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Gift membership options and redemption rules will be finalised before launch.</p>"
+          }
+        }
+      },
+      "block_order": ["faq_1", "faq_2", "faq_3", "faq_4", "faq_5"],
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "container_width": "container",
+        "background_color": "#FFFFFF",
+        "heading_color": "#212121",
+        "divider_color": "#E8E2D9",
+        "question_color": "#212121",
+        "answer_color": "#575962",
+        "icon_color": "#212121",
+        "one_open_only": true,
+        "first_item_open": true,
+        "padding_top_desktop": 120,
+        "padding_bottom_desktop": 120,
+        "padding_top_tablet": 100,
+        "padding_bottom_tablet": 100,
+        "padding_top_mobile": 82,
+        "padding_bottom_mobile": 82,
+        "eyebrow": "Wine club FAQs",
+        "heading": "Good to know."
+      }
+    },
+    "boc_wine_club_final_cta": {
+      "type": "boc-wine-club-final-cta",
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "background_color": "#333333",
+        "overlay_color": "#000000",
+        "overlay_opacity": 45,
+        "height_desktop": 620,
+        "height_mobile": 560,
+        "content_width": 760,
+        "eyebrow": "Ready to join?",
+        "heading": "Make Boat O'Craigo part of your cellar.",
+        "body": "Speak with our team for help finding the right wine club option for your cellar.",
+        "heading_color": "#FFFFFF",
+        "body_color": "#FFFFFF",
+        "text_alignment_desktop": "center",
+        "text_alignment_mobile": "center",
+        "button_enabled": true,
+        "button_label": "Contact the team",
+        "button_link": "/pages/contact",
+        "button_style": "light",
+        "button_new_tab": false,
+        "button_bg_color": "#000000",
+        "button_text_color": "#FFFFFF",
+        "button_border_color": "#FFFFFF",
+        "button_hover_bg_color": "#FFFFFF",
+        "button_hover_text_color": "#212121",
+        "button_hover_border_color": "#FFFFFF"
+      }
+    }
+  },
+  "order": [
+    "boc_wine_club_hero",
+    "boc_wine_club_plans",
+    "boc_wine_club_benefits",
+    "boc_wine_club_how",
+    "boc_wine_club_estate",
+    "boc_wine_club_faq",
+    "boc_wine_club_final_cta"
+  ]
+}

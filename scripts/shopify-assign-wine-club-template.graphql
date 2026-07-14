@@ -1,0 +1,16 @@
+mutation AssignWineClubTemplate {
+  pageUpdate(
+    id: "gid://shopify/Page/111877914708"
+    page: { templateSuffix: "wine-club" }
+  ) {
+    page {
+      id
+      handle
+      templateSuffix
+    }
+    userErrors {
+      field
+      message
+    }
+  }
+}

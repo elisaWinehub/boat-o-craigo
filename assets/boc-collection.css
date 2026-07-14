@@ -113,9 +113,9 @@
 }
 
 .boc-collection-toolbar-bar--sticky {
-  position: sticky;
-  top: var(--header-height, var(--boc-header-height, 88px));
-  z-index: 12;
+  position: static;
+  top: auto;
+  z-index: auto;
 }
 
 .boc-collection-toolbar-bar__inner {

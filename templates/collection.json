@@ -48,7 +48,7 @@
         "hero_text_alignment_mobile": "left",
         "hero_content_horizontal": "flex-start",
         "hero_content_vertical": "flex-end",
-        "sticky_toolbar": true,
+        "sticky_toolbar": false,
         "show_collection_label": true,
         "toolbar_background": "#FFFFFF",
         "toolbar_border_color": "#E8E2D9",

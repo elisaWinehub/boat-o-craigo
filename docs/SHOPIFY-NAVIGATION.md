@@ -41,7 +41,7 @@ Assigned in: **Theme Editor → Footer → BOC — Footer**
 | `wine-club` | Wine Club | `page.wine-club` |
 | `visit` | Visit | `page.visit` |
 | `whats-on` | What's On | `page.whats-on` |
-| `about` | About | Default page |
+| `about` | About | `page.about` |
 | `book-now` | Book Now | `page.book-now` |
 | `faqs` | FAQs | Default page |
 

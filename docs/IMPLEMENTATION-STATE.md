@@ -54,6 +54,18 @@ Theme IDs: see [THEME-MAPPING.md](./THEME-MAPPING.md)
 - Booking information cards
 - Booking FAQ
 - Final support CTA
+- About page template
+- About hero
+- Sticky About navigation
+- Estate introduction
+- Family story
+- Vineyard cards
+- Winemaking section
+- Featured team profiles
+- Wider-team carousel
+- Team profile modal
+- Careers accordion
+- Final About CTA
 
 ## Global component files
 
@@ -218,6 +230,42 @@ Theme IDs: see [THEME-MAPPING.md](./THEME-MAPPING.md)
 - Confirm group enquiry destination
 - Confirm production iframe behaviour on staging preview
 
+## About section files
+
+| Section | File |
+|---------|------|
+| Hero | `sections/boc-about-hero.liquid` |
+| Sticky anchor nav | `sections/boc-about-anchor-nav.liquid` |
+| Estate introduction | `sections/boc-about-intro.liquid` |
+| Family story | `sections/boc-about-family.liquid` |
+| Vineyard cards | `sections/boc-about-vineyards.liquid` |
+| Winemaking | `sections/boc-about-winemaking.liquid` |
+| Team + carousel + modal | `sections/boc-about-team.liquid` |
+| Careers | `sections/boc-about-careers.liquid` |
+| Final CTA | `sections/boc-about-final-cta.liquid` |
+| Stat snippet | `snippets/boc-stat-item.liquid` |
+| Detail rows snippet | `snippets/boc-detail-row.liquid` |
+| Feature split snippet | `snippets/boc-about-feature-split.liquid` |
+| Vineyard card snippet | `snippets/boc-vineyard-card.liquid` |
+| Team card snippets | `snippets/boc-team-card.liquid`, `snippets/boc-team-carousel-card.liquid` |
+| Team modal snippet | `snippets/boc-team-modal.liquid` |
+| Career item snippet | `snippets/boc-career-item.liquid` |
+| Styles / JS | `assets/boc-about.css`, `assets/boc-about.js` |
+| Template | `templates/page.about.json` |
+| Mockup | `docs/mockups/boat-ocraigo-about-concept.html` |
+| Page assignment | `scripts/shopify-assign-about-template.graphql` |
+
+**Team:** Featured profiles Rob Hall and Ben Craig; wider team as section blocks; modal with focus trap; carousel 4 desktop / 2 tablet / 1 mobile; scroll amount 1.
+
+**Global components reused:** announcement bar, header, mobile navigation, footer, design tokens, `boc-button`, `boc-responsive-image`, `boc-eyebrow`, accordion pattern.
+
+**Pending (About):**
+- Replace placeholder team portraits
+- Verify all team names, roles and biographies
+- Confirm estate statistics and vineyard acreage
+- Confirm current careers
+- Consider Team Member metaobjects later
+
 ## Homepage image assets (theme `assets/`)
 
 - `boc-hero-wines.png`
@@ -257,7 +305,6 @@ Images are stored in theme `assets/` and deploy with the theme. Upload to **Shop
 
 - Collection
 - Product
-- About
 - Contact
 - Customer Account
 

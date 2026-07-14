@@ -117,9 +117,17 @@
 .boc-visit-hero__content {
   position: relative;
   z-index: 2;
-  max-width: var(--boc-v-content-width, 760px);
   padding: 120px 0 82px;
   text-align: var(--boc-v-align-d, left);
+}
+
+.boc-visit-hero__content.boc-container {
+  width: min(calc(100% - 48px), var(--boc-max-width));
+  margin-inline: auto;
+}
+
+.boc-visit-hero__content > * {
+  max-width: var(--boc-v-content-width, 760px);
 }
 
 .boc-visit-hero__content p {
@@ -144,6 +152,10 @@
   .boc-visit-hero__content {
     padding: 90px 0 54px;
     text-align: var(--boc-v-align-m, left);
+  }
+
+  .boc-visit-hero__content.boc-container {
+    width: min(calc(100% - 32px), var(--boc-max-width));
   }
 }
 

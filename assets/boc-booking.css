@@ -116,9 +116,17 @@
 .boc-booking-hero__content {
   position: relative;
   z-index: 2;
-  max-width: var(--boc-bk-content-width, 780px);
   padding: 120px 0 82px;
   text-align: var(--boc-bk-align-d, left);
+}
+
+.boc-booking-hero__content.boc-container {
+  width: min(calc(100% - 48px), var(--boc-max-width));
+  margin-inline: auto;
+}
+
+.boc-booking-hero__content > * {
+  max-width: var(--boc-bk-content-width, 780px);
 }
 
 .boc-booking-hero__content p {
@@ -143,6 +151,10 @@
   .boc-booking-hero__content {
     padding: 90px 0 58px;
     text-align: var(--boc-bk-align-m, left);
+  }
+
+  .boc-booking-hero__content.boc-container {
+    width: min(calc(100% - 32px), var(--boc-max-width));
   }
 }
 

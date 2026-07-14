@@ -150,8 +150,13 @@
 .boc-wine-club-hero__content {
   position: relative;
   z-index: 2;
-  width: 100%;
   padding-block: 110px;
+}
+
+.boc-wine-club-hero__content.boc-container,
+.boc-wine-club-hero__content.boc-wine-club-section__inner {
+  width: min(calc(100% - 48px), var(--boc-max-width));
+  margin-inline: auto;
 }
 
 .boc-wine-club-hero__copy {
@@ -186,6 +191,11 @@
 
   .boc-wine-club-hero__content {
     padding-block: 90px 70px;
+  }
+
+  .boc-wine-club-hero__content.boc-container,
+  .boc-wine-club-hero__content.boc-wine-club-section__inner {
+    width: min(calc(100% - 32px), var(--boc-max-width));
   }
 
   .boc-wine-club-hero__copy {

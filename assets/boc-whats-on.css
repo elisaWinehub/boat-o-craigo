@@ -112,9 +112,17 @@
 .boc-whats-on-hero__content {
   position: relative;
   z-index: 2;
-  max-width: var(--boc-wo-content-width, 790px);
   padding: 120px 0 90px;
   text-align: var(--boc-wo-align-d, left);
+}
+
+.boc-whats-on-hero__content.boc-container {
+  width: min(calc(100% - 48px), var(--boc-max-width));
+  margin-inline: auto;
+}
+
+.boc-whats-on-hero__content > * {
+  max-width: var(--boc-wo-content-width, 790px);
 }
 
 .boc-whats-on-hero__content p {
@@ -142,6 +150,10 @@
   .boc-whats-on-hero__content {
     padding: 100px 0 70px;
     text-align: var(--boc-wo-align-m, left);
+  }
+
+  .boc-whats-on-hero__content.boc-container {
+    width: min(calc(100% - 32px), var(--boc-max-width));
   }
 }
 

@@ -52,6 +52,37 @@
         {%- endfor -%}
       </select>
     </div>
+
+  {%- elsif block.settings.show_static_subscription -%}
+    {%- liquid
+      assign static_save_pct = block.settings.static_save_pct | default: 10
+    -%}
+    <label class="purchase-option purchase-option--static" data-boc-purchase-option>
+      <input
+        type="radio"
+        name="{{ option_name }}"
+        value="subscription"
+        data-boc-purchase-radio
+        data-selling-plan-static="true"
+      >
+      <span>
+        <span class="purchase-option-title">{{ block.settings.subscription_title | default: 'Subscribe & save' }} {{ static_save_pct }}%</span>
+        <span class="purchase-option-copy">{{ block.settings.subscription_copy | default: 'Curated quarterly delivery. Cancel any time.' }}</span>
+      </span>
+      <span class="purchase-option-price">
+        {%- assign discounted = variant.price | times: 100 | minus: static_save_pct | divided_by: 100 -%}
+        {{ discounted | money }}
+      </span>
+    </label>
+
+    <div class="subscription-placeholder" data-boc-subscription-panel>
+      <label for="subscriptionFrequency-{{ section.id }}">{{ block.settings.frequency_label | default: 'Delivery frequency' }}</label>
+      <select id="subscriptionFrequency-{{ section.id }}">
+        <option value="monthly">{{ block.settings.freq_monthly | default: 'Every month' }}</option>
+        <option value="bimonthly">{{ block.settings.freq_bimonthly | default: 'Every 2 months' }}</option>
+        <option value="quarterly">{{ block.settings.freq_quarterly | default: 'Every 3 months (quarterly)' }}</option>
+      </select>
+    </div>
   {%- endif -%}
 </div>
 
@@ -88,6 +119,44 @@
       "id": "frequency_label",
       "label": "Frequency label",
       "default": "Delivery frequency"
+    },
+    {
+      "type": "header",
+      "content": "Static subscription fallback"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_static_subscription",
+      "label": "Show static subscribe option",
+      "default": true,
+      "info": "Displays a visual subscribe option when no Shopify selling plans are installed. This does not process real subscriptions — it is a UI placeholder until a subscription app (e.g. Recharge, WineHub) is connected."
+    },
+    {
+      "type": "range",
+      "id": "static_save_pct",
+      "label": "Displayed discount %",
+      "min": 5,
+      "max": 30,
+      "step": 5,
+      "default": 10
+    },
+    {
+      "type": "text",
+      "id": "freq_monthly",
+      "label": "Frequency option 1",
+      "default": "Every month"
+    },
+    {
+      "type": "text",
+      "id": "freq_bimonthly",
+      "label": "Frequency option 2",
+      "default": "Every 2 months"
+    },
+    {
+      "type": "text",
+      "id": "freq_quarterly",
+      "label": "Frequency option 3",
+      "default": "Every 3 months (quarterly)"
     }
   ],
   "presets": [

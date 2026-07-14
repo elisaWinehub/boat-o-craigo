@@ -23,7 +23,11 @@
         "rating": {
           "type": "boc-product-rating",
           "settings": {
-            "reviews_label": "reviews"
+            "reviews_label": "reviews",
+            "static_enabled": true,
+            "static_stars": "★★★★★",
+            "static_score": "4.9",
+            "static_count": "18"
           }
         },
         "price": {
@@ -35,8 +39,7 @@
         "short_copy": {
           "type": "boc-product-short-copy",
           "settings": {
-            "source": "description",
-            "word_limit": 40
+            "source": "description"
           }
         },
         "meta_list": {
@@ -49,7 +52,12 @@
             "one_time_title": "One-time purchase",
             "one_time_copy": "Single bottle purchase at the standard price.",
             "subscription_title": "Subscribe & save",
-            "frequency_label": "Delivery frequency"
+            "frequency_label": "Delivery frequency",
+            "show_static_subscription": true,
+            "static_save_pct": 10,
+            "freq_monthly": "Every month",
+            "freq_bimonthly": "Every 2 months",
+            "freq_quarterly": "Every 3 months (quarterly)"
           }
         },
         "form": {

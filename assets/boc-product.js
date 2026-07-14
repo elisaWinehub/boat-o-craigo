@@ -134,6 +134,39 @@
     });
   }
 
+  function initReadMore(section) {
+    section.querySelectorAll('[data-boc-short-copy]').forEach(function (wrap) {
+      if (wrap.dataset.bocReadMoreInit === 'true') return;
+      wrap.dataset.bocReadMoreInit = 'true';
+
+      var text = wrap.querySelector('[data-boc-short-copy-text]');
+      var toggle = wrap.querySelector('[data-boc-short-copy-toggle]');
+      if (!text || !toggle) return;
+
+      var lineHeight = parseFloat(getComputedStyle(text).lineHeight) || 24;
+      var threshold = lineHeight * 3 + 4;
+      if (text.scrollHeight <= threshold) {
+        toggle.style.display = 'none';
+        return;
+      }
+
+      toggle.addEventListener('click', function () {
+        var isExpanded = text.classList.contains('product-short-copy--expanded');
+        if (isExpanded) {
+          text.classList.remove('product-short-copy--expanded');
+          text.classList.add('product-short-copy--clamped');
+          toggle.textContent = 'Read more';
+          toggle.setAttribute('aria-expanded', 'false');
+        } else {
+          text.classList.remove('product-short-copy--clamped');
+          text.classList.add('product-short-copy--expanded');
+          toggle.textContent = 'Read less';
+          toggle.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+  }
+
   function initSection(section) {
     if (!section || section.dataset.bocProductInit === 'true') return;
     section.dataset.bocProductInit = 'true';
@@ -141,6 +174,7 @@
     initPurchaseOptions(section);
     initQuantity(section);
     initAccordions(section);
+    initReadMore(section);
   }
 
   document.addEventListener('DOMContentLoaded', function () {

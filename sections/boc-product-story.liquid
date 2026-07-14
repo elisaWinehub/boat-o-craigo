@@ -3,18 +3,42 @@
   assign region = product.metafields.wine.region
   assign winemaker = product.metafields.wine.winemaker
   assign winemaking = product.metafields.wine.winemaking_notes
+
   assign story_image = section.settings.image
   if story_image == blank and product.media.size > 1
     assign story_image = product.media[1]
   elsif story_image == blank and product.featured_image
     assign story_image = product.featured_image
   endif
+
   assign body = section.settings.body
   if body == blank and winemaking != blank
     assign body = winemaking | metafield_tag | strip_html
   endif
+
+  assign eyebrow = section.settings.eyebrow | default: 'From the vineyard'
+  assign heading = section.settings.heading
+
+  assign has_copy = false
+  if body != blank or heading != blank or subregion != blank or region != blank or winemaker != blank
+    assign has_copy = true
+  endif
+
+  assign has_image = false
+  if story_image != blank
+    assign has_image = true
+  endif
+
+  assign should_render = false
+  if has_image and has_copy
+    assign should_render = true
+  endif
+  if section.settings.force_show
+    assign should_render = true
+  endif
 -%}
 
+{%- if should_render -%}
 <section
   class="product-story"
   data-section-type="image-with-text"
@@ -32,11 +56,11 @@
     {%- endif -%}
   </div>
   <div class="product-story-copy">
-    {%- if section.settings.eyebrow != blank -%}
-      <span class="eyebrow boc-eyebrow">{{ section.settings.eyebrow }}</span>
+    {%- if eyebrow != blank -%}
+      <span class="eyebrow boc-eyebrow">{{ eyebrow }}</span>
     {%- endif -%}
-    {%- if section.settings.heading != blank -%}
-      <h2 class="display boc-display">{{ section.settings.heading }}</h2>
+    {%- if heading != blank -%}
+      <h2 class="display boc-display">{{ heading }}</h2>
     {%- endif -%}
     {%- if body != blank -%}
       <p>{{ body }}</p>
@@ -54,6 +78,7 @@
     </ul>
   </div>
 </section>
+{%- endif -%}
 
 {% schema %}
 {
@@ -67,7 +92,14 @@
     { "type": "textarea", "id": "body", "label": "Body copy", "info": "Defaults to wine.winemaking_notes when blank." },
     { "type": "text", "id": "vineyard_label", "label": "Vineyard label", "default": "Vineyard" },
     { "type": "text", "id": "region_label", "label": "Region label", "default": "Climate" },
-    { "type": "text", "id": "winemaker_label", "label": "Winemaker label", "default": "Winemaking" }
+    { "type": "text", "id": "winemaker_label", "label": "Winemaker label", "default": "Winemaking" },
+    {
+      "type": "checkbox",
+      "id": "force_show",
+      "label": "Always show section (Theme Editor override)",
+      "default": false,
+      "info": "Enable to preview the section even when product metafields are empty."
+    }
   ],
   "presets": [
     { "name": "BOC — Product story" }

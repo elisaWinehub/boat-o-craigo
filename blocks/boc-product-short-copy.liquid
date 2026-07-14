@@ -6,21 +6,21 @@
   case source
     when 'description'
       assign copy = product.description | strip_html | strip
-      assign word_limit = block.settings.word_limit | default: 40
-      if copy != blank
-        assign copy_words = copy | split: ' '
-        if copy_words.size > word_limit
-          assign copy = copy_words | slice: 0, word_limit | join: ' '
-          assign copy = copy | append: '…'
-        endif
-      endif
     when 'custom'
       assign copy = block.settings.custom_text
   endcase
 -%}
 
 {%- if copy != blank -%}
-  <p class="product-short-copy" {{ block.shopify_attributes }}>{{ copy }}</p>
+  <div class="product-short-copy-wrap" data-boc-short-copy {{ block.shopify_attributes }}>
+    <p class="product-short-copy product-short-copy--clamped" data-boc-short-copy-text>{{ copy }}</p>
+    <button
+      class="product-short-copy-toggle"
+      data-boc-short-copy-toggle
+      aria-expanded="false"
+      type="button"
+    >Read more</button>
+  </div>
 {%- endif -%}
 
 {% schema %}
@@ -33,21 +33,10 @@
       "id": "source",
       "label": "Copy source",
       "options": [
-        { "value": "description", "label": "Product description (truncated)" },
+        { "value": "description", "label": "Product description" },
         { "value": "custom", "label": "Custom text (per template)" }
       ],
-      "default": "description",
-      "info": "Confirm with merchant if a dedicated short-copy metafield is preferred instead of truncated description."
-    },
-    {
-      "type": "range",
-      "id": "word_limit",
-      "label": "Word limit",
-      "min": 10,
-      "max": 80,
-      "step": 5,
-      "default": 40,
-      "visible_if": "{{ block.settings.source == 'description' }}"
+      "default": "description"
     },
     {
       "type": "textarea",

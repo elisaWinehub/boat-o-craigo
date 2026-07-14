@@ -202,7 +202,43 @@
 }
 
 .product-short-copy {
-  color: var(--slate);
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--slate, #575962);
+  margin: 0;
+}
+
+.product-short-copy--clamped {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.product-short-copy--expanded {
+  display: block;
+  -webkit-line-clamp: unset;
+  overflow: visible;
+}
+
+.product-short-copy-toggle {
+  display: inline-block;
+  margin-top: 6px;
+  background: none;
+  border: none;
+  padding: 0;
+  font: 500 0.82rem var(--sans, 'DM Sans', sans-serif);
+  color: var(--ink, #212121);
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.product-short-copy-toggle:hover {
+  color: var(--sand, #B99E7E);
+}
+
+.product-short-copy-wrap {
   max-width: 620px;
   margin-bottom: 28px;
 }
@@ -285,6 +321,15 @@
 }
 
 .subscription-placeholder.open { display: block; }
+
+.purchase-option--static {
+  opacity: 1;
+}
+
+.purchase-option--static .purchase-option-copy {
+  font-style: italic;
+  color: var(--slate, #575962);
+}
 
 .subscription-placeholder label {
   display: block;

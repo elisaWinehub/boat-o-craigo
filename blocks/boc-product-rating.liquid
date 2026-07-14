@@ -1,18 +1,25 @@
 {%- liquid
   assign product = closest.product | default: product
-  assign rating = product.metafields.reviews.rating.value.rating
-  assign scale_max = product.metafields.reviews.rating.value.scale_max | default: 5
-  assign rating_count = product.metafields.reviews.rating_count
 
-  if request.visual_preview_mode and product != blank and rating == blank
-    assign rating = blank
+  assign live_rating = product.metafields.reviews.rating.value.rating
+  assign live_scale = product.metafields.reviews.rating.value.scale_max | default: 5
+  assign live_count = product.metafields.reviews.rating_count
+
+  assign use_live = false
+  if live_rating != blank
+    assign use_live = true
+  endif
+
+  assign use_static = false
+  if use_live == false and block.settings.static_enabled
+    assign use_static = true
   endif
 -%}
 
-{%- if rating != blank -%}
+{%- if use_live -%}
   {%- liquid
-    assign full_stars = rating | floor
-    assign remainder = rating | modulo: 1
+    assign full_stars = live_rating | floor
+    assign remainder = live_rating | modulo: 1
     assign display_stars = full_stars
     if remainder >= 0.5
       assign display_stars = display_stars | plus: 1
@@ -20,19 +27,23 @@
   -%}
   <div class="product-rating" data-block-type="product-rating" {{ block.shopify_attributes }}>
     <span class="product-stars" aria-hidden="true">
-      {%- for i in (1..scale_max) -%}
+      {%- for i in (1..live_scale) -%}
         {%- if i <= display_stars -%}★{%- else -%}☆{%- endif -%}
       {%- endfor -%}
     </span>
     <span>
-      {{ rating | round: 1 }}
-      {%- if rating_count != blank -%}
-        · {{ rating_count }} {{ block.settings.reviews_label | default: 'reviews' }}
+      {{ live_rating | round: 1 }}
+      {%- if live_count != blank -%}
+        · {{ live_count }} {{ block.settings.reviews_label | default: 'reviews' }}
       {%- endif -%}
     </span>
   </div>
-{%- else -%}
-  {%- comment -%}Reviews render when Shopify Product Reviews metafields exist, or insert an @app block.{%- endcomment -%}
+
+{%- elsif use_static -%}
+  <div class="product-rating" data-block-type="product-rating" {{ block.shopify_attributes }}>
+    <span class="product-stars" aria-hidden="true">{{ block.settings.static_stars }}</span>
+    <span>{{ block.settings.static_score }} · {{ block.settings.static_count }} {{ block.settings.reviews_label | default: 'reviews' }}</span>
+  </div>
 {%- endif -%}
 
 {% schema %}
@@ -42,13 +53,42 @@
   "settings": [
     {
       "type": "paragraph",
-      "content": "Displays Shopify Product Reviews metafields when a reviews app is installed. No ratings are fabricated — the block stays empty until real review data exists. You can also insert a reviews app block via Add block."
+      "content": "Displays live ratings when a reviews app (e.g. Judge.me) is installed. When no app data exists, shows the static fallback below if enabled."
     },
     {
       "type": "text",
       "id": "reviews_label",
       "label": "Reviews label",
       "default": "reviews"
+    },
+    {
+      "type": "header",
+      "content": "Static fallback"
+    },
+    {
+      "type": "checkbox",
+      "id": "static_enabled",
+      "label": "Show static rating (fallback)",
+      "default": true,
+      "info": "Displays when no live reviews app is installed. Disable once a real reviews app is active."
+    },
+    {
+      "type": "text",
+      "id": "static_stars",
+      "label": "Star characters",
+      "default": "★★★★★"
+    },
+    {
+      "type": "text",
+      "id": "static_score",
+      "label": "Score (e.g. 4.9)",
+      "default": "4.9"
+    },
+    {
+      "type": "text",
+      "id": "static_count",
+      "label": "Review count",
+      "default": "18"
     }
   ],
   "presets": [

@@ -150,7 +150,7 @@
           {%- form 'product', product, id: form_id, class: 'boc-product-card__form', data-type: 'add-to-cart-form' -%}
             <input type="hidden" name="id" ref="variantId" value="{{ variant_id }}">
             <div class="boc-product-card__actions">
-              {%- if show_quantity -%}
+              {%- if show_quantity and product_available -%}
                 {% render 'boc-product-quantity', id_prefix: form_id %}
               {%- else -%}
                 <input type="hidden" name="quantity" value="1">
@@ -169,8 +169,10 @@
         {%- form 'product', product, id: form_id, class: 'boc-product-card__form' -%}
           <input type="hidden" name="id" value="{{ variant_id }}">
           <div class="boc-product-card__actions">
-            {%- if show_quantity -%}
+            {%- if show_quantity and product_available -%}
               {% render 'boc-product-quantity', id_prefix: form_id %}
+            {%- else -%}
+              <input type="hidden" name="quantity" value="1">
             {%- endif -%}
             <button type="submit" class="boc-btn boc-btn--primary boc-product-card__add" {% unless product_available %}disabled{% endunless %}>
               {%- if product_available -%}Add to cart{%- else -%}Sold out{%- endif -%}

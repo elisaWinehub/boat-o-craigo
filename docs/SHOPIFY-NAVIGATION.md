@@ -37,7 +37,7 @@ Assigned in: **Theme Editor → Footer → BOC — Footer**
 
 | Handle | Title | Template |
 |--------|-------|----------|
-| `contact` | Contact | Default page |
+| `contact` | Contact | `page.contact` |
 | `wine-club` | Wine Club | `page.wine-club` |
 | `visit` | Visit | `page.visit` |
 | `whats-on` | What's On | `page.whats-on` |
@@ -56,6 +56,7 @@ Assigned in: **Theme Editor → Footer → BOC — Footer**
 
 - Create a **Gift Card** product with handle `gift-card` if the Gift Cards link should resolve (currently points to `/products/gift-card`).
 - Add shop policies in **Settings → Policies** if Terms / Privacy / Shipping policy pages are empty.
+- Consider URL redirects: `/pages/contact-us` → `/pages/contact`; `/pages/faqs-0` → `/pages/contact#boc-contact-faq` (legacy FAQ consolidation).
 
 ## Setup scripts
 

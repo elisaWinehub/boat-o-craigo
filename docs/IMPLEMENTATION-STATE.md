@@ -66,8 +66,15 @@ Theme IDs: see [THEME-MAPPING.md](./THEME-MAPPING.md)
 - Team profile modal
 - Careers accordion
 - Final About CTA
-
-## Global component files
+- Contact page template
+- Contact hero
+- Sticky Contact navigation
+- Contact pathways
+- Contact details cards
+- Contact enquiry form
+- Contact FAQ (categorised)
+- Contact location
+- Final Contact CTA
 
 | File | Purpose |
 |------|---------|
@@ -266,6 +273,40 @@ Theme IDs: see [THEME-MAPPING.md](./THEME-MAPPING.md)
 - Confirm current careers
 - Consider Team Member metaobjects later
 
+## Contact section files
+
+| Section | File |
+|---------|------|
+| Hero | `sections/boc-contact-hero.liquid` |
+| Sticky anchor nav | `sections/boc-contact-anchor-nav.liquid` |
+| Pathways | `sections/boc-contact-pathways.liquid` |
+| Details | `sections/boc-contact-details.liquid` |
+| Enquiry form | `sections/boc-contact-form.liquid` |
+| FAQ | `sections/boc-contact-faq.liquid` |
+| Location | `sections/boc-contact-location.liquid` |
+| Final CTA | `sections/boc-contact-final-cta.liquid` |
+| Pathway card snippet | `snippets/boc-contact-path-card.liquid` |
+| Detail card snippet | `snippets/boc-contact-detail-card.liquid` |
+| FAQ item snippet | `snippets/boc-faq-item.liquid` (namespace: `contact`) |
+| Styles / JS | `assets/boc-contact.css`, `assets/boc-contact.js` |
+| Template | `templates/page.contact.json` |
+| Mockup | `docs/mockups/boat-ocraigo-contact-concept.html` |
+| Page query | `scripts/shopify-query-contact-page.graphql` |
+| Page assignment | `scripts/shopify-assign-contact-template.graphql` |
+
+**Theme settings:** **Boat O'Craigo — Contact** group (`boc_business_name`, addresses, phones, department emails, Google Maps URL).
+
+**Form:** Native Shopify `{% form 'contact' %}` with enquiry-type preselection from pathway cards and URL `?topic=` query.
+
+**Global components reused:** announcement bar, header, mobile navigation, footer, design tokens, `boc-button`, `boc-responsive-image`, `boc-eyebrow`, `boc-faq-item`.
+
+**Pending (Contact):**
+- Assign `page.contact` template to `/pages/contact` on staging
+- Submit test enquiry on staging
+- Consider redirects: `/pages/contact-us` → `/pages/contact`, `/pages/faqs-0` → `/pages/contact#boc-contact-faq`
+- Replace placeholder FAQ copy where needed
+- Confirm department email routing (Shopify Forms / Helpdesk if required)
+
 ## Homepage image assets (theme `assets/`)
 
 - `boc-hero-wines.png`
@@ -305,7 +346,6 @@ Images are stored in theme `assets/` and deploy with the theme. Upload to **Shop
 
 - Collection
 - Product
-- Contact
 - Customer Account
 
 ## Rules for future tasks

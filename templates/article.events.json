@@ -1,0 +1,16 @@
+{
+  "sections": {
+    "main": {
+      "type": "boc-event-article",
+      "settings": {
+        "back_label": "What's On",
+        "show_related": true,
+        "related_limit": 3,
+        "related_eyebrow": "More events",
+        "related_heading": "You might also enjoy.",
+        "related_link_label": "View all events"
+      }
+    }
+  },
+  "order": ["main"]
+}

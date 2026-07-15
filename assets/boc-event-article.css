@@ -5,12 +5,9 @@
    ───────────────────────────────────────────────────── */
 
 .boc-container {
-  width: min(calc(100% - 48px), 1420px);
+  width: min(calc(100% - 48px), var(--boc-max-width, 1420px));
   margin-inline: auto;
 }
-
-/* ── Back link ─────────────────────────────────────── */
-.boc-ea__back-wrap { padding: 28px 0 0; }
 
 .boc-ea__back {
   display: inline-flex;
@@ -31,8 +28,9 @@
 /* ── Hero ──────────────────────────────────────────── */
 .boc-ea__hero {
   position: relative;
-  margin-top: 24px;
-  height: clamp(480px, 56vh, 680px);
+  display: flex;
+  align-items: flex-end;
+  min-height: clamp(480px, 56vh, 680px);
   overflow: hidden;
   color: #fff;
 }
@@ -59,13 +57,19 @@
 }
 
 .boc-ea__hero-content {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  padding-bottom: 52px;
+  position: relative;
   z-index: 2;
+  width: 100%;
+  padding: 120px 0 52px;
+}
+
+.boc-ea__hero-content.boc-container {
+  width: min(calc(100% - 48px), var(--boc-max-width, 1420px));
+  margin-inline: auto;
+}
+
+.boc-ea__hero-content > * {
+  max-width: 820px;
 }
 
 .boc-ea__eyebrow {
@@ -273,15 +277,16 @@
 
 /* ── Responsive ────────────────────────────────────── */
 @media (max-width: 1100px) {
-  .boc-ea__hero { height: clamp(420px, 52vh, 580px); }
+  .boc-ea__hero { min-height: clamp(420px, 52vh, 580px); }
 }
 
 @media (max-width: 768px) {
-  .boc-container { width: min(calc(100% - 32px), 1420px); }
-  .boc-ea__hero { height: clamp(380px, 70vw, 520px); margin-top: 16px; }
+  .boc-container { width: min(calc(100% - 32px), var(--boc-max-width, 1420px)); }
+  .boc-ea__hero { min-height: clamp(380px, 70vw, 520px); }
   .boc-ea__title { font-size: 2.2rem; }
   .boc-ea__date-badge { right: 16px; bottom: 16px; }
-  .boc-ea__hero-content { padding-bottom: 36px; }
+  .boc-ea__hero-content { padding: 100px 0 36px; }
+  .boc-ea__hero-content.boc-container { width: min(calc(100% - 32px), var(--boc-max-width, 1420px)); }
   .boc-ea__body-wrap { padding: 44px 0 60px; }
   .boc-ea__related { padding: 64px 0 72px; }
   .boc-ea__rel-head { flex-direction: column; align-items: flex-start; gap: 16px; }

@@ -13,8 +13,13 @@
     assign section_classes = section_classes | append: ' boc-home-section--hide-mobile'
   endunless
 
+  assign events_blog = section.settings.blog
+  if events_blog == blank
+    assign events_blog = blogs.events
+  endif
+
   assign use_blog = false
-  if section.settings.source == 'blog' and section.settings.blog != blank and section.settings.blog.articles_count > 0
+  if section.settings.source == 'blog' and events_blog != blank and events_blog.articles_count > 0
     assign use_blog = true
   endif
 -%}
@@ -38,7 +43,7 @@
         {%- endif -%}
       </div>
       {%- if section.settings.link_label != blank -%}
-        <a href="{{ section.settings.link_url | default: section.settings.blog.url | default: '/blogs/news' }}" class="boc-home-text-link">
+        <a href="{{ section.settings.link_url | default: events_blog.url | default: '/blogs/events' }}" class="boc-home-text-link">
           {{ section.settings.link_label }}
         </a>
       {%- endif -%}
@@ -46,7 +51,7 @@
 
     <div class="boc-home-cards__grid">
       {%- if use_blog -%}
-        {%- for article in section.settings.blog.articles limit: section.settings.article_limit -%}
+        {%- for article in events_blog.articles limit: section.settings.article_limit -%}
           <article class="boc-home-card">
             <a href="{{ article.url }}" class="boc-home-card__media">
               {%- if article.image != blank -%}
@@ -152,7 +157,7 @@
         { "value": "manual", "label": "Manual cards" },
         { "value": "blog", "label": "Blog articles" }
       ],
-      "default": "manual"
+      "default": "blog"
     },
     { "type": "blog", "id": "blog", "label": "Blog" },
     { "type": "range", "id": "article_limit", "label": "Articles to show", "min": 1, "max": 6, "step": 1, "default": 3 }

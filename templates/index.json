@@ -338,36 +338,6 @@
     },
     "boc_home_events": {
       "type": "boc-home-events",
-      "blocks": {
-        "event_1": {
-          "type": "event",
-          "settings": {
-            "meta": "Sunday Sessions · Winter",
-            "title": "Live music, vineyard views and a glass in hand.",
-            "body": "Relaxed acoustic afternoons at the estate.",
-            "link_label": "View event"
-          }
-        },
-        "event_2": {
-          "type": "event",
-          "settings": {
-            "meta": "Friday Night Sessions",
-            "title": "Firelight, dinner and late-night cellar door.",
-            "body": "A seasonal evening of local food, music and estate wine.",
-            "link_label": "View event"
-          }
-        },
-        "event_3": {
-          "type": "event",
-          "settings": {
-            "meta": "Special Event",
-            "title": "Meet the makers behind the latest release.",
-            "body": "Join our family and winemaking team for a guided release tasting.",
-            "link_label": "View event"
-          }
-        }
-      },
-      "block_order": ["event_1", "event_2", "event_3"],
       "settings": {
         "section_enabled": true,
         "show_desktop": true,
@@ -380,7 +350,9 @@
         "eyebrow": "What's on",
         "heading": "At the estate.",
         "link_label": "View all events",
-        "source": "manual",
+        "link_url": "/blogs/events",
+        "source": "blog",
+        "blog": "events",
         "article_limit": 3
       }
     },

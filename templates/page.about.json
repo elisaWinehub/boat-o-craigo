@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "boc_about_hero": {
@@ -81,9 +90,9 @@
         "show_mobile": true,
         "sticky_enabled": true,
         "active_tracking": true,
-        "background_color": "#FFFFFF",
+        "background_color": "#ffffff",
         "text_color": "#212121",
-        "active_color": "#B99E7E",
+        "active_color": "#b99e7e",
         "aria_label": "About page navigation"
       }
     },
@@ -93,7 +102,9 @@
         "stat_sites": {
           "type": "stat",
           "settings": {
+            "prefix": "",
             "value": "2",
+            "suffix": "",
             "label": "Yarra Valley vineyard sites",
             "accent_color": "#212121"
           }
@@ -101,7 +112,9 @@
         "stat_acres": {
           "type": "stat",
           "settings": {
+            "prefix": "",
             "value": "50+",
+            "suffix": "",
             "label": "Acres under vine",
             "accent_color": "#212121"
           }
@@ -109,7 +122,9 @@
         "stat_years": {
           "type": "stat",
           "settings": {
+            "prefix": "",
             "value": "20+",
+            "suffix": "",
             "label": "Years of estate history",
             "accent_color": "#212121"
           }
@@ -117,7 +132,9 @@
         "stat_family": {
           "type": "stat",
           "settings": {
+            "prefix": "",
             "value": "Family",
+            "suffix": "",
             "label": "Owned and operated",
             "accent_color": "#212121"
           }
@@ -135,7 +152,7 @@
         "show_tablet": true,
         "show_mobile": true,
         "section_anchor_id": "boc-about-intro",
-        "background_color": "#FFFFFF",
+        "background_color": "#ffffff",
         "text_color": "#212121",
         "body_color": "#575962",
         "column_ratio": "0.85fr 1.15fr",
@@ -193,10 +210,10 @@
         "tablet_image_height": 520,
         "mobile_image_height": 380,
         "mobile_stack_order": "image_first",
-        "copy_background_color": "#FAF8F5",
+        "copy_background_color": "#faf8f5",
         "copy_text_color": "#212121",
         "copy_body_color": "#575962",
-        "detail_border_color": "#E8E2D9",
+        "detail_border_color": "#e8e2d9",
         "eyebrow": "The Graham family",
         "heading": "Built carefully, carried forward personally.",
         "body": "What began as a family vision has grown into a working estate where vineyard, cellar door, restaurant and events all share one identity. Today, the next generation continues to evolve Boat O'Craigo while protecting the warmth and independence that guests value.",
@@ -216,6 +233,7 @@
             "eyebrow": "Estate site",
             "heading": "Healesville",
             "body": "<p>Nestled near the foothills of the Black Spur, the Healesville vineyard benefits from a cooler site and varied elevation. It is home to varieties including Pinot Noir, Chardonnay and aromatic whites.</p>",
+            "location_url": "",
             "card_background_color": "#f5f2ee",
             "text_color": "#212121"
           }
@@ -226,6 +244,7 @@
             "eyebrow": "Western site",
             "heading": "Kangaroo Ground",
             "body": "<p>Warmer and more exposed, Kangaroo Ground supports generous, structured varieties while still retaining the freshness associated with the Yarra Valley's cool-climate conditions.</p>",
+            "location_url": "",
             "card_background_color": "#f5f2ee",
             "text_color": "#212121"
           }
@@ -241,7 +260,7 @@
         "show_tablet": true,
         "show_mobile": true,
         "section_anchor_id": "boc-about-vineyards",
-        "background_color": "#FFFFFF",
+        "background_color": "#ffffff",
         "columns_desktop": 2,
         "padding_top_desktop": 120,
         "padding_bottom_desktop": 120,
@@ -296,7 +315,7 @@
         "mobile_image_height": 380,
         "mobile_stack_order": "image_first",
         "copy_background_color": "#333333",
-        "copy_text_color": "#FFFFFF",
+        "copy_text_color": "#ffffff",
         "copy_body_color": "#cfcfcf",
         "detail_border_color": "#484848",
         "eyebrow": "Winemaking",
@@ -319,7 +338,10 @@
             "name": "Rob Hall",
             "role": "Winemaker",
             "summary": "Rob brings deep Yarra Valley experience and a restrained, site-conscious approach to each vintage.",
-            "biography": "<p>Growing up in Healesville, Rob started his winemaking career at Yarra Ridge and Punt Road before becoming winemaker at Mount Mary. He now leads Boat O'Craigo's winemaking with a restrained, site-conscious approach that allows each vineyard and vintage to speak clearly.</p>"
+            "biography": "<p>Growing up in Healesville, Rob started his winemaking career at Yarra Ridge and Punt Road before becoming winemaker at Mount Mary. He now leads Boat O'Craigo's winemaking with a restrained, site-conscious approach that allows each vineyard and vintage to speak clearly.</p>",
+            "image": "shopify://shop_images/Rob_Hall.png",
+            "email": "",
+            "profile_url": ""
           }
         },
         "member_ben_craig": {
@@ -329,7 +351,10 @@
             "name": "Ben Craig",
             "role": "Vineyard Manager",
             "summary": "Ben oversees the health, development and seasonal work of the estate's two vineyard sites.",
-            "biography": "<p>Ben oversees the health, development and seasonal work of the Healesville and Kangaroo Ground vineyards. His hands-on approach and close attention to detail help shape the quality and character of every estate-grown wine.</p>"
+            "biography": "<p>Ben oversees the health, development and seasonal work of the Healesville and Kangaroo Ground vineyards. His hands-on approach and close attention to detail help shape the quality and character of every estate-grown wine.</p>",
+            "image": "shopify://shop_images/Ben_Craig.png",
+            "email": "",
+            "profile_url": ""
           }
         },
         "member_frederic_lamagere": {
@@ -339,7 +364,10 @@
             "name": "Frederic Lamagere",
             "role": "Venue Manager",
             "summary": "Frederic leads the guest experience across the cellar door, restaurant and private events.",
-            "biography": "<p>Frederic is an experienced hospitality professional with a background in luxury venues. He leads the guest experience across the cellar door, restaurant and private events, helping the team deliver warm and memorable visits.</p>"
+            "biography": "<p>Frederic is an experienced hospitality professional with a background in luxury venues. He leads the guest experience across the cellar door, restaurant and private events, helping the team deliver warm and memorable visits.</p>",
+            "image": "shopify://shop_images/Frederic-Lamagere.jpg",
+            "email": "",
+            "profile_url": ""
           }
         },
         "member_ange_bush": {
@@ -349,7 +377,10 @@
             "name": "Ange Bush",
             "role": "Wholesale, Operations & Partnerships Manager",
             "summary": "Ange connects the day-to-day business with customers, trade partners and the broader wine community.",
-            "biography": "<p>Ange brings extensive experience across wholesale, operations and partnerships. Her role connects the day-to-day business with customers, trade partners and the broader wine community.</p>"
+            "biography": "<p>Ange brings extensive experience across wholesale, operations and partnerships. Her role connects the day-to-day business with customers, trade partners and the broader wine community.</p>",
+            "image": "shopify://shop_images/Ange_Bush.jpg",
+            "email": "",
+            "profile_url": ""
           }
         },
         "member_caity_clarkson": {
@@ -359,7 +390,10 @@
             "name": "Caity Clarkson",
             "role": "Weddings, Events & Marketing Manager",
             "summary": "Caity coordinates weddings, private events and marketing across the estate.",
-            "biography": "<p>Caity coordinates weddings, private events and marketing. She works closely with couples and guests to plan thoughtful, relaxed celebrations that make the most of the estate setting.</p>"
+            "biography": "<p>Caity coordinates weddings, private events and marketing. She works closely with couples and guests to plan thoughtful, relaxed celebrations that make the most of the estate setting.</p>",
+            "image": "shopify://shop_images/Caity_Clarkson.jpg",
+            "email": "",
+            "profile_url": ""
           }
         },
         "member_prue_donaldson": {
@@ -369,7 +403,10 @@
             "name": "Prue Donaldson",
             "role": "Cellar Door 2IC",
             "summary": "Prue supports the cellar door team and is passionate about creating welcoming tasting experiences.",
-            "biography": "<p>Prue supports the cellar door team and is passionate about creating welcoming tasting experiences. Her knowledge of the wines and friendly service help visitors feel at home.</p>"
+            "biography": "<p>Prue supports the cellar door team and is passionate about creating welcoming tasting experiences. Her knowledge of the wines and friendly service help visitors feel at home.</p>",
+            "image": "shopify://shop_images/Prue_Donaldson.jpg",
+            "email": "",
+            "profile_url": ""
           }
         },
         "member_kristy_warren": {
@@ -379,7 +416,10 @@
             "name": "Kristy Warren",
             "role": "Kitchen Supervisor",
             "summary": "Kristy brings organisation, consistency and care to the Glasshouse kitchen.",
-            "biography": "<p>Kristy is a skilled kitchen supervisor who brings organisation, consistency and care to the Glasshouse kitchen, supporting seasonal menus, restaurant service and special events.</p>"
+            "biography": "<p>Kristy is a skilled kitchen supervisor who brings organisation, consistency and care to the Glasshouse kitchen, supporting seasonal menus, restaurant service and special events.</p>",
+            "image": "shopify://shop_images/Kristy_Warren.jpg",
+            "email": "",
+            "profile_url": ""
           }
         },
         "member_dakotah_heatherich": {
@@ -389,7 +429,10 @@
             "name": "Dakotah Heatherich",
             "role": "Cellar Door Supervisor",
             "summary": "Dakotah brings a friendly, approachable style to the cellar door.",
-            "biography": "<p>Dakotah brings a friendly, approachable style to the cellar door. She supports daily operations and helps ensure each visitor receives an engaging and personal wine experience.</p>"
+            "biography": "<p>Dakotah brings a friendly, approachable style to the cellar door. She supports daily operations and helps ensure each visitor receives an engaging and personal wine experience.</p>",
+            "image": "shopify://shop_images/Dakotah_Heatherich1.jpg",
+            "email": "",
+            "profile_url": ""
           }
         },
         "member_bec_kerridge": {
@@ -399,7 +442,10 @@
             "name": "Bec Kerridge",
             "role": "Wine Club & Assistant Marketing Manager",
             "summary": "Bec supports Wine Club members and the marketing team.",
-            "biography": "<p>Bec supports Wine Club members and the marketing team, helping keep customers connected with new releases, member benefits, estate events and the latest news from Boat O'Craigo.</p>"
+            "biography": "<p>Bec supports Wine Club members and the marketing team, helping keep customers connected with new releases, member benefits, estate events and the latest news from Boat O'Craigo.</p>",
+            "image": "shopify://shop_images/boc-img5.png",
+            "email": "",
+            "profile_url": ""
           }
         }
       },
@@ -421,10 +467,10 @@
         "show_mobile": true,
         "section_anchor_id": "boc-about-team",
         "background_color": "#333333",
-        "text_color": "#FFFFFF",
+        "text_color": "#ffffff",
         "intro_color": "#bdbdbd",
         "featured_card_background": "#2a2a2a",
-        "carousel_card_background": "#FFFFFF",
+        "carousel_card_background": "#ffffff",
         "card_image_height": 310,
         "padding_top_desktop": 120,
         "padding_bottom_desktop": 120,
@@ -453,13 +499,18 @@
           "type": "job",
           "settings": {
             "job_title": "Wine Tasting & Sales",
+            "employment_type": "",
+            "location": "",
             "summary": "We are looking for an engaging hospitality professional who enjoys wine, storytelling and creating relaxed guest experiences.",
             "description": "<p>We are looking for an engaging hospitality professional who enjoys wine, storytelling and creating relaxed guest experiences.</p>",
             "requirements": "<ul><li>Weekend availability preferred</li><li>Wine knowledge welcomed but training can be provided</li><li>Casual and part-time opportunities may be available</li></ul>",
+            "closing_date": "",
             "status": "open",
             "open_by_default": true,
             "application_method": "email",
             "application_email": "info@boatocraigo.com.au",
+            "application_url": "",
+            "application_pdf": "",
             "application_new_tab": false
           }
         },
@@ -467,13 +518,18 @@
           "type": "job",
           "settings": {
             "job_title": "Junior Kitchenhand",
+            "employment_type": "",
+            "location": "",
             "summary": "Join a supportive kitchen team working across lunch service, events and seasonal menus in the Glasshouse.",
             "description": "<p>Join a supportive kitchen team working across lunch service, events and seasonal menus in the Glasshouse.</p>",
             "requirements": "<ul><li>Reliable and organised</li><li>Comfortable in a fast-paced environment</li><li>Weekend availability essential</li></ul>",
+            "closing_date": "",
             "status": "open",
             "open_by_default": false,
             "application_method": "email",
             "application_email": "info@boatocraigo.com.au",
+            "application_url": "",
+            "application_pdf": "",
             "application_new_tab": false
           }
         },
@@ -481,13 +537,18 @@
           "type": "job",
           "settings": {
             "job_title": "Front of House Hospitality",
+            "employment_type": "",
+            "location": "",
             "summary": "Help deliver warm, attentive service across the restaurant, cellar door and private events.",
             "description": "<p>Help deliver warm, attentive service across the restaurant, cellar door and private events.</p>",
             "requirements": "<ul><li>Strong communication skills</li><li>Hospitality experience preferred</li><li>Interest in food and wine</li></ul>",
+            "closing_date": "",
             "status": "open",
             "open_by_default": false,
             "application_method": "email",
             "application_email": "info@boatocraigo.com.au",
+            "application_url": "",
+            "application_pdf": "",
             "application_new_tab": false
           }
         }
@@ -503,7 +564,7 @@
         "show_tablet": true,
         "show_mobile": true,
         "section_anchor_id": "boc-about-careers",
-        "background_color": "#FFFFFF",
+        "background_color": "#ffffff",
         "one_open_only": true,
         "show_closed_jobs": false,
         "empty_state_text": "There are currently no open positions.",

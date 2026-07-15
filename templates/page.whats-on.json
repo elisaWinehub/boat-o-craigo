@@ -109,36 +109,6 @@
     },
     "boc_whats_on_events": {
       "type": "boc-whats-on-events",
-      "blocks": {
-        "event_sunday_sessions": {
-          "type": "event",
-          "settings": {
-            "title": "Sunday Sessions",
-            "category": "Live music · Cellar door",
-            "excerpt": "Slow down with live music, estate wines and a relaxed afternoon overlooking the vines.",
-            "event_date": "2026-07-26"
-          }
-        },
-        "event_winter_lunch": {
-          "type": "event",
-          "settings": {
-            "title": "Winter Long Lunch",
-            "category": "Dining · Glasshouse",
-            "excerpt": "A seasonal menu, matched estate wines and an unhurried afternoon in the Glasshouse.",
-            "event_date": "2026-08-15"
-          }
-        },
-        "event_spring_tasting": {
-          "type": "event",
-          "settings": {
-            "title": "Spring Release Tasting",
-            "category": "Wine club · New release",
-            "excerpt": "Be among the first to taste the new vintage with the winemaking and cellar door teams.",
-            "event_date": "2026-09-06"
-          }
-        }
-      },
-      "block_order": ["event_sunday_sessions", "event_winter_lunch", "event_spring_tasting"],
       "settings": {
         "section_enabled": true,
         "show_desktop": true,
@@ -155,8 +125,9 @@
         "eyebrow": "Upcoming at Boat O'Craigo",
         "heading": "What's on.",
         "intro_body": "Seasonal events, vineyard experiences and special occasions.",
-        "source": "manual",
-        "article_limit": 3,
+        "source": "blog",
+        "blog": "events",
+        "article_limit": 4,
         "columns_desktop": 3,
         "columns_tablet": 2,
         "show_date": true,
@@ -167,7 +138,9 @@
         "card_background": "#FFFFFF",
         "card_border": "#E8E2D9",
         "date_badge_bg": "#212121",
-        "date_badge_text": "#FFFFFF"
+        "date_badge_text": "#FFFFFF",
+        "view_all_label": "View all events",
+        "view_all_url": "/blogs/events"
       }
     },
     "boc_whats_on_celebrations": {

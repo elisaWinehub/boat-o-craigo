@@ -1,0 +1,370 @@
+{{ 'boc-blog-listing.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign hero_image = section.settings.hero_image
+  assign articles_per_page = section.settings.articles_per_page | default: 9
+-%}
+
+<div
+  class="boc-bl"
+  data-section-id="{{ section.id }}"
+  {{ section.shopify_attributes }}
+>
+
+  {{- '<!-- ═══ HERO ═══ -->' -}}
+  <div
+    class="boc-bl__hero"
+    style="--boc-bl-hero-h: {{ section.settings.hero_height | default: 540 }}px; --boc-bl-overlay: {{ section.settings.hero_overlay_opacity | default: 60 | divided_by: 100.0 }};"
+  >
+    <div class="boc-bl__hero-media">
+      {%- if hero_image != blank -%}
+        {{
+          hero_image
+          | image_url: width: 2400
+          | image_tag:
+            loading: 'eager',
+            fetchpriority: 'high',
+            alt: section.settings.hero_heading | default: blog.title,
+            class: 'boc-bl__hero-img',
+            widths: '800, 1200, 1600, 2000, 2400'
+        }}
+      {%- else -%}
+        <img
+          src="{{ 'boc-estate-visit.jpg' | asset_url }}"
+          alt="{{ blog.title | escape }}"
+          class="boc-bl__hero-img"
+          loading="eager"
+          fetchpriority="high"
+          width="2400"
+          height="680"
+        >
+      {%- endif -%}
+    </div>
+    <div class="boc-bl__hero-overlay"></div>
+    <div class="boc-bl__hero-content boc-container">
+      {%- if section.settings.hero_eyebrow != blank -%}
+        <span class="boc-bl__hero-eyebrow">{{ section.settings.hero_eyebrow }}</span>
+      {%- endif -%}
+      <h1 class="boc-bl__hero-title">
+        {{- section.settings.hero_heading | default: blog.title -}}
+      </h1>
+      {%- if section.settings.hero_description != blank -%}
+        <p class="boc-bl__hero-desc">{{ section.settings.hero_description }}</p>
+      {%- endif -%}
+    </div>
+  </div>
+
+  {%- paginate blog.articles by articles_per_page -%}
+
+    {{- '<!-- ═══ FEATURED POST ═══ -->' -}}
+    {%- if section.settings.featured_enabled and paginate.current_page == 1 -%}
+      {%- assign featured = blog.articles.first -%}
+      {%- if featured != blank -%}
+        {%- assign feat_day   = featured.published_at | date: '%-d' -%}
+        {%- assign feat_month = featured.published_at | date: '%b' | upcase -%}
+        {%- assign feat_year  = featured.published_at | date: '%Y' -%}
+
+        {%- assign feat_tags = '' -%}
+        {%- for t in featured.tags -%}
+          {%- unless t == blog.handle -%}
+            {%- if feat_tags != '' -%}{%- assign feat_tags = feat_tags | append: ' · ' -%}{%- endif -%}
+            {%- assign feat_tags = feat_tags | append: t -%}
+          {%- endunless -%}
+        {%- endfor -%}
+
+        <div class="boc-bl__featured boc-container">
+          <a href="{{ featured.url }}" class="boc-bl__feat-card">
+            <div class="boc-bl__feat-media">
+              {%- if featured.image -%}
+                {{
+                  featured.image
+                  | image_url: width: 1200
+                  | image_tag:
+                    loading: 'eager',
+                    alt: featured.image.alt | default: featured.title,
+                    widths: '600, 900, 1200'
+                }}
+              {%- else -%}
+                <img src="{{ 'boc-estate-vineyard.jpg' | asset_url }}" alt="{{ featured.title | escape }}" loading="eager" width="1200" height="680">
+              {%- endif -%}
+              <div class="boc-bl__feat-date">
+                <strong>{{ feat_day }}</strong>
+                <span>{{ feat_month }}</span>
+              </div>
+            </div>
+            <div class="boc-bl__feat-body">
+              {%- if feat_tags != blank -%}
+                <span class="boc-bl__feat-tag">{{ feat_tags }}</span>
+              {%- endif -%}
+              <h2 class="boc-bl__feat-title">{{ featured.title }}</h2>
+              {%- if featured.excerpt != blank -%}
+                <p>{{ featured.excerpt | strip_html | truncate: 160 }}</p>
+              {%- endif -%}
+              <span class="boc-bl__text-link">View event</span>
+              <div class="boc-bl__feat-meta">
+                <time datetime="{{ featured.published_at | date: '%Y-%m-%d' }}">
+                  {{ feat_day }} {{ feat_month | capitalize }} {{ feat_year }}
+                </time>
+                {%- if featured.author != blank -%}
+                  <span class="boc-bl__meta-sep">·</span>
+                  <span>{{ featured.author }}</span>
+                {%- endif -%}
+              </div>
+            </div>
+          </a>
+        </div>
+      {%- endif -%}
+    {%- endif -%}
+
+    {{- '<!-- ═══ CARD GRID ═══ -->' -}}
+    {%- assign grid_offset = 0 -%}
+    {%- if section.settings.featured_enabled and paginate.current_page == 1 and blog.articles.first -%}
+      {%- assign grid_offset = 1 -%}
+    {%- endif -%}
+
+    {%- assign grid_article_count = 0 -%}
+    {%- for article in blog.articles offset: grid_offset -%}
+      {%- assign grid_article_count = grid_article_count | plus: 1 -%}
+    {%- endfor -%}
+
+    {%- if grid_article_count > 0 -%}
+      <section class="boc-bl__grid-section">
+        <div class="boc-container">
+
+          {%- if paginate.current_page == 1 -%}
+            <div class="boc-bl__grid-head">
+              <div>
+                {%- if section.settings.grid_eyebrow != blank -%}
+                  <span class="boc-bl__grid-eyebrow">{{ section.settings.grid_eyebrow }}</span>
+                {%- endif -%}
+                {%- if section.settings.grid_heading != blank -%}
+                  <h2 class="boc-bl__grid-title">{{ section.settings.grid_heading }}</h2>
+                {%- endif -%}
+              </div>
+            </div>
+          {%- endif -%}
+
+          <div class="boc-bl__grid">
+            {%- for article in blog.articles offset: grid_offset -%}
+              {%- assign a_day   = article.published_at | date: '%-d' -%}
+              {%- assign a_month = article.published_at | date: '%b' | upcase -%}
+              {%- assign a_tags  = '' -%}
+              {%- for t in article.tags -%}
+                {%- unless t == blog.handle -%}
+                  {%- if a_tags != '' -%}{%- assign a_tags = a_tags | append: ' · ' -%}{%- endif -%}
+                  {%- assign a_tags = a_tags | append: t -%}
+                {%- endunless -%}
+              {%- endfor -%}
+
+              <a href="{{ article.url }}" class="boc-bl__card">
+                <div class="boc-bl__card-media">
+                  {%- if article.image -%}
+                    {{
+                      article.image
+                      | image_url: width: 800
+                      | image_tag:
+                        loading: 'lazy',
+                        alt: article.image.alt | default: article.title,
+                        widths: '400, 600, 800'
+                    }}
+                  {%- else -%}
+                    <img src="{{ 'boc-estate-vineyard.jpg' | asset_url }}" alt="{{ article.title | escape }}" loading="lazy" width="800" height="320">
+                  {%- endif -%}
+                  <div class="boc-bl__card-date">
+                    <strong>{{ a_day }}</strong>
+                    <span>{{ a_month }}</span>
+                  </div>
+                </div>
+                <div class="boc-bl__card-body">
+                  {%- if a_tags != blank -%}
+                    <span class="boc-bl__card-tag">{{ a_tags }}</span>
+                  {%- endif -%}
+                  <h3>{{ article.title }}</h3>
+                  {%- if article.excerpt != blank -%}
+                    <p>{{ article.excerpt | strip_html | truncate: 120 }}</p>
+                  {%- endif -%}
+                  <span class="boc-bl__text-link">View event</span>
+                </div>
+              </a>
+            {%- endfor -%}
+          </div>
+
+          {%- if paginate.pages > 1 -%}
+            <div class="boc-bl__pagination">
+              {{- paginate | default_pagination -}}
+            </div>
+          {%- endif -%}
+
+        </div>
+      </section>
+    {%- endif -%}
+  {%- endpaginate -%}
+
+  {{- '<!-- ═══ NEWSLETTER ═══ -->' -}}
+  {%- if section.settings.newsletter_enabled -%}
+    <section class="boc-bl__newsletter">
+      <div class="boc-container boc-bl__nl-inner">
+        <div>
+          {%- if section.settings.newsletter_eyebrow != blank -%}
+            <span class="boc-bl__nl-eyebrow">{{ section.settings.newsletter_eyebrow }}</span>
+          {%- endif -%}
+          <h2 class="boc-bl__nl-title">{{ section.settings.newsletter_heading }}</h2>
+          {%- if section.settings.newsletter_description != blank -%}
+            <p>{{ section.settings.newsletter_description }}</p>
+          {%- endif -%}
+        </div>
+        <div>
+          {% form 'customer', id: 'boc-bl-newsletter' %}
+            <input type="hidden" name="contact[tags]" value="newsletter">
+            <div class="boc-bl__nl-form">
+              <input
+                type="email"
+                name="contact[email]"
+                placeholder="{{ section.settings.newsletter_placeholder | default: 'Your email address' }}"
+                aria-label="Email address"
+                required
+              >
+              <button type="submit">{{ section.settings.newsletter_button | default: 'Join the list →' }}</button>
+            </div>
+          {% endform %}
+        </div>
+      </div>
+    </section>
+  {%- endif -%}
+
+</div>
+
+{% schema %}
+{
+  "name": "BOC — Blog listing",
+  "tag": "div",
+  "class": "boc-blog-listing-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Hero"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero image",
+      "info": "Recommended: 2400×680px. Falls back to estate-visit.jpg if empty."
+    },
+    {
+      "type": "range",
+      "id": "hero_height",
+      "label": "Hero height (desktop)",
+      "min": 380,
+      "max": 760,
+      "step": 20,
+      "unit": "px",
+      "default": 540
+    },
+    {
+      "type": "range",
+      "id": "hero_overlay_opacity",
+      "label": "Overlay opacity",
+      "min": 20,
+      "max": 85,
+      "step": 5,
+      "unit": "%",
+      "default": 60
+    },
+    {
+      "type": "text",
+      "id": "hero_eyebrow",
+      "label": "Hero eyebrow",
+      "default": "At the estate"
+    },
+    {
+      "type": "text",
+      "id": "hero_heading",
+      "label": "Hero heading",
+      "info": "Leave blank to use the blog title.",
+      "default": "Events."
+    },
+    {
+      "type": "textarea",
+      "id": "hero_description",
+      "label": "Hero description"
+    },
+    {
+      "type": "header",
+      "content": "Featured post"
+    },
+    {
+      "type": "checkbox",
+      "id": "featured_enabled",
+      "label": "Show featured (first) post",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Card grid"
+    },
+    {
+      "type": "text",
+      "id": "grid_eyebrow",
+      "label": "Grid eyebrow",
+      "default": "Upcoming at the estate"
+    },
+    {
+      "type": "text",
+      "id": "grid_heading",
+      "label": "Grid heading",
+      "default": "More events."
+    },
+    {
+      "type": "range",
+      "id": "articles_per_page",
+      "label": "Articles per page",
+      "min": 3,
+      "max": 24,
+      "step": 3,
+      "default": 9
+    },
+    {
+      "type": "header",
+      "content": "Newsletter"
+    },
+    {
+      "type": "checkbox",
+      "id": "newsletter_enabled",
+      "label": "Show newsletter strip",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "newsletter_eyebrow",
+      "label": "Newsletter eyebrow",
+      "default": "Stay in the loop"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_heading",
+      "label": "Newsletter heading",
+      "default": "Be the first to know."
+    },
+    {
+      "type": "textarea",
+      "id": "newsletter_description",
+      "label": "Newsletter description"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_placeholder",
+      "label": "Email placeholder",
+      "default": "Your email address"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_button",
+      "label": "Submit button label",
+      "default": "Join the list →"
+    }
+  ],
+  "presets": [
+    { "name": "BOC — Blog listing" }
+  ]
+}
+{% endschema %}

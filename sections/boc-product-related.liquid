@@ -11,12 +11,14 @@
     assign wines_collection = collections['wines']
   endif
   assign wines_url = wines_collection.url | default: routes.all_products_collection_url
+
+  assign max_products = section.settings.max_products | default: 4
 -%}
 
 <product-recommendations
   id="boc-product-related-{{ section.id }}"
   class="product-related boc-product-related"
-  data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&limit={{ section.settings.max_products }}&intent={{ section.settings.recommendation_type }}&product_id={{ product.id }}"
+  data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit={{ section.settings.max_products }}&intent={{ section.settings.recommendation_type }}"
   data-section-id="{{ section.id }}"
   data-product-id="{{ product.id }}"
   data-intent="{{ section.settings.recommendation_type }}"
@@ -38,23 +40,74 @@
       {%- endif -%}
     </div>
 
-    {%- if recommendations.performed -%}
-      {%- if recommendations.products_count > 0 -%}
+    {%- if recommendations.performed and recommendations.products_count > 0 -%}
+
+      {{- '<!-- Shopify API recommendations -->' -}}
+      <div class="related-grid">
+        {%- for rec_product in recommendations.products limit: max_products -%}
+          {% render 'boc-related-product-card', product: rec_product, section: section %}
+        {%- endfor -%}
+      </div>
+
+    {%- elsif recommendations.performed and recommendations.products_count == 0 -%}
+
+      {{- '<!-- Liquid fallback: same product type or same collection -->' -}}
+      {%- liquid
+        assign fallback_count = 0
+
+        for col in product.collections
+          if fallback_count >= max_products
+            break
+          endif
+          for col_product in col.products
+            if fallback_count >= max_products
+              break
+            endif
+            if col_product.id == product.id
+              continue
+            endif
+            assign fallback_count = fallback_count | plus: 1
+          endfor
+        endfor
+      -%}
+
+      {%- if fallback_count > 0 -%}
+        {%- assign fallback_count = 0 -%}
         <div class="related-grid">
-          {%- for rec_product in recommendations.products limit: section.settings.max_products -%}
-            {% render 'boc-related-product-card', product: rec_product, section: section %}
+          {%- for col in product.collections -%}
+            {%- if fallback_count >= max_products -%}{%- break -%}{%- endif -%}
+            {%- for col_product in col.products -%}
+              {%- if fallback_count >= max_products -%}{%- break -%}{%- endif -%}
+              {%- if col_product.id == product.id -%}{%- continue -%}{%- endif -%}
+              {% render 'boc-related-product-card', product: col_product, section: section %}
+              {%- assign fallback_count = fallback_count | plus: 1 -%}
+            {%- endfor -%}
+          {%- endfor -%}
+        </div>
+      {%- elsif wines_collection != blank -%}
+        <div class="related-grid">
+          {%- assign fallback_count = 0 -%}
+          {%- for col_product in wines_collection.products -%}
+            {%- if fallback_count >= max_products -%}{%- break -%}{%- endif -%}
+            {%- if col_product.id == product.id -%}{%- continue -%}{%- endif -%}
+            {% render 'boc-related-product-card', product: col_product, section: section %}
+            {%- assign fallback_count = fallback_count | plus: 1 -%}
           {%- endfor -%}
         </div>
       {%- endif -%}
+
     {%- else -%}
+
+      {{- '<!-- Loading state: placeholders while JS fetches recommendations -->' -}}
       <div class="related-grid" data-boc-related-placeholder>
-        {%- for i in (1..section.settings.max_products) -%}
+        {%- for i in (1..max_products) -%}
           <article class="related-card related-card--placeholder" aria-hidden="true">
             <div class="related-image"></div>
             <div class="related-info"><h3>&nbsp;</h3></div>
           </article>
         {%- endfor -%}
       </div>
+
     {%- endif -%}
   </div>
 </product-recommendations>

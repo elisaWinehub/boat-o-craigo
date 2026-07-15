@@ -19,10 +19,7 @@
     assign discount_pct = savings | times: 100.0 | divided_by: variant.compare_at_price | round
   endif
 
-  assign first_media = product.media.first
-  if first_media == blank and product.featured_image
-    assign first_media = product.featured_image
-  endif
+  assign main_image_id = 'productMainImage-' | append: section_id
 -%}
 
 <div class="product-gallery" data-block-type="product-media-gallery">
@@ -35,7 +32,9 @@
             assign thumb_active = true
           endif
           assign media_url = media | image_url: width: 1200
+          assign media_url_hd = media | image_url: width: 2400
           assign media_alt = media.alt | default: product.title
+          assign thumb_index = forloop.index0
         -%}
         <button
           class="product-thumb{% if thumb_active %} active{% endif %}"
@@ -44,6 +43,8 @@
           data-media-id="{{ media.id }}"
           data-media-type="{{ media.media_type }}"
           data-image="{{ media_url }}"
+          data-image-hd="{{ media_url_hd }}"
+          data-thumb-index="{{ thumb_index }}"
           aria-label="{{ media_alt | escape }}"
           aria-current="{% if thumb_active %}true{% else %}false{% endif %}"
         >
@@ -69,18 +70,25 @@
 
       <div class="product-main-image__media" data-boc-product-main-media>
         {%- assign main_media = product.media.first -%}
-        {%- assign main_image_id = 'productMainImage-' | append: section_id -%}
         {%- case main_media.media_type -%}
           {%- when 'video' -%}
             {{ main_media | video_tag: image_size: '1200x', autoplay: false, loop: false, controls: true, class: 'product-main-image__video' }}
           {%- when 'model' -%}
             {{ main_media | model_viewer_tag: image_size: '1200x', reveal: 'interaction', toggleable: true }}
           {%- else -%}
-            {{
-              main_media
-              | image_url: width: 1600
-              | image_tag: id: main_image_id, class: 'product-main-image__img', alt: main_media.alt | default: product.title, loading: 'eager', widths: '800, 1200, 1600'
-            }}
+            <button
+              type="button"
+              class="product-main-image__zoom"
+              data-boc-product-gallery-open
+              data-thumb-index="0"
+              aria-label="Open image gallery"
+            >
+              {{
+                main_media
+                | image_url: width: 1600
+                | image_tag: id: main_image_id, class: 'product-main-image__img', alt: main_media.alt | default: product.title, loading: 'eager', widths: '800, 1200, 1600'
+              }}
+            </button>
         {%- endcase -%}
       </div>
     </div>
@@ -92,17 +100,25 @@
       {%- if show_discount -%}
         <span class="product-main-discount">Save {{ discount_pct }}%</span>
       {%- endif -%}
-      {%- assign main_image_id = 'productMainImage-' | append: section_id -%}
-      {{
-        product.featured_image
-        | image_url: width: 1600
-        | image_tag: id: main_image_id, class: 'product-main-image__img', alt: product.featured_image.alt | default: product.title, loading: 'eager', widths: '800, 1200, 1600'
-      }}
+
+      <button
+        type="button"
+        class="product-main-image__zoom product-main-image__zoom--single"
+        data-boc-product-gallery-open
+        data-thumb-index="0"
+        aria-label="Open image gallery"
+      >
+        {{
+          product.featured_image
+          | image_url: width: 1600
+          | image_tag: id: main_image_id, class: 'product-main-image__img', alt: product.featured_image.alt | default: product.title, loading: 'eager', widths: '800, 1200, 1600'
+        }}
+      </button>
     </div>
   {%- else -%}
     <div class="product-main-image product-main-image--placeholder" data-boc-product-main>
       <img
-        id="productMainImage-{{ section_id }}"
+        id="{{ main_image_id }}"
         class="product-main-image__img"
         src="{{ 'boc-placeholder-gruner-veltliner.jpg' | asset_url }}"
         alt="{{ product.title | escape }}"
@@ -113,3 +129,7 @@
     </div>
   {%- endif -%}
 </div>
+
+{%- if product.media.size > 0 or product.featured_image -%}
+  {% render 'boc-product-gallery-modal', section_id: section_id %}
+{%- endif -%}

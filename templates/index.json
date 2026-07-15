@@ -15,6 +15,7 @@
         "slide_1": {
           "type": "slide",
           "settings": {
+            "overlay_opacity": 100,
             "eyebrow": "Yarra Valley · Victoria",
             "heading": "Wines shaped by place.",
             "body": "Discover cool-climate, single-vineyard wines made at our family-owned Yarra Valley estate.",
@@ -23,13 +24,13 @@
             "button_1_style": "light",
             "button_2_label": "Our vineyards",
             "button_2_link": "/pages/about",
-            "button_2_style": "accent",
-            "overlay_opacity": 100
+            "button_2_style": "accent"
           }
         },
         "slide_2": {
           "type": "slide",
           "settings": {
+            "overlay_opacity": 100,
             "eyebrow": "Boat O'Craigo Wine Club",
             "heading": "Your cellar, curated by ours.",
             "body": "Enjoy member pricing, flexible deliveries and first access to limited releases.",
@@ -38,13 +39,13 @@
             "button_1_style": "light",
             "button_2_label": "Explore wines",
             "button_2_link": "shopify://collections/all",
-            "button_2_style": "accent",
-            "overlay_opacity": 100
+            "button_2_style": "accent"
           }
         },
         "slide_3": {
           "type": "slide",
           "settings": {
+            "overlay_opacity": 100,
             "eyebrow": "Visit Healesville",
             "heading": "Come for the wine. Stay for the view.",
             "body": "Experience guided tastings, warm hospitality and vineyard views at our estate.",
@@ -53,13 +54,13 @@
             "button_1_style": "light",
             "button_2_label": "Plan your visit",
             "button_2_link": "/pages/visit",
-            "button_2_style": "accent",
-            "overlay_opacity": 100
+            "button_2_style": "accent"
           }
         },
         "slide_4": {
           "type": "slide",
           "settings": {
+            "overlay_opacity": 100,
             "eyebrow": "Glasshouse Restaurant",
             "heading": "Seasonal dining among the vines.",
             "body": "Relax over local produce, estate wines and sweeping Yarra Valley views.",
@@ -68,13 +69,13 @@
             "button_1_style": "light",
             "button_2_label": "View dining",
             "button_2_link": "/pages/visit",
-            "button_2_style": "accent",
-            "overlay_opacity": 100
+            "button_2_style": "accent"
           }
         },
         "slide_5": {
           "type": "slide",
           "settings": {
+            "overlay_opacity": 100,
             "eyebrow": "Weddings & Private Events",
             "heading": "Celebrate among the vines.",
             "body": "A relaxed, intimate Yarra Valley setting for weddings and unforgettable occasions.",
@@ -83,12 +84,17 @@
             "button_1_style": "light",
             "button_2_label": "Book an inspection",
             "button_2_link": "/pages/visit",
-            "button_2_style": "accent",
-            "overlay_opacity": 100
+            "button_2_style": "accent"
           }
         }
       },
-      "block_order": ["slide_1", "slide_2", "slide_3", "slide_4", "slide_5"],
+      "block_order": [
+        "slide_1",
+        "slide_2",
+        "slide_3",
+        "slide_4",
+        "slide_5"
+      ],
       "settings": {
         "section_enabled": true,
         "show_desktop": true,
@@ -143,41 +149,76 @@
           }
         }
       },
-      "block_order": ["link_1", "link_2", "link_3", "link_4"],
+      "block_order": [
+        "link_1",
+        "link_2",
+        "link_3",
+        "link_4"
+      ],
       "settings": {
         "section_enabled": true,
         "show_desktop": true,
         "show_tablet": true,
         "show_mobile": true,
         "container_width": "container",
-        "background_color": "#FFFFFF",
+        "background_color": "#ffffff",
         "padding_top": 32,
-        "padding_bottom": 0
+        "padding_bottom": 0,
+        "eyebrow": "",
+        "heading": "",
+        "body": ""
       }
     },
     "boc_home_featured_wines": {
       "type": "boc-home-featured-wines",
       "blocks": {
-        "product_1": { "type": "product", "settings": {} },
-        "product_2": { "type": "product", "settings": {} },
-        "product_3": { "type": "product", "settings": {} },
-        "product_4": { "type": "product", "settings": {} }
+        "product_1": {
+          "type": "product",
+          "settings": {
+            "product": "2023-black-cameron-shiraz"
+          }
+        },
+        "product_2": {
+          "type": "product",
+          "settings": {
+            "product": "2025-black-spur-rose"
+          }
+        },
+        "product_4": {
+          "type": "product",
+          "settings": {
+            "product": "2018-braveheart-cabernet-sauvignon"
+          }
+        },
+        "product_KkchRR": {
+          "type": "product",
+          "settings": {
+            "product": "2024-black-spur-gewurztraminer"
+          }
+        }
       },
-      "block_order": ["product_1", "product_2", "product_3", "product_4"],
+      "block_order": [
+        "product_1",
+        "product_2",
+        "product_4",
+        "product_KkchRR"
+      ],
       "settings": {
         "section_enabled": true,
         "show_desktop": true,
         "show_tablet": true,
         "show_mobile": true,
         "container_width": "container",
-        "background_color": "#FFFFFF",
+        "background_color": "#ffffff",
         "padding_top": 120,
         "padding_bottom": 120,
         "eyebrow": "From our cellar",
         "heading": "Explore the range.",
+        "body": "",
         "link_label": "Shop all wines",
         "link_url": "shopify://collections/all",
         "source": "manual",
+        "collection": "",
         "product_limit": 4,
         "columns": 4,
         "show_vendor": true,
@@ -218,7 +259,12 @@
           }
         }
       },
-      "block_order": ["stat_1", "stat_2", "stat_3", "stat_4"],
+      "block_order": [
+        "stat_1",
+        "stat_2",
+        "stat_3",
+        "stat_4"
+      ],
       "settings": {
         "section_enabled": true,
         "show_desktop": true,
@@ -261,14 +307,17 @@
           }
         }
       },
-      "block_order": ["feature_1", "feature_2"],
+      "block_order": [
+        "feature_1",
+        "feature_2"
+      ],
       "settings": {
         "section_enabled": true,
         "show_desktop": true,
         "show_tablet": true,
         "show_mobile": true,
         "container_width": "container",
-        "background_color": "#FFFFFF",
+        "background_color": "#ffffff",
         "padding_top": 120,
         "padding_bottom": 120,
         "eyebrow": "Visit the estate",
@@ -308,14 +357,19 @@
           }
         }
       },
-      "block_order": ["benefit_1", "benefit_2", "benefit_3", "benefit_4"],
+      "block_order": [
+        "benefit_1",
+        "benefit_2",
+        "benefit_3",
+        "benefit_4"
+      ],
       "settings": {
         "section_enabled": true,
         "show_desktop": true,
         "show_tablet": true,
         "show_mobile": true,
         "container_width": "full",
-        "background_color": "#B99E7E",
+        "background_color": "#b99e7e",
         "padding_top": 0,
         "padding_bottom": 0,
         "eyebrow": "Boat O'Craigo Wine Club",
@@ -340,8 +394,10 @@
         "heading": "Celebrate among the vines.",
         "body": "Host your day in a setting that feels relaxed, intimate and unmistakably Yarra Valley.",
         "button_1_label": "Book an inspection",
+        "button_1_link": "",
         "button_1_style": "light",
         "button_2_label": "Explore weddings",
+        "button_2_link": "",
         "button_2_style": "accent"
       }
     },
@@ -353,32 +409,16 @@
         "show_tablet": true,
         "show_mobile": true,
         "container_width": "container",
-        "background_color": "#FAF8F5",
+        "background_color": "#faf8f5",
         "padding_top": 120,
         "padding_bottom": 120,
         "eyebrow": "What's on",
         "heading": "At the estate.",
+        "body": "",
         "link_label": "View all events",
         "link_url": "/blogs/events",
         "source": "blog",
         "blog": "events",
-        "article_limit": 3
-      }
-    },
-    "boc_home_journal": {
-      "type": "boc-home-journal",
-      "settings": {
-        "section_enabled": true,
-        "show_desktop": true,
-        "show_tablet": true,
-        "show_mobile": true,
-        "container_width": "container",
-        "background_color": "#FFFFFF",
-        "padding_top": 120,
-        "padding_bottom": 120,
-        "eyebrow": "From the journal",
-        "heading": "Stories from the valley.",
-        "link_label": "Read all stories",
         "article_limit": 3
       }
     },
@@ -390,11 +430,12 @@
         "show_tablet": true,
         "show_mobile": true,
         "container_width": "container",
-        "background_color": "#B99E7E",
+        "background_color": "#b99e7e",
         "padding_top": 72,
         "padding_bottom": 72,
         "eyebrow": "From the vineyard",
         "heading": "Be the first to know.",
+        "body": "",
         "input_placeholder": "Your email address",
         "button_label": "Join the list →",
         "success_message": "Thanks for subscribing."
@@ -410,7 +451,6 @@
     "boc_home_wine_club",
     "boc_home_weddings",
     "boc_home_events",
-    "boc_home_journal",
     "boc_home_newsletter"
   ]
 }

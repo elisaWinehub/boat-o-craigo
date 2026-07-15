@@ -1,0 +1,235 @@
+{{ 'boc-event-article.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign a          = article
+  assign pub_date   = a.published_at
+  assign day        = pub_date | date: '%-d'
+  assign month      = pub_date | date: '%b' | upcase
+  assign year       = pub_date | date: '%Y'
+  assign month_long = pub_date | date: '%b'
+
+  assign tags_display = ''
+  for tag in a.tags
+    unless tag == 'events'
+      if tags_display != ''
+        assign tags_display = tags_display | append: ' · '
+      endif
+      assign tags_display = tags_display | append: tag
+    endunless
+  endfor
+
+  assign back_url   = blog.url | default: '/blogs/events'
+  assign back_label = section.settings.back_label | default: "What's On"
+-%}
+
+<article
+  class="boc-ea"
+  data-section-id="{{ section.id }}"
+  {{ section.shopify_attributes }}
+>
+
+  <!-- BACK LINK -->
+  <div class="boc-ea__back-wrap boc-container">
+    <a href="{{ back_url }}" class="boc-ea__back">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      {{ back_label }}
+    </a>
+  </div>
+
+  <!-- HERO -->
+  <div class="boc-ea__hero">
+    <div class="boc-ea__hero-media">
+      {%- if a.image -%}
+        {{
+          a.image
+          | image_url: width: 2400
+          | image_tag:
+            loading: 'eager',
+            fetchpriority: 'high',
+            alt: a.image.alt | default: a.title,
+            class: 'boc-ea__hero-img',
+            widths: '800, 1200, 1600, 2000, 2400'
+        }}
+      {%- else -%}
+        <img
+          src="{{ 'boc-estate-vineyard.jpg' | asset_url }}"
+          alt="{{ a.title | escape }}"
+          class="boc-ea__hero-img"
+          loading="eager"
+          fetchpriority="high"
+          width="2400"
+          height="680"
+        >
+      {%- endif -%}
+    </div>
+    <div class="boc-ea__hero-overlay"></div>
+    <div class="boc-ea__hero-content boc-container">
+      {%- if tags_display != blank -%}
+        <span class="boc-ea__eyebrow">{{ tags_display }}</span>
+      {%- endif -%}
+      <h1 class="boc-ea__title">{{ a.title }}</h1>
+    </div>
+    <div class="boc-ea__date-badge">
+      <strong>{{ day }}</strong>
+      <span>{{ month }}</span>
+    </div>
+  </div>
+
+  <!-- BODY -->
+  <div class="boc-ea__body-wrap">
+    <div class="boc-container boc-ea__body">
+
+      <div class="boc-ea__meta">
+        <time datetime="{{ pub_date | date: '%Y-%m-%d' }}">
+          {{ day }} {{ month_long }} {{ year }}
+        </time>
+        {%- if a.author != blank -%}
+          <span class="boc-ea__meta-sep" aria-hidden="true">·</span>
+          <span>{{ a.author }}</span>
+        {%- endif -%}
+      </div>
+
+      <div class="boc-ea__content rte">
+        {{ a.content }}
+      </div>
+
+      <div class="boc-ea__footer">
+        <a href="{{ back_url }}" class="boc-ea__back">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Back to {{ back_label }}
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- RELATED EVENTS -->
+  {%- if section.settings.show_related -%}
+    {%- assign rel_limit = section.settings.related_limit | default: 3 -%}
+    {%- assign rel_count = 0 -%}
+
+    {%- capture rel_html -%}
+      {%- for rel in blog.articles -%}
+        {%- if rel.id == a.id -%}{%- continue -%}{%- endif -%}
+        {%- if rel_count >= rel_limit -%}{%- break -%}{%- endif -%}
+        {%- assign rel_count = rel_count | plus: 1 -%}
+        {%- assign r_day   = rel.published_at | date: '%-d' -%}
+        {%- assign r_month = rel.published_at | date: '%b' | upcase -%}
+        {%- assign r_tags  = '' -%}
+        {%- for t in rel.tags -%}
+          {%- unless t == 'events' -%}
+            {%- if r_tags != '' -%}{%- assign r_tags = r_tags | append: ' · ' -%}{%- endif -%}
+            {%- assign r_tags = r_tags | append: t -%}
+          {%- endunless -%}
+        {%- endfor -%}
+        <article class="boc-ea__rel-card">
+          <a href="{{ rel.url }}" class="boc-ea__rel-media" aria-label="{{ rel.title | escape }}">
+            {%- if rel.image -%}
+              {{
+                rel.image
+                | image_url: width: 800
+                | image_tag:
+                  loading: 'lazy',
+                  alt: rel.image.alt | default: rel.title,
+                  widths: '400, 600, 800'
+              }}
+            {%- else -%}
+              <img src="{{ 'boc-estate-vineyard.jpg' | asset_url }}" alt="{{ rel.title | escape }}" loading="lazy" width="800" height="320">
+            {%- endif -%}
+            <div class="boc-ea__rel-date"><strong>{{ r_day }}</strong><span>{{ r_month }}</span></div>
+          </a>
+          <div class="boc-ea__rel-body">
+            {%- if r_tags != blank -%}
+              <span class="boc-ea__rel-meta">{{ r_tags }}</span>
+            {%- endif -%}
+            <h3><a href="{{ rel.url }}">{{ rel.title }}</a></h3>
+            {%- if rel.excerpt != blank -%}
+              <p>{{ rel.excerpt | strip_html | truncate: 120 }}</p>
+            {%- endif -%}
+            <a class="boc-ea__text-link" href="{{ rel.url }}">View event</a>
+          </div>
+        </article>
+      {%- endfor -%}
+    {%- endcapture -%}
+
+    {%- if rel_count > 0 -%}
+      <section class="boc-ea__related">
+        <div class="boc-container">
+          <div class="boc-ea__rel-head">
+            <div>
+              {%- if section.settings.related_eyebrow != blank -%}
+                <span class="boc-ea__rel-eyebrow">{{ section.settings.related_eyebrow }}</span>
+              {%- endif -%}
+              {%- if section.settings.related_heading != blank -%}
+                <h2 class="boc-ea__rel-title">{{ section.settings.related_heading }}</h2>
+              {%- endif -%}
+            </div>
+            {%- if section.settings.related_link_label != blank -%}
+              <a href="{{ back_url }}" class="boc-ea__text-link">{{ section.settings.related_link_label }}</a>
+            {%- endif -%}
+          </div>
+          <div class="boc-ea__rel-grid">{{ rel_html }}</div>
+        </div>
+      </section>
+    {%- endif -%}
+  {%- endif -%}
+
+</article>
+
+{% schema %}
+{
+  "name": "BOC — Event article",
+  "tag": "div",
+  "class": "boc-event-article-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "back_label",
+      "label": "Back link label",
+      "default": "What's On"
+    },
+    {
+      "type": "header",
+      "content": "Related events"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_related",
+      "label": "Show related events",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "related_limit",
+      "label": "Max related articles",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "text",
+      "id": "related_eyebrow",
+      "label": "Related section eyebrow",
+      "default": "More events"
+    },
+    {
+      "type": "text",
+      "id": "related_heading",
+      "label": "Related section heading",
+      "default": "You might also enjoy."
+    },
+    {
+      "type": "text",
+      "id": "related_link_label",
+      "label": "View all link label",
+      "default": "View all events"
+    }
+  ],
+  "presets": [{ "name": "BOC — Event article" }]
+}
+{% endschema %}

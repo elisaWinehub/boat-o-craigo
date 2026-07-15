@@ -127,7 +127,7 @@
         "intro_body": "Seasonal events, vineyard experiences and special occasions.",
         "source": "blog",
         "blog": "events",
-        "article_limit": 4,
+        "article_limit": 3,
         "columns_desktop": 3,
         "columns_tablet": 2,
         "show_date": true,

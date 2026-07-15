@@ -1,31 +1,22 @@
-<script
-  src="{{ 'product-recommendations.js' | asset_url }}"
-  type="module"
-  fetchpriority="low"
-></script>
-<script src="{{ 'product-form.js' | asset_url }}" type="module" fetchpriority="low"></script>
-
 {%- liquid
+  assign max_products = section.settings.max_products | default: 4
+
   assign wines_collection = section.settings.wines_collection
   if wines_collection == blank
     assign wines_collection = collections['wines']
   endif
+  if wines_collection == blank
+    assign wines_collection = collections.first
+  endif
   assign wines_url = wines_collection.url | default: routes.all_products_collection_url
-
-  assign max_products = section.settings.max_products | default: 4
 -%}
 
-<product-recommendations
-  id="boc-product-related-{{ section.id }}"
+<section
   class="product-related boc-product-related"
-  data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit={{ section.settings.max_products }}&intent={{ section.settings.recommendation_type }}"
-  data-section-id="{{ section.id }}"
-  data-product-id="{{ product.id }}"
-  data-intent="{{ section.settings.recommendation_type }}"
-  data-recommendations-performed="{{ recommendations.performed }}"
   {{ section.shopify_attributes }}
 >
   <div class="boc-container">
+
     <div class="section-head">
       <div>
         {%- if section.settings.eyebrow != blank -%}
@@ -40,94 +31,56 @@
       {%- endif -%}
     </div>
 
-    {%- if recommendations.performed and recommendations.products_count > 0 -%}
+    {%- comment -%}
+      Step 1: siblings from the product's own collections (deduped by id).
+      Step 2: fill remaining slots from wines_collection.
+      Rendered immediately — no JS, no async, nothing can hide these cards.
+    {%- endcomment -%}
 
-      {{- '<!-- Shopify API recommendations -->' -}}
-      <div class="related-grid">
-        {%- for rec_product in recommendations.products limit: max_products -%}
-          {% render 'boc-related-product-card', product: rec_product, section: section %}
+    {%- assign found_ids = '' -%}
+
+    {%- capture related_cards -%}
+      {%- assign card_count = 0 -%}
+
+      {%- for col in product.collections -%}
+        {%- if card_count >= max_products -%}{%- break -%}{%- endif -%}
+        {%- for col_product in col.products -%}
+          {%- if card_count >= max_products -%}{%- break -%}{%- endif -%}
+          {%- if col_product.id == product.id -%}{%- continue -%}{%- endif -%}
+          {%- assign id_str = col_product.id | append: ',' -%}
+          {%- if found_ids contains id_str -%}{%- continue -%}{%- endif -%}
+          {%- assign found_ids = found_ids | append: id_str -%}
+          {% render 'boc-related-product-card', product: col_product, section: section %}
+          {%- assign card_count = card_count | plus: 1 -%}
         {%- endfor -%}
-      </div>
+      {%- endfor -%}
 
-    {%- elsif recommendations.performed and recommendations.products_count == 0 -%}
-
-      {{- '<!-- Liquid fallback: same product type or same collection -->' -}}
-      {%- liquid
-        assign fallback_count = 0
-
-        for col in product.collections
-          if fallback_count >= max_products
-            break
-          endif
-          for col_product in col.products
-            if fallback_count >= max_products
-              break
-            endif
-            if col_product.id == product.id
-              continue
-            endif
-            assign fallback_count = fallback_count | plus: 1
-          endfor
-        endfor
-      -%}
-
-      {%- if fallback_count > 0 -%}
-        {%- assign fallback_count = 0 -%}
-        <div class="related-grid">
-          {%- for col in product.collections -%}
-            {%- if fallback_count >= max_products -%}{%- break -%}{%- endif -%}
-            {%- for col_product in col.products -%}
-              {%- if fallback_count >= max_products -%}{%- break -%}{%- endif -%}
-              {%- if col_product.id == product.id -%}{%- continue -%}{%- endif -%}
-              {% render 'boc-related-product-card', product: col_product, section: section %}
-              {%- assign fallback_count = fallback_count | plus: 1 -%}
-            {%- endfor -%}
-          {%- endfor -%}
-        </div>
-      {%- elsif wines_collection != blank -%}
-        <div class="related-grid">
-          {%- assign fallback_count = 0 -%}
-          {%- for col_product in wines_collection.products -%}
-            {%- if fallback_count >= max_products -%}{%- break -%}{%- endif -%}
-            {%- if col_product.id == product.id -%}{%- continue -%}{%- endif -%}
-            {% render 'boc-related-product-card', product: col_product, section: section %}
-            {%- assign fallback_count = fallback_count | plus: 1 -%}
-          {%- endfor -%}
-        </div>
+      {%- if card_count < max_products and wines_collection != blank -%}
+        {%- for col_product in wines_collection.products -%}
+          {%- if card_count >= max_products -%}{%- break -%}{%- endif -%}
+          {%- if col_product.id == product.id -%}{%- continue -%}{%- endif -%}
+          {%- assign id_str = col_product.id | append: ',' -%}
+          {%- if found_ids contains id_str -%}{%- continue -%}{%- endif -%}
+          {%- assign found_ids = found_ids | append: id_str -%}
+          {% render 'boc-related-product-card', product: col_product, section: section %}
+          {%- assign card_count = card_count | plus: 1 -%}
+        {%- endfor -%}
       {%- endif -%}
+    {%- endcapture -%}
 
-    {%- else -%}
-
-      {{- '<!-- Loading state: placeholders while JS fetches recommendations -->' -}}
-      <div class="related-grid" data-boc-related-placeholder>
-        {%- for i in (1..max_products) -%}
-          <article class="related-card related-card--placeholder" aria-hidden="true">
-            <div class="related-image"></div>
-            <div class="related-info"><h3>&nbsp;</h3></div>
-          </article>
-        {%- endfor -%}
-      </div>
-
+    {%- if related_cards != blank -%}
+      <div class="related-grid">{{ related_cards }}</div>
     {%- endif -%}
+
   </div>
-</product-recommendations>
+</section>
 
 {% schema %}
 {
   "name": "BOC — Related products",
-  "tag": "section",
+  "tag": null,
   "class": "boc-product-related-section",
   "settings": [
-    {
-      "type": "select",
-      "id": "recommendation_type",
-      "label": "Recommendation type",
-      "options": [
-        { "value": "related", "label": "Related" },
-        { "value": "complementary", "label": "Complementary" }
-      ],
-      "default": "related"
-    },
     {
       "type": "range",
       "id": "max_products",
@@ -140,7 +93,8 @@
     {
       "type": "collection",
       "id": "wines_collection",
-      "label": "View all collection"
+      "label": "Wines collection (fallback source)",
+      "info": "Used when a product belongs to no collections, or to fill remaining slots. Set this to your main Wines collection."
     },
     {
       "type": "text",

@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
@@ -83,6 +92,7 @@
         },
         "accordions": {
           "type": "boc-product-accordions",
+          "settings": {},
           "blocks": {
             "tasting": {
               "type": "boc-product-accordion-item",
@@ -124,7 +134,13 @@
               }
             }
           },
-          "block_order": ["tasting", "details", "pairing", "shipping", "pdf"]
+          "block_order": [
+            "tasting",
+            "details",
+            "pairing",
+            "shipping",
+            "pdf"
+          ]
         }
       },
       "block_order": [
@@ -149,9 +165,9 @@
     "story": {
       "type": "boc-product-story",
       "settings": {
+        "copy_background_color": "#171717",
         "eyebrow": "From the vineyard",
         "heading": "Cool climate. Bright character.",
-        "copy_background_color": "#171717",
         "vineyard_label": "Vineyard",
         "region_label": "Region",
         "winemaker_label": "Winemaking"
@@ -167,5 +183,9 @@
       }
     }
   },
-  "order": ["main", "story", "related"]
+  "order": [
+    "main",
+    "story",
+    "related"
+  ]
 }

@@ -150,6 +150,7 @@
 
     var dataEl = section.querySelector('[data-boc-about-team-data]');
     var profiles = {};
+    var imageCache = {};
     if (dataEl) {
       try {
         var parsed = JSON.parse(dataEl.textContent);
@@ -166,6 +167,77 @@
     var bioEl = modal.querySelector('[data-boc-about-modal-bio]');
     var lastTrigger = null;
     var focusTrapHandler = null;
+    var activeImageRequest = 0;
+
+    function preloadImage(url) {
+      if (!url) return null;
+      if (imageCache[url]) return imageCache[url];
+
+      var loader = new Image();
+      loader.decoding = 'async';
+      loader.src = url;
+      imageCache[url] = loader;
+      return loader;
+    }
+
+    Object.keys(profiles).forEach(function (profileId) {
+      preloadImage(profiles[profileId].image);
+    });
+
+    function getTriggerImageSrc(trigger) {
+      if (!trigger) return '';
+      var cardImg = trigger.querySelector('img');
+      if (!cardImg) return '';
+      return cardImg.currentSrc || cardImg.src || '';
+    }
+
+    function setModalImage(profile, trigger) {
+      if (!imgEl || !profile) return;
+
+      var instantSrc = getTriggerImageSrc(trigger);
+      var fullSrc = profile.image || instantSrc;
+      var alt = (profile.name || 'Team member') + ' profile image';
+      var requestId = ++activeImageRequest;
+
+      imgEl.alt = alt;
+      imgEl.classList.add('is-loading');
+
+      if (instantSrc) {
+        imgEl.src = instantSrc;
+        imgEl.classList.remove('is-loading');
+      } else if (fullSrc) {
+        imgEl.src = fullSrc;
+      }
+
+      if (!fullSrc || fullSrc === instantSrc) return;
+
+      var loader = preloadImage(fullSrc);
+      if (!loader) return;
+
+      function applyFullImage() {
+        if (requestId !== activeImageRequest || !imgEl) return;
+        imgEl.src = fullSrc;
+        imgEl.classList.remove('is-loading');
+      }
+
+      if (loader.complete && loader.naturalWidth > 0) {
+        applyFullImage();
+        return;
+      }
+
+      function onReady() {
+        loader.removeEventListener('load', onReady);
+        loader.removeEventListener('error', onReady);
+        if (loader.decode) {
+          loader.decode().then(applyFullImage).catch(applyFullImage);
+          return;
+        }
+        applyFullImage();
+      }
+
+      loader.addEventListener('load', onReady);
+      loader.addEventListener('error', onReady);
+    }
 
     function trapFocus(event) {
       if (!dialog || event.key !== 'Tab') return;
@@ -186,11 +258,9 @@
       var profile = profiles[profileId];
       if (!profile) return;
       lastTrigger = trigger;
+      var wasOpen = modal.classList.contains('is-open');
 
-      if (imgEl) {
-        imgEl.src = profile.image || '';
-        imgEl.alt = (profile.name || 'Team member') + ' profile image';
-      }
+      setModalImage(profile, trigger);
       if (nameEl) nameEl.textContent = profile.name || '';
       if (roleEl) roleEl.textContent = profile.role || '';
       if (bioEl) bioEl.innerHTML = profile.biography || '';
@@ -198,9 +268,11 @@
       modal.classList.add('is-open');
       modal.setAttribute('aria-hidden', 'false');
       document.body.classList.add('boc-about-modal-open');
-      focusTrapHandler = trapFocus;
-      document.addEventListener('keydown', focusTrapHandler);
-      if (closeBtn) closeBtn.focus();
+      if (!focusTrapHandler) {
+        focusTrapHandler = trapFocus;
+        document.addEventListener('keydown', focusTrapHandler);
+      }
+      if (!wasOpen && closeBtn) closeBtn.focus();
     }
 
     function closeModal() {
@@ -215,6 +287,11 @@
     }
 
     section.querySelectorAll('[data-boc-about-team-open]').forEach(function (btn) {
+      btn.addEventListener('pointerenter', function () {
+        var profile = profiles[btn.getAttribute('data-boc-about-team-open')];
+        if (profile) preloadImage(profile.image);
+      });
+
       btn.addEventListener('click', function () {
         openModal(btn.getAttribute('data-boc-about-team-open'), btn);
       });

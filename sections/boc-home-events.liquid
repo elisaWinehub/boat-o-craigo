@@ -49,39 +49,68 @@
       {%- endif -%}
     </div>
 
-    <div class="boc-home-cards__grid">
+    <div class="boc-home-cards__grid boc-home-events__grid">
       {%- if use_blog -%}
         {%- for article in events_blog.articles limit: section.settings.article_limit -%}
+          {%- liquid
+            assign card_meta = ''
+            for tag in article.tags
+              unless tag == 'events'
+                if card_meta != ''
+                  assign card_meta = card_meta | append: ' · '
+                endif
+                assign card_meta = card_meta | append: tag
+              endunless
+            endfor
+
+            assign event_date = article.metafields.custom.event_date.value
+            if event_date == blank
+              assign event_date = article.published_at
+            endif
+            if event_date != blank
+              assign day_num = event_date | date: '%-d'
+              assign month_label = event_date | date: '%b'
+            endif
+          -%}
           <article class="boc-home-card">
-            <a href="{{ article.url }}" class="boc-home-card__media">
+            <a href="{{ article.url }}" class="boc-home-card__media" aria-label="{{ article.title | escape }}">
               {%- if article.image != blank -%}
                 <img
                   src="{{ article.image | image_url: width: 900 }}"
                   alt="{{ article.image.alt | default: article.title | escape }}"
                   loading="lazy"
                   width="900"
-                  height="310"
+                  height="320"
                 >
               {%- else -%}
                 <img
-                  src="{{ 'boc-estate-visit.jpg' | asset_url }}"
+                  src="{{ 'boc-estate-vineyard.jpg' | asset_url }}"
                   alt="{{ article.title | escape }}"
                   loading="lazy"
                   width="900"
-                  height="310"
+                  height="320"
                 >
               {%- endif -%}
+              {%- if event_date != blank -%}
+                <div class="boc-home-card__date">
+                  <strong>{{ day_num }}</strong>
+                  <span>{{ month_label }}</span>
+                </div>
+              {%- endif -%}
             </a>
-            {%- if article.tags.size > 0 -%}
-              <p class="boc-home-card__meta">{{ article.tags.first }}</p>
-            {%- endif -%}
-            <h3 class="boc-home-card__title">
-              <a href="{{ article.url }}">{{ article.title }}</a>
-            </h3>
-            {%- if article.excerpt != blank -%}
-              <p class="boc-home-card__body">{{ article.excerpt | strip_html | truncate: 140 }}</p>
-            {%- endif -%}
-            <a href="{{ article.url }}" class="boc-home-text-link">View event</a>
+            <div class="boc-home-card__body">
+              {%- if card_meta != blank -%}
+                <span class="boc-home-card__meta">{{ card_meta }}</span>
+              {%- endif -%}
+              <h3 class="boc-home-card__title">
+                <a href="{{ article.url }}">{{ article.title }}</a>
+              </h3>
+              {%- assign card_excerpt = article.excerpt | default: article.content -%}
+              {%- if card_excerpt != blank -%}
+                <p class="boc-home-card__excerpt">{{ card_excerpt | strip_html | truncate: 120 }}</p>
+              {%- endif -%}
+              <a href="{{ article.url }}" class="boc-home-text-link">View event</a>
+            </div>
           </article>
         {%- endfor -%}
       {%- else -%}
@@ -91,28 +120,30 @@
               assign card_image = block.settings.image | image_url: width: 900
               assign card_alt = block.settings.image.alt | default: block.settings.title
             else
-              assign card_image = 'boc-estate-visit.jpg' | asset_url
+              assign card_image = 'boc-estate-vineyard.jpg' | asset_url
               assign card_alt = block.settings.title
             endif
           -%}
           <article class="boc-home-card" {{ block.shopify_attributes }}>
-            <a href="{{ block.settings.link | default: '#' }}" class="boc-home-card__media">
-              <img src="{{ card_image }}" alt="{{ card_alt | escape }}" loading="lazy" width="900" height="310">
+            <a href="{{ block.settings.link | default: '#' }}" class="boc-home-card__media" aria-label="{{ block.settings.title | escape }}">
+              <img src="{{ card_image }}" alt="{{ card_alt | escape }}" loading="lazy" width="900" height="320">
             </a>
-            {%- if block.settings.meta != blank -%}
-              <p class="boc-home-card__meta">{{ block.settings.meta }}</p>
-            {%- endif -%}
-            {%- if block.settings.title != blank -%}
-              <h3 class="boc-home-card__title">
-                <a href="{{ block.settings.link | default: '#' }}">{{ block.settings.title }}</a>
-              </h3>
-            {%- endif -%}
-            {%- if block.settings.body != blank -%}
-              <p class="boc-home-card__body">{{ block.settings.body }}</p>
-            {%- endif -%}
-            {%- if block.settings.link_label != blank -%}
-              <a href="{{ block.settings.link | default: '#' }}" class="boc-home-text-link">{{ block.settings.link_label }}</a>
-            {%- endif -%}
+            <div class="boc-home-card__body">
+              {%- if block.settings.meta != blank -%}
+                <span class="boc-home-card__meta">{{ block.settings.meta }}</span>
+              {%- endif -%}
+              {%- if block.settings.title != blank -%}
+                <h3 class="boc-home-card__title">
+                  <a href="{{ block.settings.link | default: '#' }}">{{ block.settings.title }}</a>
+                </h3>
+              {%- endif -%}
+              {%- if block.settings.body != blank -%}
+                <p class="boc-home-card__excerpt">{{ block.settings.body }}</p>
+              {%- endif -%}
+              {%- if block.settings.link_label != blank -%}
+                <a href="{{ block.settings.link | default: '#' }}" class="boc-home-text-link">{{ block.settings.link_label }}</a>
+              {%- endif -%}
+            </div>
           </article>
         {%- endfor -%}
       {%- endif -%}

@@ -92,9 +92,9 @@
         "show_mobile": true,
         "sticky_enabled": true,
         "active_tracking": true,
-        "background_color": "#FFFFFF",
+        "background_color": "#ffffff",
         "text_color": "#212121",
-        "active_color": "#B99E7E",
+        "active_color": "#b99e7e",
         "aria_label": "Visit page navigation"
       }
     },
@@ -109,8 +109,9 @@
             "link_label": "Wine tastings",
             "link_type": "anchor",
             "anchor_id": "boc-visit-tasting",
-            "background_color": "#FFFFFF",
-            "hover_background_color": "#FAF8F5",
+            "url": "",
+            "background_color": "#ffffff",
+            "hover_background_color": "#faf8f5",
             "text_color": "#212121",
             "hover_text_color": "#212121"
           }
@@ -123,8 +124,9 @@
             "link_label": "The Glasshouse",
             "link_type": "anchor",
             "anchor_id": "boc-visit-glasshouse",
-            "background_color": "#FFFFFF",
-            "hover_background_color": "#FAF8F5",
+            "url": "",
+            "background_color": "#ffffff",
+            "hover_background_color": "#faf8f5",
             "text_color": "#212121",
             "hover_text_color": "#212121"
           }
@@ -137,8 +139,9 @@
             "link_label": "Getting here",
             "link_type": "anchor",
             "anchor_id": "boc-visit-getting-here",
-            "background_color": "#FFFFFF",
-            "hover_background_color": "#FAF8F5",
+            "url": "",
+            "background_color": "#ffffff",
+            "hover_background_color": "#faf8f5",
             "text_color": "#212121",
             "hover_text_color": "#212121"
           }
@@ -154,7 +157,7 @@
         "show_desktop": true,
         "show_tablet": true,
         "show_mobile": true,
-        "background_color": "#FFFFFF",
+        "background_color": "#ffffff",
         "columns_desktop": 3,
         "columns_tablet": 3,
         "padding_top_desktop": 120,
@@ -198,13 +201,21 @@
             "label": "Bookings",
             "value": "Recommended"
           }
+        },
+        "detail_ULcccH": {
+          "type": "detail",
+          "settings": {
+            "label": "Price/Person",
+            "value": "$50"
+          }
         }
       },
       "block_order": [
         "detail_classic",
         "detail_duration",
         "detail_walkins",
-        "detail_bookings"
+        "detail_bookings",
+        "detail_ULcccH"
       ],
       "settings": {
         "section_enabled": true,
@@ -218,10 +229,10 @@
         "tablet_image_height": 520,
         "mobile_image_height": 380,
         "mobile_stack_order": "image_first",
-        "copy_background_color": "#FAF8F5",
+        "copy_background_color": "#faf8f5",
         "copy_text_color": "#212121",
         "copy_body_color": "#575962",
-        "detail_border_color": "#E8E2D9",
+        "detail_border_color": "#e8e2d9",
         "eyebrow": "Cellar door",
         "heading": "Taste the estate.",
         "body": "Discover a guided selection of premium wines made from our two Yarra Valley vineyard sites. Our team will take you through the stories, seasons and winemaking behind each glass.",
@@ -262,13 +273,21 @@
             "label": "Reservations",
             "value": "Recommended"
           }
+        },
+        "detail_RCYgi8": {
+          "type": "detail",
+          "settings": {
+            "label": "Price/Person",
+            "value": "$50"
+          }
         }
       },
       "block_order": [
         "detail_dining",
         "detail_groups",
         "detail_dietary",
-        "detail_reservations"
+        "detail_reservations",
+        "detail_RCYgi8"
       ],
       "settings": {
         "section_enabled": true,
@@ -283,8 +302,8 @@
         "mobile_image_height": 380,
         "mobile_stack_order": "image_first",
         "copy_background_color": "#333333",
-        "copy_text_color": "#FFFFFF",
-        "copy_body_color": "#CCCCCC",
+        "copy_text_color": "#ffffff",
+        "copy_body_color": "#cccccc",
         "detail_border_color": "#444444",
         "eyebrow": "The Glasshouse",
         "heading": "Come for the view. Stay for the food.",
@@ -304,8 +323,12 @@
           "settings": {
             "eyebrow": "Seasonal",
             "heading": "Food menu",
+            "description": "",
             "link_label": "View food menu",
             "link_type": "url",
+            "page": "",
+            "url": "",
+            "file_url": "",
             "card_height": 520,
             "overlay_opacity": 100,
             "open_new_tab": false
@@ -316,8 +339,12 @@
           "settings": {
             "eyebrow": "Estate wines",
             "heading": "Beverage menu",
+            "description": "",
             "link_label": "View beverage menu",
             "link_type": "url",
+            "page": "",
+            "url": "",
+            "file_url": "",
             "card_height": 520,
             "overlay_opacity": 100,
             "open_new_tab": false
@@ -334,7 +361,7 @@
         "show_tablet": true,
         "show_mobile": true,
         "section_anchor_id": "boc-visit-menus",
-        "background_color": "#FFFFFF",
+        "background_color": "#ffffff",
         "columns_desktop": 2,
         "default_card_height": 520,
         "padding_top_desktop": 120,
@@ -371,12 +398,20 @@
             "label": "Large groups",
             "value": "Advance booking required"
           }
+        },
+        "detail_Phx6yn": {
+          "type": "detail",
+          "settings": {
+            "label": "Ticket Price",
+            "value": "$150"
+          }
         }
       },
       "block_order": [
         "detail_shared",
         "detail_pairing",
-        "detail_large"
+        "detail_large",
+        "detail_Phx6yn"
       ],
       "settings": {
         "section_enabled": true,
@@ -385,9 +420,9 @@
         "show_mobile": true,
         "section_anchor_id": "boc-visit-groups",
         "group_enquiry_url": "/pages/contact",
-        "background_color": "#B99E7E",
-        "text_color": "#FFFFFF",
-        "detail_border_color": "rgba(255,255,255,0.35)",
+        "background_color": "#b99e7e",
+        "text_color": "#ffffff",
+        "detail_border_color": "#ffffff59",
         "image_height": 560,
         "padding_top_desktop": 120,
         "padding_bottom_desktop": 120,
@@ -414,7 +449,9 @@
             "quote": "Beautiful vineyard views, warm service and a tasting that made the wines easy to understand.",
             "name": "Cellar door guest",
             "context": "Placeholder review",
-            "rating": 5
+            "rating": 5,
+            "date": "",
+            "source_url": ""
           }
         },
         "testimonial_2": {
@@ -423,7 +460,9 @@
             "quote": "The Glasshouse was relaxed, generous and exactly what we wanted from a Yarra Valley lunch.",
             "name": "Restaurant guest",
             "context": "Placeholder review",
-            "rating": 5
+            "rating": 5,
+            "date": "",
+            "source_url": ""
           }
         },
         "testimonial_3": {
@@ -432,7 +471,9 @@
             "quote": "A wonderful place to bring visitors—great wine, thoughtful food and an unforgettable outlook.",
             "name": "Local guest",
             "context": "Placeholder review",
-            "rating": 5
+            "rating": 5,
+            "date": "",
+            "source_url": ""
           }
         }
       },
@@ -447,9 +488,9 @@
         "show_tablet": true,
         "show_mobile": true,
         "enable_app_blocks": false,
-        "background_color": "#FAF8F5",
-        "card_background": "#FFFFFF",
-        "star_color": "#B99E7E",
+        "background_color": "#faf8f5",
+        "card_background": "#ffffff",
+        "star_color": "#b99e7e",
         "show_stars": true,
         "enable_carousel": false,
         "columns_desktop": 3,
@@ -473,6 +514,8 @@
             "heading": "Arriving by car",
             "body": "<p>Boat O'Craigo is approximately a three-minute drive from central Healesville at 458 Maroondah Highway. On-site parking is available.</p>",
             "button_enabled": false,
+            "button_label": "",
+            "button_url": "",
             "button_style": "primary",
             "button_new_tab": false
           }
@@ -483,6 +526,8 @@
             "heading": "Arriving by bus",
             "body": "<p>Public bus services operate from Lilydale Station toward Healesville. Confirm the current route and timetable before travelling.</p>",
             "button_enabled": false,
+            "button_label": "",
+            "button_url": "",
             "button_style": "primary",
             "button_new_tab": false
           }
@@ -491,42 +536,60 @@
           "type": "operator",
           "settings": {
             "name": "Yarra Valley X",
-            "open_new_tab": true
+            "url": "",
+            "open_new_tab": true,
+            "description": "",
+            "phone": ""
           }
         },
         "operator_bespoke": {
           "type": "operator",
           "settings": {
             "name": "Bespoke Wine Tours",
-            "open_new_tab": true
+            "url": "",
+            "open_new_tab": true,
+            "description": "",
+            "phone": ""
           }
         },
         "operator_big_grape": {
           "type": "operator",
           "settings": {
             "name": "Big Grape Winery Tours",
-            "open_new_tab": true
+            "url": "",
+            "open_new_tab": true,
+            "description": "",
+            "phone": ""
           }
         },
         "operator_evergreen": {
           "type": "operator",
           "settings": {
             "name": "Evergreen Winery Tours",
-            "open_new_tab": true
+            "url": "",
+            "open_new_tab": true,
+            "description": "",
+            "phone": ""
           }
         },
         "operator_winebus": {
           "type": "operator",
           "settings": {
             "name": "Winebus",
-            "open_new_tab": true
+            "url": "",
+            "open_new_tab": true,
+            "description": "",
+            "phone": ""
           }
         },
         "operator_red_carpet": {
           "type": "operator",
           "settings": {
             "name": "Red Carpet Wine Tours",
-            "open_new_tab": true
+            "url": "",
+            "open_new_tab": true,
+            "description": "",
+            "phone": ""
           }
         }
       },
@@ -546,7 +609,7 @@
         "show_tablet": true,
         "show_mobile": true,
         "section_anchor_id": "boc-visit-getting-here",
-        "background_color": "#FFFFFF",
+        "background_color": "#ffffff",
         "image_height": 620,
         "operator_columns": 3,
         "padding_top_desktop": 120,
@@ -565,7 +628,10 @@
         "operators_intro": "Prefer to leave the driving to someone else? A range of local operators visit wineries throughout the Yarra Valley.",
         "directions_button_enabled": true,
         "directions_button_label": "Get directions",
+        "directions_url": "",
         "directions_button_style": "primary",
+        "google_maps_url": "",
+        "apple_maps_url": "",
         "enable_map_app_block": false
       }
     },

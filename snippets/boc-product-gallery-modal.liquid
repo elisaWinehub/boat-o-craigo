@@ -1,0 +1,25 @@
+{%- doc -%}
+  Full-screen product image gallery modal.
+
+  @param {string} section_id - Parent section ID
+{%- enddoc -%}
+
+<div
+  class="boc-product-gallery-modal"
+  data-boc-product-gallery-modal
+  role="dialog"
+  aria-modal="true"
+  aria-hidden="true"
+  aria-label="Product image gallery"
+>
+  <button type="button" class="boc-product-gallery-modal__backdrop" aria-label="Close gallery"></button>
+  <div class="boc-product-gallery-modal__dialog">
+    <button type="button" class="boc-product-gallery-modal__close" data-boc-product-gallery-close aria-label="Close gallery">×</button>
+    <button type="button" class="boc-product-gallery-modal__nav boc-product-gallery-modal__nav--prev" data-boc-product-gallery-prev aria-label="Previous image">←</button>
+    <button type="button" class="boc-product-gallery-modal__nav boc-product-gallery-modal__nav--next" data-boc-product-gallery-next aria-label="Next image">→</button>
+    <div class="boc-product-gallery-modal__stage">
+      <img data-boc-product-gallery-modal-image src="" alt="" width="1600" height="1600">
+    </div>
+    <p class="boc-product-gallery-modal__counter" data-boc-product-gallery-counter aria-live="polite"></p>
+  </div>
+</div>

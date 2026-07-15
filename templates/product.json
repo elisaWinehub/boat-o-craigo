@@ -160,7 +160,6 @@
     "related": {
       "type": "boc-product-related",
       "settings": {
-        "recommendation_type": "related",
         "max_products": 4,
         "eyebrow": "You may also enjoy",
         "heading": "Related wines.",

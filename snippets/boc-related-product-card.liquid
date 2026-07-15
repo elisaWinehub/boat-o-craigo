@@ -6,7 +6,20 @@
 {%- enddoc -%}
 
 {%- liquid
-  assign variant = product.selected_or_first_available_variant
+  if product.has_only_default_variant
+    assign variant = product.variants.first
+  else
+    assign variant = product.selected_or_first_available_variant
+  endif
+
+  capture boc_can_add_result
+    render 'boc-variant-can-add', variant: variant
+  endcapture
+  assign variant_can_add = false
+  if boc_can_add_result == 'true'
+    assign variant_can_add = true
+  endif
+
   assign vintage = product.metafields.wine.vintage
   assign wine_type = product.type
   assign meta_parts = ''
@@ -41,7 +54,7 @@
     {%- if meta_parts != blank -%}<p>{{ meta_parts }}</p>{%- endif -%}
     <strong>{% render 'format-price', price: variant.price %}</strong>
 
-    {%- if product.has_only_default_variant and variant.available -%}
+    {%- if product.has_only_default_variant and variant_can_add -%}
       <product-form-component
         data-section-id="{{ section.id }}"
         data-product-id="{{ product.id }}"
@@ -55,7 +68,7 @@
           <button class="product-add" type="submit">Add to cart</button>
         {%- endform -%}
       </product-form-component>
-    {%- elsif variant.available -%}
+    {%- elsif variant_can_add -%}
       <a href="{{ product.url }}" class="product-add">Choose options</a>
     {%- else -%}
       <button class="product-add" type="button" disabled>Sold out</button>

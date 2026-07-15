@@ -52,8 +52,21 @@
     else
       assign product_url = product.url
     endif
-    assign variant = product.selected_or_first_available_variant
-    assign product_available = variant.available
+
+    if product.has_only_default_variant
+      assign variant = product.variants.first
+    else
+      assign variant = product.selected_or_first_available_variant
+    endif
+
+    capture boc_can_add_result
+      render 'boc-variant-can-add', variant: variant
+    endcapture
+    assign product_available = false
+    if boc_can_add_result == 'true'
+      assign product_available = true
+    endif
+
     assign variant_id = variant.id
     assign variants_count = product.variants_count
     assign requires_variant_choice = false

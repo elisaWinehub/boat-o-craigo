@@ -18,6 +18,12 @@
     elsif product.available == false
       assign badge_label = 'Sold out'
       assign badge_style = 'dark'
+      for variant in product.variants
+        if variant.available or variant.inventory_policy == 'continue'
+          assign badge_label = blank
+          break
+        endif
+      endfor
     elsif product.compare_at_price > product.price and product.compare_at_price != blank
       assign badge_label = 'Sale'
       assign badge_style = 'dark'

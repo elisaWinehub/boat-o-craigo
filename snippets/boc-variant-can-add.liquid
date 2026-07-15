@@ -1,0 +1,40 @@
+{%- doc -%}
+  Returns whether a variant can be added to cart.
+
+  Captures output as "true" or "false" in the parent:
+  {% capture can_add_result %}{% render 'boc-variant-can-add', variant: variant %}{% endcapture %}
+
+  @param {object} variant - Product variant
+{%- enddoc -%}
+
+{%- liquid
+  assign can_add = false
+
+  if variant != blank
+    assign inventory_managed = false
+    if variant.inventory_management == 'shopify'
+      assign inventory_managed = true
+    endif
+
+    assign inventory_quantity = variant.inventory_quantity
+    assign inventory_policy = variant.inventory_policy
+    assign quantity_rule_soldout = false
+
+    if inventory_managed and inventory_policy == 'deny' and variant.quantity_rule.min > inventory_quantity
+      assign quantity_rule_soldout = true
+    endif
+
+    if variant.available
+      assign can_add = true
+    elsif inventory_policy == 'continue'
+      assign can_add = true
+    endif
+
+    if quantity_rule_soldout
+      assign can_add = false
+    elsif inventory_managed and inventory_quantity <= 0 and inventory_policy == 'deny'
+      assign can_add = false
+    endif
+  endif
+-%}
+{%- if can_add -%}true{%- else -%}false{%- endif -%}

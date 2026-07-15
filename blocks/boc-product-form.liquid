@@ -1,9 +1,22 @@
 {%- liquid
   assign product = closest.product | default: product
-  assign variant = product.selected_or_first_available_variant
+
+  if product.has_only_default_variant
+    assign variant = product.variants.first
+  else
+    assign variant = product.selected_or_first_available_variant
+  endif
+
+  capture boc_can_add_result
+    render 'boc-variant-can-add', variant: variant
+  endcapture
+  assign can_add = false
+  if boc_can_add_result == 'true'
+    assign can_add = true
+  endif
+
   assign min_qty = variant.quantity_rule.min | default: 1
   assign form_id = 'boc-product-form-' | append: section.id
-  assign can_add = variant.available
   assign button_label = block.settings.button_label | default: 'Add to cart'
   if can_add == false
     assign button_label = 'Sold out'

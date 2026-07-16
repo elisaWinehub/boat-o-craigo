@@ -15,6 +15,7 @@
         "slide_1": {
           "type": "slide",
           "settings": {
+            "image": "shopify://shop_images/Banner_-_Join_our_Wine_Club.png",
             "overlay_opacity": 100,
             "eyebrow": "Yarra Valley · Victoria",
             "heading": "Wines shaped by place.",
@@ -30,6 +31,7 @@
         "slide_2": {
           "type": "slide",
           "settings": {
+            "image": "shopify://shop_images/Banner2.png",
             "overlay_opacity": 100,
             "eyebrow": "Boat O'Craigo Wine Club",
             "heading": "Your cellar, curated by ours.",
@@ -45,6 +47,7 @@
         "slide_3": {
           "type": "slide",
           "settings": {
+            "image": "shopify://shop_images/Website_Banner_no_text_-_FRI_WINTER.png",
             "overlay_opacity": 100,
             "eyebrow": "Visit Healesville",
             "heading": "Come for the wine. Stay for the view.",
@@ -60,6 +63,7 @@
         "slide_4": {
           "type": "slide",
           "settings": {
+            "image": "shopify://shop_images/N_Breen_2025-20.jpg",
             "overlay_opacity": 100,
             "eyebrow": "Glasshouse Restaurant",
             "heading": "Seasonal dining among the vines.",
@@ -75,6 +79,7 @@
         "slide_5": {
           "type": "slide",
           "settings": {
+            "image": "shopify://shop_images/Banner_-_Sunday_Sessions.png",
             "overlay_opacity": 100,
             "eyebrow": "Weddings & Private Events",
             "heading": "Celebrate among the vines.",
@@ -289,6 +294,7 @@
         "feature_1": {
           "type": "feature",
           "settings": {
+            "image": "shopify://shop_images/BoatOCraigo_OHO_4252_eit.jpg",
             "eyebrow": "Cellar Door",
             "heading": "Book a tasting",
             "body": "Explore our current releases and vineyard stories with a guided tasting.",
@@ -299,6 +305,7 @@
         "feature_2": {
           "type": "feature",
           "settings": {
+            "image": "shopify://shop_images/N_Breen_BoatO_2026-16_1.jpg",
             "eyebrow": "Glasshouse Restaurant",
             "heading": "Seasonal dining",
             "body": "Relaxed food, estate wines and sweeping views across the vineyard.",
@@ -375,6 +382,7 @@
         "eyebrow": "Boat O'Craigo Wine Club",
         "heading": "Your cellar, curated by ours.",
         "body": "Flexible deliveries, member pricing and first access to limited releases throughout the year.",
+        "image": "shopify://shop_images/N_Breen_2025-65.jpg",
         "button_label": "Join the club",
         "button_link": "/pages/wine-club"
       }
@@ -393,6 +401,7 @@
         "eyebrow": "Weddings & Private Events",
         "heading": "Celebrate among the vines.",
         "body": "Host your day in a setting that feels relaxed, intimate and unmistakably Yarra Valley.",
+        "image": "shopify://shop_images/Banner_-_Weddings.png",
         "button_1_label": "Book an inspection",
         "button_1_link": "",
         "button_1_style": "light",

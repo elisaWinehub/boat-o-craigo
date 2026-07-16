@@ -2,7 +2,7 @@
   'use strict';
 
   var SQUEEZE_QUERY = window.matchMedia('(min-width: 990px)');
-  var ANCHOR_NAV_SELECTOR = '.boc-visit-nav, .boc-about-nav, .boc-whats-on-nav';
+  var ANCHOR_NAV_SELECTOR = '.boc-visit-nav, .boc-about-nav, .boc-whats-on-nav, .boc-contact-nav, .boc-booking-nav';
   var SHOW_AFTER_PX = 480;
 
   function getScrollContainer() {
@@ -68,7 +68,9 @@
     if (
       nav.classList.contains('boc-visit-nav--disabled') ||
       nav.classList.contains('boc-about-nav--disabled') ||
-      nav.classList.contains('boc-whats-on-nav--disabled')
+      nav.classList.contains('boc-whats-on-nav--disabled') ||
+      nav.classList.contains('boc-contact-nav--disabled') ||
+      nav.classList.contains('boc-booking-nav--disabled')
     ) {
       return;
     }

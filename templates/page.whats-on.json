@@ -423,6 +423,7 @@
             "eyebrow": "Journal",
             "heading": "Stories from the vineyard",
             "link_label": "Read the journal",
+            "url": "/blogs/news",
             "card_height": 420
           }
         }

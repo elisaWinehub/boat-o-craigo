@@ -1,0 +1,32 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "boc-blog-listing",
+      "settings": {
+        "hero_eyebrow": "From the journal",
+        "hero_heading": "News.",
+        "hero_description": "Stories from the vineyard, cellar door and Yarra Valley — winemaking notes, awards, sustainability and life at the estate.",
+        "hero_height": 540,
+        "hero_overlay_opacity": 60,
+        "featured_enabled": true,
+        "grid_eyebrow": "Latest stories",
+        "grid_heading": "From the estate.",
+        "articles_per_page": 9,
+        "newsletter_enabled": true,
+        "newsletter_eyebrow": "Stay in the loop",
+        "newsletter_heading": "Never miss a story.",
+        "newsletter_description": "New releases, vineyard news and seasonal updates — straight to your inbox."
+      }
+    }
+  },
+  "order": ["main"]
+}

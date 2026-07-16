@@ -140,7 +140,7 @@
             {%- if rel.excerpt != blank -%}
               <p>{{ rel.excerpt | strip_html | truncate: 120 }}</p>
             {%- endif -%}
-            <a class="boc-ea__text-link" href="{{ rel.url }}">View event</a>
+            <a class="boc-ea__text-link" href="{{ rel.url }}">{{ section.settings.related_card_link_label | default: 'View event' }}</a>
           </div>
         </article>
       {%- endfor -%}
@@ -218,6 +218,12 @@
       "id": "related_link_label",
       "label": "View all link label",
       "default": "View all events"
+    },
+    {
+      "type": "text",
+      "id": "related_card_link_label",
+      "label": "Related card link label",
+      "default": "View event"
     }
   ],
   "presets": [{ "name": "BOC — Event article" }]

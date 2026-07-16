@@ -1,7 +1,7 @@
 <script src="{{ 'boc-home.js' | asset_url }}" defer></script>
 
 {%- liquid
-  assign section_classes = 'boc-home-section boc-home-hero boc-home-section--full'
+  assign section_classes = 'boc-home-section boc-home-hero boc-home-section--full boc-home-hero--align-' | append: section.settings.content_alignment
   unless section.settings.section_enabled
     assign section_classes = section_classes | append: ' boc-home-section--disabled'
   endunless
@@ -219,6 +219,21 @@
       "step": 8,
       "unit": "px",
       "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Content layout"
+    },
+    {
+      "type": "select",
+      "id": "content_alignment",
+      "label": "Content alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left"
     },
     {
       "type": "header",

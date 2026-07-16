@@ -1,5 +1,5 @@
 {%- liquid
-  assign section_classes = 'boc-home-section boc-home-story boc-home-section--' | append: section.settings.container_width
+  assign section_classes = 'boc-home-section boc-home-story boc-home-section--' | append: section.settings.container_width | append: ' boc-home-section--align-' | append: section.settings.content_alignment
   unless section.settings.section_enabled
     assign section_classes = section_classes | append: ' boc-home-section--disabled'
   endunless
@@ -102,6 +102,17 @@
       "default": "container"
     },
     { "type": "color", "id": "background_color", "label": "Background color", "default": "#212121" },
+    {
+      "type": "select",
+      "id": "content_alignment",
+      "label": "Content alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left"
+    },
     { "type": "range", "id": "padding_top", "label": "Padding top", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 120 },
     { "type": "range", "id": "padding_bottom", "label": "Padding bottom", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 120 },
     { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Our story" },

@@ -1,0 +1,46 @@
+{%- doc -%}
+  Outputs CSS custom properties for BOC page hero sections.
+
+  @param {object} section - Section object
+  @param {string} prefix - Variable prefix (ab, v, wo, ct, bk, wc)
+{%- enddoc -%}
+
+{%- liquid
+  assign preset = section.settings.hero_height_preset | default: 'standard'
+  assign h_d = section.settings.height_desktop | default: 720
+  assign h_t = section.settings.height_tablet | default: 620
+  assign h_m = section.settings.height_mobile | default: 560
+  assign unit_d = 'px'
+  assign unit_t = 'px'
+  assign unit_m = 'px'
+
+  case preset
+    when 'compact'
+      assign h_d = 480
+      assign h_t = 420
+      assign h_m = 380
+    when 'tall'
+      assign h_d = 840
+      assign h_t = 720
+      assign h_m = 640
+    when 'viewport'
+      assign h_d = 100
+      assign h_t = 90
+      assign h_m = 85
+      assign unit_d = 'vh'
+      assign unit_t = 'vh'
+      assign unit_m = 'vh'
+  endcase
+
+  assign align_d = section.settings.text_alignment_desktop | default: 'left'
+  assign align_m = section.settings.text_alignment_mobile | default: 'left'
+  assign heading_mt = section.settings.heading_margin_top | default: 0
+  assign heading_mb = section.settings.heading_margin_bottom | default: 0
+-%}
+--boc-{{ prefix }}-hero-min-h: {{ h_d }}{{ unit_d }};
+--boc-{{ prefix }}-hero-min-h-t: {{ h_t }}{{ unit_t }};
+--boc-{{ prefix }}-hero-min-h-m: {{ h_m }}{{ unit_m }};
+--boc-{{ prefix }}-align-d: {{ align_d }};
+--boc-{{ prefix }}-align-m: {{ align_m }};
+--boc-{{ prefix }}-heading-mt: {{ heading_mt }}px;
+--boc-{{ prefix }}-heading-mb: {{ heading_mb }}px;

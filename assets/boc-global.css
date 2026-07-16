@@ -159,6 +159,29 @@ p:last-child {
   color: var(--boc-ink);
 }
 
+/* Add to cart hover — site-wide */
+
+.boc-product-card__add,
+.product-add,
+.add-to-cart-button,
+button[name='add'].product-add {
+  transition: background var(--boc-transition), border-color var(--boc-transition), color var(--boc-transition), transform var(--boc-transition), box-shadow var(--boc-transition);
+}
+
+.boc-product-card__add:hover:not(:disabled):not([disabled]),
+.product-add:hover:not(:disabled):not([disabled]),
+.add-to-cart-button:hover:not(:disabled):not([disabled]),
+button[name='add'].product-add:hover:not(:disabled):not([disabled]) {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(33, 33, 33, 0.18);
+}
+
+.boc-product-card__add.boc-btn--primary:hover:not(:disabled):not([disabled]),
+.product-add:hover:not(:disabled):not([disabled]) {
+  background: #111;
+  border-color: #111;
+}
+
 /* Icon base */
 
 .boc-icon {
@@ -255,13 +278,17 @@ body.boc-scroll-lock {
 
 .boc-visit-nav__link,
 .boc-about-nav__link,
-.boc-whats-on-nav__link {
+.boc-whats-on-nav__link,
+.boc-contact-nav__link,
+.boc-booking-nav__link {
   position: relative;
 }
 
 .boc-visit-nav__link::after,
 .boc-about-nav__link::after,
-.boc-whats-on-nav__link::after {
+.boc-whats-on-nav__link::after,
+.boc-contact-nav__link::after,
+.boc-booking-nav__link::after {
   content: '';
   position: absolute;
   left: 0;
@@ -276,16 +303,68 @@ body.boc-scroll-lock {
 .boc-visit-nav__link.is-active::after,
 .boc-about-nav__link.is-active::after,
 .boc-whats-on-nav__link.is-active::after,
+.boc-contact-nav__link.is-active::after,
+.boc-booking-nav__link.is-active::after,
 .boc-visit-nav__link:hover::after,
 .boc-about-nav__link:hover::after,
-.boc-whats-on-nav__link:hover::after {
+.boc-whats-on-nav__link:hover::after,
+.boc-contact-nav__link:hover::after,
+.boc-booking-nav__link:hover::after {
   transform: scaleX(1);
 }
 
 .boc-visit-nav.is-stuck,
 .boc-about-nav.is-stuck,
-.boc-whats-on-nav.is-stuck {
+.boc-whats-on-nav.is-stuck,
+.boc-contact-nav.is-stuck,
+.boc-booking-nav.is-stuck {
   box-shadow: 0 8px 24px rgba(33, 33, 33, 0.08);
+}
+
+/* Page hero alignment + heading spacing */
+
+[class*='-hero__content'] .boc-about-section__heading,
+[class*='-hero__content'] .boc-visit-section__heading,
+[class*='-hero__content'] .boc-whats-on-section__heading,
+[class*='-hero__content'] .boc-contact-section__heading,
+[class*='-hero__content'] .boc-booking-section__heading,
+[class*='-hero__content'] .boc-wine-club-section__heading {
+  margin-top: var(--boc-hero-heading-mt, 0);
+  margin-bottom: var(--boc-hero-heading-mb, 0);
+}
+
+.boc-page-hero-align-center {
+  text-align: center;
+}
+
+.boc-page-hero-align-center p,
+.boc-page-hero-align-center [class*='hero__actions'] {
+  margin-inline: auto;
+}
+
+.boc-page-hero-align-right {
+  text-align: right;
+}
+
+.boc-page-hero-align-right p,
+.boc-page-hero-align-right [class*='hero__actions'] {
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.boc-page-hero-align-center [class*='hero__actions'],
+.boc-page-hero-align-right [class*='hero__actions'] {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.boc-page-hero-align-center [class*='hero__actions'] {
+  justify-content: center;
+}
+
+.boc-page-hero-align-right [class*='hero__actions'] {
+  justify-content: flex-end;
 }
 
 /* Responsive section header */

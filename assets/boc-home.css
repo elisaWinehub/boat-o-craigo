@@ -150,8 +150,67 @@
   padding-bottom: 82px;
 }
 
+.boc-home-hero--align-left .boc-home-hero__content {
+  justify-content: flex-start;
+}
+
+.boc-home-hero--align-center .boc-home-hero__content {
+  justify-content: center;
+}
+
+.boc-home-hero--align-right .boc-home-hero__content {
+  justify-content: flex-end;
+}
+
 .boc-home-hero__copy {
   max-width: 790px;
+}
+
+.boc-home-hero--align-center .boc-home-hero__copy {
+  text-align: center;
+  margin-inline: auto;
+}
+
+.boc-home-hero--align-right .boc-home-hero__copy {
+  text-align: right;
+  margin-left: auto;
+}
+
+.boc-home-hero--align-center .boc-home-hero__body,
+.boc-home-hero--align-right .boc-home-hero__body {
+  margin-inline: auto;
+}
+
+.boc-home-hero--align-center .boc-home-hero__actions {
+  justify-content: center;
+}
+
+.boc-home-hero--align-right .boc-home-hero__actions {
+  justify-content: flex-end;
+}
+
+.boc-home-section--align-center .boc-home-section__head {
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.boc-home-section--align-center .boc-home-section__head-text,
+.boc-home-section--align-center .boc-home-section__head-aside {
+  max-width: 720px;
+}
+
+.boc-home-section--align-right .boc-home-section__head {
+  flex-direction: row-reverse;
+  text-align: right;
+}
+
+.boc-home-section--align-right .boc-home-section__head-text {
+  margin-left: auto;
+}
+
+.boc-home-section--align-right .boc-home-section__head-aside {
+  margin-left: auto;
 }
 
 .boc-home-hero__heading {
@@ -502,6 +561,11 @@
   object-fit: cover;
   position: absolute;
   inset: 0;
+  transition: transform 0.55s ease;
+}
+
+.boc-home-experiences__card:hover img {
+  transform: scale(1.05);
 }
 
 .boc-home-experiences__card::after {
@@ -613,6 +677,16 @@
   position: relative;
   z-index: 2;
   max-width: 690px;
+}
+
+.boc-home-section--align-center.boc-home-weddings .boc-home-weddings__copy {
+  margin-inline: auto;
+  text-align: center;
+}
+
+.boc-home-section--align-right.boc-home-weddings .boc-home-weddings__copy {
+  margin-left: auto;
+  text-align: right;
 }
 
 .boc-home-weddings__copy p {
@@ -965,6 +1039,14 @@
   }
 
   .boc-home-events .boc-home-card:hover .boc-home-card__media img {
+    transform: none;
+  }
+
+  .boc-home-experiences__card img {
+    transition: none;
+  }
+
+  .boc-home-experiences__card:hover img {
     transform: none;
   }
 }

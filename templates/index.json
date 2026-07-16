@@ -431,6 +431,28 @@
         "article_limit": 3
       }
     },
+    "boc_home_journal": {
+      "type": "boc-home-journal",
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "container_width": "container",
+        "background_color": "#ffffff",
+        "content_alignment": "left",
+        "padding_top": 120,
+        "padding_bottom": 120,
+        "eyebrow": "From the journal",
+        "heading": "Stories from the valley.",
+        "body": "",
+        "link_label": "Read all stories",
+        "link_url": "/blogs/news",
+        "blog": "news",
+        "article_limit": 3,
+        "card_link_label": "Read story"
+      }
+    },
     "boc_home_newsletter": {
       "type": "boc-home-newsletter",
       "settings": {
@@ -460,6 +482,7 @@
     "boc_home_wine_club",
     "boc_home_weddings",
     "boc_home_events",
+    "boc_home_journal",
     "boc_home_newsletter"
   ]
 }

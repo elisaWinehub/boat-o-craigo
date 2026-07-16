@@ -10,7 +10,7 @@
 
   assign tags_display = ''
   for tag in a.tags
-    unless tag == 'events'
+    unless tag == 'events' or tag == 'news'
       if tags_display != ''
         assign tags_display = tags_display | append: ' · '
       endif
@@ -18,8 +18,13 @@
     endunless
   endfor
 
-  assign back_url   = blog.url | default: '/blogs/events'
-  assign back_label = section.settings.back_label | default: "What's On"
+  assign back_url = blog.url | default: '/blogs/events'
+  if blog.handle == 'news'
+    assign back_url = '/blogs/news'
+    assign back_label = section.settings.back_label | default: 'All News'
+  else
+    assign back_label = section.settings.back_label | default: "What's On"
+  endif
 -%}
 
 <article
@@ -111,7 +116,7 @@
         {%- assign r_month = rel.published_at | date: '%b' | upcase -%}
         {%- assign r_tags  = '' -%}
         {%- for t in rel.tags -%}
-          {%- unless t == 'events' -%}
+          {%- unless t == 'events' or t == 'news' -%}
             {%- if r_tags != '' -%}{%- assign r_tags = r_tags | append: ' · ' -%}{%- endif -%}
             {%- assign r_tags = r_tags | append: t -%}
           {%- endunless -%}

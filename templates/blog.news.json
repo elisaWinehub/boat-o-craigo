@@ -21,6 +21,8 @@
         "grid_eyebrow": "Latest stories",
         "grid_heading": "From the estate.",
         "articles_per_page": 9,
+        "featured_link_label": "Read story",
+        "card_link_label": "Read story",
         "newsletter_enabled": true,
         "newsletter_eyebrow": "Stay in the loop",
         "newsletter_heading": "Never miss a story.",

@@ -280,6 +280,10 @@ function buildArticleInput(article, imageUrl) {
     isPublished: true,
   };
 
+  if (article.published_at) {
+    input.publishDate = article.published_at;
+  }
+
   if (imageUrl) {
     input.image = {
       altText: article.title,

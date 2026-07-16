@@ -12,7 +12,7 @@
     "main": {
       "type": "boc-event-article",
       "settings": {
-        "back_label": "News",
+        "back_label": "All News",
         "show_related": true,
         "related_limit": 3,
         "related_eyebrow": "From the journal",

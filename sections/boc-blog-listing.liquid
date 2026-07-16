@@ -100,7 +100,7 @@
               {%- if featured.excerpt != blank -%}
                 <p>{{ featured.excerpt | strip_html | truncate: 160 }}</p>
               {%- endif -%}
-              <span class="boc-bl__text-link">View event</span>
+              <span class="boc-bl__text-link">{{ section.settings.featured_link_label | default: 'View event' }}</span>
               <div class="boc-bl__feat-meta">
                 <time datetime="{{ featured.published_at | date: '%Y-%m-%d' }}">
                   {{ feat_day }} {{ feat_month | capitalize }} {{ feat_year }}
@@ -183,7 +183,7 @@
                   {%- if article.excerpt != blank -%}
                     <p>{{ article.excerpt | strip_html | truncate: 120 }}</p>
                   {%- endif -%}
-                  <span class="boc-bl__text-link">View event</span>
+                  <span class="boc-bl__text-link">{{ section.settings.card_link_label | default: 'View event' }}</span>
                 </div>
               </a>
             {%- endfor -%}
@@ -322,6 +322,18 @@
       "max": 24,
       "step": 3,
       "default": 9
+    },
+    {
+      "type": "text",
+      "id": "featured_link_label",
+      "label": "Featured link label",
+      "default": "View event"
+    },
+    {
+      "type": "text",
+      "id": "card_link_label",
+      "label": "Card link label",
+      "default": "View event"
     },
     {
       "type": "header",

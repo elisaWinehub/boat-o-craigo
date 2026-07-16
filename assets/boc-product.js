@@ -139,13 +139,73 @@
     var closeBtn = modal.querySelector('[data-boc-product-gallery-close]');
     var prevBtn = modal.querySelector('[data-boc-product-gallery-prev]');
     var nextBtn = modal.querySelector('[data-boc-product-gallery-next]');
+    var stageEl = modal.querySelector('[data-boc-product-gallery-stage]');
     var imgEl = modal.querySelector('[data-boc-product-gallery-modal-image]');
     var counterEl = modal.querySelector('[data-boc-product-gallery-counter]');
     var currentIndex = 0;
     var lastTrigger = null;
+    var activeImageRequest = 0;
+    var imageCache = {};
 
     function getItems() {
       return getGalleryItems(section);
+    }
+
+    function preloadImage(url) {
+      if (!url) return null;
+      if (imageCache[url]) return imageCache[url];
+
+      var loader = new Image();
+      loader.decoding = 'async';
+      loader.src = url;
+      imageCache[url] = loader;
+      return loader;
+    }
+
+    function applyModalImage(item, src, requestId) {
+      if (!imgEl || requestId !== activeImageRequest) return;
+
+      imgEl.alt = item.alt;
+      imgEl.src = src;
+      imgEl.removeAttribute('srcset');
+      imgEl.removeAttribute('sizes');
+
+      requestAnimationFrame(function () {
+        if (requestId !== activeImageRequest || !imgEl) return;
+        imgEl.classList.remove('is-fading');
+        if (stageEl) stageEl.classList.remove('is-loading');
+      });
+    }
+
+    function loadModalImage(url, item, requestId, onReady) {
+      var loader = preloadImage(url);
+      if (!loader) {
+        onReady(url);
+        return;
+      }
+
+      function done() {
+        if (requestId !== activeImageRequest) return;
+        if (loader.decode) {
+          loader.decode().then(function () { onReady(url); }).catch(function () { onReady(url); });
+          return;
+        }
+        onReady(url);
+      }
+
+      if (loader.complete && loader.naturalWidth > 0) {
+        done();
+        return;
+      }
+
+      function onLoad() {
+        loader.removeEventListener('load', onLoad);
+        loader.removeEventListener('error', onLoad);
+        done();
+      }
+
+      loader.addEventListener('load', onLoad);
+      loader.addEventListener('error', onLoad);
     }
 
     function renderModal(index) {
@@ -154,16 +214,58 @@
 
       currentIndex = ((index % items.length) + items.length) % items.length;
       var item = items[currentIndex];
-      imgEl.src = item.url || item.previewUrl;
-      imgEl.alt = item.alt;
-      imgEl.removeAttribute('srcset');
-      imgEl.removeAttribute('sizes');
+      var targetUrl = item.url || item.previewUrl;
+      var previewUrl = item.previewUrl || targetUrl;
+      var requestId = ++activeImageRequest;
+      var currentSrc = imgEl.currentSrc || imgEl.src || '';
 
       if (counterEl) {
         counterEl.textContent = (currentIndex + 1) + ' / ' + items.length;
       }
       if (prevBtn) prevBtn.disabled = items.length <= 1;
       if (nextBtn) nextBtn.disabled = items.length <= 1;
+
+      if (!targetUrl) return;
+
+      if (currentSrc && (currentSrc === targetUrl || currentSrc === previewUrl)) {
+        imgEl.alt = item.alt;
+        imgEl.classList.remove('is-fading');
+        if (stageEl) stageEl.classList.remove('is-loading');
+        return;
+      }
+
+      if (stageEl) stageEl.classList.add('is-loading');
+      imgEl.classList.add('is-fading');
+
+      function showFullImage() {
+        loadModalImage(targetUrl, item, requestId, function (src) {
+          applyModalImage(item, src, requestId);
+        });
+      }
+
+      if (previewUrl !== targetUrl) {
+        loadModalImage(previewUrl, item, requestId, function (src) {
+          if (requestId !== activeImageRequest) return;
+
+          imgEl.alt = item.alt;
+          imgEl.src = src;
+          imgEl.removeAttribute('srcset');
+          imgEl.removeAttribute('sizes');
+          imgEl.classList.remove('is-fading');
+          if (stageEl) stageEl.classList.remove('is-loading');
+
+          loadModalImage(targetUrl, item, requestId, function (hdSrc) {
+            if (requestId !== activeImageRequest || hdSrc === src) return;
+            imgEl.classList.add('is-fading');
+            requestAnimationFrame(function () {
+              applyModalImage(item, hdSrc, requestId);
+            });
+          });
+        });
+        return;
+      }
+
+      showFullImage();
     }
 
     function openModal(index, trigger) {
@@ -180,6 +282,9 @@
     modal._bocOpenGallery = openModal;
 
     function closeModal() {
+      activeImageRequest += 1;
+      if (imgEl) imgEl.classList.remove('is-fading');
+      if (stageEl) stageEl.classList.remove('is-loading');
       modal.classList.remove('is-open');
       modal.setAttribute('aria-hidden', 'true');
       document.body.classList.remove('boc-product-gallery-modal-open');

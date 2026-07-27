@@ -182,6 +182,33 @@ button[name='add'].product-add:hover:not(:disabled):not([disabled]) {
   border-color: #111;
 }
 
+/* Add to cart loading spinner (homepage / collection product cards) */
+
+.boc-product-card__add.is-loading {
+  position: relative;
+  color: transparent;
+  pointer-events: none;
+}
+
+.boc-product-card__add.is-loading::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgb(255 255 255 / 0.35);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: boc-add-to-cart-spin 0.65s linear infinite;
+}
+
+@keyframes boc-add-to-cart-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 /* Icon base */
 
 .boc-icon {

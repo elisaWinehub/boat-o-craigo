@@ -77,18 +77,16 @@ class CartDrawerComponent extends Component {
       event.target instanceof Element ? event.target.closest('dialog:modal') : null
     );
 
-    if (shouldAutoOpen && !sourceModal && !this.#isCartEmpty()) {
-      this.#themeDrawer?.open();
-    }
-
     event.promise
-      ?.then(({ detail }) => {
+      ?.then(async ({ detail }) => {
         const settle = () => requestAnimationFrame(() => this.#updateStickyState());
 
         if (!shouldAutoOpen || detail?.didError) {
           settle();
           return;
         }
+
+        await this.#waitForDrawerContentUpdate(detail);
 
         const openAndSettle = () => {
           if (!this.#themeDrawer?.isOpen) this.#themeDrawer?.open();
@@ -108,6 +106,79 @@ class CartDrawerComponent extends Component {
 
   #isCartEmpty() {
     return Boolean(this.querySelector('.cart-drawer--empty'));
+  }
+
+  /**
+   * Waits until cart-items-component has finished morphing drawer markup so the
+   * drawer opens with the added line item already visible.
+   *
+   * @param {Record<string, unknown> | undefined} detail
+   */
+  async #waitForDrawerContentUpdate(detail) {
+    const cartItems = this.querySelector('cart-items-component');
+    if (!cartItems) {
+      await new Promise((resolve) => requestAnimationFrame(resolve));
+      return;
+    }
+
+    const sectionId = cartItems instanceof HTMLElement ? cartItems.dataset.sectionId : undefined;
+    const hasSectionHtml = Boolean(sectionId && detail?.sections?.[sectionId]);
+
+    if (!hasSectionHtml) {
+      await new Promise((resolve) => setTimeout(resolve, 100));
+      return;
+    }
+
+    const wasEmpty = this.querySelector('[data-cart-drawer-empty]') !== null;
+
+    if (wasEmpty) {
+      await this.#waitUntil(
+        () => !this.querySelector('[data-cart-drawer-empty]') && Boolean(this.querySelector('.cart-items__table-row'))
+      );
+    } else {
+      await this.#waitForSubtreeSettle(cartItems);
+    }
+
+    await new Promise((resolve) => requestAnimationFrame(resolve));
+  }
+
+  /**
+   * @param {() => boolean} predicate
+   * @param {number} [timeoutMs]
+   */
+  async #waitUntil(predicate, timeoutMs = 5000) {
+    const deadline = Date.now() + timeoutMs;
+    while (Date.now() < deadline) {
+      if (predicate()) return;
+      await new Promise((resolve) => requestAnimationFrame(resolve));
+    }
+  }
+
+  /**
+   * @param {Element} root
+   * @param {number} [timeoutMs]
+   */
+  #waitForSubtreeSettle(root, timeoutMs = 5000) {
+    return new Promise((resolve) => {
+      /** @type {number | undefined} */
+      let settleTimer;
+      const finish = () => {
+        observer.disconnect();
+        clearTimeout(fallbackTimer);
+        if (settleTimer) clearTimeout(settleTimer);
+        resolve();
+      };
+
+      const observer = new MutationObserver(() => {
+        if (settleTimer) clearTimeout(settleTimer);
+        settleTimer = window.setTimeout(finish, 60);
+      });
+
+      observer.observe(root, { childList: true, subtree: true, attributes: true });
+
+      const fallbackTimer = window.setTimeout(finish, timeoutMs);
+      settleTimer = window.setTimeout(finish, 120);
+    });
   }
 
   #updateStickyState() {

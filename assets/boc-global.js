@@ -97,6 +97,30 @@
     if (document.documentElement.dataset.bocAddToCartInit === 'true') return;
     document.documentElement.dataset.bocAddToCartInit = 'true';
 
+    var ADD_TO_CART_BUTTON_SELECTOR = '.boc-product-card__add[type="submit"], .product-add[type="submit"]';
+    var LOADING_BUTTON_SELECTOR = '.boc-product-card__add.is-loading, .product-add.is-loading';
+
+    function isBocAjaxAddToCartForm(form) {
+      if (!form || form.dataset.type !== 'add-to-cart-form') return false;
+      if (form.classList.contains('boc-product-card__form')) return true;
+      if (form.hasAttribute('data-boc-product-form')) return true;
+      if (form.closest('.product-purchase-row, .related-card, .boc-product-card')) return true;
+      return false;
+    }
+
+    function isBocAjaxAddToCartSource(element) {
+      if (!(element instanceof Element)) return false;
+
+      var productForm = element.matches('product-form-component')
+        ? element
+        : element.closest('product-form-component');
+
+      if (!productForm || productForm.closest('.quick-add-modal, quick-add-dialog')) return false;
+
+      var form = productForm.querySelector('form[data-type="add-to-cart-form"]');
+      return Boolean(form && isBocAjaxAddToCartForm(form));
+    }
+
     /** @type {HTMLButtonElement | null} */
     var activeButton = null;
     var cartEventSeen = false;
@@ -121,7 +145,7 @@
         activeButton = null;
       }
 
-      document.querySelectorAll('.boc-product-card__add.is-loading').forEach(function (btn) {
+      document.querySelectorAll(LOADING_BUTTON_SELECTOR).forEach(function (btn) {
         btn.classList.remove('is-loading');
       });
     }
@@ -159,10 +183,11 @@
         var target = event.target;
         if (!(target instanceof Element)) return;
 
-        var btn = target.closest('.boc-product-card__add[type="submit"]');
-        if (!btn || btn.disabled || btn.classList.contains('is-loading') || !btn.closest('.boc-product-card__form')) {
-          return;
-        }
+        var btn = target.closest(ADD_TO_CART_BUTTON_SELECTOR);
+        if (!btn || btn.disabled || btn.classList.contains('is-loading')) return;
+
+        var form = btn.closest('form[data-type="add-to-cart-form"]');
+        if (!form || !isBocAjaxAddToCartForm(form)) return;
 
         // Never disable the submit button here — that cancels form submission.
         // .is-loading uses pointer-events: none to prevent double-clicks.
@@ -172,8 +197,7 @@
     );
 
     document.addEventListener('shopify:cart:lines-update', function (event) {
-      var source = event.target;
-      if (!(source instanceof Element) || !source.closest('.boc-product-card__product-form')) return;
+      if (!isBocAjaxAddToCartSource(event.target)) return;
 
       cartEventSeen = true;
 
@@ -206,9 +230,9 @@
       'submit',
       function (event) {
         var form = event.target;
-        if (!form || !form.classList || !form.classList.contains('boc-product-card__form')) return;
+        if (!form || !isBocAjaxAddToCartForm(form)) return;
 
-        var btn = form.querySelector('.boc-product-card__add[type="submit"]');
+        var btn = form.querySelector(ADD_TO_CART_BUTTON_SELECTOR);
         if (btn && !btn.classList.contains('is-loading')) {
           activeButton = btn;
           btn.classList.add('is-loading');

@@ -182,15 +182,17 @@ button[name='add'].product-add:hover:not(:disabled):not([disabled]) {
   border-color: #111;
 }
 
-/* Add to cart loading spinner (homepage / collection product cards) */
+/* Add to cart loading spinner (product cards, product page, related products) */
 
-.boc-product-card__add.is-loading {
+.boc-product-card__add.is-loading,
+.product-add.is-loading {
   position: relative;
   color: transparent;
   pointer-events: none;
 }
 
-.boc-product-card__add.is-loading::after {
+.boc-product-card__add.is-loading::after,
+.product-add.is-loading::after {
   content: '';
   position: absolute;
   inset: 0;

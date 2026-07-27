@@ -196,6 +196,35 @@
     margin-block-end: 0;
   }
 
+  /* BOC wine bottle thumbnails — full bottle visible, white background */
+  .cart-drawer__items .cart-items__table-row,
+  .cart-drawer__items .cart-items__table-row--full-width-variants {
+    grid-template-columns: 5rem minmax(0, 1fr) minmax(var(--cart-item-price-width), auto);
+  }
+
+  .cart-drawer__items .cart-items__media {
+    width: 5rem;
+    min-width: 5rem;
+  }
+
+  .cart-drawer__items .cart-items__media-container {
+    aspect-ratio: unset;
+    width: 5rem;
+    height: 6.5rem;
+    background: var(--boc-white, #fff);
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cart-drawer__items .cart-items__media-image {
+    aspect-ratio: unset;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center center;
+  }
+
   .cart-drawer__close-button--empty {
     margin-inline-start: auto;
   }

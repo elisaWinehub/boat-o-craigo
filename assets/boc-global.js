@@ -93,40 +93,50 @@
     document.querySelectorAll(ANCHOR_NAV_SELECTOR).forEach(initStickyAnchorNav);
   }
 
-  function clearBocAddToCartLoading() {
-    document.querySelectorAll('.boc-product-card__add.is-loading').forEach(function (btn) {
-      btn.classList.remove('is-loading');
-      btn.disabled = false;
-    });
-  }
-
   function initBocAddToCartLoading() {
     if (document.documentElement.dataset.bocAddToCartInit === 'true') return;
     document.documentElement.dataset.bocAddToCartInit = 'true';
 
-    var pendingSubmit = false;
+    /** @type {HTMLButtonElement | null} */
+    var activeButton = null;
+    var cartEventSeen = false;
+    /** @type {number | undefined} */
+    var loadingTimeoutId;
+
+    function clearBocAddToCartLoading() {
+      if (loadingTimeoutId) {
+        window.clearTimeout(loadingTimeoutId);
+        loadingTimeoutId = undefined;
+      }
+
+      if (activeButton) {
+        activeButton.classList.remove('is-loading');
+        activeButton.disabled = false;
+        activeButton = null;
+      }
+
+      document.querySelectorAll('.boc-product-card__add.is-loading').forEach(function (btn) {
+        btn.classList.remove('is-loading');
+        btn.disabled = false;
+      });
+    }
 
     document.addEventListener(
-      'submit',
+      'click',
       function (event) {
-        var form = event.target;
-        if (!form || !form.classList || !form.classList.contains('boc-product-card__form')) return;
+        var target = event.target;
+        if (!(target instanceof Element)) return;
 
-        var btn = form.querySelector('.boc-product-card__add[type="submit"]');
-        if (!btn || btn.disabled) return;
+        var btn = target.closest('.boc-product-card__add[type="submit"]');
+        if (!btn || btn.disabled || !btn.closest('.boc-product-card__form')) return;
 
-        pendingSubmit = true;
+        activeButton = btn;
+        cartEventSeen = false;
         btn.classList.add('is-loading');
         btn.disabled = true;
 
-        requestAnimationFrame(function () {
-          requestAnimationFrame(function () {
-            if (pendingSubmit) {
-              pendingSubmit = false;
-              clearBocAddToCartLoading();
-            }
-          });
-        });
+        if (loadingTimeoutId) window.clearTimeout(loadingTimeoutId);
+        loadingTimeoutId = window.setTimeout(clearBocAddToCartLoading, 15000);
       },
       true
     );
@@ -135,16 +145,52 @@
       var source = event.target;
       if (!(source instanceof Element) || !source.closest('.boc-product-card__product-form')) return;
 
-      pendingSubmit = false;
+      cartEventSeen = true;
 
-      if (event.promise) {
-        event.promise.finally(clearBocAddToCartLoading);
-      } else {
+      if (!event.promise) return;
+
+      event.promise
+        .then(function (result) {
+          if (result && result.detail && result.detail.didError) {
+            clearBocAddToCartLoading();
+            return;
+          }
+
+          var cartDrawer = document.getElementById('cart-drawer');
+          if (cartDrawer && cartDrawer.hasAttribute('open')) {
+            clearBocAddToCartLoading();
+          }
+        })
+        .catch(function () {
+          clearBocAddToCartLoading();
+        });
+    });
+
+    document.addEventListener('theme-drawer:open', function (event) {
+      var drawer = event.target;
+      if (drawer instanceof Element && drawer.id === 'cart-drawer') {
         clearBocAddToCartLoading();
       }
     });
 
     document.addEventListener('shopify:cart:error', clearBocAddToCartLoading);
+
+    document.addEventListener(
+      'submit',
+      function (event) {
+        var form = event.target;
+        if (!form || !form.classList || !form.classList.contains('boc-product-card__form')) return;
+
+        queueMicrotask(function () {
+          queueMicrotask(function () {
+            if (activeButton && activeButton.classList.contains('is-loading') && !cartEventSeen) {
+              clearBocAddToCartLoading();
+            }
+          });
+        });
+      },
+      true
+    );
   }
 
   function initAll() {

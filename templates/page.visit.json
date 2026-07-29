@@ -638,37 +638,6 @@
         "apple_maps_url": "",
         "enable_map_app_block": false
       }
-    },
-    "boc_visit_final_cta": {
-      "type": "boc-visit-final-cta",
-      "settings": {
-        "section_enabled": true,
-        "show_desktop": true,
-        "show_tablet": true,
-        "show_mobile": true,
-        "section_anchor_id": "boc-visit-book",
-        "book_now_url": "/pages/book-now",
-        "tasting_booking_url": "/pages/book-now",
-        "restaurant_booking_url": "/pages/book-now",
-        "overlay_color": "#000000",
-        "overlay_opacity": 50,
-        "height_desktop": 520,
-        "height_mobile": 480,
-        "content_width": 780,
-        "eyebrow": "Plan your visit",
-        "heading": "Make a day of it.",
-        "body": "Reserve a tasting, book a table in the Glasshouse or speak with our team about a group experience.",
-        "button_1_enabled": true,
-        "button_1_label": "Book a tasting",
-        "button_1_url": "/pages/book-now",
-        "button_1_style": "accent",
-        "button_1_new_tab": false,
-        "button_2_enabled": true,
-        "button_2_label": "Reserve a table",
-        "button_2_url": "/pages/book-now",
-        "button_2_style": "light",
-        "button_2_new_tab": false
-      }
     }
   },
   "order": [

@@ -232,62 +232,6 @@
         "show_add_to_cart": true
       }
     },
-    "boc_home_story": {
-      "type": "boc-home-story",
-      "blocks": {
-        "stat_1": {
-          "type": "stat",
-          "settings": {
-            "title": "Family Owned",
-            "label": "Independent since 2000"
-          }
-        },
-        "stat_2": {
-          "type": "stat",
-          "settings": {
-            "title": "Single Vineyard",
-            "label": "Site-led winemaking"
-          }
-        },
-        "stat_3": {
-          "type": "stat",
-          "settings": {
-            "title": "Cool Climate",
-            "label": "Yarra Valley character"
-          }
-        },
-        "stat_4": {
-          "type": "stat",
-          "settings": {
-            "title": "Small Batch",
-            "label": "Handcrafted releases"
-          }
-        }
-      },
-      "block_order": [
-        "stat_1",
-        "stat_2",
-        "stat_3",
-        "stat_4"
-      ],
-      "settings": {
-        "section_enabled": true,
-        "show_desktop": true,
-        "show_tablet": true,
-        "show_mobile": true,
-        "container_width": "container",
-        "background_color": "#212121",
-        "padding_top": 96,
-        "padding_bottom": 96,
-        "eyebrow": "Our story",
-        "heading": "Wine shaped by place, season and family.",
-        "body": "Boat O'Craigo is a family-owned winery built around two distinctive Yarra Valley vineyard sites. Each wine is made in small parcels to preserve the character of its fruit and the place it comes from.",
-        "image_position": "left",
-        "badge_text": "Family owned.\nYarra Valley grown.",
-        "button_label": "Discover our story",
-        "button_link": "/pages/about"
-      }
-    },
     "boc_home_experiences": {
       "type": "boc-home-experiences",
       "blocks": {
@@ -385,72 +329,6 @@
         "image": "shopify://shop_images/N_Breen_2025-65.jpg",
         "button_label": "Join the club",
         "button_link": "/pages/wine-club"
-      }
-    },
-    "boc_home_weddings": {
-      "type": "boc-home-weddings",
-      "settings": {
-        "section_enabled": true,
-        "show_desktop": true,
-        "show_tablet": true,
-        "show_mobile": true,
-        "container_width": "full",
-        "background_color": "#212121",
-        "padding_top": 96,
-        "padding_bottom": 96,
-        "eyebrow": "Weddings & Private Events",
-        "heading": "Celebrate among the vines.",
-        "body": "Host your day in a setting that feels relaxed, intimate and unmistakably Yarra Valley.",
-        "image": "shopify://shop_images/Banner_-_Weddings.png",
-        "button_1_label": "Book an inspection",
-        "button_1_link": "",
-        "button_1_style": "light",
-        "button_2_label": "Explore weddings",
-        "button_2_link": "",
-        "button_2_style": "accent"
-      }
-    },
-    "boc_home_events": {
-      "type": "boc-home-events",
-      "settings": {
-        "section_enabled": true,
-        "show_desktop": true,
-        "show_tablet": true,
-        "show_mobile": true,
-        "container_width": "container",
-        "background_color": "#faf8f5",
-        "padding_top": 96,
-        "padding_bottom": 96,
-        "eyebrow": "What's on",
-        "heading": "At the estate.",
-        "body": "",
-        "link_label": "View all events",
-        "link_url": "/blogs/events",
-        "source": "blog",
-        "blog": "events",
-        "article_limit": 3
-      }
-    },
-    "boc_home_journal": {
-      "type": "boc-home-journal",
-      "settings": {
-        "section_enabled": true,
-        "show_desktop": true,
-        "show_tablet": true,
-        "show_mobile": true,
-        "container_width": "container",
-        "background_color": "#ffffff",
-        "content_alignment": "left",
-        "padding_top": 96,
-        "padding_bottom": 96,
-        "eyebrow": "From the journal",
-        "heading": "Stories from the valley.",
-        "body": "",
-        "link_label": "Read all stories",
-        "link_url": "/blogs/news",
-        "blog": "news",
-        "article_limit": 3,
-        "card_link_label": "Read story"
       }
     },
     "boc_home_newsletter": {

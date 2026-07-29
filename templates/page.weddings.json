@@ -1,0 +1,361 @@
+{
+  "sections": {
+    "boc_weddings_hero": {
+      "type": "boc-whats-on-hero",
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "image": "shopify://shop_images/Banner_-_Weddings.png",
+        "overlay_color": "#141414",
+        "overlay_opacity": 55,
+        "height_desktop": 760,
+        "height_tablet": 700,
+        "height_mobile": 680,
+        "image_focal_point": "center",
+        "content_width": 800,
+        "eyebrow": "Weddings",
+        "heading": "Weddings",
+        "body": "Where modern meets romance on the edge of the Black Spur.",
+        "text_alignment_desktop": "left",
+        "text_alignment_mobile": "left",
+        "button_1_enabled": false,
+        "button_2_enabled": false
+      }
+    },
+    "boc_weddings_intro": {
+      "type": "boc-whats-on-intro",
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "container_width": "standard",
+        "column_ratio": "0.85fr 1.15fr",
+        "mobile_stack_order": "heading_first",
+        "background_color": "#ffffff",
+        "heading_color": "#212121",
+        "body_color": "#575962",
+        "padding_top_desktop": 96,
+        "padding_bottom_desktop": 96,
+        "padding_top_tablet": 96,
+        "padding_bottom_tablet": 96,
+        "padding_top_mobile": 80,
+        "padding_bottom_mobile": 80,
+        "eyebrow": "",
+        "heading": "Your forever starts here.",
+        "lead": "Contemporary design with breathtaking views, Boat O'Craigo is a hidden gem in the Yarra Valley.",
+        "body": "<p>Overlooking vineyards, forest and mountain ranges from every angle, it's an experience like no other. The perfect place to say, \"I do\".</p>"
+      }
+    },
+    "boc_weddings_brochures": {
+      "type": "boc-private-events-brochures",
+      "blocks": {
+        "brochure_2627": {
+          "type": "brochure",
+          "settings": {
+            "label": "2026 & 2027 wedding dates",
+            "button_label": "VIEW WEDDING BROCHURE",
+            "file_url": ""
+          }
+        },
+        "brochure_2028": {
+          "type": "brochure",
+          "settings": {
+            "label": "2028 wedding dates",
+            "button_label": "VIEW WEDDING BROCHURE",
+            "file_url": ""
+          }
+        }
+      },
+      "block_order": ["brochure_2627", "brochure_2028"],
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "background_color": "#ffffff",
+        "padding_top": 96,
+        "padding_bottom": 96,
+        "heading": "Wedding packages",
+        "body": "To view our wedding packages and pricing, please click the buttons below:"
+      }
+    },
+    "boc_weddings_tour_cta": {
+      "type": "boc-private-events-enquiry-cta",
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "section_anchor_id": "boc-weddings-enquiry",
+        "background_color": "#faf8f5",
+        "padding_top": 96,
+        "padding_bottom": 96,
+        "quote": "\"It's somehow even better in person\" - says everyone.",
+        "heading": "",
+        "body": "Book a guided tour today and experience Boat O'Craigo for yourselves. We'd love to meet you.",
+        "button_enabled": true,
+        "button_label": "Enquire now",
+        "button_style": "primary",
+        "form_title": "Wedding enquiry",
+        "form_intro": "Tell us about your wedding plans and we will follow up by email.",
+        "form_success_message": "Thank you — our weddings team will be in touch shortly.",
+        "enquiry_type": "Wedding enquiry",
+        "enquiry_tags": "event-enquiry,wedding",
+        "dates_field_label": "Proposed wedding date/s",
+        "occasion_field_label": "Occasion",
+        "submit_label": "Send enquiry"
+      }
+    },
+    "boc_weddings_gallery": {
+      "type": "boc-whats-on-venues",
+      "blocks": {
+        "gallery_1": {
+          "type": "venue",
+          "settings": {
+            "name": "",
+            "description": "",
+            "image": "shopify://shop_images/Banner_-_Weddings.png",
+            "link": "",
+            "layout_size": "standard"
+          }
+        },
+        "gallery_2": {
+          "type": "venue",
+          "settings": {
+            "name": "",
+            "description": "",
+            "image": "shopify://shop_images/N_Breen_2025-20.jpg",
+            "link": "",
+            "layout_size": "standard"
+          }
+        },
+        "gallery_3": {
+          "type": "venue",
+          "settings": {
+            "name": "",
+            "description": "",
+            "image": "shopify://shop_images/N_Breen_BoatO_2026-16_1.jpg",
+            "link": "",
+            "layout_size": "standard"
+          }
+        },
+        "gallery_4": {
+          "type": "venue",
+          "settings": {
+            "name": "",
+            "description": "",
+            "image": "shopify://shop_images/BoatOCraigo_OHO_4252_eit.jpg",
+            "link": "",
+            "layout_size": "standard"
+          }
+        },
+        "gallery_5": {
+          "type": "venue",
+          "settings": {
+            "name": "",
+            "description": "",
+            "image": "shopify://shop_images/N_Breen_2025-65.jpg",
+            "link": "",
+            "layout_size": "standard"
+          }
+        },
+        "gallery_6": {
+          "type": "venue",
+          "settings": {
+            "name": "",
+            "description": "",
+            "image": "shopify://shop_images/Banner2.png",
+            "link": "",
+            "layout_size": "standard"
+          }
+        }
+      },
+      "block_order": ["gallery_1", "gallery_2", "gallery_3", "gallery_4", "gallery_5", "gallery_6"],
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "section_anchor_id": "boc-weddings-gallery",
+        "background_color": "#ffffff",
+        "padding_top_desktop": 96,
+        "padding_bottom_desktop": 96,
+        "padding_top_tablet": 96,
+        "padding_bottom_tablet": 96,
+        "padding_top_mobile": 80,
+        "padding_bottom_mobile": 80,
+        "eyebrow": "Gallery",
+        "heading": "Ceremony and reception moments.",
+        "intro_body": "A selection of ceremony and reception photography from the estate. Replace with client-approved wedding gallery images in the Theme Editor."
+      }
+    },
+    "boc_weddings_pavilion": {
+      "type": "boc-visit-tasting",
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "section_anchor_id": "boc-weddings-pavilion",
+        "image": "shopify://shop_images/N_Breen_2025-20.jpg",
+        "split_ratio": "1.05fr 0.95fr",
+        "desktop_image_height": 680,
+        "tablet_image_height": 520,
+        "mobile_image_height": 380,
+        "mobile_stack_order": "image_first",
+        "copy_background_color": "#faf8f5",
+        "copy_text_color": "#212121",
+        "copy_body_color": "#575962",
+        "detail_border_color": "#e8e2d9",
+        "eyebrow": "Ceremony",
+        "heading": "Ceremony in The Pavilion",
+        "body": "The Pavilion is an open-air ceremony space featuring the estate's signature sweeping views. Its dramatic roofline lifts toward the sky, sheltering your guests while framing the natural beauty of Mt Riddell and the Yarra Valley.",
+        "button_enabled": false,
+        "button_label": "",
+        "button_url": ""
+      }
+    },
+    "boc_weddings_glasshouse": {
+      "type": "boc-visit-glasshouse",
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "section_anchor_id": "boc-weddings-glasshouse",
+        "image": "shopify://shop_images/N_Breen_BoatO_2026-16_1.jpg",
+        "split_ratio_reverse": "0.95fr 1.05fr",
+        "desktop_image_height": 680,
+        "tablet_image_height": 520,
+        "mobile_image_height": 380,
+        "mobile_stack_order": "image_first",
+        "copy_background_color": "#333333",
+        "copy_text_color": "#ffffff",
+        "copy_body_color": "#cccccc",
+        "detail_border_color": "#444444",
+        "eyebrow": "Reception",
+        "heading": "Reception in Glasshouse",
+        "body": "An architectural masterpiece creating that instant 'wow' moment. Think floor-to-ceiling windows, stone fireplace, black steel-framed feature doors and a pink-marble bar for a hint of glamour. With our dedicated team and your unique styling, bring your dream day to life in a way that reflects you and your love story.",
+        "button_enabled": false,
+        "button_label": "",
+        "button_url": ""
+      }
+    },
+    "boc_weddings_catering": {
+      "type": "boc-visit-tasting",
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "section_anchor_id": "boc-weddings-catering",
+        "image": "shopify://shop_images/BoatOCraigo_OHO_4252_eit.jpg",
+        "split_ratio": "1.05fr 0.95fr",
+        "desktop_image_height": 680,
+        "tablet_image_height": 520,
+        "mobile_image_height": 380,
+        "mobile_stack_order": "image_first",
+        "copy_background_color": "#faf8f5",
+        "copy_text_color": "#212121",
+        "copy_body_color": "#575962",
+        "detail_border_color": "#e8e2d9",
+        "eyebrow": "Catering",
+        "heading": "Locally sourced catering & exceptional wines",
+        "body": "Select from Locavore Catering's exceptional range of locally sourced dishes, with the option of either a share-style or plated dining experience. Paired with our Boat O'Craigo hand-crafted wines, we're the perfect match for your wedding celebration.",
+        "button_enabled": false,
+        "button_label": "",
+        "button_url": ""
+      }
+    },
+    "boc_weddings_testimonials": {
+      "type": "boc-whats-on-testimonials",
+      "blocks": {
+        "testimonial_kate_dylan": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Dylan and I wanted to send a MASSIVE thank you to Caity and the entire Boat O'Craigo team for hosting the wedding of our dreams. We truly can't put into words how incredible the day was, and we honestly couldn't fault a single thing. The service we received throughout the entire experience was absolutely 10/10. The whole team was so accommodating, friendly, and fun, and we genuinely couldn't have asked for anything more. Our guests have all shared glowing feedback, not only about the stunning venue and delicious food, but also about the exceptional service and the atmosphere you created for our wedding. Thank you to Caity for being so attentive, friendly and responsive throughout the planning process, and for helping bring our day to life just as we imagined it! Thank you again - we are so glad we chose Boat O'Craigo and couldn't recommend it more highly.",
+            "name": "Kate & Dylan",
+            "context": "March 2026",
+            "rating": 5
+          }
+        },
+        "testimonial_lisa_dawit": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "We're so grateful to have had Caity and the entire Boat O'Craigo team as part of our special day. Caity was absolutely incredible throughout the preparation and on the day. Every single one of our guests commented on how much they loved the venue and the wonderful hospitality from her team. We also wanted to pass on feedback from our vendors. They were so impressed with Caity's professionalism and how smoothly she led the day. Thomas (our MC) said you are absolutely phenomenal!",
+            "name": "Lisa & Dawit",
+            "context": "March 2026",
+            "rating": 5
+          }
+        },
+        "testimonial_shilpa_patrick": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "I recently had my wedding at Boat O'Craigo and honestly could not have imagined a more perfect venue. From the stunning scenery to the incredible service, everything about the day was amazing. Caity helped coordinate the entire day so smoothly and made the whole process feel stress-free. We kept getting feedback from our vendors about how organised and proactive she was in communicating with them, which made such a difference and ensured everything ran seamlessly on the day. The staff truly went above and beyond to ensure all of our guests were looked after and that everything ran perfectly. We only found out afterwards that one of the staff members had even driven home to get Bluetooth speakers when our violinist forgot theirs, just to make sure everything could still go ahead without any issues. That level of care and dedication meant so much to us. Boat O'Craigo is such a beautiful venue and the team made our day feel incredibly special. We're so grateful to everyone involved and would recommend it to anyone looking for a wedding venue with both breathtaking views and exceptional staff.",
+            "name": "Shilpa & Patrick",
+            "context": "April 2026",
+            "rating": 5
+          }
+        }
+      },
+      "block_order": ["testimonial_kate_dylan", "testimonial_lisa_dawit", "testimonial_shilpa_patrick"],
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "background_color": "#faf8f5",
+        "card_background": "#ffffff",
+        "star_color": "#b99e7e",
+        "show_stars": true,
+        "columns_desktop": 3,
+        "padding_top_desktop": 96,
+        "padding_bottom_desktop": 96,
+        "padding_top_tablet": 96,
+        "padding_bottom_tablet": 96,
+        "padding_top_mobile": 80,
+        "padding_bottom_mobile": 80,
+        "eyebrow": "Testimonials",
+        "heading": "Kind words from our couples.",
+        "intro_body": ""
+      }
+    },
+    "boc_weddings_phone": {
+      "type": "boc-contact-final-cta",
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "image": "shopify://shop_images/Banner_-_Weddings.png",
+        "overlay_color": "#000000",
+        "overlay_opacity": 50,
+        "height_desktop": 440,
+        "content_width": 760,
+        "eyebrow": "Prefer a call?",
+        "heading": "Give our weddings team a call today.",
+        "body": "",
+        "button_1_enabled": false,
+        "button_2_enabled": true,
+        "button_2_label": "CALL US",
+        "phone_number": "0456216978",
+        "button_2_style": "light"
+      }
+    }
+  },
+  "order": [
+    "boc_weddings_hero",
+    "boc_weddings_intro",
+    "boc_weddings_brochures",
+    "boc_weddings_tour_cta",
+    "boc_weddings_gallery",
+    "boc_weddings_pavilion",
+    "boc_weddings_glasshouse",
+    "boc_weddings_catering",
+    "boc_weddings_testimonials",
+    "boc_weddings_phone"
+  ]
+}

@@ -1,0 +1,90 @@
+{%- liquid
+  assign section_classes = 'boc-section boc-private-events-brochures boc-section--standard'
+  unless section.settings.section_enabled
+    assign section_classes = section_classes | append: ' boc-section--disabled'
+  endunless
+  unless section.settings.show_desktop
+    assign section_classes = section_classes | append: ' boc-section--hide-desktop'
+  endunless
+  unless section.settings.show_tablet
+    assign section_classes = section_classes | append: ' boc-section--hide-tablet'
+  endunless
+  unless section.settings.show_mobile
+    assign section_classes = section_classes | append: ' boc-section--hide-mobile'
+  endunless
+-%}
+
+{{ 'boc-private-events.css' | asset_url | stylesheet_tag }}
+
+<section
+  id="{{ section.settings.section_anchor_id | default: 'boc-private-events-brochures' }}"
+  class="{{ section_classes }}"
+  data-boc-private-events
+  style="
+    --boc-section-bg: {{ section.settings.background_color }};
+    --boc-section-pt: {{ section.settings.padding_top }}px;
+    --boc-section-pb: {{ section.settings.padding_bottom }}px;
+  "
+>
+  <div class="boc-container boc-section__inner">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="boc-section__heading">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+    {%- if section.settings.body != blank -%}
+      <p class="boc-private-events-brochures__intro">{{ section.settings.body }}</p>
+    {%- endif -%}
+
+    <div class="boc-private-events-brochures__grid">
+      {%- for block in section.blocks -%}
+        <article class="boc-private-events-brochure" {{ block.shopify_attributes }}>
+          {%- if block.settings.label != blank -%}
+            <h3 class="boc-private-events-brochure__label">{{ block.settings.label }}</h3>
+          {%- endif -%}
+          {%- if block.settings.file_url != blank -%}
+            <a href="{{ block.settings.file_url }}" class="boc-btn boc-btn--primary" target="_blank" rel="noopener noreferrer">
+              {{ block.settings.button_label | default: 'View brochure' }}
+            </a>
+          {%- else -%}
+            <button type="button" class="boc-btn boc-btn--primary" disabled aria-disabled="true">
+              {{ block.settings.button_label | default: 'View brochure' }}
+            </button>
+            <p class="boc-private-events-brochure__note">Brochure PDF pending — add the file URL in the Theme Editor.</p>
+          {%- endif -%}
+        </article>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "BOC — PE Brochures",
+  "tag": "section",
+  "class": "boc-private-events-brochures-section",
+  "max_blocks": 4,
+  "settings": [
+    { "type": "checkbox", "id": "section_enabled", "label": "Enable section", "default": true },
+    { "type": "checkbox", "id": "show_desktop", "label": "Show on desktop", "default": true },
+    { "type": "checkbox", "id": "show_tablet", "label": "Show on tablet", "default": true },
+    { "type": "checkbox", "id": "show_mobile", "label": "Show on mobile", "default": true },
+    { "type": "text", "id": "section_anchor_id", "label": "Section anchor ID", "default": "boc-private-events-brochures" },
+    { "type": "color", "id": "background_color", "label": "Background", "default": "#FFFFFF" },
+    { "type": "range", "id": "padding_top", "label": "Padding top", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 96 },
+    { "type": "range", "id": "padding_bottom", "label": "Padding bottom", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 96 },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Wedding packages" },
+    { "type": "textarea", "id": "body", "label": "Body", "default": "To view our wedding packages and pricing, please click the buttons below:" }
+  ],
+  "blocks": [
+    {
+      "type": "brochure",
+      "name": "Brochure download",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Date range label", "default": "2026 & 2027 wedding dates" },
+        { "type": "text", "id": "button_label", "label": "Button label", "default": "VIEW WEDDING BROCHURE" },
+        { "type": "url", "id": "file_url", "label": "Brochure PDF URL", "info": "Upload the PDF to Shopify Files and paste the URL here." }
+      ]
+    }
+  ],
+  "presets": [{ "name": "BOC — PE Brochures" }]
+}
+{% endschema %}

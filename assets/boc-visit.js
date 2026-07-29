@@ -104,10 +104,10 @@
   }
 
   function initGroupBookingModal(root) {
-    var openBtn = root.querySelector('[data-boc-group-booking-open]');
-    var modal = root.querySelector('[data-boc-group-booking-modal]');
-    if (!openBtn || !modal || modal.dataset.bocGroupModalBound === 'true') return;
-    modal.dataset.bocGroupModalBound = 'true';
+    var openBtn = root.querySelector('[data-boc-enquiry-open], [data-boc-group-booking-open]');
+    var modal = root.querySelector('[data-boc-enquiry-modal], [data-boc-group-booking-modal]');
+    if (!openBtn || !modal || modal.dataset.bocEnquiryModalBound === 'true') return;
+    modal.dataset.bocEnquiryModalBound = 'true';
 
     function openModal() {
       modal.hidden = false;
@@ -123,7 +123,7 @@
     }
 
     openBtn.addEventListener('click', openModal);
-    modal.querySelectorAll('[data-boc-group-booking-close]').forEach(function (el) {
+    modal.querySelectorAll('[data-boc-enquiry-close], [data-boc-group-booking-close]').forEach(function (el) {
       el.addEventListener('click', closeModal);
     });
 

@@ -1,0 +1,20 @@
+{
+  "weddings": {
+    "title": "Weddings",
+    "handle": "weddings",
+    "body": "<p>Weddings at Boat O'Craigo.</p>",
+    "isPublished": true
+  },
+  "meetings": {
+    "title": "Meetings",
+    "handle": "meetings",
+    "body": "<p>Corporate functions and meetings at Boat O'Craigo.</p>",
+    "isPublished": true
+  },
+  "otherCelebrations": {
+    "title": "Other Celebrations",
+    "handle": "other-celebrations",
+    "body": "<p>Birthdays and family celebrations at Boat O'Craigo.</p>",
+    "isPublished": true
+  }
+}

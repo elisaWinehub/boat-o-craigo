@@ -5,61 +5,15 @@
   @param {string} [success_message] - Confirmation message
 {%- enddoc -%}
 
-{%- liquid
-  assign form_id = 'boc-group-booking-form-' | append: section_id
-  assign success_message = success_message | default: 'Thank you — our team will be in touch shortly.'
--%}
-
-<div class="boc-group-booking-modal" data-boc-group-booking-modal hidden>
-  <div class="boc-group-booking-modal__backdrop" data-boc-group-booking-close tabindex="-1"></div>
-  <div
-    class="boc-group-booking-modal__dialog"
-    role="dialog"
-    aria-modal="true"
-    aria-labelledby="boc-group-booking-title-{{ section_id }}"
-  >
-    <button type="button" class="boc-group-booking-modal__close" data-boc-group-booking-close aria-label="Close">
-      {% render 'boc-icon', name: 'close' %}
-    </button>
-
-    <h2 id="boc-group-booking-title-{{ section_id }}" class="boc-group-booking-modal__title">Group booking enquiry</h2>
-    <p class="boc-group-booking-modal__intro">Tell us about your group and we will follow up by email.</p>
-
-    {%- form 'contact', id: form_id, class: 'boc-group-booking-modal__form' -%}
-      <input type="hidden" name="contact[enquiry_type]" value="Group booking enquiry">
-      <input type="hidden" name="contact[tags]" value="group-booking,visit">
-
-      {%- if form.posted_successfully? -%}
-        <p class="boc-group-booking-modal__success" role="status">{{ success_message }}</p>
-      {%- endif -%}
-
-      {%- if form.errors -%}
-        <div class="boc-group-booking-modal__errors" role="alert">{{ form.errors | default_errors }}</div>
-      {%- endif -%}
-
-      <div class="boc-group-booking-modal__grid">
-        {%- assign name_id = 'boc-gb-name-' | append: section_id -%}
-        {%- assign phone_id = 'boc-gb-phone-' | append: section_id -%}
-        {%- assign email_id = 'boc-gb-email-' | append: section_id -%}
-        {%- assign guests_id = 'boc-gb-guests-' | append: section_id -%}
-        {%- assign occasion_id = 'boc-gb-occasion-' | append: section_id -%}
-        {%- assign dates_id = 'boc-gb-dates-' | append: section_id -%}
-        {%- assign time_id = 'boc-gb-time-' | append: section_id -%}
-        {%- assign details_id = 'boc-gb-details-' | append: section_id -%}
-
-        {% render 'boc-form-field', id: name_id, name: 'contact[name]', label: 'Name', required: true %}
-        {% render 'boc-form-field', id: phone_id, name: 'contact[phone]', label: 'Contact number', type: 'tel', required: true %}
-        {% render 'boc-form-field', id: email_id, name: 'contact[email]', label: 'Email address', type: 'email', required: true %}
-        {% render 'boc-form-field', id: guests_id, name: 'contact[number_of_guests]', label: 'Number of guests', type: 'number', placeholder: 'e.g. 18' %}
-        {% render 'boc-form-field', id: occasion_id, name: 'contact[occasion]', label: 'Occasion' %}
-        {% render 'boc-form-field', id: dates_id, name: 'contact[proposed_dates]', label: 'Proposed date/s' %}
-        {% render 'boc-form-field', id: time_id, name: 'contact[proposed_time]', label: 'Proposed time' %}
-        {% render 'boc-form-field', id: details_id, name: 'contact[body]', label: 'Any other important details', type: 'textarea', full_width: true %}
-      </div>
-
-      <div class="boc-group-booking-modal__foot">
-        <button type="submit" class="boc-btn boc-btn--primary">Send enquiry</button>
-      </div>
-    {%- endform -%}
-  </div>
-</div>
+{% render 'boc-enquiry-form',
+  section_id: section_id,
+  form_id_prefix: 'boc-group-booking',
+  title: 'Group booking enquiry',
+  intro: 'Tell us about your group and we will follow up by email.',
+  success_message: success_message,
+  enquiry_type: 'Group booking enquiry',
+  tags: 'group-booking,visit',
+  dates_label: 'Proposed date/s',
+  occasion_label: 'Occasion',
+  submit_label: 'Send enquiry'
+%}

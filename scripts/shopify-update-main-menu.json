@@ -49,22 +49,22 @@
     {
       "title": "Private Events",
       "type": "HTTP",
-      "url": "#",
+      "url": "/pages/weddings",
       "items": [
         {
           "title": "Weddings",
           "type": "HTTP",
-          "url": "#"
+          "url": "/pages/weddings"
         },
         {
           "title": "Meetings",
           "type": "HTTP",
-          "url": "#"
+          "url": "/pages/meetings"
         },
         {
           "title": "Other Celebrations",
           "type": "HTTP",
-          "url": "#"
+          "url": "/pages/other-celebrations"
         }
       ]
     },

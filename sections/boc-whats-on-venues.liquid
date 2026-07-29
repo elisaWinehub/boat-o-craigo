@@ -57,45 +57,65 @@
 
         {%- if featured_block -%}
           {%- liquid
-            assign venue_url = featured_block.settings.link | default: '#'
+            assign venue_url = featured_block.settings.link
             assign venue_image = 'boc-estate-visit.jpg' | asset_url
             if featured_block.settings.image != blank
               assign venue_image = featured_block.settings.image | image_url: width: 1600
             endif
           -%}
+          {%- if venue_url != blank -%}
           <a href="{{ venue_url }}" class="boc-whats-on-venue boc-whats-on-venue--featured" {{ featured_block.shopify_attributes }}>
-            <img src="{{ venue_image }}" alt="{{ featured_block.settings.name | escape }}" loading="lazy" width="1200" height="680">
+          {%- else -%}
+          <div class="boc-whats-on-venue boc-whats-on-venue--featured" {{ featured_block.shopify_attributes }}>
+          {%- endif -%}
+            <img src="{{ venue_image }}" alt="{{ featured_block.settings.name | default: 'Venue photo' | escape }}" loading="lazy" width="1200" height="680">
+            {%- if featured_block.settings.name != blank -%}
             <div class="boc-whats-on-venue__caption">
               <h3>{{ featured_block.settings.name }}</h3>
               {%- if featured_block.settings.description != blank -%}<p>{{ featured_block.settings.description }}</p>{%- endif -%}
             </div>
+            {%- endif -%}
+          {%- if venue_url != blank -%}
           </a>
+          {%- else -%}
+          </div>
+          {%- endif -%}
         {%- endif -%}
 
         <div class="boc-whats-on-venues__side">
           {%- for block in section.blocks -%}
             {%- if block.id != featured_block.id -%}
               {%- liquid
-                assign venue_url = block.settings.link | default: '#'
+                assign venue_url = block.settings.link
                 assign venue_image = 'boc-estate-vineyard.jpg' | asset_url
                 if block.settings.image != blank
                   assign venue_image = block.settings.image | image_url: width: 900
                 endif
               -%}
+              {%- if venue_url != blank -%}
               <a href="{{ venue_url }}" class="boc-whats-on-venue boc-whats-on-venue--standard" {{ block.shopify_attributes }}>
-                <img src="{{ venue_image }}" alt="{{ block.settings.name | escape }}" loading="lazy" width="900" height="331">
+              {%- else -%}
+              <div class="boc-whats-on-venue boc-whats-on-venue--standard" {{ block.shopify_attributes }}>
+              {%- endif -%}
+                <img src="{{ venue_image }}" alt="{{ block.settings.name | default: 'Venue photo' | escape }}" loading="lazy" width="900" height="331">
+                {%- if block.settings.name != blank -%}
                 <div class="boc-whats-on-venue__caption">
                   <h3>{{ block.settings.name }}</h3>
                   {%- if block.settings.description != blank -%}<p>{{ block.settings.description }}</p>{%- endif -%}
                 </div>
+                {%- endif -%}
+              {%- if venue_url != blank -%}
               </a>
+              {%- else -%}
+              </div>
+              {%- endif -%}
             {%- endif -%}
           {%- endfor -%}
         </div>
       {%- else -%}
         {%- for block in section.blocks -%}
           {%- liquid
-            assign venue_url = block.settings.link | default: '#'
+            assign venue_url = block.settings.link
             assign venue_image = 'boc-estate-visit.jpg' | asset_url
             if block.settings.image != blank
               assign venue_image = block.settings.image | image_url: width: 1200
@@ -105,13 +125,23 @@
               assign venue_class = 'boc-whats-on-venue boc-whats-on-venue--featured'
             endif
           -%}
+          {%- if venue_url != blank -%}
           <a href="{{ venue_url }}" class="{{ venue_class }}" {{ block.shopify_attributes }}>
-            <img src="{{ venue_image }}" alt="{{ block.settings.name | escape }}" loading="lazy" width="1200" height="400">
+          {%- else -%}
+          <div class="{{ venue_class }}" {{ block.shopify_attributes }}>
+          {%- endif -%}
+            <img src="{{ venue_image }}" alt="{{ block.settings.name | default: 'Venue photo' | escape }}" loading="lazy" width="1200" height="400">
+            {%- if block.settings.name != blank -%}
             <div class="boc-whats-on-venue__caption">
               <h3>{{ block.settings.name }}</h3>
               {%- if block.settings.description != blank -%}<p>{{ block.settings.description }}</p>{%- endif -%}
             </div>
+            {%- endif -%}
+          {%- if venue_url != blank -%}
           </a>
+          {%- else -%}
+          </div>
+          {%- endif -%}
         {%- endfor -%}
       {%- endif -%}
     </div>

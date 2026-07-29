@@ -1,0 +1,76 @@
+.boc-private-events-brochures {
+  background: var(--boc-section-bg, var(--boc-white));
+}
+
+.boc-private-events-brochures__intro {
+  margin: 0 0 28px;
+  color: var(--boc-slate);
+  max-width: 52ch;
+}
+
+.boc-private-events-brochures__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.boc-private-events-brochure {
+  border: 1px solid var(--boc-line);
+  padding: 24px;
+  background: var(--boc-white);
+}
+
+.boc-private-events-brochure__label {
+  margin: 0 0 16px;
+  font-family: var(--boc-serif);
+  font-size: var(--boc-heading-sm);
+  color: var(--boc-ink);
+}
+
+.boc-private-events-brochure__note {
+  margin: 12px 0 0;
+  font-size: 0.82rem;
+  color: var(--boc-slate);
+}
+
+.boc-private-events-enquiry-cta {
+  background: var(--boc-pe-bg, var(--boc-cream));
+}
+
+.boc-private-events-enquiry-cta__inner {
+  max-width: 760px;
+}
+
+.boc-private-events-enquiry-cta__quote {
+  margin: 0 0 16px;
+  font-family: var(--boc-serif);
+  font-size: var(--boc-heading-sm);
+  color: var(--boc-ink);
+}
+
+.boc-private-events-enquiry-cta__body {
+  margin: 0 0 24px;
+  color: var(--boc-slate);
+}
+
+.boc-private-events-contact {
+  background: var(--boc-pe-bg, var(--boc-white));
+  text-align: center;
+}
+
+.boc-private-events-contact__heading {
+  margin: 0 0 8px;
+  font-family: var(--boc-serif);
+  font-size: var(--boc-heading-sm);
+}
+
+.boc-private-events-contact__subheading {
+  margin: 0 0 16px;
+  color: var(--boc-slate);
+}
+
+@media (max-width: 720px) {
+  .boc-private-events-brochures__grid {
+    grid-template-columns: 1fr;
+  }
+}

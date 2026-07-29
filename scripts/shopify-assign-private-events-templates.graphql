@@ -1,0 +1,42 @@
+mutation AssignPrivateEventsTemplates(
+  $weddingsId: ID!
+  $meetingsId: ID!
+  $otherCelebrationsId: ID!
+) {
+  weddings: pageUpdate(id: $weddingsId, page: { templateSuffix: "weddings" }) {
+    page {
+      id
+      handle
+      templateSuffix
+    }
+    userErrors {
+      field
+      message
+    }
+  }
+  meetings: pageUpdate(id: $meetingsId, page: { templateSuffix: "meetings" }) {
+    page {
+      id
+      handle
+      templateSuffix
+    }
+    userErrors {
+      field
+      message
+    }
+  }
+  otherCelebrations: pageUpdate(
+    id: $otherCelebrationsId
+    page: { templateSuffix: "other-celebrations" }
+  ) {
+    page {
+      id
+      handle
+      templateSuffix
+    }
+    userErrors {
+      field
+      message
+    }
+  }
+}

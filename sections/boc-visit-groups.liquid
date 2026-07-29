@@ -50,7 +50,7 @@
         {% render 'boc-detail-list', blocks: section.blocks, dark: true %}
         {%- if section.settings.button_enabled and section.settings.button_label != blank -%}
           {%- if section.settings.button_opens_modal -%}
-            <button type="button" class="boc-btn boc-btn--{{ section.settings.button_style | default: 'light' }}" data-boc-group-booking-open>
+            <button type="button" class="boc-btn boc-btn--{{ section.settings.button_style | default: 'light' }}" data-boc-enquiry-open data-boc-group-booking-open>
               {{ section.settings.button_label }}
             </button>
             {% render 'boc-group-booking-modal', section_id: section.id, success_message: section.settings.form_success_message %}

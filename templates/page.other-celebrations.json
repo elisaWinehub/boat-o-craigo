@@ -1,0 +1,164 @@
+{
+  "sections": {
+    "boc_celebrations_hero": {
+      "type": "boc-whats-on-hero",
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "image": "shopify://shop_images/Banner_-_Weddings.png",
+        "overlay_color": "#141414",
+        "overlay_opacity": 55,
+        "height_desktop": 760,
+        "height_tablet": 700,
+        "height_mobile": 680,
+        "content_width": 800,
+        "eyebrow": "Private Events",
+        "heading": "Other Celebrations",
+        "body": "Birthdays, milestones and family occasions among the vines.",
+        "text_alignment_desktop": "left",
+        "text_alignment_mobile": "left",
+        "button_1_enabled": false,
+        "button_2_enabled": false
+      }
+    },
+    "boc_celebrations_intro": {
+      "type": "boc-whats-on-intro",
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "container_width": "standard",
+        "column_ratio": "0.85fr 1.15fr",
+        "mobile_stack_order": "heading_first",
+        "background_color": "#ffffff",
+        "heading_color": "#212121",
+        "body_color": "#575962",
+        "padding_top_desktop": 96,
+        "padding_bottom_desktop": 96,
+        "padding_top_tablet": 96,
+        "padding_bottom_tablet": 96,
+        "padding_top_mobile": 80,
+        "padding_bottom_mobile": 80,
+        "eyebrow": "",
+        "heading": "Celebrate life's milestones at the estate.",
+        "lead": "Boat O'Craigo is excited to support you in hosting your birthday celebration and family occasions in the heart of the Yarra Valley.",
+        "body": "<p>We pride ourselves on offering a relaxed, welcoming environment for guests to enjoy exceptional food, wine, and views.</p><p>We have a number of options for accommodating your guests, depending on the size of your group and the style of event you're planning. Your event can be held with views overlooking the vineyard and surrounding Yarra Ranges. You are welcome to decorate the space, or provide decorations that can be set up for you prior to your arrival.</p><p>Please note, to preserve the experience for all our visitors, we kindly advise that we do not accept bookings for bucks parties or similar events. We appreciate your understanding.</p>"
+      }
+    },
+    "boc_celebrations_gallery": {
+      "type": "boc-whats-on-venues",
+      "blocks": {
+        "gallery_1": {
+          "type": "venue",
+          "settings": {
+            "name": "",
+            "description": "",
+            "image": "shopify://shop_images/Banner_-_Weddings.png",
+            "link": "",
+            "layout_size": "standard"
+          }
+        },
+        "gallery_2": {
+          "type": "venue",
+          "settings": {
+            "name": "",
+            "description": "",
+            "image": "shopify://shop_images/N_Breen_2025-20.jpg",
+            "link": "",
+            "layout_size": "standard"
+          }
+        },
+        "gallery_3": {
+          "type": "venue",
+          "settings": {
+            "name": "",
+            "description": "",
+            "image": "shopify://shop_images/N_Breen_2025-65.jpg",
+            "link": "",
+            "layout_size": "standard"
+          }
+        },
+        "gallery_4": {
+          "type": "venue",
+          "settings": {
+            "name": "",
+            "description": "",
+            "image": "shopify://shop_images/Banner2.png",
+            "link": "",
+            "layout_size": "standard"
+          }
+        }
+      },
+      "block_order": ["gallery_1", "gallery_2", "gallery_3", "gallery_4"],
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "section_anchor_id": "boc-celebrations-gallery",
+        "background_color": "#faf8f5",
+        "padding_top_desktop": 96,
+        "padding_bottom_desktop": 96,
+        "padding_top_tablet": 96,
+        "padding_bottom_tablet": 96,
+        "padding_top_mobile": 80,
+        "padding_bottom_mobile": 80,
+        "eyebrow": "Gallery",
+        "heading": "Moments worth celebrating.",
+        "intro_body": "Birthdays, family occasions and private celebrations at the estate. Replace with client-approved gallery images in the Theme Editor."
+      }
+    },
+    "boc_celebrations_enquiry": {
+      "type": "boc-private-events-enquiry-cta",
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "section_anchor_id": "boc-celebrations-enquiry",
+        "background_color": "#ffffff",
+        "padding_top": 96,
+        "padding_bottom": 96,
+        "heading": "Plan your celebration.",
+        "body": "Share a few details about your occasion and our events team will follow up to discuss availability and options.",
+        "button_enabled": true,
+        "button_label": "Enquire now",
+        "button_style": "primary",
+        "form_title": "Private celebration enquiry",
+        "form_intro": "Tell us about your birthday, family occasion or celebration and we will follow up by email.",
+        "form_success_message": "Thank you — our events team will be in touch shortly.",
+        "enquiry_type": "Private celebration enquiry",
+        "enquiry_tags": "event-enquiry,celebration",
+        "dates_field_label": "Proposed date/s",
+        "occasion_field_label": "Occasion",
+        "submit_label": "Send enquiry"
+      }
+    },
+    "boc_celebrations_contact": {
+      "type": "boc-private-events-contact",
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "background_color": "#faf8f5",
+        "padding_top": 96,
+        "padding_bottom": 96,
+        "heading": "Got Questions?",
+        "subheading": "Contact our Event Manager",
+        "email": "events@boatocraigo.com.au",
+        "email_label": "Send us an Email"
+      }
+    }
+  },
+  "order": [
+    "boc_celebrations_hero",
+    "boc_celebrations_intro",
+    "boc_celebrations_gallery",
+    "boc_celebrations_enquiry",
+    "boc_celebrations_contact"
+  ]
+}

@@ -84,5 +84,9 @@
         %}
       {%- endif -%}
     {%- endif -%}
+
+    {%- if section.settings.button_footnote != blank -%}
+      <p class="boc-visit-feature__footnote">{{ section.settings.button_footnote }}</p>
+    {%- endif -%}
   </div>
 </div>

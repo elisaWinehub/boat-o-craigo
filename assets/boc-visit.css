@@ -67,9 +67,10 @@
   font-family: var(--boc-serif);
   font-size: var(--boc-display-lg);
   font-weight: 400;
-  line-height: 0.98;
+  line-height: 1.08;
   letter-spacing: -0.03em;
-  margin: 8px 0 0;
+  padding-bottom: 0.06em;
+  margin: 8px 0 20px;
   color: var(--boc-v-heading, inherit);
 }
 
@@ -649,4 +650,126 @@
 
   .boc-visit-intro__path:hover { transform: none; }
   .boc-visit-menu-card:hover .boc-visit-menu-card__media img { transform: none; }
+}
+
+/* Accordion (Getting Here) */
+.boc-visit-travel__content .boc-accordion {
+  border-top: 1px solid var(--boc-line);
+}
+
+.boc-visit-travel__content .boc-accordion:last-child {
+  border-bottom: 1px solid var(--boc-line);
+}
+
+.boc-accordion__trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  padding: 18px 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font-family: var(--boc-sans);
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+}
+
+.boc-accordion__icon {
+  font-size: 1.25rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.boc-accordion__panel-inner {
+  padding-bottom: 18px;
+  color: var(--boc-slate);
+}
+
+.boc-visit-feature__footnote {
+  margin: 14px 0 0;
+  font-size: 0.82rem;
+  color: var(--boc-v-body, var(--boc-slate));
+}
+
+.boc-visit-menus__grid--simple {
+  gap: 16px;
+}
+
+.boc-visit-menu-card--simple {
+  min-height: 0;
+}
+
+/* Group booking modal */
+.boc-group-booking-modal[hidden] {
+  display: none !important;
+}
+
+.boc-group-booking-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.boc-group-booking-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(33, 33, 33, 0.45);
+}
+
+.boc-group-booking-modal__dialog {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 640px);
+  max-height: min(90vh, 860px);
+  overflow: auto;
+  background: var(--boc-white);
+  padding: 32px 28px 28px;
+  border: 1px solid var(--boc-line);
+}
+
+.boc-group-booking-modal__close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.boc-group-booking-modal__title {
+  font-family: var(--boc-serif);
+  font-size: var(--boc-heading-sm);
+  margin: 0 0 8px;
+}
+
+.boc-group-booking-modal__intro {
+  margin: 0 0 24px;
+  color: var(--boc-slate);
+}
+
+.boc-group-booking-modal__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.boc-group-booking-modal__grid .boc-form-field--full {
+  grid-column: 1 / -1;
+}
+
+.boc-group-booking-modal__foot {
+  margin-top: 24px;
+}
+
+@media (max-width: 720px) {
+  .boc-group-booking-modal__grid {
+    grid-template-columns: 1fr;
+  }
 }

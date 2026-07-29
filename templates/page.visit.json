@@ -23,9 +23,9 @@
         "height_mobile": 560,
         "image_focal_point": "center",
         "content_width": 760,
-        "eyebrow": "Visit Boat O'Craigo",
-        "heading": "Wine, food and the Yarra Valley at its best.",
-        "body": "Spend the day overlooking our Healesville vineyards with a guided tasting, a relaxed meal in the Glasshouse and time to take in the views.",
+        "eyebrow": "Plan your day",
+        "heading": "One estate, three ways to enjoy it.",
+        "body": "Our cellar door and Glasshouse sit above the vineyards at the foot of the Black Spur. Come for a tasting, stay for lunch, or bring a group together for a memorable Yarra Valley experience.",
         "text_alignment_desktop": "left",
         "text_alignment_mobile": "left",
         "button_1_enabled": true,
@@ -105,7 +105,7 @@
           "type": "pathway",
           "settings": {
             "heading": "Taste",
-            "description": "Guided flights of estate-grown, single-vineyard wines.",
+            "description": "Guided journeys through estate-grown, single-vineyard wines.",
             "link_label": "Wine tastings",
             "link_type": "anchor",
             "anchor_id": "boc-visit-tasting",
@@ -121,7 +121,7 @@
           "settings": {
             "heading": "Dine",
             "description": "Seasonal food, local producers and vineyard views.",
-            "link_label": "The Glasshouse",
+            "link_label": "Glasshouse",
             "link_type": "anchor",
             "anchor_id": "boc-visit-glasshouse",
             "url": "",
@@ -131,14 +131,14 @@
             "hover_text_color": "#212121"
           }
         },
-        "pathway_explore": {
+        "pathway_gather": {
           "type": "pathway",
           "settings": {
-            "heading": "Explore",
-            "description": "Directions, transport options and local tour partners.",
-            "link_label": "Getting here",
+            "heading": "Gather",
+            "description": "Bring your group together for shared food, estate wine and vineyard views.",
+            "link_label": "Group bookings",
             "link_type": "anchor",
-            "anchor_id": "boc-visit-getting-here",
+            "anchor_id": "boc-visit-groups",
             "url": "",
             "background_color": "#ffffff",
             "hover_background_color": "#faf8f5",
@@ -150,7 +150,7 @@
       "block_order": [
         "pathway_taste",
         "pathway_dine",
-        "pathway_explore"
+        "pathway_gather"
       ],
       "settings": {
         "section_enabled": true,
@@ -160,15 +160,16 @@
         "background_color": "#ffffff",
         "columns_desktop": 3,
         "columns_tablet": 3,
-        "padding_top_desktop": 120,
-        "padding_bottom_desktop": 120,
+        "padding_top_desktop": 96,
+        "padding_bottom_desktop": 96,
         "padding_top_tablet": 96,
         "padding_bottom_tablet": 96,
         "padding_top_mobile": 80,
         "padding_bottom_mobile": 80,
-        "eyebrow": "Plan your day",
-        "heading": "One estate, three ways to enjoy it.",
-        "body": "Our cellar door and Glasshouse sit above the vineyards at the foot of the Black Spur. Come for a tasting, stay for lunch, or bring a group together for a memorable Yarra Valley experience."
+        "show_head": false,
+        "eyebrow": "",
+        "heading": "",
+        "body": ""
       }
     },
     "boc_visit_tasting": {
@@ -177,7 +178,7 @@
         "detail_classic": {
           "type": "detail",
           "settings": {
-            "label": "Classic tasting",
+            "label": "Wine tasting",
             "value": "5 wines"
           }
         },
@@ -206,7 +207,7 @@
           "type": "detail",
           "settings": {
             "label": "Price/Person",
-            "value": "$50"
+            "value": "$15pp*"
           }
         }
       },
@@ -237,10 +238,11 @@
         "heading": "Taste the estate.",
         "body": "Discover a guided selection of premium wines made from our two Yarra Valley vineyard sites. Our team will take you through the stories, seasons and winemaking behind each glass.",
         "button_enabled": true,
-        "button_label": "Book a tasting",
+        "button_label": "BOOK A TASTING",
         "button_url": "/pages/book-now",
         "button_style": "primary",
-        "button_new_tab": false
+        "button_new_tab": false,
+        "button_footnote": "Redeemable with the purchase of two bottles of wine."
       }
     },
     "boc_visit_glasshouse": {
@@ -257,14 +259,14 @@
           "type": "detail",
           "settings": {
             "label": "Group bookings",
-            "value": "Available for 11+"
+            "value": "Available for 11+ on $55 Feed Me"
           }
         },
         "detail_dietary": {
           "type": "detail",
           "settings": {
             "label": "Dietary needs",
-            "value": "Ask our team"
+            "value": "Speak to our team"
           }
         },
         "detail_reservations": {
@@ -286,8 +288,7 @@
         "detail_dining",
         "detail_groups",
         "detail_dietary",
-        "detail_reservations",
-        "detail_RCYgi8"
+        "detail_reservations"
       ],
       "settings": {
         "section_enabled": true,
@@ -305,9 +306,9 @@
         "copy_text_color": "#ffffff",
         "copy_body_color": "#cccccc",
         "detail_border_color": "#444444",
-        "eyebrow": "The Glasshouse",
-        "heading": "Come for the view. Stay for the food.",
-        "body": "Our relaxed restaurant pairs estate wines with generous, seasonal dishes. Expect artisan cheeses, charcuterie, pizza and locally sourced produce served in a light-filled room overlooking the vineyard.",
+        "eyebrow": "Glasshouse",
+        "heading": "A menu designed to share.",
+        "body": "Our relaxed restaurant pairs estate wines with house-made pizzas, artisan cheeses and charcuterie.",
         "button_enabled": true,
         "button_label": "Reserve a table",
         "button_url": "/pages/book-now",
@@ -364,15 +365,16 @@
         "background_color": "#ffffff",
         "columns_desktop": 2,
         "default_card_height": 520,
-        "padding_top_desktop": 120,
-        "padding_bottom_desktop": 120,
+        "padding_top_desktop": 96,
+        "padding_bottom_desktop": 96,
         "padding_top_tablet": 96,
         "padding_bottom_tablet": 96,
         "padding_top_mobile": 80,
         "padding_bottom_mobile": 80,
         "eyebrow": "Eat and drink",
         "heading": "Explore our menus.",
-        "intro_body": "Our offering changes with the seasons and is designed to be shared alongside a bottle from the estate."
+        "intro_body": "",
+        "card_style": "simple"
       }
     },
     "boc_visit_groups": {
@@ -382,14 +384,14 @@
           "type": "detail",
           "settings": {
             "label": "Shared menu",
-            "value": "Seasonal selection"
+            "value": "Feed Me set menu"
           }
         },
         "detail_pairing": {
           "type": "detail",
           "settings": {
-            "label": "Wine pairing",
-            "value": "Estate list available"
+            "label": "Beverage",
+            "value": "Full menu available"
           }
         },
         "detail_large": {
@@ -402,8 +404,8 @@
         "detail_Phx6yn": {
           "type": "detail",
           "settings": {
-            "label": "Ticket Price",
-            "value": "$150"
+            "label": "Price",
+            "value": "$55 pp"
           }
         }
       },
@@ -424,20 +426,22 @@
         "text_color": "#ffffff",
         "detail_border_color": "#ffffff59",
         "image_height": 560,
-        "padding_top_desktop": 120,
-        "padding_bottom_desktop": 120,
+        "padding_top_desktop": 96,
+        "padding_bottom_desktop": 96,
         "padding_top_tablet": 96,
         "padding_bottom_tablet": 96,
         "padding_top_mobile": 80,
         "padding_bottom_mobile": 80,
-        "eyebrow": "Groups of 11+",
-        "heading": "Bring the whole table.",
-        "body": "Planning a birthday, team lunch or relaxed celebration? Our group experience combines shared seasonal food, estate wine and sweeping vineyard views.",
+        "eyebrow": "Groups of 11 - 30",
+        "heading": "Bring the whole crew.",
+        "body": "Planning a birthday, team lunch or relaxed celebration? Our group experience combines shared food, estate wine and sweeping vineyard views.",
         "button_enabled": true,
-        "button_label": "Enquire about groups",
+        "button_label": "GROUP BOOKING ENQUIRY",
         "button_url": "/pages/contact",
+        "button_opens_modal": true,
         "button_style": "light",
-        "button_new_tab": false
+        "button_new_tab": false,
+        "form_success_message": "Thank you — our team will be in touch shortly."
       }
     },
     "boc_visit_reviews": {
@@ -457,7 +461,7 @@
         "testimonial_2": {
           "type": "testimonial",
           "settings": {
-            "quote": "The Glasshouse was relaxed, generous and exactly what we wanted from a Yarra Valley lunch.",
+            "quote": "Glasshouse was relaxed, generous and exactly what we wanted from a Yarra Valley lunch.",
             "name": "Restaurant guest",
             "context": "Placeholder review",
             "rating": 5,
@@ -494,8 +498,8 @@
         "show_stars": true,
         "enable_carousel": false,
         "columns_desktop": 3,
-        "padding_top_desktop": 120,
-        "padding_bottom_desktop": 120,
+        "padding_top_desktop": 96,
+        "padding_bottom_desktop": 96,
         "padding_top_tablet": 96,
         "padding_bottom_tablet": 96,
         "padding_top_mobile": 80,
@@ -612,8 +616,8 @@
         "background_color": "#ffffff",
         "image_height": 620,
         "operator_columns": 3,
-        "padding_top_desktop": 120,
-        "padding_bottom_desktop": 120,
+        "padding_top_desktop": 96,
+        "padding_bottom_desktop": 96,
         "padding_top_tablet": 96,
         "padding_bottom_tablet": 96,
         "padding_top_mobile": 80,
@@ -676,7 +680,6 @@
     "boc_visit_menus",
     "boc_visit_groups",
     "boc_visit_reviews",
-    "boc_visit_getting_here",
-    "boc_visit_final_cta"
+    "boc_visit_getting_here"
   ]
 }

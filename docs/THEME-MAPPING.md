@@ -18,3 +18,10 @@ Date confirmed: 2026-07-14
 - Status: Live
 - Production commit: 25d99cf54ab5d991123d3c8036f640df3cb4533c
 - Last deployment: 2026-07-14
+
+## Backup
+
+- Theme name: Boat O'Craigo — Backup 29-07-26
+- Theme ID: 144474603604
+- Status: Unpublished
+- Created: 2026-07-29 (duplicate of live theme before client feedback round)

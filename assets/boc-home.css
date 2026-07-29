@@ -63,9 +63,10 @@
   font-family: var(--boc-serif);
   font-size: var(--boc-display-lg);
   font-weight: 400;
-  line-height: 0.98;
+  line-height: 1.08;
   letter-spacing: -0.03em;
-  margin: 8px 0 0;
+  padding-bottom: 0.06em;
+  margin: 8px 0 20px;
 }
 
 .boc-home-section__body {
@@ -215,10 +216,11 @@
 
 .boc-home-hero__heading {
   font-family: var(--boc-serif);
-  font-size: var(--boc-display-xl);
+  font-size: var(--boc-display-lg);
   font-weight: 400;
-  line-height: 0.98;
+  line-height: 1.08;
   letter-spacing: -0.03em;
+  padding-bottom: 0.06em;
   margin: 12px 0 22px;
 }
 

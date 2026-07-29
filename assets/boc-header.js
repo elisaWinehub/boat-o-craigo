@@ -115,9 +115,21 @@
   /** @type {Map<HTMLElement, BocHeaderController>} */
   const instances = new Map();
 
+  function initPlaceholderLinks(root) {
+    root.querySelectorAll('a[href="#"]').forEach(function (link) {
+      if (link.dataset.bocPlaceholderBound === 'true') return;
+      link.dataset.bocPlaceholderBound = 'true';
+      link.addEventListener('click', function (event) {
+        event.preventDefault();
+      });
+      link.setAttribute('aria-disabled', 'true');
+    });
+  }
+
   function initHeader(root) {
     if (!(root instanceof HTMLElement) || instances.has(root)) return;
     instances.set(root, new BocHeaderController(root));
+    initPlaceholderLinks(root);
   }
 
   function destroyHeader(root) {

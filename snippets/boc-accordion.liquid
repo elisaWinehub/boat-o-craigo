@@ -1,0 +1,26 @@
+{%- doc -%}
+  Collapsible accordion item — matches product page accordion interaction.
+
+  @param {string} heading - Accordion trigger label
+  @param {string} content - Panel HTML content
+  @param {boolean} [open_by_default] - Start expanded
+{%- enddoc -%}
+
+<article
+  class="boc-accordion{% if open_by_default %} is-open{% endif %}"
+  data-boc-accordion
+>
+  <button
+    class="boc-accordion__trigger"
+    type="button"
+    aria-expanded="{% if open_by_default %}true{% else %}false{% endif %}"
+  >
+    <span>{{ heading }}</span>
+    <span class="boc-accordion__icon" aria-hidden="true">{% if open_by_default %}−{% else %}+{% endif %}</span>
+  </button>
+  <div class="boc-accordion__panel"{% unless open_by_default %} hidden{% endunless %}>
+    <div class="boc-accordion__panel-inner">
+      {{ content }}
+    </div>
+  </div>
+</article>

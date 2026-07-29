@@ -331,6 +331,19 @@
     "boc_about_team": {
       "type": "boc-about-team",
       "blocks": {
+        "member_travers_graham": {
+          "type": "member",
+          "settings": {
+            "featured": true,
+            "name": "Travers Graham",
+            "role": "Owner and General Manager",
+            "summary": "Travers leads the estate with a hands-on approach across wine, hospitality and the visitor experience.",
+            "biography": "<p>Travers Graham is Owner and General Manager of Boat O'Craigo, guiding the family estate across wine, hospitality and events. He brings a practical, guest-focused leadership style shaped by years working across the business and a deep connection to the Yarra Valley.</p>",
+            "image": "",
+            "email": "",
+            "profile_url": ""
+          }
+        },
         "member_rob_hall": {
           "type": "member",
           "settings": {
@@ -422,19 +435,6 @@
             "profile_url": ""
           }
         },
-        "member_dakotah_heatherich": {
-          "type": "member",
-          "settings": {
-            "featured": false,
-            "name": "Dakotah Heatherich",
-            "role": "Cellar Door Supervisor",
-            "summary": "Dakotah brings a friendly, approachable style to the cellar door.",
-            "biography": "<p>Dakotah brings a friendly, approachable style to the cellar door. She supports daily operations and helps ensure each visitor receives an engaging and personal wine experience.</p>",
-            "image": "shopify://shop_images/Dakotah_Heatherich1.jpg",
-            "email": "",
-            "profile_url": ""
-          }
-        },
         "member_bec_kerridge": {
           "type": "member",
           "settings": {
@@ -450,6 +450,7 @@
         }
       },
       "block_order": [
+        "member_travers_graham",
         "member_rob_hall",
         "member_ben_craig",
         "member_frederic_lamagere",
@@ -457,7 +458,6 @@
         "member_caity_clarkson",
         "member_prue_donaldson",
         "member_kristy_warren",
-        "member_dakotah_heatherich",
         "member_bec_kerridge"
       ],
       "settings": {
@@ -480,7 +480,7 @@
         "padding_bottom_mobile": 80,
         "eyebrow": "The people behind the wine",
         "heading": "Meet the team.",
-        "body": "Rob Hall and Ben Craig lead the wine and vineyard story. Select any profile to read more about the wider Boat O'Craigo team.",
+        "body": "Travers Graham leads the estate alongside Rob Hall and Ben Craig. Select any profile to read more about the wider Boat O'Craigo team.",
         "show_carousel": true,
         "show_controls": true,
         "cards_visible_desktop": 4,

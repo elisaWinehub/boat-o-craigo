@@ -84,12 +84,62 @@
     carousel.dataset.bocVisitCarouselBound = 'true';
   }
 
+  function initAccordions(root) {
+    root.querySelectorAll('[data-boc-accordion]').forEach(function (accordion) {
+      if (accordion.dataset.bocAccordionBound === 'true') return;
+      accordion.dataset.bocAccordionBound = 'true';
+
+      var trigger = accordion.querySelector('.boc-accordion__trigger');
+      var panel = accordion.querySelector('.boc-accordion__panel');
+      var icon = accordion.querySelector('.boc-accordion__icon');
+      if (!trigger || !panel) return;
+
+      trigger.addEventListener('click', function () {
+        var isOpen = accordion.classList.toggle('is-open');
+        trigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        panel.hidden = !isOpen;
+        if (icon) icon.textContent = isOpen ? '−' : '+';
+      });
+    });
+  }
+
+  function initGroupBookingModal(root) {
+    var openBtn = root.querySelector('[data-boc-group-booking-open]');
+    var modal = root.querySelector('[data-boc-group-booking-modal]');
+    if (!openBtn || !modal || modal.dataset.bocGroupModalBound === 'true') return;
+    modal.dataset.bocGroupModalBound = 'true';
+
+    function openModal() {
+      modal.hidden = false;
+      document.body.classList.add('boc-scroll-lock');
+      var closeBtn = modal.querySelector('.boc-group-booking-modal__close');
+      if (closeBtn) closeBtn.focus();
+    }
+
+    function closeModal() {
+      modal.hidden = true;
+      document.body.classList.remove('boc-scroll-lock');
+      openBtn.focus();
+    }
+
+    openBtn.addEventListener('click', openModal);
+    modal.querySelectorAll('[data-boc-group-booking-close]').forEach(function (el) {
+      el.addEventListener('click', closeModal);
+    });
+
+    modal.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape') closeModal();
+    });
+  }
+
   function initRoot(root) {
     if (!root || root.dataset.bocVisitInit === 'true') return;
     root.dataset.bocVisitInit = 'true';
     initScrollLinks(root);
     initAnchorNav(root);
     initReviewsCarousel(root);
+    initAccordions(root);
+    initGroupBookingModal(root);
   }
 
   function initAll() {

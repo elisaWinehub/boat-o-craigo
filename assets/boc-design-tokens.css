@@ -53,12 +53,19 @@
   padding-block: var(--boc-space-9);
 }
 
+@media (min-width: 721px) {
+  .boc-section {
+    padding-block: var(--boc-space-8);
+  }
+}
+
 .boc-display {
   font-family: var(--boc-serif);
   font-size: var(--boc-display-lg);
   font-weight: 400;
-  line-height: 0.98;
+  line-height: 1.08;
   letter-spacing: -0.03em;
+  padding-bottom: 0.06em;
 }
 
 .boc-eyebrow {

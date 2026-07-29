@@ -32,9 +32,11 @@
 >
   <div class="boc-visit-section__inner">
     <div class="boc-visit-intro__head">
-      {%- if section.settings.eyebrow != blank -%}<span class="boc-eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
-      {%- if section.settings.heading != blank -%}<h2 class="boc-visit-section__heading">{{ section.settings.heading }}</h2>{%- endif -%}
-      {%- if section.settings.body != blank -%}<p>{{ section.settings.body }}</p>{%- endif -%}
+      {%- if section.settings.show_head -%}
+        {%- if section.settings.eyebrow != blank -%}<span class="boc-eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+        {%- if section.settings.heading != blank -%}<h2 class="boc-visit-section__heading">{{ section.settings.heading }}</h2>{%- endif -%}
+        {%- if section.settings.body != blank -%}<p>{{ section.settings.body }}</p>{%- endif -%}
+      {%- endif -%}
     </div>
 
     <div class="boc-visit-intro__paths">
@@ -81,6 +83,7 @@
     { "type": "range", "id": "padding_bottom_tablet", "label": "Tablet padding bottom", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 96 },
     { "type": "range", "id": "padding_top_mobile", "label": "Mobile padding top", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 80 },
     { "type": "range", "id": "padding_bottom_mobile", "label": "Mobile padding bottom", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 80 },
+    { "type": "checkbox", "id": "show_head", "label": "Show section header", "default": true },
     { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Plan your day" },
     { "type": "text", "id": "heading", "label": "Heading", "default": "One estate, three ways to enjoy it." },
     { "type": "textarea", "id": "body", "label": "Body", "default": "Our cellar door and Glasshouse sit above the vineyards at the foot of the Black Spur. Come for a tasting, stay for lunch, or bring a group together for a memorable Yarra Valley experience." }
@@ -108,7 +111,7 @@
       "name": "BOC — Visit Intro",
       "blocks": [
         { "type": "pathway", "settings": { "heading": "Taste", "description": "Guided flights of estate-grown, single-vineyard wines.", "link_label": "Wine tastings", "anchor_id": "boc-visit-tasting" } },
-        { "type": "pathway", "settings": { "heading": "Dine", "description": "Seasonal food, local producers and vineyard views.", "link_label": "The Glasshouse", "anchor_id": "boc-visit-glasshouse" } },
+        { "type": "pathway", "settings": { "heading": "Dine", "description": "Seasonal food, local producers and vineyard views.", "link_label": "Glasshouse", "anchor_id": "boc-visit-glasshouse" } },
         { "type": "pathway", "settings": { "heading": "Explore", "description": "Directions, transport options and local tour partners.", "link_label": "Getting here", "anchor_id": "boc-visit-getting-here" } }
       ]
     }

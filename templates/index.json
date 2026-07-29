@@ -23,8 +23,8 @@
             "button_1_label": "Shop wines",
             "button_1_link": "shopify://collections/all",
             "button_1_style": "light",
-            "button_2_label": "Our vineyards",
-            "button_2_link": "/pages/about",
+            "button_2_label": "BOOK A TASTING",
+            "button_2_link": "/pages/book-now",
             "button_2_style": "accent"
           }
         },
@@ -34,7 +34,7 @@
             "image": "shopify://shop_images/Banner2.png",
             "overlay_opacity": 100,
             "eyebrow": "Boat O'Craigo Wine Club",
-            "heading": "Your cellar, curated by ours.",
+            "heading": "Join the family.",
             "body": "Enjoy member pricing, flexible deliveries and first access to limited releases.",
             "button_1_label": "Join the club",
             "button_1_link": "/pages/wine-club",
@@ -50,8 +50,8 @@
             "image": "shopify://shop_images/Website_Banner_no_text_-_FRI_WINTER.png",
             "overlay_opacity": 100,
             "eyebrow": "Visit Healesville",
-            "heading": "Come for the wine. Stay for the view.",
-            "body": "Experience guided tastings, warm hospitality and vineyard views at our estate.",
+            "heading": "From dawn to dusk.",
+            "body": "We're open for dinner the last Friday of each month. Live music, fire on, marshmallows at the ready.",
             "button_1_label": "Book a tasting",
             "button_1_link": "/pages/visit",
             "button_1_style": "light",
@@ -66,24 +66,24 @@
             "image": "shopify://shop_images/N_Breen_2025-20.jpg",
             "overlay_opacity": 100,
             "eyebrow": "Glasshouse Restaurant",
-            "heading": "Seasonal dining among the vines.",
+            "heading": "Casual dining among the vines.",
             "body": "Relax over local produce, estate wines and sweeping Yarra Valley views.",
             "button_1_label": "Reserve a table",
-            "button_1_link": "/pages/visit",
+            "button_1_link": "/pages/book-now",
             "button_1_style": "light",
-            "button_2_label": "View dining",
-            "button_2_link": "/pages/visit",
+            "button_2_label": "VIEW MENU",
+            "button_2_link": "/pages/visit#boc-visit-menus",
             "button_2_style": "accent"
           }
         },
         "slide_5": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/Banner_-_Sunday_Sessions.png",
+            "image": "shopify://shop_images/Banner_-_Weddings.png",
             "overlay_opacity": 100,
             "eyebrow": "Weddings & Private Events",
-            "heading": "Celebrate among the vines.",
-            "body": "A relaxed, intimate Yarra Valley setting for weddings and unforgettable occasions.",
+            "heading": "Your forever starts here.",
+            "body": "Contemporary design with breathtaking views, the perfect place to say \"I do\".",
             "button_1_label": "Explore weddings",
             "button_1_link": "/pages/visit",
             "button_1_style": "light",
@@ -215,8 +215,8 @@
         "show_mobile": true,
         "container_width": "container",
         "background_color": "#ffffff",
-        "padding_top": 120,
-        "padding_bottom": 120,
+        "padding_top": 96,
+        "padding_bottom": 96,
         "eyebrow": "From our cellar",
         "heading": "Explore the range.",
         "body": "",
@@ -277,8 +277,8 @@
         "show_mobile": true,
         "container_width": "container",
         "background_color": "#212121",
-        "padding_top": 120,
-        "padding_bottom": 120,
+        "padding_top": 96,
+        "padding_bottom": 96,
         "eyebrow": "Our story",
         "heading": "Wine shaped by place, season and family.",
         "body": "Boat O'Craigo is a family-owned winery built around two distinctive Yarra Valley vineyard sites. Each wine is made in small parcels to preserve the character of its fruit and the place it comes from.",
@@ -296,10 +296,10 @@
           "settings": {
             "image": "shopify://shop_images/BoatOCraigo_OHO_4252_eit.jpg",
             "eyebrow": "Cellar Door",
-            "heading": "Book a tasting",
+            "heading": "Wine tastings",
             "body": "Explore our current releases and vineyard stories with a guided tasting.",
-            "link_label": "Plan your visit",
-            "link": "/pages/visit"
+            "link_label": "BOOK NOW",
+            "link": "/pages/book-now"
           }
         },
         "feature_2": {
@@ -307,10 +307,10 @@
           "settings": {
             "image": "shopify://shop_images/N_Breen_BoatO_2026-16_1.jpg",
             "eyebrow": "Glasshouse Restaurant",
-            "heading": "Seasonal dining",
+            "heading": "Casual dining",
             "body": "Relaxed food, estate wines and sweeping views across the vineyard.",
-            "link_label": "View the menu",
-            "link": "/pages/visit"
+            "link_label": "BOOK NOW",
+            "link": "/pages/book-now"
           }
         }
       },
@@ -325,11 +325,11 @@
         "show_mobile": true,
         "container_width": "container",
         "background_color": "#ffffff",
-        "padding_top": 120,
-        "padding_bottom": 120,
+        "padding_top": 96,
+        "padding_bottom": 96,
         "eyebrow": "Visit the estate",
-        "heading": "Come for the wine. Stay for the moment.",
-        "body": "Cellar door tastings and seasonal dining, set among the vines in Healesville."
+        "heading": "Good food, great wine and breathtaking views.",
+        "body": "Cellar door tastings and casual dining, set among the vines in Healesville."
       }
     },
     "boc_home_wine_club": {
@@ -380,8 +380,8 @@
         "padding_top": 0,
         "padding_bottom": 0,
         "eyebrow": "Boat O'Craigo Wine Club",
-        "heading": "Your cellar, curated by ours.",
-        "body": "Flexible deliveries, member pricing and first access to limited releases throughout the year.",
+        "heading": "Your cellar, your way.",
+        "body": "It's a 'choose your own adventure' kind of club. Customised packs, member pricing and first access to events and limited releases.",
         "image": "shopify://shop_images/N_Breen_2025-65.jpg",
         "button_label": "Join the club",
         "button_link": "/pages/wine-club"
@@ -396,8 +396,8 @@
         "show_mobile": true,
         "container_width": "full",
         "background_color": "#212121",
-        "padding_top": 120,
-        "padding_bottom": 120,
+        "padding_top": 96,
+        "padding_bottom": 96,
         "eyebrow": "Weddings & Private Events",
         "heading": "Celebrate among the vines.",
         "body": "Host your day in a setting that feels relaxed, intimate and unmistakably Yarra Valley.",
@@ -419,8 +419,8 @@
         "show_mobile": true,
         "container_width": "container",
         "background_color": "#faf8f5",
-        "padding_top": 120,
-        "padding_bottom": 120,
+        "padding_top": 96,
+        "padding_bottom": 96,
         "eyebrow": "What's on",
         "heading": "At the estate.",
         "body": "",
@@ -441,8 +441,8 @@
         "container_width": "container",
         "background_color": "#ffffff",
         "content_alignment": "left",
-        "padding_top": 120,
-        "padding_bottom": 120,
+        "padding_top": 96,
+        "padding_bottom": 96,
         "eyebrow": "From the journal",
         "heading": "Stories from the valley.",
         "body": "",
@@ -477,12 +477,8 @@
     "boc_home_hero",
     "boc_home_quick_links",
     "boc_home_featured_wines",
-    "boc_home_story",
     "boc_home_experiences",
     "boc_home_wine_club",
-    "boc_home_weddings",
-    "boc_home_events",
-    "boc_home_journal",
     "boc_home_newsletter"
   ]
 }

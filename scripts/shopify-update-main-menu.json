@@ -3,56 +3,92 @@
   "title": "Main menu",
   "items": [
     {
-      "title": "Shop",
+      "title": "Wines",
       "type": "HTTP",
       "url": "/collections/wines",
       "items": [
         {
-          "title": "Wines",
+          "title": "Shop All",
           "type": "HTTP",
           "url": "/collections/wines"
         },
         {
-          "title": "Experiences",
+          "title": "Wine Club",
           "type": "PAGE",
-          "resourceId": "gid://shopify/Page/111877947476"
+          "resourceId": "gid://shopify/Page/111877914708"
         },
         {
-          "title": "Gift Packs",
+          "title": "Gift",
           "type": "HTTP",
-          "url": "/collections/gift-packs"
-        },
-        {
-          "title": "Gift Cards",
-          "type": "HTTP",
-          "url": "/products/gift-card"
+          "url": "#"
         }
       ]
     },
     {
-      "title": "Wine Club",
-      "type": "PAGE",
-      "resourceId": "gid://shopify/Page/111877914708"
-    },
-    {
       "title": "Visit",
       "type": "PAGE",
-      "resourceId": "gid://shopify/Page/111877947476"
+      "resourceId": "gid://shopify/Page/111877947476",
+      "items": [
+        {
+          "title": "Cellar Door",
+          "type": "PAGE",
+          "resourceId": "gid://shopify/Page/111877947476"
+        },
+        {
+          "title": "Restaurant",
+          "type": "PAGE",
+          "resourceId": "gid://shopify/Page/111877947476"
+        },
+        {
+          "title": "What's On",
+          "type": "PAGE",
+          "resourceId": "gid://shopify/Page/111877980244"
+        }
+      ]
     },
     {
-      "title": "What's On",
-      "type": "PAGE",
-      "resourceId": "gid://shopify/Page/111877980244"
+      "title": "Private Events",
+      "type": "HTTP",
+      "url": "#",
+      "items": [
+        {
+          "title": "Weddings",
+          "type": "HTTP",
+          "url": "#"
+        },
+        {
+          "title": "Meetings",
+          "type": "HTTP",
+          "url": "#"
+        },
+        {
+          "title": "Other Celebrations",
+          "type": "HTTP",
+          "url": "#"
+        }
+      ]
     },
     {
       "title": "About",
       "type": "PAGE",
-      "resourceId": "gid://shopify/Page/111878013012"
-    },
-    {
-      "title": "Contact",
-      "type": "PAGE",
-      "resourceId": "gid://shopify/Page/111871950932"
+      "resourceId": "gid://shopify/Page/111878013012",
+      "items": [
+        {
+          "title": "About Us",
+          "type": "PAGE",
+          "resourceId": "gid://shopify/Page/111878013012"
+        },
+        {
+          "title": "Blog",
+          "type": "HTTP",
+          "url": "/blogs/news"
+        },
+        {
+          "title": "Contact",
+          "type": "PAGE",
+          "resourceId": "gid://shopify/Page/111871950932"
+        }
+      ]
     }
   ]
 }

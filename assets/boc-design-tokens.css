@@ -152,3 +152,7 @@
     transition-duration: 0.01ms !important;
   }
 }
+
+.boc-page--cream-main #MainContent {
+  background-color: var(--boc-cream);
+}

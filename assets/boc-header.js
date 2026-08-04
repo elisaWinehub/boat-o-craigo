@@ -126,10 +126,53 @@
     });
   }
 
+  function initStickyHeader(root) {
+    if (root.dataset.bocHeaderStickyInit === 'true') return;
+    root.dataset.bocHeaderStickyInit = 'true';
+
+    function getScrollContainer() {
+      if (window.matchMedia('(min-width: 990px)').matches) {
+        return document.querySelector('.page-wrapper') || document.documentElement;
+      }
+      return document.documentElement;
+    }
+
+    function getScrollTop() {
+      if (window.BocScroll && window.BocScroll.getTop) {
+        return window.BocScroll.getTop();
+      }
+
+      var container = getScrollContainer();
+      return container.scrollTop || window.scrollY || 0;
+    }
+
+    function bindScroll(handler) {
+      if (window.BocScroll && window.BocScroll.bind) {
+        window.BocScroll.bind(handler);
+        return;
+      }
+
+      window.addEventListener('scroll', handler, { passive: true });
+      var wrapper = document.querySelector('.page-wrapper');
+      if (wrapper) {
+        wrapper.addEventListener('scroll', handler, { passive: true });
+      }
+    }
+
+    function updateStickyState() {
+      root.classList.toggle('boc-header--is-scrolled', getScrollTop() > 0);
+    }
+
+    bindScroll(updateStickyState);
+    window.addEventListener('resize', updateStickyState);
+    updateStickyState();
+  }
+
   function initHeader(root) {
     if (!(root instanceof HTMLElement) || instances.has(root)) return;
     instances.set(root, new BocHeaderController(root));
     initPlaceholderLinks(root);
+    initStickyHeader(root);
   }
 
   function destroyHeader(root) {

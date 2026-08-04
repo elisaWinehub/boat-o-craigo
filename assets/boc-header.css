@@ -1,13 +1,23 @@
 /* Boat O'Craigo — Header */
 
+#header-group {
+  overflow: visible;
+}
+
 .boc-header {
   --boc-header-height: 88px;
+  position: -webkit-sticky;
   position: sticky;
   top: 0;
   z-index: 30;
   height: var(--boc-header-height);
   background: var(--boc-white);
   border-bottom: 1px solid var(--boc-line);
+  transition: box-shadow var(--boc-transition);
+}
+
+.boc-header.boc-header--is-scrolled {
+  box-shadow: 0 8px 24px rgba(33, 33, 33, 0.06);
 }
 
 .boc-header__inner {

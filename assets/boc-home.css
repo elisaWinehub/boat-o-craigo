@@ -958,28 +958,48 @@
 
 /* Newsletter */
 .boc-home-newsletter {
-  padding-top: 76px;
-  padding-bottom: 76px;
+  padding-top: 68px;
+  padding-bottom: 68px;
   color: var(--boc-white);
 }
 
 .boc-home-newsletter .boc-home-section__body {
-  color: rgba(255, 255, 255, 0.85);
+  font-family: var(--boc-serif);
+  font-style: italic;
+  font-size: 1.15rem;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.82);
+  margin: 0;
+  max-width: 420px;
 }
 
 .boc-home-newsletter__inner {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 60px;
-  align-items: center;
+  align-items: end;
 }
 
 .boc-home-newsletter__heading {
   font-family: var(--boc-serif);
   font-size: var(--boc-display-md);
   font-weight: 400;
-  line-height: 1;
-  margin: 8px 0 0;
+  line-height: 1.12;
+  margin: 8px 0 14px;
+}
+
+.boc-home-newsletter__form-wrapper {
+  display: block;
+}
+
+.boc-home-newsletter__form-label {
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 10px;
 }
 
 .boc-home-newsletter__form {
@@ -1011,6 +1031,14 @@
   cursor: pointer;
   font-family: var(--boc-sans);
   font-weight: 600;
+  padding-left: 20px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: opacity 0.2s;
+}
+
+.boc-home-newsletter__submit:hover {
+  opacity: 0.72;
 }
 
 .boc-home-newsletter__message {

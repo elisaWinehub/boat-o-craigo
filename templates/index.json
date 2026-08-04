@@ -344,8 +344,9 @@
         "padding_bottom": 72,
         "eyebrow": "From the vineyard",
         "heading": "Be the first to know.",
-        "body": "",
-        "input_placeholder": "Your email address",
+        "body": "New releases, seasonal events and member news — straight to your inbox.",
+        "form_label": "Your email",
+        "input_placeholder": "Enter your email address",
         "button_label": "Join the list →",
         "success_message": "Thanks for subscribing."
       }

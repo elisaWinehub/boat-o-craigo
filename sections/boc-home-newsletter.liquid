@@ -34,6 +34,9 @@
       </div>
 
       {% form 'customer', class: 'boc-home-newsletter__form-wrapper' %}
+        {%- if section.settings.form_label != blank -%}
+          <span class="boc-home-newsletter__form-label">{{ section.settings.form_label }}</span>
+        {%- endif -%}
         <input type="hidden" name="contact[tags]" value="newsletter">
         <div class="boc-home-newsletter__form">
           <label class="visually-hidden" for="boc-newsletter-email-{{ section.id }}">
@@ -97,7 +100,8 @@
     { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "From the vineyard" },
     { "type": "text", "id": "heading", "label": "Heading", "default": "Be the first to know." },
     { "type": "textarea", "id": "body", "label": "Body" },
-    { "type": "text", "id": "input_placeholder", "label": "Input placeholder", "default": "Your email address" },
+    { "type": "text", "id": "form_label", "label": "Form label (above input)", "default": "Your email" },
+    { "type": "text", "id": "input_placeholder", "label": "Input placeholder", "default": "Enter your email address" },
     { "type": "text", "id": "button_label", "label": "Button label", "default": "Join the list →" },
     { "type": "text", "id": "success_message", "label": "Success message", "default": "Thanks for subscribing." }
   ],

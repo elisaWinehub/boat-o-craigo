@@ -1,3 +1,5 @@
+{{ 'boc-contact.css' | asset_url | stylesheet_tag }}
+
 {%- liquid
   assign section_classes = 'boc-contact-section boc-contact-final boc-contact-section--full'
   unless section.settings.section_enabled

@@ -131,10 +131,9 @@
     root.dataset.bocHeaderStickyInit = 'true';
 
     function getScrollContainer() {
-      if (window.matchMedia('(min-width: 990px)').matches) {
-        return document.querySelector('.page-wrapper') || document.documentElement;
-      }
-      return document.documentElement;
+      return (window.BocScroll && window.BocScroll.getContainer)
+        ? window.BocScroll.getContainer()
+        : (document.querySelector('.page-wrapper') || document.documentElement);
     }
 
     function getScrollTop() {

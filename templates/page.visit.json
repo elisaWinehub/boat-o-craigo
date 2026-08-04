@@ -223,6 +223,7 @@
         "show_desktop": true,
         "show_tablet": true,
         "show_mobile": true,
+        "layout_width": "contained",
         "section_anchor_id": "boc-visit-tasting",
         "booking_url": "/pages/book-now",
         "split_ratio": "1.05fr 0.95fr",

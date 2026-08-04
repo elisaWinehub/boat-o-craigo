@@ -91,10 +91,14 @@
   font-family: var(--boc-serif);
   font-size: var(--boc-wc-heading-size, var(--boc-display-lg));
   font-weight: 400;
-  line-height: 0.98;
+  line-height: 1.18;
   letter-spacing: -0.03em;
   margin: 8px 0 0;
   color: var(--boc-wc-heading, inherit);
+}
+
+h2.boc-wine-club-section__heading:has(+ .boc-wine-club-section__body) {
+  margin-bottom: var(--boc-space-3);
 }
 
 .boc-wine-club-section__body {

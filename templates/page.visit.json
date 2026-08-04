@@ -275,13 +275,6 @@
             "label": "Reservations",
             "value": "Recommended"
           }
-        },
-        "detail_RCYgi8": {
-          "type": "detail",
-          "settings": {
-            "label": "Price/Person",
-            "value": "$50"
-          }
         }
       },
       "block_order": [

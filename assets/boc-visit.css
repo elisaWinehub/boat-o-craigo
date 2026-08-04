@@ -67,9 +67,9 @@
   font-family: var(--boc-serif);
   font-size: var(--boc-display-lg);
   font-weight: 400;
-  line-height: 1.08;
+  line-height: 1.18;
   letter-spacing: -0.03em;
-  padding-bottom: 0.06em;
+  padding-bottom: 0;
   margin: 8px 0 20px;
   color: var(--boc-v-heading, inherit);
 }

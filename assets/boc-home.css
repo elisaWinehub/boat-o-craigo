@@ -63,9 +63,9 @@
   font-family: var(--boc-serif);
   font-size: var(--boc-display-lg);
   font-weight: 400;
-  line-height: 1.08;
+  line-height: 1.18;
   letter-spacing: -0.03em;
-  padding-bottom: 0.06em;
+  padding-bottom: 0;
   margin: 8px 0 20px;
 }
 
@@ -216,11 +216,11 @@
 
 .boc-home-hero__heading {
   font-family: var(--boc-serif);
-  font-size: var(--boc-display-lg);
+  font-size: var(--boc-display-md);
   font-weight: 400;
-  line-height: 1.08;
+  line-height: 1.18;
   letter-spacing: -0.03em;
-  padding-bottom: 0.06em;
+  padding-bottom: 0;
   margin: 12px 0 22px;
 }
 
@@ -725,7 +725,7 @@
 .boc-home-card__title {
   font-family: var(--boc-serif);
   font-size: 1.75rem;
-  line-height: 1.08;
+  line-height: 1.18;
   font-weight: 400;
   margin: 10px 0;
 }
@@ -823,7 +823,7 @@
   font-family: var(--boc-serif, 'Libre Caslon Display', Georgia, serif);
   font-size: 1.8rem;
   font-weight: 400;
-  line-height: 1.08;
+  line-height: 1.18;
   margin: 10px 0 14px;
 }
 
@@ -930,7 +930,7 @@
   font-family: var(--boc-serif, 'Libre Caslon Display', Georgia, serif);
   font-size: 1.8rem;
   font-weight: 400;
-  line-height: 1.08;
+  line-height: 1.18;
   margin: 10px 0 14px;
 }
 
@@ -1067,10 +1067,6 @@
   .boc-home-hero {
     height: 720px;
     min-height: 720px;
-  }
-
-  .boc-home-hero__heading {
-    font-size: 3.6rem;
   }
 
   .boc-home-quick-links {

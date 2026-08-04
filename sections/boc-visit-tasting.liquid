@@ -1,5 +1,10 @@
 {%- liquid
-  assign section_classes = 'boc-visit-section boc-visit-tasting boc-visit-section--full'
+  assign section_classes = 'boc-visit-section boc-visit-tasting'
+  if section.settings.layout_width == 'contained'
+    assign section_classes = section_classes | append: ' boc-visit-section--contained'
+  else
+    assign section_classes = section_classes | append: ' boc-visit-section--full'
+  endif
   unless section.settings.section_enabled
     assign section_classes = section_classes | append: ' boc-visit-section--disabled'
   endunless
@@ -39,6 +44,7 @@
     { "type": "checkbox", "id": "show_desktop", "label": "Show on desktop", "default": true },
     { "type": "checkbox", "id": "show_tablet", "label": "Show on tablet", "default": true },
     { "type": "checkbox", "id": "show_mobile", "label": "Show on mobile", "default": true },
+    { "type": "select", "id": "layout_width", "label": "Layout width", "options": [{"value":"full","label":"Full width"},{"value":"contained","label":"Contained (max width)"}],"default": "full" },
     { "type": "text", "id": "section_anchor_id", "label": "Section anchor ID", "default": "boc-visit-tasting" },
     { "type": "url", "id": "booking_url", "label": "Tasting booking URL" },
     { "type": "image_picker", "id": "image", "label": "Image" },

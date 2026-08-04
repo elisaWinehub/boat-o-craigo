@@ -37,6 +37,17 @@
 
 .boc-visit-section--full { padding-inline: 0; }
 
+.boc-visit-section--contained .boc-visit-feature {
+  width: min(calc(100% - 48px), var(--boc-max-width));
+  margin-inline: auto;
+}
+
+@media (max-width: 720px) {
+  .boc-visit-section--contained .boc-visit-feature {
+    width: min(calc(100% - 32px), var(--boc-max-width));
+  }
+}
+
 .boc-visit-section__inner {
   width: min(calc(100% - 48px), var(--boc-max-width));
   margin-inline: auto;

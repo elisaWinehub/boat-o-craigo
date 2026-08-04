@@ -2,6 +2,18 @@
   'use strict';
 
   var ROOT = '[data-boc-whats-on]';
+  var ENQUIRY = '[data-boc-whats-on-enquiry]';
+
+  var ENQUIRY_META = {
+    wedding: {
+      type: 'Wedding enquiry',
+      tags: 'event-enquiry,wedding'
+    },
+    private: {
+      type: 'Private event enquiry',
+      tags: 'event-enquiry,private'
+    }
+  };
 
   function prefersReducedMotion() {
     return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -10,6 +22,64 @@
   function smoothScrollTo(el) {
     if (!el) return;
     el.scrollIntoView({ behavior: prefersReducedMotion() ? 'auto' : 'smooth', block: 'start' });
+  }
+
+  function getEnquirySection(root) {
+    if (root && root.matches && root.matches(ENQUIRY)) return root;
+    return (root && root.querySelector(ENQUIRY)) || document.querySelector(ENQUIRY);
+  }
+
+  function setPanelFieldsEnabled(panel, enabled) {
+    if (!panel) return;
+    panel.querySelectorAll('input, select, textarea').forEach(function (field) {
+      if (field.type === 'hidden') return;
+      field.disabled = !enabled;
+    });
+  }
+
+  function updateEnquiryHiddenFields(enquiry, tabId) {
+    var meta = ENQUIRY_META[tabId];
+    if (!meta) return;
+
+    var typeField = enquiry.querySelector('[data-boc-enquiry-type]');
+    var tagsField = enquiry.querySelector('[data-boc-enquiry-tags]');
+    if (typeField) typeField.value = meta.type;
+    if (tagsField) tagsField.value = meta.tags;
+  }
+
+  function updateEnquiryReturnTo(enquiry, tabId) {
+    var form = enquiry.querySelector('form');
+    if (!form) return;
+
+    var returnInput = form.querySelector('input[name="return_to"]');
+    if (!returnInput) return;
+
+    var anchor = enquiry.id || 'boc-whats-on-enquiry';
+    returnInput.value = window.location.pathname + '?enquiry=' + tabId + '#' + anchor;
+  }
+
+  function activateEnquiryTab(root, tabId) {
+    var enquiry = getEnquirySection(root);
+    if (!enquiry) return;
+
+    var tabs = enquiry.querySelectorAll('[role="tab"]');
+    var panels = enquiry.querySelectorAll('[role="tabpanel"]');
+
+    tabs.forEach(function (tab) {
+      var isActive = tab.getAttribute('data-tab') === tabId;
+      tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      tab.tabIndex = isActive ? 0 : -1;
+    });
+
+    panels.forEach(function (panel) {
+      var isActive = panel.getAttribute('data-panel') === tabId;
+      panel.hidden = !isActive;
+      setPanelFieldsEnabled(panel, isActive);
+    });
+
+    enquiry.setAttribute('data-boc-enquiry-active', tabId);
+    updateEnquiryHiddenFields(enquiry, tabId);
+    updateEnquiryReturnTo(enquiry, tabId);
   }
 
   function initScrollLinks(root) {
@@ -30,29 +100,6 @@
           activateEnquiryTab(root, tab);
         }
       });
-    });
-  }
-
-  function getEnquirySection(root) {
-    return root.querySelector('[data-boc-whats-on-enquiry]') || document.querySelector('[data-boc-whats-on-enquiry]');
-  }
-
-  function activateEnquiryTab(root, tabId) {
-    var enquiry = getEnquirySection(root);
-    if (!enquiry) return;
-
-    var tabs = enquiry.querySelectorAll('[role="tab"]');
-    var panels = enquiry.querySelectorAll('[role="tabpanel"]');
-
-    tabs.forEach(function (tab) {
-      var isActive = tab.getAttribute('data-tab') === tabId;
-      tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
-      tab.tabIndex = isActive ? 0 : -1;
-    });
-
-    panels.forEach(function (panel) {
-      var isActive = panel.getAttribute('data-panel') === tabId;
-      panel.hidden = !isActive;
     });
   }
 
@@ -97,10 +144,39 @@
       });
     });
 
+    var params = new URLSearchParams(window.location.search);
+    var enquiryParam = params.get('enquiry');
+    if (enquiryParam === 'wedding' || enquiryParam === 'private') {
+      activateEnquiryTab(root, enquiryParam);
+    } else {
+      var activeTab = enquiry.getAttribute('data-boc-enquiry-active') || 'wedding';
+      activateEnquiryTab(root, activeTab);
+    }
+
     var hash = window.location.hash.replace('#', '');
     if (hash === 'wedding' || hash === 'private') {
       activateEnquiryTab(root, hash);
     }
+
+    if (enquiry.querySelector('.boc-whats-on-enquiry__success')) {
+      smoothScrollTo(enquiry);
+    } else if (window.location.hash === '#' + (enquiry.id || 'boc-whats-on-enquiry')) {
+      smoothScrollTo(enquiry);
+    }
+  }
+
+  function initEnquiryForm(root) {
+    var enquiry = getEnquirySection(root);
+    if (!enquiry) return;
+
+    var form = enquiry.querySelector('form');
+    if (!form || form.dataset.bocEnquiryFormBound === 'true') return;
+    form.dataset.bocEnquiryFormBound = 'true';
+
+    form.addEventListener('submit', function () {
+      var activeTab = enquiry.getAttribute('data-boc-enquiry-active') || 'wedding';
+      activateEnquiryTab(root, activeTab);
+    });
   }
 
   function getMarkerOffset() {
@@ -158,12 +234,14 @@
     root.dataset.bocWhatsOnInit = 'true';
     initScrollLinks(root);
     initEnquiryTabs(root);
+    initEnquiryForm(root);
     initAnchorNav(root);
   }
 
   function initAll() {
     document.querySelectorAll(ROOT).forEach(initRoot);
     initEnquiryTabs(document.body);
+    initEnquiryForm(document.body);
     initScrollLinks(document.body);
   }
 
@@ -176,6 +254,7 @@
       initRoot(root);
     }
     initEnquiryTabs(document.body);
+    initEnquiryForm(document.body);
     initScrollLinks(document.body);
   });
 })();

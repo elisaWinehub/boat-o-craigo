@@ -30,8 +30,8 @@
 
 @media (max-width: 720px) {
   .boc-whats-on-section {
-    padding-top: var(--boc-wo-pt-m, 80px);
-    padding-bottom: var(--boc-wo-pb-m, 80px);
+    padding-top: var(--boc-wo-pt-m, 50px);
+    padding-bottom: var(--boc-wo-pb-m, 50px);
   }
 }
 
@@ -619,7 +619,21 @@
   max-width: 560px;
 }
 
+.boc-whats-on-enquiry__success-panel {
+  padding: 32px 28px;
+  background: var(--boc-cream);
+  border-left: 3px solid var(--boc-sand);
+  text-align: center;
+}
+
 .boc-whats-on-enquiry__success,
+.boc-whats-on-enquiry__errors {
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.5;
+  color: var(--boc-ink);
+}
+
 .boc-whats-on-enquiry__errors {
   margin-bottom: 16px;
   font-size: 0.9rem;

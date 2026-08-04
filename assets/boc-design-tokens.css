@@ -29,7 +29,7 @@
   --boc-space-6: 64px;
   --boc-space-7: 80px;
   --boc-space-8: 96px;
-  --boc-space-9: 88px;
+  --boc-space-9: 50px;
   --boc-space-10: 140px;
 
   --boc-display-xl: clamp(4rem, 8vw, 7.7rem);

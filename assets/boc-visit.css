@@ -30,8 +30,8 @@
 
 @media (max-width: 720px) {
   .boc-visit-section {
-    padding-top: var(--boc-v-pt-m, 80px);
-    padding-bottom: var(--boc-v-pb-m, 80px);
+    padding-top: var(--boc-v-pt-m, 50px);
+    padding-bottom: var(--boc-v-pb-m, 50px);
   }
 }
 

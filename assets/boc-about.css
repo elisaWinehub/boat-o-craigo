@@ -44,8 +44,8 @@
 
 @media (max-width: 720px) {
   .boc-about-section--standard {
-    padding-top: var(--boc-ab-pad-top-m, 80px);
-    padding-bottom: var(--boc-ab-pad-bottom-m, 80px);
+    padding-top: var(--boc-ab-pad-top-m, 50px);
+    padding-bottom: var(--boc-ab-pad-bottom-m, 50px);
   }
   .boc-about-section__inner { width: min(calc(100% - 32px), var(--boc-max-width)); }
 }
@@ -351,16 +351,17 @@
 .boc-about-team__head h2 { margin: 8px 0 0; }
 .boc-about-team__head p { max-width: 430px; color: var(--boc-ab-team-intro, #bdbdbd); margin: 0; }
 
-.boc-about-team__featured {
+.boc-about-team__featured-pair {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 18px;
 }
 
 .boc-about-team__featured-card {
   display: grid;
-  grid-template-columns: minmax(260px, 0.92fr) 1.08fr;
-  min-height: 480px;
+  grid-template-columns: 1fr;
+  grid-template-rows: 400px auto;
+  min-height: 0;
   background: var(--boc-ab-featured-bg, #2a2a2a);
   border: 1px solid transparent;
   text-align: left;
@@ -379,27 +380,9 @@
 
 .boc-about-team__featured-card img {
   width: 100%;
-  height: 100%;
-  min-height: 540px;
-  object-fit: cover;
-}
-
-.boc-about-team__featured-pair {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 18px;
-  margin-top: 18px;
-}
-
-.boc-about-team__featured-pair .boc-about-team__featured-card {
-  grid-template-columns: 1fr;
-  grid-template-rows: 400px auto;
-  min-height: 0;
-}
-
-.boc-about-team__featured-pair .boc-about-team__featured-card img {
   height: 400px;
   min-height: 400px;
+  object-fit: cover;
 }
 
 .boc-about-team__featured-pair .boc-about-team__featured-copy {
@@ -407,18 +390,14 @@
   justify-content: flex-start;
 }
 
-.boc-about-team__featured-pair .boc-about-team__featured-copy h3 {
-  font-size: 1.8rem;
-}
-
 .boc-about-team__featured-copy {
-  padding: 42px;
+  padding: 32px 28px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
-.boc-about-team__featured-copy h3 { font: 400 2.2rem var(--boc-serif); margin: 0 0 6px; }
+.boc-about-team__featured-copy h3 { font: 400 1.8rem var(--boc-serif); margin: 0 0 6px; }
 
 .boc-about-team__role {
   display: block;
@@ -536,16 +515,14 @@
 }
 
 @media (max-width: 980px) {
-  .boc-about-team__featured-card { grid-template-columns: 1fr; }
-  .boc-about-team__featured-card img { height: 380px; min-height: 380px; }
-  .boc-about-team__featured-copy { padding: 32px; }
   .boc-about-team__featured-pair { grid-template-columns: 1fr; gap: 12px; }
-  .boc-about-team__featured-pair .boc-about-team__featured-card img { height: 320px; min-height: 320px; }
+  .boc-about-team__featured-card img { height: 320px; min-height: 320px; }
+  .boc-about-team__featured-copy { padding: 32px; }
 }
 
 @media (max-width: 640px) {
-  .boc-about-team__featured-pair .boc-about-team__featured-card img { height: 280px; min-height: 280px; }
-  .boc-about-team__featured-pair .boc-about-team__featured-copy { padding: 24px 20px; }
+  .boc-about-team__featured-card img { height: 280px; min-height: 280px; }
+  .boc-about-team__featured-copy { padding: 24px 20px; }
   .boc-about-team__card img { height: 430px; }
 }
 

@@ -10,6 +10,7 @@
   @param {boolean} [full_width] - Span full grid width
   @param {string} [options] - Pipe-separated select options
   @param {boolean} [required] - Required field
+  @param {boolean} [disabled] - Disabled field (inactive enquiry tab)
 {%- enddoc -%}
 
 {%- liquid
@@ -29,9 +30,10 @@
         name="{{ name }}"
         placeholder="{{ placeholder }}"
         {% if required %}required{% endif %}
+        {% if disabled %}disabled{% endif %}
       >{{ value }}</textarea>
     {%- when 'select' -%}
-      <select id="{{ id }}" name="{{ name }}" {% if required %}required{% endif %}>
+      <select id="{{ id }}" name="{{ name }}" {% if required %}required{% endif %} {% if disabled %}disabled{% endif %}>
         {%- assign option_list = options | split: '|' -%}
         {%- for option in option_list -%}
           <option value="{{ option | strip }}">{{ option | strip }}</option>
@@ -45,6 +47,7 @@
         value="{{ value }}"
         placeholder="{{ placeholder }}"
         {% if required %}required{% endif %}
+        {% if disabled %}disabled{% endif %}
       >
   {%- endcase -%}
 </div>

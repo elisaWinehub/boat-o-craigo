@@ -57,33 +57,13 @@
     </div>
 
     {%- if featured_count > 0 -%}
-      {%- assign featured_index = 0 -%}
-
-      <div class="boc-about-team__featured">
+      <div class="boc-about-team__featured-pair">
         {%- for block in section.blocks -%}
-          {%- if block.settings.featured and featured_index == 0 -%}
+          {%- if block.settings.featured -%}
             {% render 'boc-team-card', block: block, section_id: section.id, image_fallback: 'boc-estate-vineyard.jpg' %}
-            {%- assign featured_index = featured_index | plus: 1 -%}
-          {%- elsif block.settings.featured -%}
-            {%- assign featured_index = featured_index | plus: 1 -%}
           {%- endif -%}
         {%- endfor -%}
       </div>
-
-      {%- if featured_count > 1 -%}
-        <div class="boc-about-team__featured-pair">
-          {%- assign featured_index = 0 -%}
-          {%- for block in section.blocks -%}
-            {%- if block.settings.featured -%}
-              {%- if featured_index > 0 -%}
-                {% render 'boc-team-card', block: block, section_id: section.id, image_fallback: 'boc-estate-vineyard.jpg' %}
-              {%- endif -%}
-              {%- assign featured_index = featured_index | plus: 1 -%}
-            {%- endif -%}
-          {%- endfor -%}
-        </div>
-      {%- endif -%}
-
     {%- endif -%}
 
     {%- if carousel_count > 0 and section.settings.show_carousel -%}
@@ -150,12 +130,12 @@
     { "type": "color", "id": "featured_card_background", "label": "Featured card background", "default": "#2a2a2a" },
     { "type": "color", "id": "carousel_card_background", "label": "Carousel card background", "default": "#FFFFFF" },
     { "type": "range", "id": "card_image_height", "label": "Carousel card image height", "min": 240, "max": 480, "step": 10, "unit": "px", "default": 310 },
-    { "type": "range", "id": "padding_top_desktop", "label": "Desktop padding top", "min": 40, "max": 160, "step": 8, "unit": "px", "default": 120 },
-    { "type": "range", "id": "padding_bottom_desktop", "label": "Desktop padding bottom", "min": 40, "max": 160, "step": 8, "unit": "px", "default": 120 },
-    { "type": "range", "id": "padding_top_tablet", "label": "Tablet padding top", "min": 40, "max": 128, "step": 8, "unit": "px", "default": 96 },
-    { "type": "range", "id": "padding_bottom_tablet", "label": "Tablet padding bottom", "min": 40, "max": 128, "step": 8, "unit": "px", "default": 96 },
-    { "type": "range", "id": "padding_top_mobile", "label": "Mobile padding top", "min": 40, "max": 120, "step": 8, "unit": "px", "default": 80 },
-    { "type": "range", "id": "padding_bottom_mobile", "label": "Mobile padding bottom", "min": 40, "max": 120, "step": 8, "unit": "px", "default": 80 },
+    { "type": "range", "id": "padding_top_desktop", "label": "Desktop padding top", "min": 0, "max": 160, "step": 2, "unit": "px", "default": 50 },
+    { "type": "range", "id": "padding_bottom_desktop", "label": "Desktop padding bottom", "min": 0, "max": 160, "step": 2, "unit": "px", "default": 50 },
+    { "type": "range", "id": "padding_top_tablet", "label": "Tablet padding top", "min": 0, "max": 128, "step": 2, "unit": "px", "default": 50 },
+    { "type": "range", "id": "padding_bottom_tablet", "label": "Tablet padding bottom", "min": 0, "max": 128, "step": 2, "unit": "px", "default": 50 },
+    { "type": "range", "id": "padding_top_mobile", "label": "Mobile padding top", "min": 0, "max": 120, "step": 2, "unit": "px", "default": 50 },
+    { "type": "range", "id": "padding_bottom_mobile", "label": "Mobile padding bottom", "min": 0, "max": 120, "step": 2, "unit": "px", "default": 50 },
     { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "The people behind the wine" },
     { "type": "text", "id": "heading", "label": "Heading", "default": "Meet the team." },
     { "type": "textarea", "id": "body", "label": "Body", "default": "Rob Hall and Ben Craig lead the wine and vineyard story. Select any profile to read more about the wider Boat O'Craigo team." },
@@ -175,7 +155,7 @@
       "type": "member",
       "name": "Team member",
       "settings": [
-        { "type": "checkbox", "id": "featured", "label": "Featured profile", "default": false, "info": "Limit to two featured profiles for best layout." },
+        { "type": "checkbox", "id": "featured", "label": "Featured profile", "default": false, "info": "Limit to three featured profiles for best layout." },
         { "type": "text", "id": "name", "label": "Name", "default": "Team member" },
         { "type": "text", "id": "role", "label": "Role", "default": "Role" },
         { "type": "textarea", "id": "summary", "label": "Summary", "default": "Short profile summary." },

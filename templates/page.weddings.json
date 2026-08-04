@@ -226,6 +226,7 @@
         "show_desktop": true,
         "show_tablet": true,
         "show_mobile": true,
+        "layout_width": "full",
         "section_anchor_id": "boc-weddings-glasshouse",
         "image": "shopify://shop_images/N_Breen_BoatO_2026-16_1.jpg",
         "split_ratio_reverse": "0.95fr 1.05fr",

@@ -1,3 +1,5 @@
+{{ 'boc-visit.css' | asset_url | stylesheet_tag }}
+
 {%- liquid
   assign section_classes = 'boc-visit-section boc-visit-glasshouse'
   if section.settings.layout_width == 'contained'

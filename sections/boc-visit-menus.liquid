@@ -43,7 +43,7 @@
       {%- if section.settings.intro_body != blank -%}<p class="boc-visit-section__head-aside">{{ section.settings.intro_body }}</p>{%- endif -%}
     </div>
 
-    <div class="{{ grid_class }}">
+    <div class="{{ grid_class }}{% if section.settings.card_style == 'simple' %} boc-visit-menus__grid--simple{% endif %}">
       {%- for block in section.blocks -%}
         {% render 'boc-menu-card', block: block, settings: section.settings %}
       {%- endfor -%}
@@ -63,6 +63,7 @@
     { "type": "checkbox", "id": "show_tablet", "label": "Show on tablet", "default": true },
     { "type": "checkbox", "id": "show_mobile", "label": "Show on mobile", "default": true },
     { "type": "text", "id": "section_anchor_id", "label": "Section anchor ID", "default": "boc-visit-menus" },
+    { "type": "select", "id": "card_style", "label": "Menu card style", "options": [{"value":"image","label":"Image cards"},{"value":"simple","label":"Simple bordered cards"}],"default": "simple" },
     { "type": "color", "id": "background_color", "label": "Background", "default": "#FFFFFF" },
     { "type": "range", "id": "columns_desktop", "label": "Desktop columns", "min": 1, "max": 4, "step": 1, "default": 2 },
     { "type": "range", "id": "default_card_height", "label": "Default card height", "min": 360, "max": 700, "step": 20, "unit": "px", "default": 520 },

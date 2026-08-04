@@ -57,25 +57,25 @@
         {%- endif -%}
 
         {%- for block in travel_blocks -%}
-          <div class="boc-visit-travel__item" {{ block.shopify_attributes }}>
-            {%- if block.settings.heading != blank -%}<h3>{{ block.settings.heading }}</h3>{%- endif -%}
+          {% capture travel_content %}
             {%- if block.settings.body != blank -%}<div class="rte">{{ block.settings.body }}</div>{%- endif -%}
             {%- if block.settings.button_enabled and block.settings.button_label != blank -%}
               {% render 'boc-button', label: block.settings.button_label, url: block.settings.button_url, style: block.settings.button_style | default: 'primary', new_tab: block.settings.button_new_tab %}
             {%- endif -%}
-          </div>
+          {% endcapture %}
+          {% render 'boc-accordion', heading: block.settings.heading, content: travel_content, open_by_default: false %}
         {%- endfor -%}
 
         {%- if operator_blocks.size > 0 -%}
-          <div class="boc-visit-travel__item">
-            {%- if section.settings.operators_heading != blank -%}<h3>{{ section.settings.operators_heading }}</h3>{%- endif -%}
+          {% capture operators_content %}
             {%- if section.settings.operators_intro != blank -%}<p>{{ section.settings.operators_intro }}</p>{%- endif -%}
             <div class="boc-visit-operators">
               {%- for block in operator_blocks -%}
                 {% render 'boc-tour-operator-card', block: block %}
               {%- endfor -%}
             </div>
-          </div>
+          {% endcapture %}
+          {% render 'boc-accordion', heading: section.settings.operators_heading, content: operators_content, open_by_default: false %}
         {%- endif -%}
 
         {%- if section.settings.enable_map_app_block -%}

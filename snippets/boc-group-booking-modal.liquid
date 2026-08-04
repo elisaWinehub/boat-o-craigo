@@ -1,0 +1,19 @@
+{%- doc -%}
+  Group booking enquiry modal for the Visit page groups section.
+
+  @param {string} section_id - Parent section ID
+  @param {string} [success_message] - Confirmation message
+{%- enddoc -%}
+
+{% render 'boc-enquiry-form',
+  section_id: section_id,
+  form_id_prefix: 'boc-group-booking',
+  title: 'Group booking enquiry',
+  intro: 'Tell us about your group and we will follow up by email.',
+  success_message: success_message,
+  enquiry_type: 'Group booking enquiry',
+  tags: 'group-booking,visit',
+  dates_label: 'Proposed date/s',
+  occasion_label: 'Occasion',
+  submit_label: 'Send enquiry'
+%}

@@ -1,0 +1,98 @@
+{%- liquid
+  assign section_classes = 'boc-section boc-private-events-enquiry-cta boc-section--standard'
+  unless section.settings.section_enabled
+    assign section_classes = section_classes | append: ' boc-section--disabled'
+  endunless
+  unless section.settings.show_desktop
+    assign section_classes = section_classes | append: ' boc-section--hide-desktop'
+  endunless
+  unless section.settings.show_tablet
+    assign section_classes = section_classes | append: ' boc-section--hide-tablet'
+  endunless
+  unless section.settings.show_mobile
+    assign section_classes = section_classes | append: ' boc-section--hide-mobile'
+  endunless
+-%}
+
+{{ 'boc-private-events.css' | asset_url | stylesheet_tag }}
+{{ 'boc-visit.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'boc-private-events.js' | asset_url }}" defer></script>
+
+<section
+  id="{{ section.settings.section_anchor_id | default: 'boc-private-events-enquiry' }}"
+  class="{{ section_classes }}"
+  data-boc-private-events
+  style="
+    --boc-pe-bg: {{ section.settings.background_color }};
+    --boc-section-pt: {{ section.settings.padding_top }}px;
+    --boc-section-pb: {{ section.settings.padding_bottom }}px;
+  "
+>
+  <div class="boc-container boc-section__inner boc-private-events-enquiry-cta__inner">
+    {%- if section.settings.eyebrow != blank -%}<span class="boc-eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+    {%- if section.settings.quote != blank -%}
+      <p class="boc-private-events-enquiry-cta__quote">{{ section.settings.quote }}</p>
+    {%- endif -%}
+    {%- if section.settings.heading != blank -%}
+      <h2 class="boc-section__heading">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+    {%- if section.settings.body != blank -%}
+      <p class="boc-private-events-enquiry-cta__body">{{ section.settings.body }}</p>
+    {%- endif -%}
+
+    {%- if section.settings.button_enabled and section.settings.button_label != blank -%}
+      <button type="button" class="boc-btn boc-btn--{{ section.settings.button_style | default: 'primary' }}" data-boc-enquiry-open>
+        {{ section.settings.button_label }}
+      </button>
+    {%- endif -%}
+
+    {% render 'boc-enquiry-form',
+      section_id: section.id,
+      form_id_prefix: 'boc-pe-enquiry',
+      title: section.settings.form_title,
+      intro: section.settings.form_intro,
+      success_message: section.settings.form_success_message,
+      enquiry_type: section.settings.enquiry_type,
+      tags: section.settings.enquiry_tags,
+      dates_label: section.settings.dates_field_label,
+      occasion_label: section.settings.occasion_field_label,
+      submit_label: section.settings.submit_label
+    %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "BOC — PE Enquiry CTA",
+  "tag": "section",
+  "class": "boc-private-events-enquiry-cta-section",
+  "settings": [
+    { "type": "checkbox", "id": "section_enabled", "label": "Enable section", "default": true },
+    { "type": "checkbox", "id": "show_desktop", "label": "Show on desktop", "default": true },
+    { "type": "checkbox", "id": "show_tablet", "label": "Show on tablet", "default": true },
+    { "type": "checkbox", "id": "show_mobile", "label": "Show on mobile", "default": true },
+    { "type": "text", "id": "section_anchor_id", "label": "Section anchor ID", "default": "boc-private-events-enquiry" },
+    { "type": "color", "id": "background_color", "label": "Background", "default": "#FAF8F5" },
+    { "type": "range", "id": "padding_top", "label": "Padding top", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 96 },
+    { "type": "range", "id": "padding_bottom", "label": "Padding bottom", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 96 },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow" },
+    { "type": "text", "id": "quote", "label": "Quote line" },
+    { "type": "text", "id": "heading", "label": "Heading" },
+    { "type": "textarea", "id": "body", "label": "Body" },
+    { "type": "header", "content": "Button" },
+    { "type": "checkbox", "id": "button_enabled", "label": "Enable button", "default": true },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Enquire now" },
+    { "type": "select", "id": "button_style", "label": "Button style", "options": [{"value":"primary","label":"Primary"},{"value":"accent","label":"Accent"},{"value":"light","label":"Light"}],"default": "primary" },
+    { "type": "header", "content": "Enquiry form" },
+    { "type": "text", "id": "form_title", "label": "Form title", "default": "Event enquiry" },
+    { "type": "textarea", "id": "form_intro", "label": "Form intro", "default": "Tell us about your event and we will follow up by email." },
+    { "type": "text", "id": "form_success_message", "label": "Success message", "default": "Thank you — our events team will be in touch shortly." },
+    { "type": "text", "id": "enquiry_type", "label": "Enquiry type (hidden)", "default": "Event enquiry" },
+    { "type": "text", "id": "enquiry_tags", "label": "Contact tags (hidden)", "default": "event-enquiry" },
+    { "type": "text", "id": "dates_field_label", "label": "Dates field label", "default": "Proposed date/s" },
+    { "type": "text", "id": "occasion_field_label", "label": "Occasion field label", "default": "Occasion" },
+    { "type": "text", "id": "submit_label", "label": "Submit label", "default": "Send enquiry" }
+  ],
+  "presets": [{ "name": "BOC — PE Enquiry CTA" }]
+}
+{% endschema %}

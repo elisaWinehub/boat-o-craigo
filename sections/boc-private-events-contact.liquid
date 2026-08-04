@@ -1,0 +1,64 @@
+{%- liquid
+  assign section_classes = 'boc-section boc-private-events-contact boc-section--standard'
+  unless section.settings.section_enabled
+    assign section_classes = section_classes | append: ' boc-section--disabled'
+  endunless
+  unless section.settings.show_desktop
+    assign section_classes = section_classes | append: ' boc-section--hide-desktop'
+  endunless
+  unless section.settings.show_tablet
+    assign section_classes = section_classes | append: ' boc-section--hide-tablet'
+  endunless
+  unless section.settings.show_mobile
+    assign section_classes = section_classes | append: ' boc-section--hide-mobile'
+  endunless
+
+  assign email = section.settings.email | default: 'events@boatocraigo.com.au'
+-%}
+
+{{ 'boc-private-events.css' | asset_url | stylesheet_tag }}
+
+<section
+  id="{{ section.settings.section_anchor_id | default: 'boc-private-events-contact' }}"
+  class="{{ section_classes }}"
+  style="
+    --boc-pe-bg: {{ section.settings.background_color }};
+    --boc-section-pt: {{ section.settings.padding_top }}px;
+    --boc-section-pb: {{ section.settings.padding_bottom }}px;
+  "
+>
+  <div class="boc-container boc-section__inner">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="boc-private-events-contact__heading">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+    {%- if section.settings.subheading != blank -%}
+      <p class="boc-private-events-contact__subheading">{{ section.settings.subheading }}</p>
+    {%- endif -%}
+    {%- if email != blank -%}
+      <a href="mailto:{{ email | escape }}" class="boc-home-text-link">{{ section.settings.email_label | default: 'Send us an Email' }} → {{ email }}</a>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "BOC — PE Contact",
+  "tag": "section",
+  "class": "boc-private-events-contact-section",
+  "settings": [
+    { "type": "checkbox", "id": "section_enabled", "label": "Enable section", "default": true },
+    { "type": "checkbox", "id": "show_desktop", "label": "Show on desktop", "default": true },
+    { "type": "checkbox", "id": "show_tablet", "label": "Show on tablet", "default": true },
+    { "type": "checkbox", "id": "show_mobile", "label": "Show on mobile", "default": true },
+    { "type": "text", "id": "section_anchor_id", "label": "Section anchor ID", "default": "boc-private-events-contact" },
+    { "type": "color", "id": "background_color", "label": "Background", "default": "#FFFFFF" },
+    { "type": "range", "id": "padding_top", "label": "Padding top", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 96 },
+    { "type": "range", "id": "padding_bottom", "label": "Padding bottom", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 96 },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Got Questions?" },
+    { "type": "text", "id": "subheading", "label": "Subheading", "default": "Contact our Event Manager" },
+    { "type": "text", "id": "email", "label": "Email address", "default": "events@boatocraigo.com.au" },
+    { "type": "text", "id": "email_label", "label": "Email link label", "default": "Send us an Email" }
+  ],
+  "presets": [{ "name": "BOC — PE Contact" }]
+}
+{% endschema %}

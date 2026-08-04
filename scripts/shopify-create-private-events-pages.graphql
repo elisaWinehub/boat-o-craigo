@@ -1,0 +1,39 @@
+mutation CreatePrivateEventsPages(
+  $weddings: PageCreateInput!
+  $meetings: PageCreateInput!
+  $otherCelebrations: PageCreateInput!
+) {
+  weddings: pageCreate(page: $weddings) {
+    page {
+      id
+      handle
+      title
+    }
+    userErrors {
+      field
+      message
+    }
+  }
+  meetings: pageCreate(page: $meetings) {
+    page {
+      id
+      handle
+      title
+    }
+    userErrors {
+      field
+      message
+    }
+  }
+  otherCelebrations: pageCreate(page: $otherCelebrations) {
+    page {
+      id
+      handle
+      title
+    }
+    userErrors {
+      field
+      message
+    }
+  }
+}

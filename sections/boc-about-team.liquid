@@ -57,13 +57,33 @@
     </div>
 
     {%- if featured_count > 0 -%}
+      {%- assign featured_index = 0 -%}
+
       <div class="boc-about-team__featured">
         {%- for block in section.blocks -%}
-          {%- if block.settings.featured -%}
+          {%- if block.settings.featured and featured_index == 0 -%}
             {% render 'boc-team-card', block: block, section_id: section.id, image_fallback: 'boc-estate-vineyard.jpg' %}
+            {%- assign featured_index = featured_index | plus: 1 -%}
+          {%- elsif block.settings.featured -%}
+            {%- assign featured_index = featured_index | plus: 1 -%}
           {%- endif -%}
         {%- endfor -%}
       </div>
+
+      {%- if featured_count > 1 -%}
+        <div class="boc-about-team__featured-pair">
+          {%- assign featured_index = 0 -%}
+          {%- for block in section.blocks -%}
+            {%- if block.settings.featured -%}
+              {%- if featured_index > 0 -%}
+                {% render 'boc-team-card', block: block, section_id: section.id, image_fallback: 'boc-estate-vineyard.jpg' %}
+              {%- endif -%}
+              {%- assign featured_index = featured_index | plus: 1 -%}
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+
     {%- endif -%}
 
     {%- if carousel_count > 0 and section.settings.show_carousel -%}

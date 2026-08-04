@@ -4,18 +4,23 @@
   display: contents;
 }
 
-.boc-header {
-  --boc-header-height: 88px;
+.boc-header-section {
   position: -webkit-sticky;
   position: sticky;
   top: 0;
   z-index: 30;
+}
+
+.boc-header {
+  --boc-header-height: 88px;
+  position: relative;
   height: var(--boc-header-height);
   background: var(--boc-white);
   border-bottom: 1px solid var(--boc-line);
   transition: box-shadow var(--boc-transition);
 }
 
+.boc-header-section.boc-header-section--is-scrolled .boc-header,
 .boc-header.boc-header--is-scrolled {
   box-shadow: 0 8px 24px rgba(33, 33, 33, 0.06);
 }

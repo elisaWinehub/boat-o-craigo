@@ -130,6 +130,8 @@
     if (root.dataset.bocHeaderStickyInit === 'true') return;
     root.dataset.bocHeaderStickyInit = 'true';
 
+    const section = root.closest('.boc-header-section');
+
     function getScrollContainer() {
       return (window.BocScroll && window.BocScroll.getContainer)
         ? window.BocScroll.getContainer()
@@ -159,7 +161,9 @@
     }
 
     function updateStickyState() {
-      root.classList.toggle('boc-header--is-scrolled', getScrollTop() > 0);
+      const scrolled = getScrollTop() > 0;
+      root.classList.toggle('boc-header--is-scrolled', scrolled);
+      section?.classList.toggle('boc-header-section--is-scrolled', scrolled);
     }
 
     bindScroll(updateStickyState);

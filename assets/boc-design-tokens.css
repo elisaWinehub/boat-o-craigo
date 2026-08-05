@@ -49,6 +49,10 @@
   margin-inline: auto;
 }
 
+.page-wrapper {
+  overflow-x: clip;
+}
+
 .boc-section {
   padding-block: var(--boc-space-9);
 }

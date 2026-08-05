@@ -8,7 +8,6 @@
 
 html {
   scroll-behavior: smooth;
-  overflow-x: hidden;
 }
 
 body {
@@ -19,15 +18,18 @@ body {
   font-size: var(--boc-body);
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
 }
 
 img,
-svg,
 video {
   display: block;
   max-width: 100%;
   height: auto;
+}
+
+svg {
+  display: block;
+  max-width: 100%;
 }
 
 a {
@@ -307,7 +309,13 @@ body.boc-scroll-lock {
   outline-offset: 2px;
 }
 
-:focus-visible {
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+summary:focus-visible,
+[tabindex]:not([tabindex='-1']):focus-visible {
   outline: 2px solid var(--boc-sand);
   outline-offset: 3px;
 }

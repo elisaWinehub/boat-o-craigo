@@ -103,6 +103,14 @@
   color: var(--boc-white);
 }
 
+.boc-product-card__add.boc-btn--primary,
+.boc-btn.boc-btn--primary.boc-product-card__add {
+  background: var(--boc-ink);
+  border-color: var(--boc-ink);
+  color: var(--boc-white);
+  border-radius: 0;
+}
+
 .boc-btn--accent {
   background: var(--boc-sand);
   border-color: var(--boc-sand);

@@ -1,0 +1,114 @@
+<style>
+  /* Critical BOC fallbacks — ensures layout when compiled styles.css or CDN assets fail */
+  .skip-to-content-link:not(:focus):not(:focus-visible) {
+    position: absolute !important;
+    left: -9999px !important;
+    width: 1px !important;
+    height: 1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+  }
+
+  .boc-announcement-bar {
+    min-height: 34px;
+    background: var(--boc-ink, #212121);
+    color: var(--boc-white, #fff);
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 31;
+  }
+
+  .boc-home-hero {
+    position: relative;
+    overflow: hidden;
+    color: #fff;
+    min-height: 560px;
+  }
+
+  .boc-home-hero__slider {
+    position: relative;
+    height: 100%;
+    width: 100%;
+  }
+
+  .boc-home-hero__slide {
+    position: absolute;
+    inset: 0;
+  }
+
+  .boc-home-hero__slide:not(.is-active) {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .boc-home-hero__slide.is-active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .boc-home-hero__media {
+    position: absolute;
+    inset: 0;
+  }
+
+  .boc-home-hero__media picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .boc-home-hero__media img {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .boc-home-hero__content {
+    position: relative;
+    z-index: 2;
+  }
+
+  .boc-home-quick-links__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+  }
+
+  .boc-home-featured-wines__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .boc-product-card__add,
+  .boc-btn--primary {
+    background: #212121 !important;
+    border-color: #212121 !important;
+    color: #fff !important;
+  }
+
+  @media (max-width: 1100px) {
+    .boc-header__nav { display: none; }
+    .boc-header__menu-toggle { display: grid; }
+  }
+
+  @media (max-width: 720px) {
+    .boc-home-quick-links__grid { grid-template-columns: 1fr 1fr; }
+    .boc-home-experiences__grid { grid-template-columns: 1fr; }
+    .boc-home-experiences__card img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .boc-home-quick-links__grid { grid-template-columns: 1fr; }
+    .boc-home-featured-wines__grid { grid-template-columns: 1fr; }
+  }
+</style>

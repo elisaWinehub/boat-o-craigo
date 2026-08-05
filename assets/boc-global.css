@@ -20,6 +20,32 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* Skip link — fallback when compiled styles.css fails to load */
+.skip-to-content-link:not(:focus):not(:focus-visible) {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}
+
+.skip-to-content-link:focus,
+.skip-to-content-link:focus-visible {
+  position: fixed;
+  left: 16px;
+  top: 16px;
+  z-index: 9999;
+  width: auto;
+  height: auto;
+  overflow: visible;
+  clip: auto;
+  padding: 12px 24px;
+  background: var(--boc-white);
+  color: var(--boc-ink);
+  border: 1px solid var(--boc-line);
+}
+
 img,
 video {
   display: block;

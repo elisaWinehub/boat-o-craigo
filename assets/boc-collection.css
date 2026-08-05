@@ -575,4 +575,19 @@
   .boc-collection-grid .boc-product-card--collection .boc-product-card__media {
     height: 260px;
   }
+
+  .boc-product-card--collection .boc-product-card__actions {
+    flex-wrap: wrap;
+  }
+
+  .boc-product-card--collection .boc-product-card__quantity,
+  .boc-product-card--collection [data-boc-qty] {
+    flex: 1 1 100%;
+  }
+
+  .boc-product-card--collection .boc-product-card__add {
+    flex: 1 1 100%;
+    width: 100%;
+    white-space: normal;
+  }
 }

@@ -330,7 +330,7 @@
   .boc-bl__feat-body { padding: 36px; }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 720px) {
   .boc-container { width: min(calc(100% - 32px), var(--boc-max-width, 1420px)); }
   .boc-bl__hero { min-height: 460px; }
   .boc-bl__hero-title { font-size: 2.8rem; }

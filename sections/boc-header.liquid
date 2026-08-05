@@ -142,7 +142,7 @@
                 {% render 'boc-icon', name: 'chevron' %}
               </button>
               <div class="boc-header__drawer-sub">
-                <a class="boc-header__drawer-sub-link boc-header__drawer-link" href="{{ link.url }}" data-boc-header-close>
+                <a class="boc-header__drawer-sub-link" href="{{ link.url }}" data-boc-header-close>
                   {{- link.title -}}
                 </a>
                 {%- for child in link.links -%}

@@ -133,6 +133,10 @@
 }
 
 @media (max-width: 720px) {
+  .page-wrapper {
+    overflow-x: clip;
+  }
+
   .boc-container {
     width: min(calc(100% - 32px), var(--boc-max-width));
   }

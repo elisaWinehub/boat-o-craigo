@@ -440,6 +440,7 @@
 @media (max-width: 640px) {
   .boc-visit-menu-card { min-height: var(--boc-v-menu-h-m, 420px); }
   .boc-visit-menu-card__media img { min-height: var(--boc-v-menu-h-m, 420px); }
+  .boc-visit-menu-card__copy h3 { font-size: clamp(1.8rem, 6vw, 2.4rem); }
 }
 
 /* Groups */

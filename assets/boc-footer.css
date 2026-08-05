@@ -182,4 +182,14 @@
     display: block;
     margin-bottom: 8px;
   }
+
+  .boc-footer__newsletter-form {
+    flex-wrap: wrap;
+    row-gap: 12px;
+  }
+
+  .boc-footer__newsletter-submit {
+    padding-left: 0;
+    width: 100%;
+  }
 }

@@ -786,7 +786,7 @@ body.boc-product-gallery-modal-open { overflow: hidden; }
   .related-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
-@media (max-width: 760px) {
+@media (max-width: 720px) {
   .product-main { padding-top: 26px; }
   .product-gallery { grid-template-columns: 1fr; }
   .product-thumbs {
@@ -813,4 +813,8 @@ body.boc-product-gallery-modal-open { overflow: hidden; }
   .product-related { padding: 84px 0; }
   .product-related .section-head { display: block; }
   .product-related .section-head .text-link { display: inline-block; margin-top: 18px; }
+}
+
+@media (max-width: 480px) {
+  .related-grid { grid-template-columns: 1fr; }
 }

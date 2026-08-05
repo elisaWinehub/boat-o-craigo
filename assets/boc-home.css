@@ -1093,8 +1093,12 @@
   }
 
   .boc-home-hero {
-    height: 720px;
-    min-height: 720px;
+    height: min(92vh, 720px);
+    min-height: min(560px, 85vh);
+  }
+
+  .boc-home-weddings {
+    min-height: min(560px, 85vh);
   }
 
   .boc-home-quick-links {
@@ -1158,6 +1162,27 @@
   }
 
   .boc-home-newsletter__inner {
+    grid-template-columns: 1fr;
+  }
+
+  .boc-home-newsletter {
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+
+  .boc-home-newsletter__form {
+    flex-wrap: wrap;
+    row-gap: 12px;
+  }
+
+  .boc-home-newsletter__submit {
+    padding-left: 0;
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .boc-home-quick-links__grid {
     grid-template-columns: 1fr;
   }
 }

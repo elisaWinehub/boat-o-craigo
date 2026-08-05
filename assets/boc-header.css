@@ -239,6 +239,11 @@
   visibility: visible;
 }
 
+.boc-header__drawer[hidden],
+.boc-header__drawer-backdrop[hidden] {
+  display: none !important;
+}
+
 .boc-header__drawer {
   position: fixed;
   inset: 0 0 0 auto;
@@ -343,6 +348,10 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
+}
+
+.boc-header__drawer-footer .boc-btn {
+  width: 100%;
 }
 
 .boc-header__drawer-search .search-action {

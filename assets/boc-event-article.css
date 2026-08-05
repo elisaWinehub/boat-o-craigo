@@ -280,7 +280,7 @@
   .boc-ea__hero { min-height: clamp(420px, 52vh, 580px); }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 720px) {
   .boc-container { width: min(calc(100% - 32px), var(--boc-max-width, 1420px)); }
   .boc-ea__hero { min-height: clamp(380px, 70vw, 520px); }
   .boc-ea__title { font-size: 2.2rem; }

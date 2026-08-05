@@ -332,6 +332,9 @@
   .boc-about-vineyards__head { display: block; }
   .boc-about-vineyards__grid { grid-template-columns: 1fr; }
   .boc-about-vineyard__media img { height: 430px; }
+  .boc-about-team__head,
+  .boc-about-team__carousel-head { display: block; }
+  .boc-about-team__carousel-controls { margin-top: 16px; }
 }
 
 /* Team */

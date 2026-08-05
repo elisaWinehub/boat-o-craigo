@@ -79,7 +79,7 @@
 
   .boc-home-featured-wines__grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 20px;
   }
 
@@ -96,7 +96,13 @@
   }
 
   @media (max-width: 720px) {
+    .boc-home-hero.boc-home-section {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+
     .boc-home-quick-links__grid { grid-template-columns: 1fr 1fr; }
+    .boc-home-featured-wines__grid { grid-template-columns: repeat(2, 1fr); }
     .boc-home-experiences__grid { grid-template-columns: 1fr; }
     .boc-home-experiences__card img {
       position: absolute;

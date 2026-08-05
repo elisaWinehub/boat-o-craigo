@@ -413,6 +413,22 @@
   .boc-header__actions-mobile .account-button {
     display: none;
   }
+
+  .boc-header__logo,
+  .boc-header__menu-toggle,
+  .boc-header__icon-btn {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .boc-header__logo:focus,
+  .boc-header__logo:focus-visible,
+  .boc-header__menu-toggle:focus,
+  .boc-header__menu-toggle:focus-visible,
+  .boc-header__icon-btn:focus,
+  .boc-header__icon-btn:focus-visible {
+    outline: none;
+    box-shadow: none;
+  }
 }
 
 @media (max-width: 720px) {

@@ -177,23 +177,45 @@
 
   .boc-footer__brand {
     grid-column: 1 / -1;
+    text-align: center;
+  }
+
+  .boc-footer__brand-logo {
+    display: block;
+    margin-inline: auto;
+  }
+
+  .boc-footer__contact {
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .boc-footer__heading,
+  .boc-footer__menu-link {
+    text-align: center;
   }
 
   .boc-footer__newsletter-inner {
     grid-template-columns: 1fr;
     gap: 18px;
+    text-align: center;
   }
 
   .boc-footer__bottom {
     display: block;
     margin-top: 40px;
     padding-top: 20px;
+    text-align: center;
   }
 
   .boc-footer__bottom > span,
   .boc-footer__legal-links {
     display: block;
     margin-bottom: 8px;
+  }
+
+  .boc-footer__legal-links {
+    justify-content: center;
   }
 
   .boc-footer__newsletter-form {

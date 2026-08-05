@@ -1070,10 +1070,6 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .boc-home-featured-wines__grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
   .boc-home-story__grid {
     grid-template-columns: 1fr;
   }
@@ -1098,6 +1094,13 @@
     padding-bottom: var(--boc-section-pb-mobile, 84px);
   }
 
+  .boc-home-hero.boc-home-section,
+  .boc-home-section--full.boc-home-hero,
+  .boc-home-wine-club.boc-home-section {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
   .boc-home-section__head {
     display: block;
   }
@@ -1117,8 +1120,13 @@
   }
 
   .boc-home-hero {
-    height: min(92vh, 720px);
-    min-height: min(560px, 85vh);
+    height: min(85vh, 640px);
+    min-height: min(480px, 80vh);
+  }
+
+  .boc-home-hero__content {
+    padding-top: 0;
+    padding-bottom: 48px;
   }
 
   .boc-home-hero__heading {
@@ -1184,7 +1192,11 @@
   }
 
   .boc-home-wine-club__copy {
-    padding: 70px 24px;
+    padding: 48px 24px;
+  }
+
+  .boc-home-featured-wines__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .boc-home-cards__grid {

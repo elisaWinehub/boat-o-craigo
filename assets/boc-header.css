@@ -4,6 +4,11 @@
   display: contents;
 }
 
+/* Hide Horizon default header if Theme Editor re-adds it alongside boc-header */
+#header-group > .header-section:not(.boc-header-section) {
+  display: none !important;
+}
+
 .boc-header-section {
   position: -webkit-sticky;
   position: sticky;

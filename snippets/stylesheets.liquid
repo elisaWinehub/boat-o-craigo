@@ -1,5 +1,5 @@
-{{ 'overflow-list.css' | asset_url | preload_tag: as: 'style' }}
-{{ 'base.css' | asset_url | stylesheet_tag: preload: true }}
+{{ 'overflow-list.css' | asset_url | stylesheet_tag }}
+{{ 'base.css' | asset_url | stylesheet_tag }}
 {{ 'boc-design-tokens.css' | asset_url | stylesheet_tag }}
 {{ 'boc-global.css' | asset_url | stylesheet_tag }}
 {{ 'boc-header.css' | asset_url | stylesheet_tag }}

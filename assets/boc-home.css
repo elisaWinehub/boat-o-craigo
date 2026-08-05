@@ -1097,6 +1097,10 @@
     min-height: min(560px, 85vh);
   }
 
+  .boc-home-hero__heading {
+    font-size: clamp(2.4rem, 9vw, 3.6rem);
+  }
+
   .boc-home-weddings {
     min-height: min(560px, 85vh);
   }
@@ -1142,7 +1146,7 @@
   }
 
   .boc-home-experiences__card {
-    min-height: 500px;
+    min-height: 420px;
   }
 
   .boc-home-wine-club__copy {
@@ -1183,6 +1187,20 @@
 
 @media (max-width: 480px) {
   .boc-home-quick-links__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .boc-home-hero__actions {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .boc-home-hero__actions .boc-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .boc-home-featured-wines__grid {
     grid-template-columns: 1fr;
   }
 }

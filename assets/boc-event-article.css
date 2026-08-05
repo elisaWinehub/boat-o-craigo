@@ -292,3 +292,35 @@
   .boc-ea__rel-head { flex-direction: column; align-items: flex-start; gap: 16px; }
   .boc-ea__rel-grid { grid-template-columns: 1fr; }
 }
+
+@media (max-width: 480px) {
+  .boc-ea__hero {
+    height: clamp(320px, 60vw, 480px);
+  }
+
+  .boc-ea__title {
+    font-size: 1.9rem;
+  }
+
+  .boc-ea__hero-content {
+    padding-bottom: 28px;
+  }
+
+  .boc-ea__date-badge {
+    right: 14px;
+    bottom: 14px;
+    padding: 9px 12px;
+  }
+
+  .boc-ea__date-badge strong {
+    font-size: 1.5rem;
+  }
+
+  .boc-ea__body-wrap {
+    padding: 36px 0 48px;
+  }
+
+  .boc-ea__rel-grid {
+    gap: 14px;
+  }
+}

@@ -344,6 +344,28 @@
   .boc-bl__nl-inner { grid-template-columns: 1fr; gap: 32px; }
 }
 
+@media (max-width: 480px) {
+  .boc-bl__hero {
+    min-height: 400px;
+  }
+
+  .boc-bl__hero-title {
+    font-size: 2.4rem;
+  }
+
+  .boc-bl__feat-body {
+    padding: 22px 18px 26px;
+  }
+
+  .boc-bl__feat-title {
+    font-size: 1.6rem;
+  }
+
+  .boc-bl__grid-section {
+    padding: 44px 0 60px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .boc-bl__feat-media img,
   .boc-bl__card-media img { transition: none; }

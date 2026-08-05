@@ -13,6 +13,17 @@
   gap: 60px;
 }
 
+@media (max-width: 1100px) {
+  .boc-footer__top {
+    grid-template-columns: 1.5fr repeat(2, 1fr);
+    gap: 40px;
+  }
+
+  .boc-footer__top > div:last-child {
+    grid-column: 1 / -1;
+  }
+}
+
 .boc-footer__brand-logo {
   width: 170px;
   height: auto;
@@ -170,11 +181,13 @@
 
   .boc-footer__newsletter-inner {
     grid-template-columns: 1fr;
-    gap: 24px;
+    gap: 18px;
   }
 
   .boc-footer__bottom {
     display: block;
+    margin-top: 40px;
+    padding-top: 20px;
   }
 
   .boc-footer__bottom > span,
@@ -191,5 +204,16 @@
   .boc-footer__newsletter-submit {
     padding-left: 0;
     width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .boc-footer__top {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .boc-footer__brand {
+    grid-column: 1;
   }
 }

@@ -102,6 +102,17 @@
   .boc-collection-toolbar-bar__inner { gap: 0; }
   .boc-collection-toolbar-bar__primary { flex-wrap: wrap; }
   .boc-collection-toolbar-bar__meta { padding-top: 10px; }
+
+  .boc-collection-page .facets--horizontal.facets-controls-wrapper {
+    flex-wrap: wrap;
+    gap: 10px;
+    padding-bottom: 12px;
+  }
+
+  .boc-collection-page .facets--horizontal .sorting-filter-component {
+    margin-left: 0;
+    width: 100%;
+  }
 }
 
 .boc-collection-toolbar-bar {
@@ -589,5 +600,11 @@
     flex: 1 1 100%;
     width: 100%;
     white-space: normal;
+  }
+}
+
+@media (max-width: 480px) {
+  .boc-collection-grid .boc-product-card--collection .boc-product-card__media {
+    height: 220px;
   }
 }

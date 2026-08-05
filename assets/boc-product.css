@@ -790,9 +790,25 @@ body.boc-product-gallery-modal-open { overflow: hidden; }
   .product-main { padding-top: 26px; }
   .product-gallery { grid-template-columns: 1fr; }
   .product-thumbs {
-    grid-template-columns: repeat(4, 1fr);
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    flex-wrap: nowrap;
+    scroll-snap-type: x mandatory;
     order: 2;
   }
+
+  .product-thumbs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .product-thumb {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+  }
+
   .product-thumb img { height: 88px; }
   .product-main-image { min-height: 380px; }
   .product-main-image__img,
@@ -804,6 +820,10 @@ body.boc-product-gallery-modal-open { overflow: hidden; }
     padding-left: 0;
   }
   .product-purchase-row { grid-template-columns: 1fr; }
+  .product-quantity,
+  .product-add {
+    width: 100%;
+  }
   .product-benefits { grid-template-columns: 1fr; }
   .product-story { grid-template-columns: 1fr; }
   .product-story-media img { min-height: 336px; height: 336px; }

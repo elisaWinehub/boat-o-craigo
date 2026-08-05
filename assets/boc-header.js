@@ -1,5 +1,6 @@
 /**
  * Boat O'Craigo header — mobile drawer interactions.
+ * deploy 2026-08-05
  * Handles open/close, escape, backdrop, scroll lock, submenu toggles,
  * and reinitialisation on shopify:section:load.
  */

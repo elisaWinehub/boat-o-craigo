@@ -1,0 +1,12 @@
+# Local scratch directories from theme pull diagnostics
+_live-pull*/
+_live-pull2/
+_live-pull3/
+_live-pull4/
+_remote-live/
+_remote-full/
+_verify/
+_all-assets/
+
+# Utility scripts — not part of the Shopify theme
+scripts/

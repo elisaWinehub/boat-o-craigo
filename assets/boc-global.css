@@ -300,10 +300,12 @@ body.boc-scroll-lock {
   z-index: 25;
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  padding: 12px 16px;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
   border: 1px solid var(--boc-line);
-  border-radius: 999px;
+  border-radius: 50%;
   background: var(--boc-white);
   color: var(--boc-ink);
   box-shadow: 0 8px 24px rgba(33, 33, 33, 0.12);
@@ -316,7 +318,8 @@ body.boc-scroll-lock {
     visibility var(--boc-transition),
     transform var(--boc-transition),
     color var(--boc-transition),
-    border-color var(--boc-transition);
+    border-color var(--boc-transition),
+    background-color var(--boc-transition);
 }
 
 .boc-back-to-top.is-visible {
@@ -326,6 +329,7 @@ body.boc-scroll-lock {
 }
 
 .boc-back-to-top:hover {
+  background: var(--boc-white);
   color: var(--boc-sand);
   border-color: var(--boc-sand);
 }
@@ -351,32 +355,10 @@ summary:focus-visible,
   height: 18px;
 }
 
-.boc-back-to-top__label {
-  font-family: var(--boc-sans);
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
 @media (max-width: 720px) {
   .boc-back-to-top {
     right: 16px;
     bottom: 16px;
-    padding: 12px;
-    border-radius: 50%;
-  }
-
-  .boc-back-to-top__label {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
   }
 }
 

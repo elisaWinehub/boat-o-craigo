@@ -15,7 +15,14 @@
 }
 
 .boc-page--winehub-wineclub #MainContent {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  margin-inline: 0;
+  padding-inline: 24px;
   padding-block: 0 var(--boc-space-9, 80px);
+  background: #FAF8F5;
+  box-sizing: border-box;
 }
 
 .boc-page--winehub #MainContent {
@@ -32,6 +39,7 @@
     padding-block: var(--boc-space-5, 48px);
   }
   .boc-page--winehub-wineclub #MainContent {
+    padding-inline: 16px;
     padding-block: 0 var(--boc-space-5, 48px);
   }
 }
@@ -135,8 +143,6 @@
 }
 
 /* ── Global font inheritance ─────────────────────────────────────────────── */
-.wine-subscription-app *,
-.wine-subscription-app button,
 .wine-subscription-app input,
 .wine-subscription-app select,
 .wine-subscription-app textarea,
@@ -147,6 +153,11 @@
 .wine-subscription-app td,
 .wine-subscription-app th {
   font-family: var(--boc-sans, 'DM Sans', sans-serif);
+}
+
+.wine-subscription-app *,
+.wine-subscription-app button {
+  padding: 0;
 }
 
 .wine-subscription-app h1,
@@ -193,13 +204,14 @@
   background-color: var(--boc-cream, #FAF8F5) !important;
 }
 
-/* ── Progress stepper ────────────────────────────────────────────────────── */
-.wine-subscription-app nav .tw-rounded-full,
-.wine-subscription-app nav [class*='tw-rounded-full'] {
-  border-radius: 50% !important;
+/* ── Progress stepper indicators ─────────────────────────────────────────── */
+.wine-subscription-app .tw-cursor-pointer[class*='tw-border'] {
+  background-color: var(--boc-white, #fff) !important;
   border: 1px solid var(--boc-line, #E8E2D9) !important;
-  background-color: var(--boc-cream, #FAF8F5) !important;
+  border-radius: 100% !important;
   box-shadow: none !important;
+  transition: border-color 0.2s !important;
+  padding: 5px !important;
 }
 
 .wine-subscription-app [class*='tw-bg-nav-active'] {
@@ -278,10 +290,9 @@
   color: #c0392b !important;
 }
 
-/* ── FREQUENCY STEP — selector cards ─────────────────────────────────────── */
+/* ── FREQUENCY / QUANTITY — selector cards ─────────────────────────────── */
 .wine-subscription-app [class*='selector-card'],
-.wine-subscription-app [class*='tw-border-wine-card'],
-.wine-subscription-app .tw-cursor-pointer[class*='tw-border'] {
+.wine-subscription-app [class*='tw-border-wine-card'] {
   background-color: var(--boc-white, #fff) !important;
   border: 1px solid var(--boc-line, #E8E2D9) !important;
   border-radius: 0 !important;

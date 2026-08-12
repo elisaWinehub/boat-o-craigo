@@ -6,6 +6,14 @@
    ═══════════════════════════════════════════════════════════════════════════ */
 
 /* ── Page container ──────────────────────────────────────────────────────── */
+.boc-page--winehub .content-for-layout {
+  background: var(--boc-cream, #FAF8F5);
+}
+
+.boc-winehub-hero {
+  width: 100%;
+}
+
 .boc-page--winehub-wineclub #MainContent {
   padding-block: 0 var(--boc-space-9, 80px);
 }
@@ -15,6 +23,7 @@
   margin-inline: auto;
   padding-block: var(--boc-space-9, 80px);
   box-sizing: border-box;
+  background: transparent;
 }
 
 @media (max-width: 720px) {
@@ -57,7 +66,7 @@
   --nav-font: 500 0.7rem var(--boc-sans, 'DM Sans', sans-serif);
   --nav-active-color: var(--boc-white, #fff);
   --nav-active-background-color: var(--boc-ink, #212121);
-  --nav-background-color: var(--boc-white, #fff);
+  --nav-background-color: var(--boc-cream, #FAF8F5);
   --nav-background-color-active: var(--boc-ink, #212121);
   --progress-bar-primary: var(--boc-sand, #B99E7E);
   --progress-bar-secondary: var(--boc-line, #E8E2D9);
@@ -185,21 +194,27 @@
 }
 
 /* ── Progress stepper ────────────────────────────────────────────────────── */
-.wine-subscription-app [class*='tw-rounded-full'][class*='tw-w-'],
-.wine-subscription-app .tw-rounded-full {
+.wine-subscription-app nav .tw-rounded-full,
+.wine-subscription-app nav [class*='tw-rounded-full'] {
   border-radius: 50% !important;
+  border: 1px solid var(--boc-line, #E8E2D9) !important;
+  background-color: var(--boc-cream, #FAF8F5) !important;
+  box-shadow: none !important;
 }
 
 .wine-subscription-app [class*='tw-bg-nav-active'] {
   background-color: var(--boc-ink, #212121) !important;
   border-color: var(--boc-ink, #212121) !important;
+  color: var(--boc-white, #fff) !important;
 }
 
-.wine-subscription-app [class*='tw-bg-progress-primary'] {
+.wine-subscription-app [class*='tw-bg-progress-primary'],
+.wine-subscription-app [class*='tw-bg-progress-bar-primary'] {
   background-color: var(--boc-sand, #B99E7E) !important;
 }
 
-.wine-subscription-app [class*='tw-bg-progress'] {
+.wine-subscription-app [class*='tw-bg-progress-bar-secondary'],
+.wine-subscription-app [class*='tw-bg-progress-secondary'] {
   background-color: var(--boc-line, #E8E2D9) !important;
 }
 
@@ -241,13 +256,21 @@
   color: var(--boc-sand, #B99E7E) !important;
 }
 
-/* ── Icons — sand/gold colour ────────────────────────────────────────────── */
-.wine-subscription-app svg,
-.wine-subscription-app svg path,
-.wine-subscription-app svg rect,
-.wine-subscription-app svg circle {
+/* ── Icons — sand on cards only; buttons inherit readable text colour ───── */
+.wine-subscription-app [class*='selector-card'] svg,
+.wine-subscription-app [class*='selector-card'] svg path {
   color: var(--boc-sand, #B99E7E);
   stroke: currentColor;
+}
+
+.wine-subscription-app button svg,
+.wine-subscription-app button svg path,
+.wine-subscription-app .tw-bg-button-primary svg,
+.wine-subscription-app .tw-bg-button-secondary svg,
+.wine-subscription-app .wh-add-to-cart-buttons svg {
+  color: currentColor !important;
+  stroke: currentColor;
+  fill: currentColor;
 }
 
 .wine-subscription-app [class*='danger'] svg,
@@ -292,8 +315,7 @@
 }
 
 .wine-subscription-app [class*='selector-card'] button,
-.wine-subscription-app [class*='selector-card'] [class*='tw-btn'],
-.wine-subscription-app [class*='tw-btn-secondary'] {
+.wine-subscription-app [class*='selector-card'] [class*='tw-btn'] {
   width: 100% !important;
   margin-top: 20px !important;
   background-color: var(--boc-ink, #212121) !important;
@@ -364,10 +386,10 @@
   color: var(--boc-slate, #575962) !important;
 }
 
-.wine-subscription-app [class*='tw-rounded-full'].tw-w-8,
-.wine-subscription-app button[class*='tw-rounded-full'],
-.wine-subscription-app [class*='quantity'] button,
-.wine-subscription-app [class*='stepper'] button {
+.wine-subscription-app .whcp-products button[class*='tw-rounded-full'],
+.wine-subscription-app [class*='wine-card'] button[class*='tw-rounded-full'],
+.wine-subscription-app [class*='quantity'] button:not(nav button),
+.wine-subscription-app [class*='stepper'] button:not(nav button) {
   width: 36px !important;
   height: 36px !important;
   border: 1px solid var(--boc-ink, #212121) !important;
@@ -382,8 +404,8 @@
   transition: background 0.15s !important;
 }
 
-.wine-subscription-app [class*='tw-rounded-full'].tw-w-8:hover,
-.wine-subscription-app button[class*='tw-rounded-full']:hover {
+.wine-subscription-app .whcp-products button[class*='tw-rounded-full']:hover,
+.wine-subscription-app [class*='wine-card'] button[class*='tw-rounded-full']:hover {
   background: var(--boc-ink, #212121) !important;
   color: var(--boc-white, #fff) !important;
 }
@@ -451,8 +473,9 @@
 
 .wine-subscription-app .tw-bg-button-secondary,
 .wine-subscription-app [class*='secondary-button'],
-.wine-subscription-app [class*='go-back'] {
-  background-color: transparent !important;
+.wine-subscription-app [class*='go-back'],
+.wine-subscription-app .wh-add-to-cart-buttons button + button {
+  background-color: var(--boc-white, #fff) !important;
   border: 1px solid var(--boc-ink, #212121) !important;
   color: var(--boc-ink, #212121) !important;
   border-radius: 0 !important;
@@ -467,8 +490,10 @@
 }
 
 .wine-subscription-app .tw-bg-button-secondary:hover,
-.wine-subscription-app [class*='go-back']:hover {
+.wine-subscription-app [class*='go-back']:hover,
+.wine-subscription-app .wh-add-to-cart-buttons button + button:hover {
   background-color: var(--boc-cream, #FAF8F5) !important;
+  color: var(--boc-ink, #212121) !important;
 }
 
 /* ── Add to cart + Go back buttons — centred column, max 280px ───────────── */
@@ -482,21 +507,45 @@
   margin-inline: auto;
 }
 
-.wine-subscription-app .wh-add-to-cart-buttons > *,
-#wine-subscription-app .wh-add-to-cart-buttons > * {
+.wine-subscription-app .wh-add-to-cart-buttons > div,
+#wine-subscription-app .wh-add-to-cart-buttons > div {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr);
   width: 100% !important;
   max-width: 280px !important;
+  margin-inline: auto !important;
+}
+
+.wine-subscription-app .wh-add-to-cart-buttons .tw-w-full,
+.wine-subscription-app .wh-add-to-cart-buttons button,
+#wine-subscription-app .wh-add-to-cart-buttons .tw-w-full,
+#wine-subscription-app .wh-add-to-cart-buttons button {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  max-width: 280px !important;
+  margin-inline: auto !important;
+  padding-inline: 24px !important;
+  box-sizing: border-box !important;
+}
+
+.wine-subscription-app .wh-add-to-cart-buttons button:first-of-type {
+  background-color: var(--boc-ink, #212121) !important;
+  border: 1px solid var(--boc-ink, #212121) !important;
+  color: var(--boc-white, #fff) !important;
+}
+
+.wine-subscription-app .wh-add-to-cart-buttons button:first-of-type:not(:disabled):hover {
+  background-color: var(--boc-slate, #575962) !important;
+  border-color: var(--boc-slate, #575962) !important;
+  color: var(--boc-white, #fff) !important;
 }
 
 /* ── Border radius — square everywhere ───────────────────────────────────── */
 .wine-subscription-app [class*='tw-rounded']:not([class*='tw-rounded-full']),
 .wine-subscription-app .whcp-table {
   border-radius: 0 !important;
-}
-
-.wine-subscription-app .tw-rounded-full {
-  border-color: var(--boc-line, #E8E2D9) !important;
-  color: var(--boc-ink, #212121) !important;
 }
 
 /* ── Dividers & borders ──────────────────────────────────────────────────── */

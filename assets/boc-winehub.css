@@ -142,7 +142,6 @@
 .wine-subscription-app > div,
 .wine-subscription-app .whcp,
 .wine-subscription-app .whcp-products,
-.wine-subscription-app .wh-add-to-cart-buttons,
 .wine-subscription-app .wh-review-page {
   width: 100%;
   max-width: 100%;
@@ -202,30 +201,39 @@
   border-color: var(--boc-line) !important;
 }
 
-/* Add to cart / go back — equal width, capped (not full bleed) */
-.wine-subscription-app .wh-add-to-cart-buttons {
-  width: 100%;
-  max-width: 100%;
+/* Add to cart / go back — equal width, capped at 220px */
+.wine-subscription-app .wh-add-to-cart-buttons,
+#wine-subscription-app .wh-add-to-cart-buttons {
+  display: flex !important;
+  flex-direction: column !important;
   align-items: center !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-inline: auto;
+  box-sizing: border-box;
 }
 
-.wine-subscription-app .wh-add-to-cart-buttons > div {
+.wine-subscription-app .wh-add-to-cart-buttons > div,
+#wine-subscription-app .wh-add-to-cart-buttons > div {
   display: grid !important;
   grid-template-columns: minmax(0, 1fr);
-  width: min(100%, 280px) !important;
-  max-width: 280px;
-  margin-inline: auto;
+  width: 100% !important;
+  max-width: 220px !important;
+  margin-inline: auto !important;
   align-items: stretch !important;
 }
 
 .wine-subscription-app .wh-add-to-cart-buttons .tw-w-full,
-.wine-subscription-app .wh-add-to-cart-buttons button {
+.wine-subscription-app .wh-add-to-cart-buttons button,
+#wine-subscription-app .wh-add-to-cart-buttons .tw-w-full,
+#wine-subscription-app .wh-add-to-cart-buttons button {
   display: inline-flex !important;
   align-items: center;
   justify-content: center;
   width: 100% !important;
   min-width: 0;
-  max-width: 100%;
+  max-width: 220px !important;
+  margin-inline: auto;
   padding-inline: 24px !important;
   box-sizing: border-box;
 }

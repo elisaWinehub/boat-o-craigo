@@ -229,6 +229,38 @@
   background-color: var(--boc-line, #E8E2D9) !important;
 }
 
+/* Step connector lines — must not inherit button styles */
+.wine-subscription-app .wh-step-indicator-bar,
+.wine-subscription-app [class*='wh-step-indicator-bar'] {
+  display: block !important;
+  flex: 1 1 auto !important;
+  width: auto !important;
+  max-width: none !important;
+  min-height: 0 !important;
+  height: 4px !important;
+  margin-top: 1rem !important;
+  padding: 0 !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  font-size: inherit !important;
+  font-weight: inherit !important;
+  letter-spacing: normal !important;
+  text-transform: none !important;
+  cursor: default !important;
+}
+
+.wine-subscription-app .wh-step-indicator-bar[class*='tw-bg-disabled'],
+.wine-subscription-app .wh-step-indicator-bar.tw-bg-disabled-component {
+  background-color: var(--boc-line, #E8E2D9) !important;
+  color: inherit !important;
+}
+
+.wine-subscription-app .wh-step-indicator-bar.tw-bg-btn-primary:not([class*='tw-bg-disabled']) {
+  background-color: var(--boc-sand, #B99E7E) !important;
+  color: inherit !important;
+}
+
 .wine-subscription-app [class*='tw-text-nav'],
 .wine-subscription-app [class*='step-label'],
 .wine-subscription-app nav span,
@@ -453,8 +485,8 @@
 
 /* ── Primary / Secondary buttons ─────────────────────────────────────────── */
 .wine-subscription-app .tw-bg-button-primary,
-.wine-subscription-app .wh-button-primary,
-.wine-subscription-app [class*='tw-bg-btn-primary'],
+.wine-subscription-app button.wh-button-primary,
+.wine-subscription-app button[class*='tw-bg-btn-primary'],
 .wine-subscription-app button[class*='signup-primary'],
 .wine-subscription-app [class*='primary-button'] {
   background-color: var(--boc-ink, #212121) !important;
@@ -472,16 +504,16 @@
 }
 
 .wine-subscription-app .tw-bg-button-primary:not(:disabled):hover,
-.wine-subscription-app .wh-button-primary:not(:disabled):hover,
-.wine-subscription-app [class*='tw-bg-btn-primary']:not(:disabled):hover,
+.wine-subscription-app button.wh-button-primary:not(:disabled):hover,
+.wine-subscription-app button[class*='tw-bg-btn-primary']:not(:disabled):hover,
 .wine-subscription-app [class*='primary-button']:not(:disabled):hover {
   background-color: var(--boc-slate, #575962) !important;
   border-color: var(--boc-slate, #575962) !important;
 }
 
 .wine-subscription-app .tw-bg-button-primary:disabled,
-.wine-subscription-app .wh-button-primary:disabled,
-.wine-subscription-app [class*='tw-bg-btn-primary']:disabled,
+.wine-subscription-app button.wh-button-primary:disabled,
+.wine-subscription-app button[class*='tw-bg-btn-primary']:disabled,
 .wine-subscription-app [class*='primary-button']:disabled {
   opacity: 0.45 !important;
   cursor: not-allowed !important;
@@ -516,8 +548,8 @@
 
 .wine-subscription-app [class*='go-back'] > .tw-flex,
 .wine-subscription-app .wh-add-to-cart-buttons button > .tw-flex,
-.wine-subscription-app .wh-button-primary > .tw-flex,
-.wine-subscription-app [class*='tw-btn-primary'] > .tw-flex {
+.wine-subscription-app button.wh-button-primary > .tw-flex,
+.wine-subscription-app button[class*='tw-btn-primary'] > .tw-flex {
   padding: 10px 0 !important;
   gap: 8px !important;
 }
@@ -553,8 +585,8 @@
 .wine-subscription-app .wh-add-to-cart-buttons button,
 #wine-subscription-app .wh-add-to-cart-buttons .tw-w-full,
 #wine-subscription-app .wh-add-to-cart-buttons button,
-.wine-subscription-app .wh-button-primary,
-.wine-subscription-app [class*='tw-btn-primary'] {
+.wine-subscription-app button.wh-button-primary,
+.wine-subscription-app button[class*='tw-btn-primary'] {
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;

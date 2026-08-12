@@ -4,13 +4,18 @@
   background: var(--boc-white);
 }
 
+/* Page container — matches .boc-container site-wide */
 .boc-page--winehub #MainContent {
-  padding-block: var(--boc-space-5);
+  width: min(calc(100% - 48px), var(--boc-max-width, 1420px));
+  margin-inline: auto;
+  padding-block: var(--boc-space-9, 50px);
+  box-sizing: border-box;
 }
 
 @media (max-width: 720px) {
   .boc-page--winehub #MainContent {
-    padding-block: var(--boc-space-4);
+    width: min(calc(100% - 32px), var(--boc-max-width, 1420px));
+    padding-block: var(--boc-space-5, 48px);
   }
 }
 
@@ -123,15 +128,32 @@
   font-family: var(--boc-sans);
 }
 
-.wine-subscription-app {
-  width: min(calc(100% - 48px), var(--boc-max-width, 1420px));
+/* App root fills theme container */
+.wine-subscription-app,
+#wine-subscription-app {
+  width: 100%;
+  max-width: 100%;
   margin-inline: auto;
+  padding-inline: 0;
+  box-sizing: border-box;
 }
 
-@media (max-width: 720px) {
-  .wine-subscription-app {
-    width: min(calc(100% - 32px), var(--boc-max-width, 1420px));
-  }
+/* Inner Winehub wrappers stay within container width */
+.wine-subscription-app > div,
+.wine-subscription-app .whcp,
+.wine-subscription-app .whcp-products,
+.wine-subscription-app .wh-add-to-cart-buttons,
+.wine-subscription-app .wh-review-page {
+  width: 100%;
+  max-width: 100%;
+  margin-inline: auto;
+  box-sizing: border-box;
+}
+
+.wine-subscription-app .tw-max-w-2xl,
+.wine-subscription-app .tw-max-w-l {
+  max-width: min(100%, 760px);
+  margin-inline: auto;
 }
 
 /* Headings */

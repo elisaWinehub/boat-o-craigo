@@ -202,7 +202,7 @@
   border-color: var(--boc-line) !important;
 }
 
-/* Add to cart / go back — equal width, theme-sized (not full bleed) */
+/* Add to cart / go back — equal width, capped (not full bleed) */
 .wine-subscription-app .wh-add-to-cart-buttons {
   width: 100%;
   max-width: 100%;
@@ -211,9 +211,9 @@
 
 .wine-subscription-app .wh-add-to-cart-buttons > div {
   display: grid !important;
-  grid-template-columns: 1fr;
-  width: max-content !important;
-  max-width: 100%;
+  grid-template-columns: minmax(0, 1fr);
+  width: min(100%, 280px) !important;
+  max-width: 280px;
   margin-inline: auto;
   align-items: stretch !important;
 }

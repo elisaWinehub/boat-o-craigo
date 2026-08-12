@@ -17,17 +17,20 @@
           "settings": {
             "kicker_source": "vendor",
             "vintage_prefix": "Vintage"
-          }
+          },
+          "blocks": {}
         },
         "title": {
           "type": "boc-product-title",
-          "settings": {}
+          "settings": {},
+          "blocks": {}
         },
         "subtitle": {
           "type": "boc-product-subtitle",
           "settings": {
             "prefix": "Estate grown"
-          }
+          },
+          "blocks": {}
         },
         "rating": {
           "type": "boc-product-rating",
@@ -37,58 +40,85 @@
             "static_stars": "★★★★★",
             "static_score": "4.9",
             "static_count": "18"
-          }
+          },
+          "blocks": {}
         },
         "price": {
           "type": "boc-product-price",
           "settings": {
             "show_savings": true
-          }
+          },
+          "blocks": {}
         },
         "short_copy": {
           "type": "boc-product-short-copy",
           "settings": {
-            "source": "description"
-          }
+            "source": "description",
+            "custom_text": ""
+          },
+          "blocks": {}
         },
         "meta_list": {
           "type": "boc-product-meta-list",
-          "settings": {}
+          "settings": {
+            "variety_label": "Variety",
+            "region_label": "Region",
+            "abv_label": "Alcohol"
+          },
+          "blocks": {}
         },
         "purchase_options": {
           "type": "boc-product-purchase-options",
+          "disabled": true,
           "settings": {
             "one_time_title": "One-time purchase",
             "one_time_copy": "Single bottle purchase at the standard price.",
             "subscription_title": "Subscribe & save",
+            "subscription_copy": "",
             "frequency_label": "Delivery frequency",
             "show_static_subscription": true,
             "static_save_pct": 10,
             "freq_monthly": "Every month",
             "freq_bimonthly": "Every 2 months",
             "freq_quarterly": "Every 3 months (quarterly)"
-          }
+          },
+          "blocks": {}
         },
         "form": {
           "type": "boc-product-form",
           "settings": {
             "button_label": "Add to cart"
-          }
+          },
+          "blocks": {}
         },
         "secondary_cta": {
           "type": "boc-product-secondary-cta",
           "settings": {
             "label": "Join Wine Club & Save More",
-            "url": "shopify://pages/wine-club"
-          }
+            "url": "shopify://pages/wine-club",
+            "open_new_tab": false
+          },
+          "blocks": {}
         },
         "stock": {
           "type": "boc-product-stock",
-          "settings": {}
+          "settings": {
+            "in_stock_text": "In stock and ready to ship",
+            "out_of_stock_text": "Currently unavailable"
+          },
+          "blocks": {}
         },
         "benefits": {
           "type": "boc-product-benefits",
-          "settings": {}
+          "settings": {
+            "benefit_1_title": "Free shipping",
+            "benefit_1_text": "On qualifying 12+ bottle orders.",
+            "benefit_2_title": "Secure checkout",
+            "benefit_2_text": "Shopify-powered payments.",
+            "benefit_3_title": "Member benefits",
+            "benefit_3_text": "Exclusive Wine Club pricing."
+          },
+          "blocks": {}
         },
         "accordions": {
           "type": "boc-product-accordions",
@@ -99,39 +129,65 @@
               "settings": {
                 "heading": "Tasting notes",
                 "accordion_type": "tasting_notes",
-                "open_by_default": true
-              }
+                "open_by_default": true,
+                "cellaring_source": "ageing_process",
+                "content": "",
+                "intro": "",
+                "link_label": "Download PDF"
+              },
+              "blocks": {}
             },
             "details": {
               "type": "boc-product-accordion-item",
               "settings": {
                 "heading": "Wine details",
                 "accordion_type": "wine_details",
-                "cellaring_source": "ageing_process"
-              }
+                "open_by_default": false,
+                "cellaring_source": "ageing_process",
+                "content": "",
+                "intro": "",
+                "link_label": "Download PDF"
+              },
+              "blocks": {}
             },
             "pairing": {
               "type": "boc-product-accordion-item",
               "settings": {
                 "heading": "Food pairing",
-                "accordion_type": "food_pairing"
-              }
+                "accordion_type": "food_pairing",
+                "open_by_default": false,
+                "cellaring_source": "ageing_process",
+                "content": "",
+                "intro": "",
+                "link_label": "Download PDF"
+              },
+              "blocks": {}
             },
             "shipping": {
               "type": "boc-product-accordion-item",
               "settings": {
                 "heading": "Shipping & delivery",
                 "accordion_type": "shipping",
-                "content": "<p>Orders are packed securely and dispatched from the winery. Delivery estimates and free-shipping thresholds are set in Shopify shipping settings.</p>"
-              }
+                "open_by_default": false,
+                "cellaring_source": "ageing_process",
+                "content": "<p>Orders are packed securely and dispatched from the winery. Delivery estimates and free-shipping thresholds are set in Shopify shipping settings.</p>",
+                "intro": "",
+                "link_label": "Download PDF"
+              },
+              "blocks": {}
             },
             "pdf": {
               "type": "boc-product-accordion-item",
               "settings": {
                 "heading": "Download wine information",
                 "accordion_type": "pdf_download",
+                "open_by_default": false,
+                "cellaring_source": "ageing_process",
+                "content": "",
+                "intro": "",
                 "link_label": "Download PDF"
-              }
+              },
+              "blocks": {}
             }
           },
           "block_order": [
@@ -159,6 +215,7 @@
         "accordions"
       ],
       "settings": {
+        "wines_collection": "",
         "wines_label": "Wines"
       }
     },
@@ -168,15 +225,18 @@
         "copy_background_color": "#171717",
         "eyebrow": "From the vineyard",
         "heading": "Cool climate. Bright character.",
+        "body": "",
         "vineyard_label": "Vineyard",
         "region_label": "Region",
-        "winemaker_label": "Winemaking"
+        "winemaker_label": "Winemaking",
+        "force_show": false
       }
     },
     "related": {
       "type": "boc-product-related",
       "settings": {
         "max_products": 4,
+        "wines_collection": "",
         "eyebrow": "You may also enjoy",
         "heading": "Related wines.",
         "link_label": "View all wines"

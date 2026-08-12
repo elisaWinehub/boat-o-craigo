@@ -315,6 +315,11 @@
   background-color: var(--boc-cream) !important;
 }
 
+.wine-subscription-app .wh-review-page {
+  padding: var(--boc-space-3, 24px);
+  box-sizing: border-box;
+}
+
 /* Form inputs on later steps */
 .wine-subscription-app input,
 .wine-subscription-app select,

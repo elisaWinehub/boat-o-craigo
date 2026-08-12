@@ -101,7 +101,7 @@
               "type": "_product-list-text",
               "name": "t:names.collection_title",
               "settings": {
-                "text": "<h3>You may also like</h3>",
+                "text": "<h2>You might also enjoy.</h2>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
@@ -228,7 +228,7 @@
       },
       "name": "Featured collection",
       "settings": {
-        "collection": "all",
+        "collection": "wines",
         "layout_type": "grid",
         "carousel_on_mobile": false,
         "max_products": 4,
@@ -242,9 +242,9 @@
         "section_width": "page-width",
         "horizontal_alignment": "flex-start",
         "gap": 28,
-        "background_color": "{{ settings.color_palette.background }}",
-        "padding-block-start": 48,
-        "padding-block-end": 48
+        "background_color": "#FFFFFF",
+        "padding-block-start": 72,
+        "padding-block-end": 88
       }
     }
   },

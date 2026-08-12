@@ -1,0 +1,219 @@
+/* ─────────────────────────────────────────────────────
+   BOC CART — boc-cart.css
+   Applies BOC design system to Horizon cart page.
+   Does NOT replace cart mechanics — CSS only.
+   ───────────────────────────────────────────────────── */
+
+/* ── Empty state wrapper ─────────────────────────────── */
+.cart-page--empty {
+  background: var(--boc-cream, #FAF8F5);
+  min-height: 72vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px var(--boc-gutter, 24px);
+  text-align: center;
+}
+
+.cart-page--empty .cart-page__title {
+  display: none;
+}
+
+/* BOC vine icon */
+.boc-cart-empty__icon {
+  width: 52px;
+  height: 52px;
+  margin-bottom: 28px;
+  opacity: 0.55;
+}
+
+/* Empty heading */
+.boc-cart-empty__heading {
+  font-family: var(--boc-serif, 'Libre Caslon Display', Georgia, serif);
+  font-size: clamp(3rem, 5vw, 5rem);
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  color: var(--boc-ink, #212121);
+  margin: 0 0 20px;
+}
+
+/* Empty subtext */
+.boc-cart-empty__body {
+  font-family: var(--boc-sans, 'DM Sans', sans-serif);
+  font-size: 1rem;
+  color: var(--boc-slate, #575962);
+  line-height: 1.65;
+  max-width: 420px;
+  margin: 0 0 36px;
+}
+
+/* Empty CTA buttons */
+.boc-cart-empty__actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.boc-cart-empty__login {
+  margin-top: 28px;
+  font-size: 0.82rem;
+  color: var(--boc-slate, #575962);
+}
+
+.boc-cart-empty__login a {
+  color: var(--boc-sand, #B99E7E);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* Hide the default Horizon empty button — we replace it */
+.cart-page--empty .cart-items__empty-button {
+  display: none !important;
+}
+
+/* ── Cart title ──────────────────────────────────────── */
+.cart-title {
+  font-family: var(--boc-serif, 'Libre Caslon Display', Georgia, serif);
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: var(--boc-ink, #212121);
+}
+
+/* ── Checkout button ─────────────────────────────────── */
+.cart-summary .button--primary,
+.cart__checkout-button,
+[class*='cart'] [class*='checkout'][class*='button'],
+.cart-summary checkout-button button {
+  background: var(--boc-ink, #212121) !important;
+  border-color: var(--boc-ink, #212121) !important;
+  color: #fff !important;
+  font-family: var(--boc-sans, 'DM Sans', sans-serif) !important;
+  font-size: 0.72rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.14em !important;
+  text-transform: uppercase !important;
+  border-radius: 0 !important;
+  min-height: 52px !important;
+  transition: background 0.2s, border-color 0.2s !important;
+}
+
+.cart-summary .button--primary:hover,
+.cart__checkout-button:hover,
+[class*='cart'] [class*='checkout'][class*='button']:hover {
+  background: var(--boc-slate, #575962) !important;
+  border-color: var(--boc-slate, #575962) !important;
+}
+
+/* ── "You may also like" section ─────────────────────── */
+.boc-cart-recommended {
+  padding: 72px 0 88px;
+  background: #fff;
+}
+
+.boc-cart-recommended__head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 44px;
+}
+
+.boc-cart-recommended__eyebrow {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--boc-sand, #B99E7E);
+  margin-bottom: 8px;
+}
+
+.boc-cart-recommended__title {
+  font-family: var(--boc-serif, 'Libre Caslon Display', Georgia, serif);
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  color: var(--boc-ink, #212121);
+  margin: 0;
+}
+
+.boc-cart-recommended__link {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--boc-ink, #212121);
+  border-bottom: 1px solid var(--boc-ink, #212121);
+  padding-bottom: 3px;
+  transition: color 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+
+.boc-cart-recommended__link:hover {
+  color: var(--boc-sand, #B99E7E);
+  border-color: var(--boc-sand, #B99E7E);
+}
+
+/* Style the Horizon product-list section on the cart page */
+.template-cart [data-testid='product-list'] {
+  background: var(--boc-white, #fff);
+}
+
+.template-cart [data-testid='product-list'] .section-resource-list__header h2,
+.template-cart [data-testid='product-list'] .section-resource-list__header h3 {
+  font-family: var(--boc-serif, 'Libre Caslon Display', Georgia, serif);
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  color: var(--boc-ink, #212121);
+  margin: 0;
+}
+
+.template-cart [data-testid='product-list'] .section-resource-list__header a {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--boc-ink, #212121);
+}
+
+/* ── Mobile ──────────────────────────────────────────── */
+@media (max-width: 720px) {
+  .cart-page--empty {
+    min-height: 60vh;
+    padding: 60px 20px;
+  }
+
+  .boc-cart-empty__heading {
+    font-size: 2.8rem;
+  }
+
+  .boc-cart-empty__actions {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .boc-cart-empty__actions .boc-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .boc-cart-recommended {
+    padding: 52px 0 64px;
+  }
+
+  .boc-cart-recommended__head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 32px;
+  }
+}

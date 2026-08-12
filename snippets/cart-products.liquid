@@ -11,8 +11,15 @@
   {% render 'cart-products', force_empty: true %}
 {% enddoc %}
 
+{% unless context == 'drawer' %}
+  {{ 'boc-cart.css' | asset_url | stylesheet_tag }}
+{% endunless %}
+
 {% liquid
   assign block_settings = block.settings
+  assign wines_collection = collections['wines']
+  assign wines_url = wines_collection.url | default: routes.all_products_collection_url
+  assign booking_url = '/pages/book-now'
 %}
 
 {%- if block_settings.input_style == 'custom' -%}
@@ -55,20 +62,56 @@
   "
 >
   {% if cart.empty? or force_empty %}
-    {%- if shop.customer_accounts_enabled and customer == null -%}
-      <p>
-        {{ 'actions.log_in_html' | t: link: routes.account_login_url }}
-      </p>
-    {%- endif -%}
+    {% if context == 'drawer' %}
+      {%- if shop.customer_accounts_enabled and customer == null -%}
+        <p>
+          {{ 'actions.log_in_html' | t: link: routes.account_login_url }}
+        </p>
+      {%- endif -%}
 
-    <a
-      class="button cart-items__empty-button"
-      href="{{ settings.empty_cart_button_link | default: routes.all_products_collection_url }}"
-    >
-      <span class="button-text">
-        {{ 'actions.continue_shopping' | t }}
-      </span>
-    </a>
+      <a
+        class="button cart-items__empty-button"
+        href="{{ settings.empty_cart_button_link | default: routes.all_products_collection_url }}"
+      >
+        <span class="button-text">
+          {{ 'actions.continue_shopping' | t }}
+        </span>
+      </a>
+    {% else %}
+      <img
+        class="boc-cart-empty__icon"
+        src="{{ 'boc-logo.svg' | asset_url }}"
+        alt="Boat O'Craigo"
+        width="52"
+        height="52"
+        aria-hidden="true"
+      >
+
+      <h1 class="boc-cart-empty__heading">Your cart is<br>empty.</h1>
+
+      <p class="boc-cart-empty__body">
+        Take your time — our wines aren't going anywhere.<br>
+        Browse the range and find your next favourite bottle.
+      </p>
+
+      <div class="boc-cart-empty__actions">
+        <a href="{{ wines_url }}" class="boc-btn boc-btn--primary">
+          Explore our wines
+        </a>
+        <a href="{{ booking_url }}" class="boc-btn boc-btn--outline">
+          Book a tasting
+        </a>
+      </div>
+
+      {%- if shop.customer_accounts_enabled and customer == null -%}
+        <p class="boc-cart-empty__login">
+          Have an account?
+          <a href="{{ routes.account_login_url }}">
+            Log in to check out faster.
+          </a>
+        </p>
+      {%- endif -%}
+    {% endif %}
   {%- else -%}
     <span
       class="visually-hidden"

@@ -380,6 +380,16 @@
   border-color: var(--boc-slate, #575962) !important;
 }
 
+/* ── Frequency card footer ───────────────────────────────────────────────── */
+.wine-subscription-app .wh-frequency-card-footer-container {
+  background-color: #b99e7e !important;
+}
+
+.wine-subscription-app .wh-frequency-card-footer-container > button {
+  background-color: #b99e7e !important;
+  border-color: #b99e7e !important;
+}
+
 /* ── WINES STEP — product grid ───────────────────────────────────────────── */
 .wine-subscription-app .whcp-products,
 .wine-subscription-app [class*='product-grid'],
@@ -549,9 +559,24 @@
 .wine-subscription-app [class*='go-back'] > .tw-flex,
 .wine-subscription-app .wh-add-to-cart-buttons button > .tw-flex,
 .wine-subscription-app button.wh-button-primary > .tw-flex,
-.wine-subscription-app button[class*='tw-btn-primary'] > .tw-flex {
+.wine-subscription-app button[class*='tw-btn-primary'] > .tw-flex,
+.wine-subscription-app button.wh-button-secondary > .tw-flex.tw-justify-center,
+.wine-subscription-app button.wh-button-secondary > .tw-flex {
   padding: 10px 0 !important;
   gap: 8px !important;
+}
+
+.wine-subscription-app button.wh-button-secondary {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  max-width: 280px !important;
+  min-height: 48px !important;
+  margin-inline: auto !important;
+  padding-inline: 24px !important;
+  padding-block: 0 !important;
+  box-sizing: border-box !important;
 }
 
 .wine-subscription-app .tw-bg-button-secondary:hover,

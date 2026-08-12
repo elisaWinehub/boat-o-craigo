@@ -461,3 +461,69 @@
     if (target.querySelectorAll) target.querySelectorAll(ROOT).forEach(initSection);
   });
 })();
+
+/* ── Related card gallery arrows ──────────────────────────────────────────
+   Cycles through product images when prev/next arrows are clicked.
+   Only initialises on cards with data-media-count > 2.
+   ─────────────────────────────────────────────────────────────────────── */
+(function initRelatedGallery() {
+  function setupCard(card) {
+    if (card.dataset.bocGalleryInit === 'true') return;
+    card.dataset.bocGalleryInit = 'true';
+
+    var mediaCount = parseInt(card.dataset.mediaCount, 10) || 1;
+    if (mediaCount < 3) return;
+
+    var mediaEl = card.querySelector('[data-boc-media-list]');
+    if (!mediaEl) return;
+
+    var mediaList;
+    try {
+      mediaList = JSON.parse(mediaEl.textContent);
+    } catch (e) {
+      return;
+    }
+    if (!mediaList || mediaList.length < 2) return;
+
+    var primaryImg = card.querySelector('.related-image__img--primary');
+    var secondaryImg = card.querySelector('.related-image__img--secondary');
+    var prevBtn = card.querySelector('[data-boc-gallery-prev]');
+    var nextBtn = card.querySelector('[data-boc-gallery-next]');
+
+    if (!primaryImg || !prevBtn || !nextBtn) return;
+
+    var currentIndex = 0;
+
+    function showIndex(i) {
+      currentIndex = (i + mediaList.length) % mediaList.length;
+      var current = mediaList[currentIndex];
+      primaryImg.src = current.src;
+      primaryImg.alt = current.alt;
+
+      var nextIdx = (currentIndex + 1) % mediaList.length;
+      if (secondaryImg) {
+        secondaryImg.src = mediaList[nextIdx].src;
+        secondaryImg.alt = mediaList[nextIdx].alt;
+      }
+    }
+
+    prevBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      showIndex(currentIndex - 1);
+    });
+
+    nextBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      showIndex(currentIndex + 1);
+    });
+  }
+
+  function initAll() {
+    document.querySelectorAll('[data-boc-related-card]').forEach(setupCard);
+  }
+
+  document.addEventListener('DOMContentLoaded', initAll);
+  document.addEventListener('shopify:section:load', initAll);
+})();

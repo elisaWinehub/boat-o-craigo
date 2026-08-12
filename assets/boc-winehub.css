@@ -202,7 +202,7 @@
   border-color: var(--boc-line) !important;
 }
 
-/* Add to cart / go back — match .boc-btn sizing, not full bleed */
+/* Add to cart / go back — equal width, theme-sized (not full bleed) */
 .wine-subscription-app .wh-add-to-cart-buttons {
   width: 100%;
   max-width: 100%;
@@ -210,9 +210,12 @@
 }
 
 .wine-subscription-app .wh-add-to-cart-buttons > div {
-  width: auto !important;
+  display: grid !important;
+  grid-template-columns: 1fr;
+  width: max-content !important;
   max-width: 100%;
-  align-items: center !important;
+  margin-inline: auto;
+  align-items: stretch !important;
 }
 
 .wine-subscription-app .wh-add-to-cart-buttons .tw-w-full,
@@ -220,10 +223,11 @@
   display: inline-flex !important;
   align-items: center;
   justify-content: center;
-  width: auto !important;
+  width: 100% !important;
   min-width: 0;
   max-width: 100%;
   padding-inline: 24px !important;
+  box-sizing: border-box;
 }
 
 /* Primary / secondary buttons rendered by Winehub */

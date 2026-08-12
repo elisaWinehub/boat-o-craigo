@@ -201,7 +201,7 @@
   border-color: var(--boc-line) !important;
 }
 
-/* Add to cart / go back — equal width, capped at 220px */
+/* Add to cart / go back — equal width, capped at 280px */
 .wine-subscription-app .wh-add-to-cart-buttons,
 #wine-subscription-app .wh-add-to-cart-buttons {
   display: flex !important;
@@ -218,7 +218,7 @@
   display: grid !important;
   grid-template-columns: minmax(0, 1fr);
   width: 100% !important;
-  max-width: 220px !important;
+  max-width: 280px !important;
   margin-inline: auto !important;
   align-items: stretch !important;
 }
@@ -232,7 +232,7 @@
   justify-content: center;
   width: 100% !important;
   min-width: 0;
-  max-width: 220px !important;
+  max-width: 280px !important;
   margin-inline: auto;
   padding-inline: 24px !important;
   box-sizing: border-box;

@@ -83,6 +83,72 @@
   color: var(--boc-ink, #212121);
 }
 
+/* ── Filled cart: item layout polish ────────────────── */
+.cart-items__product-title,
+.cart-items__product-title a,
+.cart-items__title,
+.cart-items__title a {
+  font-family: var(--boc-serif, 'Libre Caslon Display', Georgia, serif);
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--boc-ink, #212121);
+  letter-spacing: -0.01em;
+}
+
+.cart-items__price {
+  font-family: var(--boc-sans, 'DM Sans', sans-serif);
+  font-weight: 600;
+  color: var(--boc-ink, #212121);
+}
+
+.cart-items__vendor,
+.cart-items__product-option {
+  font-size: 0.78rem;
+  color: var(--boc-slate, #575962);
+}
+
+.cart__estimated-total,
+.cart-summary__estimated-total,
+.cart-totals__total-label {
+  font-family: var(--boc-serif, 'Libre Caslon Display', Georgia, serif);
+  font-size: 1.15rem;
+  font-weight: 400;
+  color: var(--boc-ink, #212121);
+}
+
+.cart-summary__discount-toggle,
+.cart-discount__label {
+  font-family: var(--boc-sans, 'DM Sans', sans-serif);
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+}
+
+.cart-page__summary .section-background,
+.cart-summary {
+  background: var(--boc-cream, #FAF8F5) !important;
+}
+
+.cart-summary {
+  border-radius: 0 !important;
+}
+
+/* ── Spacing between cart items and wines grid ───────── */
+.boc-cart-wines-section {
+  padding-top: 0;
+}
+
+.boc-cart-wines-section .boc-product-related {
+  padding-top: 72px;
+  padding-bottom: 88px;
+}
+
+@media (max-width: 720px) {
+  .boc-cart-wines-section .boc-product-related {
+    padding-top: 52px;
+    padding-bottom: 64px;
+  }
+}
+
 /* ── Checkout button ─────────────────────────────────── */
 .cart-summary .button--primary,
 .cart__checkout-button,
@@ -157,30 +223,6 @@
 .boc-cart-recommended__link:hover {
   color: var(--boc-sand, #B99E7E);
   border-color: var(--boc-sand, #B99E7E);
-}
-
-/* Style the Horizon product-list section on the cart page */
-.template-cart [data-testid='product-list'] {
-  background: var(--boc-white, #fff);
-}
-
-.template-cart [data-testid='product-list'] .section-resource-list__header h2,
-.template-cart [data-testid='product-list'] .section-resource-list__header h3 {
-  font-family: var(--boc-serif, 'Libre Caslon Display', Georgia, serif);
-  font-size: clamp(2rem, 3.5vw, 3rem);
-  font-weight: 400;
-  line-height: 1.08;
-  letter-spacing: -0.03em;
-  color: var(--boc-ink, #212121);
-  margin: 0;
-}
-
-.template-cart [data-testid='product-list'] .section-resource-list__header a {
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--boc-ink, #212121);
 }
 
 /* ── Mobile ──────────────────────────────────────────── */

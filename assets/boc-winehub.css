@@ -4,6 +4,20 @@
   background: var(--boc-white);
 }
 
+.boc-winehub-hero {
+  width: 100%;
+}
+
+.boc-page--winehub-wineclub #MainContent {
+  padding-block: 0 var(--boc-space-9, 50px);
+}
+
+@media (max-width: 720px) {
+  .boc-page--winehub-wineclub #MainContent {
+    padding-block: 0 var(--boc-space-5, 48px);
+  }
+}
+
 /* Page container — matches .boc-container site-wide */
 .boc-page--winehub #MainContent {
   width: min(calc(100% - 48px), var(--boc-max-width, 1420px));

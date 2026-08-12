@@ -1,0 +1,51 @@
+{%- doc -%}
+  Full-width hero for Winehub wine club signup pages.
+  Matches the wines collection hero styling with a fixed title.
+{%- enddoc -%}
+
+{%- liquid
+  assign hero_image = collections['wines'].image
+  assign hero_heading = 'Wine Club'
+  assign hero_fallback_url = 'https://boat-o-craigo.myshopify.com/cdn/shop/collections/AJG_3267_NV.jpg?v=1784026187&width=1500'
+-%}
+
+<section
+  class="boc-collection-hero boc-winehub-hero{% unless hero_image %} boc-collection-hero--no-image{% endunless %}"
+  style="
+    --boc-col-hero-h-d: 400px;
+    --boc-col-hero-h-t: 380px;
+    --boc-col-hero-h-m: 360px;
+    --boc-col-hero-overlay: #000000;
+    --boc-col-hero-overlay-opacity: 0.55;
+    --boc-col-hero-text: #ffffff;
+    --boc-col-hero-align-d: left;
+    --boc-col-hero-align-m: left;
+    --boc-col-hero-pos-h: flex-start;
+    --boc-col-hero-pos-v: flex-end;
+  "
+  aria-label="{{ hero_heading }}"
+>
+  <div class="boc-collection-hero__media"{% if hero_image == blank %} aria-hidden="true"{% endif %}>
+    {%- if hero_image != blank -%}
+      {% render 'boc-responsive-image',
+        image: hero_image,
+        alt: hero_heading,
+        loading: 'eager',
+        sizes: '100vw'
+      %}
+    {%- else -%}
+      <img
+        src="{{ hero_fallback_url }}"
+        alt=""
+        loading="eager"
+        fetchpriority="high"
+        width="1500"
+        height="400"
+      >
+    {%- endif -%}
+  </div>
+  <div class="boc-collection-hero__overlay" aria-hidden="true"></div>
+  <div class="boc-collection-section__inner boc-collection-hero__content">
+    <h1 class="boc-collection-hero__heading">{{ hero_heading }}</h1>
+  </div>
+</section>

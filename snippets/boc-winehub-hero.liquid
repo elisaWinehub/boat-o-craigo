@@ -4,13 +4,12 @@
 {%- enddoc -%}
 
 {%- liquid
-  assign hero_image = collections['wines'].image
   assign hero_heading = 'Wine Club'
-  assign hero_fallback_url = 'https://boat-o-craigo.myshopify.com/cdn/shop/collections/AJG_3267_NV.jpg?v=1784026187&width=1500'
+  assign hero_image_base = 'https://cdn.shopify.com/s/files/1/0698/9912/4820/files/wine-club-banner-1_286965a9-7c21-4ce8-9a19-95451ee1e11d.jpg?v=1786516883'
 -%}
 
 <section
-  class="boc-collection-hero boc-winehub-hero{% unless hero_image %} boc-collection-hero--no-image{% endunless %}"
+  class="boc-collection-hero boc-winehub-hero"
   style="
     --boc-col-hero-h-d: 400px;
     --boc-col-hero-h-t: 380px;
@@ -25,24 +24,22 @@
   "
   aria-label="{{ hero_heading }}"
 >
-  <div class="boc-collection-hero__media"{% if hero_image == blank %} aria-hidden="true"{% endif %}>
-    {%- if hero_image != blank -%}
-      {% render 'boc-responsive-image',
-        image: hero_image,
-        alt: hero_heading,
-        loading: 'eager',
-        sizes: '100vw'
-      %}
-    {%- else -%}
-      <img
-        src="{{ hero_fallback_url }}"
-        alt=""
-        loading="eager"
-        fetchpriority="high"
-        width="1500"
-        height="400"
-      >
-    {%- endif -%}
+  <div class="boc-collection-hero__media">
+    <img
+      src="{{ hero_image_base }}&width=1500"
+      srcset="
+        {{ hero_image_base }}&width=750 750w,
+        {{ hero_image_base }}&width=1100 1100w,
+        {{ hero_image_base }}&width=1500 1500w,
+        {{ hero_image_base }}&width=2000 2000w
+      "
+      sizes="100vw"
+      alt=""
+      loading="eager"
+      fetchpriority="high"
+      width="2000"
+      height="400"
+    >
   </div>
   <div class="boc-collection-hero__overlay" aria-hidden="true"></div>
   <div class="boc-collection-section__inner boc-collection-hero__content">

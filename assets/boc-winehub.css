@@ -202,6 +202,30 @@
   border-color: var(--boc-line) !important;
 }
 
+/* Add to cart / go back — match .boc-btn sizing, not full bleed */
+.wine-subscription-app .wh-add-to-cart-buttons {
+  width: 100%;
+  max-width: 100%;
+  align-items: center !important;
+}
+
+.wine-subscription-app .wh-add-to-cart-buttons > div {
+  width: auto !important;
+  max-width: 100%;
+  align-items: center !important;
+}
+
+.wine-subscription-app .wh-add-to-cart-buttons .tw-w-full,
+.wine-subscription-app .wh-add-to-cart-buttons button {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  width: auto !important;
+  min-width: 0;
+  max-width: 100%;
+  padding-inline: 24px !important;
+}
+
 /* Primary / secondary buttons rendered by Winehub */
 .wine-subscription-app .tw-bg-button-primary,
 .wine-subscription-app button[class*='signup-primary'],
@@ -286,14 +310,4 @@
 /* Product images — white background like collection cards */
 .wine-subscription-app img {
   background: var(--boc-white);
-}
-
-@media (max-width: 720px) {
-  .wine-subscription-app .wh-add-to-cart-buttons {
-    width: 100%;
-  }
-
-  .wine-subscription-app .wh-add-to-cart-buttons button {
-    width: 100%;
-  }
 }

@@ -35,24 +35,13 @@
     assign badge_text = block.settings.discount_percent | append: '% off'
   endif
 
-  assign plan_button_url = block.settings.button_url
-  if plan_button_url == blank
-    case tier
-      when 'gold'
-        assign plan_button_url = '/apps/winehub/wineclub/3'
-      when 'silver'
-        assign plan_button_url = '/apps/winehub/wineclub/2'
-      else
-        assign plan_button_url = '/apps/winehub/wineclub/1'
-    endcase
-  endif
-
+  assign plan_button_url = '#'
   if block.settings.button_action_type == 'product' and block.settings.button_product != blank
     assign plan_button_url = block.settings.button_product.url
   elsif block.settings.button_action_type == 'page' and block.settings.button_page != blank
     assign plan_button_url = block.settings.button_page.url
-  elsif block.settings.button_action_type == 'app_block'
-    assign plan_button_url = blank
+  elsif block.settings.button_action_type != 'app_block'
+    assign plan_button_url = block.settings.button_url | default: '#'
   endif
 -%}
 

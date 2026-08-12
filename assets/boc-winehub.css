@@ -155,8 +155,7 @@
   font-family: var(--boc-sans, 'DM Sans', sans-serif);
 }
 
-.wine-subscription-app *,
-.wine-subscription-app button {
+.wine-subscription-app * {
   padding: 0;
 }
 
@@ -454,6 +453,8 @@
 
 /* ── Primary / Secondary buttons ─────────────────────────────────────────── */
 .wine-subscription-app .tw-bg-button-primary,
+.wine-subscription-app .wh-button-primary,
+.wine-subscription-app [class*='tw-bg-btn-primary'],
 .wine-subscription-app button[class*='signup-primary'],
 .wine-subscription-app [class*='primary-button'] {
   background-color: var(--boc-ink, #212121) !important;
@@ -471,12 +472,16 @@
 }
 
 .wine-subscription-app .tw-bg-button-primary:not(:disabled):hover,
+.wine-subscription-app .wh-button-primary:not(:disabled):hover,
+.wine-subscription-app [class*='tw-bg-btn-primary']:not(:disabled):hover,
 .wine-subscription-app [class*='primary-button']:not(:disabled):hover {
   background-color: var(--boc-slate, #575962) !important;
   border-color: var(--boc-slate, #575962) !important;
 }
 
 .wine-subscription-app .tw-bg-button-primary:disabled,
+.wine-subscription-app .wh-button-primary:disabled,
+.wine-subscription-app [class*='tw-bg-btn-primary']:disabled,
 .wine-subscription-app [class*='primary-button']:disabled {
   opacity: 0.45 !important;
   cursor: not-allowed !important;
@@ -501,7 +506,20 @@
 }
 
 .wine-subscription-app [class*='go-back'] {
-  padding: 10px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 48px !important;
+  padding-inline: 24px !important;
+  box-sizing: border-box !important;
+}
+
+.wine-subscription-app [class*='go-back'] > .tw-flex,
+.wine-subscription-app .wh-add-to-cart-buttons button > .tw-flex,
+.wine-subscription-app .wh-button-primary > .tw-flex,
+.wine-subscription-app [class*='tw-btn-primary'] > .tw-flex {
+  padding: 10px 0 !important;
+  gap: 8px !important;
 }
 
 .wine-subscription-app .tw-bg-button-secondary:hover,
@@ -534,14 +552,18 @@
 .wine-subscription-app .wh-add-to-cart-buttons .tw-w-full,
 .wine-subscription-app .wh-add-to-cart-buttons button,
 #wine-subscription-app .wh-add-to-cart-buttons .tw-w-full,
-#wine-subscription-app .wh-add-to-cart-buttons button {
+#wine-subscription-app .wh-add-to-cart-buttons button,
+.wine-subscription-app .wh-button-primary,
+.wine-subscription-app [class*='tw-btn-primary'] {
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
   width: 100% !important;
   max-width: 280px !important;
+  min-height: 48px !important;
   margin-inline: auto !important;
   padding-inline: 24px !important;
+  padding-block: 0 !important;
   box-sizing: border-box !important;
 }
 

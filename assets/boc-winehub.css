@@ -531,7 +531,6 @@
 
 .wine-subscription-app .tw-bg-button-secondary,
 .wine-subscription-app [class*='secondary-button'],
-.wine-subscription-app [class*='go-back'],
 .wine-subscription-app .wh-add-to-cart-buttons button + button {
   background-color: var(--boc-white, #fff) !important;
   border: 1px solid var(--boc-ink, #212121) !important;
@@ -554,6 +553,7 @@
   min-height: 48px !important;
   padding-inline: 24px !important;
   box-sizing: border-box !important;
+  border: none !important;
 }
 
 .wine-subscription-app [class*='go-back'] > .tw-flex,

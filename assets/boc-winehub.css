@@ -27,7 +27,11 @@
   --base-font: 400 1rem var(--boc-sans);
   --h2-font: 400 clamp(2rem, 4vw, 2.5rem) var(--boc-serif);
   --h3-font: 400 1.5rem var(--boc-serif);
+  --h2-font-style: normal;
+  --base-font-style: normal;
+  --nav-font-style: normal;
   --product-card-font-style: normal;
+  --danger-button-font-style: normal;
   --selector-card-primary-font-size: 1.25rem;
   --selector-card-secondary-font-size: 0.9rem;
 
@@ -101,6 +105,22 @@
   --content-gap: 2rem;
   color: var(--boc-ink);
   font-family: var(--boc-sans);
+  font-size: var(--boc-body, 1rem);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wine-subscription-app button,
+.wine-subscription-app input,
+.wine-subscription-app select,
+.wine-subscription-app textarea,
+.wine-subscription-app label,
+.wine-subscription-app p,
+.wine-subscription-app span,
+.wine-subscription-app li,
+.wine-subscription-app td,
+.wine-subscription-app th {
+  font-family: var(--boc-sans);
 }
 
 .wine-subscription-app {
@@ -136,10 +156,16 @@
   color: var(--boc-slate) !important;
 }
 
-/* Square corners — match BOC buttons and cards */
-.wine-subscription-app [class*='tw-rounded'],
+/* Square corners — match BOC buttons and cards (keep quantity circles round) */
+.wine-subscription-app [class*='tw-rounded']:not(.tw-rounded-full),
 .wine-subscription-app .whcp-table {
   border-radius: 0 !important;
+}
+
+.wine-subscription-app .tw-rounded-full {
+  border-radius: 100% !important;
+  border-color: var(--boc-line) !important;
+  color: var(--boc-ink) !important;
 }
 
 /* Product cards */
@@ -152,14 +178,6 @@
 
 .wine-subscription-app .tw-border-horizontal-rule {
   border-color: var(--boc-line) !important;
-}
-
-/* Quantity controls */
-.wine-subscription-app button[class*='tw-rounded-full'],
-.wine-subscription-app .tw-rounded-full {
-  border-radius: 0 !important;
-  border-color: var(--boc-line) !important;
-  color: var(--boc-ink) !important;
 }
 
 /* Primary / secondary buttons rendered by Winehub */

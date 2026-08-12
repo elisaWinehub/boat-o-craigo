@@ -6,7 +6,7 @@
 
 /* ── Empty state wrapper ─────────────────────────────── */
 .cart-page--empty {
-  background: var(--boc-cream, #FAF8F5);
+  background: transparent;
   min-height: 72vh;
   display: flex;
   flex-direction: column;

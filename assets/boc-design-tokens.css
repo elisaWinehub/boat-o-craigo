@@ -73,6 +73,26 @@
   padding-bottom: 0;
 }
 
+/* Playfair Display — all BOC headings and titles */
+:is(
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  .boc-display,
+  .display,
+  .product-title,
+  .product-price-current,
+  .boc-product-card__title,
+  .boc-product-card__title a,
+  [class*='__heading'],
+  [class*='__title']
+) {
+  font-family: 'Playfair Display', Georgia, serif !important;
+}
+
 .boc-eyebrow {
   font-family: var(--boc-sans);
   font-size: var(--boc-label);

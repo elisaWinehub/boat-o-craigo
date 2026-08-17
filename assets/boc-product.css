@@ -5,7 +5,7 @@
   --sand: var(--boc-sand, #B99E7E);
   --cream: var(--boc-cream, #FAF8F5);
   --line: var(--boc-line, #E8E2D9);
-  --serif: var(--boc-serif, 'Libre Caslon Display', Georgia, serif);
+  --serif: var(--boc-serif, 'Playfair Display', Georgia, serif);
   --sans: var(--boc-sans, 'DM Sans', Arial, sans-serif);
 }
 

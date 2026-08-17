@@ -81,13 +81,13 @@ This colour was explicitly rejected and must not appear anywhere in the theme.
 ### Font pairing
 
 ```css
---boc-serif: 'Libre Caslon Display', Georgia, serif;
+--boc-serif: 'Playfair Display', Georgia, serif;
 --boc-sans: 'DM Sans', Arial, sans-serif;
 ```
 
 ### Usage
 
-**Libre Caslon Display**
+**Playfair Display**
 - Hero headings
 - Section headings
 - Product titles

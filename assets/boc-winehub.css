@@ -56,8 +56,8 @@
   --h2-color: var(--boc-ink, #212121);
   --h3-color: var(--boc-ink, #212121);
   --base-font: 400 1rem var(--boc-sans, 'DM Sans', sans-serif);
-  --h2-font: 400 clamp(2rem, 4vw, 2.8rem) var(--boc-serif, 'Libre Caslon Display', serif);
-  --h3-font: 400 1.35rem var(--boc-serif, 'Libre Caslon Display', serif);
+  --h2-font: 400 clamp(2rem, 4vw, 2.8rem) var(--boc-serif, 'Playfair Display', serif);
+  --h3-font: 400 1.35rem var(--boc-serif, 'Playfair Display', serif);
   --h2-font-style: normal;
   --base-font-style: normal;
   --nav-font-style: normal;
@@ -162,7 +162,7 @@
 .wine-subscription-app h1,
 .wine-subscription-app h2,
 .wine-subscription-app h3 {
-  font-family: var(--boc-serif, 'Libre Caslon Display', Georgia, serif);
+  font-family: var(--boc-serif, 'Playfair Display', Georgia, serif);
   font-weight: 400;
   letter-spacing: -0.02em;
   color: var(--boc-ink, #212121);
@@ -275,7 +275,7 @@
 
 /* ── Section headings ────────────────────────────────────────────────────── */
 .wine-subscription-app h2 {
-  font-family: var(--boc-serif, 'Libre Caslon Display', Georgia, serif) !important;
+  font-family: var(--boc-serif, 'Playfair Display', Georgia, serif) !important;
   font-size: clamp(1.8rem, 3.5vw, 2.6rem) !important;
   font-weight: 400 !important;
   letter-spacing: -0.02em !important;
@@ -341,7 +341,7 @@
 
 .wine-subscription-app [class*='selector-card'] h3,
 .wine-subscription-app [class*='selector-card'] [class*='tw-font-semibold'] {
-  font-family: var(--boc-serif, 'Libre Caslon Display', Georgia, serif) !important;
+  font-family: var(--boc-serif, 'Playfair Display', Georgia, serif) !important;
   font-weight: 400 !important;
   font-size: 1.2rem !important;
   letter-spacing: -0.01em !important;
@@ -416,7 +416,7 @@
 
 .wine-subscription-app [class*='wine-card'] h3,
 .wine-subscription-app [class*='wine-card'] [class*='tw-font-semibold'] {
-  font-family: var(--boc-serif, 'Libre Caslon Display', Georgia, serif) !important;
+  font-family: var(--boc-serif, 'Playfair Display', Georgia, serif) !important;
   font-weight: 400 !important;
   font-size: 0.95rem !important;
   letter-spacing: -0.01em !important;
@@ -486,7 +486,7 @@
 .wine-subscription-app [class*='total-panel'] h3,
 .wine-subscription-app [class*='subscription-total'] h3,
 .wine-subscription-app [class*='total-panel'] [class*='tw-font-semibold'] {
-  font-family: var(--boc-serif, 'Libre Caslon Display', Georgia, serif) !important;
+  font-family: var(--boc-serif, 'Playfair Display', Georgia, serif) !important;
   font-size: 1.2rem !important;
   font-weight: 400 !important;
   letter-spacing: -0.01em !important;

@@ -30,7 +30,7 @@
 
 /* Empty heading */
 .boc-cart-empty__heading {
-  font-family: var(--boc-serif, 'Libre Caslon Display', Georgia, serif);
+  font-family: var(--boc-serif, 'Playfair Display', Georgia, serif);
   font-size: clamp(3rem, 5vw, 5rem);
   font-weight: 400;
   line-height: 1.08;
@@ -76,7 +76,7 @@
 
 /* ── Cart title ──────────────────────────────────────── */
 .cart-title {
-  font-family: var(--boc-serif, 'Libre Caslon Display', Georgia, serif);
+  font-family: var(--boc-serif, 'Playfair Display', Georgia, serif);
   font-size: clamp(1.8rem, 3vw, 2.6rem);
   font-weight: 400;
   letter-spacing: -0.02em;
@@ -88,7 +88,7 @@
 .cart-items__product-title a,
 .cart-items__title,
 .cart-items__title a {
-  font-family: var(--boc-serif, 'Libre Caslon Display', Georgia, serif);
+  font-family: var(--boc-serif, 'Playfair Display', Georgia, serif);
   font-size: 1rem;
   font-weight: 400;
   color: var(--boc-ink, #212121);
@@ -110,7 +110,7 @@
 .cart__estimated-total,
 .cart-summary__estimated-total,
 .cart-totals__total-label {
-  font-family: var(--boc-serif, 'Libre Caslon Display', Georgia, serif);
+  font-family: var(--boc-serif, 'Playfair Display', Georgia, serif);
   font-size: 1.15rem;
   font-weight: 400;
   color: var(--boc-ink, #212121);
@@ -199,7 +199,7 @@
 }
 
 .boc-cart-recommended__title {
-  font-family: var(--boc-serif, 'Libre Caslon Display', Georgia, serif);
+  font-family: var(--boc-serif, 'Playfair Display', Georgia, serif);
   font-size: clamp(2rem, 3.5vw, 3rem);
   font-weight: 400;
   line-height: 1.08;

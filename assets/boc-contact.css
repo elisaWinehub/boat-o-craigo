@@ -368,6 +368,10 @@
   font-size: 0.84rem;
 }
 
+.boc-contact-form__success-panel.is-visible {
+  display: block;
+}
+
 .boc-contact-form__success {
   padding: 16px;
   background: var(--boc-cream);

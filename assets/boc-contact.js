@@ -3,6 +3,17 @@
 
   var ROOT = '[data-boc-contact]';
   var VALID_TOPICS = ['general', 'order-support', 'wine-club', 'weddings-events', 'restaurant-tasting'];
+  var TOPIC_LABELS = {
+    general: 'General enquiry',
+    'order-support': 'Order support',
+    'wine-club': 'Wine Club',
+    'weddings-events': 'Weddings and events',
+    'restaurant-tasting': 'Restaurant or tasting',
+  };
+
+  function storageKey(form) {
+    return 'bocContactSent:' + (form && form.id ? form.id : 'default');
+  }
 
   function prefersReducedMotion() {
     return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -69,10 +80,10 @@
   }
 
   function applyTopic(topic) {
-    if (VALID_TOPICS.indexOf(topic) === -1) return;
+    if (VALID_TOPICS.indexOf(topic) === -1 && !Object.values(TOPIC_LABELS).includes(topic)) return;
     var select = document.querySelector('[data-boc-contact-topic-select]');
     if (!select) return;
-    select.value = topic;
+    select.value = TOPIC_LABELS[topic] || topic;
     select.dispatchEvent(new Event('change', { bubbles: true }));
 
     var formSection = document.querySelector('[data-boc-contact-form]');
@@ -108,6 +119,76 @@
     var params = new URLSearchParams(window.location.search);
     var topic = params.get('topic');
     if (topic) applyTopic(topic);
+  }
+
+  function showContactSuccess(section) {
+    var formFields = section.querySelector('[data-boc-contact-form-fields]');
+    var successPanel = section.querySelector('[data-boc-contact-success-panel]');
+    var errors = section.querySelector('[data-boc-contact-form-errors]');
+
+    if (formFields) formFields.hidden = true;
+    if (successPanel) {
+      successPanel.hidden = false;
+      successPanel.classList.add('is-visible');
+      var focusTarget = successPanel.querySelector('.boc-contact-form__success');
+      if (focusTarget) focusTarget.focus();
+    }
+    if (errors) errors.hidden = true;
+    smoothScrollTo(section);
+  }
+
+  function hasVisibleContactErrors(section) {
+    var errors = section.querySelector('[data-boc-contact-form-errors]');
+    return !!(errors && !errors.hidden && errors.textContent.trim());
+  }
+
+  function applyContactPostSubmitState(section, form) {
+    var key = storageKey(form);
+    var params = new URLSearchParams(window.location.search);
+    var sentViaQuery = params.get('contact_sent') === '1';
+    var successPanel = section.querySelector('[data-boc-contact-success-panel]');
+    var serverSuccess = successPanel
+      && (!successPanel.hidden || successPanel.classList.contains('is-visible'));
+    var pendingSuccess = sessionStorage.getItem(key) === '1';
+
+    if (hasVisibleContactErrors(section)) {
+      sessionStorage.removeItem(key);
+      smoothScrollTo(section);
+      return false;
+    }
+
+    if (pendingSuccess || sentViaQuery || serverSuccess) {
+      sessionStorage.removeItem(key);
+      showContactSuccess(section);
+      return true;
+    }
+
+    return false;
+  }
+
+  function initContactForm(section) {
+    var form = section.querySelector('.boc-contact-form__native');
+    if (!form || form.dataset.bocContactFormBound === 'true') return;
+    form.dataset.bocContactFormBound = 'true';
+
+    form.addEventListener('submit', function () {
+      var firstName = form.querySelector('[name="contact[first_name]"]');
+      var lastName = form.querySelector('[name="contact[last_name]"]');
+      var combinedName = form.querySelector('[data-boc-contact-name-combined]');
+      if (combinedName && firstName && lastName) {
+        combinedName.value = (firstName.value + ' ' + lastName.value).trim();
+      }
+
+      sessionStorage.setItem(storageKey(form), '1');
+
+      var submitBtn = form.querySelector('[type="submit"]');
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending…';
+      }
+    });
+
+    applyContactPostSubmitState(section, form);
   }
 
   function initFaq(root) {
@@ -156,6 +237,7 @@
     initAnchorNav(section);
     initTopicPreselect(section);
     initFaq(section);
+    initContactForm(section);
   }
 
   function destroySection(section) {

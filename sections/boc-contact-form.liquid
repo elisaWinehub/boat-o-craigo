@@ -35,6 +35,8 @@
   assign order_id = 'boc-ct-order-' | append: section.id
   assign booking_id = 'boc-ct-booking-' | append: section.id
   assign msg_id = 'boc-ct-msg-' | append: section.id
+  assign form_anchor = section.settings.section_anchor_id | default: 'boc-contact-form'
+  assign form_return_to = page.url | append: '?contact_sent=1#' | append: form_anchor
 -%}
 
 <section
@@ -81,61 +83,78 @@
 
       {%- if show_native -%}
         <div class="boc-contact-form__panel">
-          {%- form 'contact', id: form_id -%}
+          {%- form 'contact', id: form_id, return_to: form_return_to, class: 'boc-contact-form__native' -%}
+            {%- liquid
+              assign show_success = false
+              if form.posted_successfully? or request.params.contact_sent == '1'
+                assign show_success = true
+              endif
+            -%}
+
             <input type="hidden" name="contact[tags]" value="contact-page">
-            {%- if form.posted_successfully? -%}
-              <p class="boc-contact-form__success" role="status">{{ section.settings.success_message }}</p>
-            {%- endif -%}
-            {%- if form.errors -%}
-              <div class="boc-contact-form__errors" role="alert">{{ form.errors | default_errors }}</div>
-            {%- endif -%}
-            <div class="boc-contact-form__grid">
-              <div class="boc-contact-form__field">
-                <label for="{{ fn_id }}">First name <span aria-hidden="true">*</span></label>
-                <input id="{{ fn_id }}" type="text" name="contact[first_name]" autocomplete="given-name" required value="{{ form.first_name }}">
-              </div>
-              <div class="boc-contact-form__field">
-                <label for="{{ ln_id }}">Last name <span aria-hidden="true">*</span></label>
-                <input id="{{ ln_id }}" type="text" name="contact[last_name]" autocomplete="family-name" required value="{{ form.last_name }}">
-              </div>
-              <div class="boc-contact-form__field">
-                <label for="{{ em_id }}">Email <span aria-hidden="true">*</span></label>
-                <input id="{{ em_id }}" type="email" name="contact[email]" autocomplete="email" required value="{{ form.email }}">
-              </div>
-              <div class="boc-contact-form__field">
-                <label for="{{ ph_id }}">Phone</label>
-                <input id="{{ ph_id }}" type="tel" name="contact[phone]" autocomplete="tel" value="{{ form.phone }}">
-              </div>
-              <div class="boc-contact-form__field boc-contact-form__field--full">
-                <label for="{{ topic_id }}">Enquiry type <span aria-hidden="true">*</span></label>
-                <select id="{{ topic_id }}" name="contact[Enquiry type]" required data-boc-contact-topic-select>
-                  <option value="general">General enquiry</option>
-                  <option value="order-support">Order support</option>
-                  <option value="wine-club">Wine Club</option>
-                  <option value="weddings-events">Weddings &amp; events</option>
-                  <option value="restaurant-tasting">Restaurant or tasting</option>
-                </select>
-              </div>
-              {%- if section.settings.show_order_number -%}
-                <div class="boc-contact-form__field">
-                  <label for="{{ order_id }}">Order number</label>
-                  <input id="{{ order_id }}" type="text" name="contact[Order number]" autocomplete="off" value="{{ form['Order number'] }}">
-                </div>
-              {%- endif -%}
-              {%- if section.settings.show_booking_reference -%}
-                <div class="boc-contact-form__field">
-                  <label for="{{ booking_id }}">Booking reference</label>
-                  <input id="{{ booking_id }}" type="text" name="contact[Booking reference]" autocomplete="off" value="{{ form['Booking reference'] }}">
-                </div>
-              {%- endif -%}
-              <div class="boc-contact-form__field boc-contact-form__field--full">
-                <label for="{{ msg_id }}">Message <span aria-hidden="true">*</span></label>
-                <textarea id="{{ msg_id }}" name="contact[body]" required placeholder="{{ section.settings.message_placeholder }}">{{ form.body }}</textarea>
-              </div>
+            <input type="hidden" name="contact[name]" value="" data-boc-contact-name-combined>
+
+            <div class="boc-contact-form__errors" data-boc-contact-form-errors role="alert" {% unless form.errors %}hidden{% endunless %}>
+              {%- if form.errors -%}{{ form.errors | default_errors }}{%- endif -%}
             </div>
-            <div class="boc-contact-form__foot">
-              {%- if section.settings.privacy_text != blank -%}<small>{{ section.settings.privacy_text }}</small>{%- endif -%}
-              <button type="submit" class="boc-btn boc-btn--accent">{{ section.settings.submit_label }}</button>
+
+            <div
+              class="boc-contact-form__success-panel{% if show_success %} is-visible{% endif %}"
+              data-boc-contact-success-panel
+              {% unless show_success %}hidden{% endunless %}
+            >
+              <p class="boc-contact-form__success" role="status" tabindex="-1">{{ section.settings.success_message }}</p>
+            </div>
+
+            <div class="boc-contact-form__fields" data-boc-contact-form-fields {% if show_success %}hidden{% endif %}>
+              <div class="boc-contact-form__grid">
+                <div class="boc-contact-form__field">
+                  <label for="{{ fn_id }}">First name <span aria-hidden="true">*</span></label>
+                  <input id="{{ fn_id }}" type="text" name="contact[first_name]" autocomplete="given-name" required value="{{ form.first_name }}">
+                </div>
+                <div class="boc-contact-form__field">
+                  <label for="{{ ln_id }}">Last name <span aria-hidden="true">*</span></label>
+                  <input id="{{ ln_id }}" type="text" name="contact[last_name]" autocomplete="family-name" required value="{{ form.last_name }}">
+                </div>
+                <div class="boc-contact-form__field">
+                  <label for="{{ em_id }}">Email <span aria-hidden="true">*</span></label>
+                  <input id="{{ em_id }}" type="email" name="contact[email]" autocomplete="email" required value="{{ form.email }}">
+                </div>
+                <div class="boc-contact-form__field">
+                  <label for="{{ ph_id }}">Phone</label>
+                  <input id="{{ ph_id }}" type="tel" name="contact[phone]" autocomplete="tel" value="{{ form.phone }}">
+                </div>
+                <div class="boc-contact-form__field boc-contact-form__field--full">
+                  <label for="{{ topic_id }}">Enquiry type <span aria-hidden="true">*</span></label>
+                  <select id="{{ topic_id }}" name="contact[enquiry_type]" required data-boc-contact-topic-select>
+                    <option value="General enquiry">General enquiry</option>
+                    <option value="Order support">Order support</option>
+                    <option value="Wine Club">Wine Club</option>
+                    <option value="Weddings and events">Weddings &amp; events</option>
+                    <option value="Restaurant or tasting">Restaurant or tasting</option>
+                  </select>
+                </div>
+                {%- if section.settings.show_order_number -%}
+                  <div class="boc-contact-form__field">
+                    <label for="{{ order_id }}">Order number</label>
+                    <input id="{{ order_id }}" type="text" name="contact[order_number]" autocomplete="off" value="{{ form.order_number }}">
+                  </div>
+                {%- endif -%}
+                {%- if section.settings.show_booking_reference -%}
+                  <div class="boc-contact-form__field">
+                    <label for="{{ booking_id }}">Booking reference</label>
+                    <input id="{{ booking_id }}" type="text" name="contact[booking_reference]" autocomplete="off" value="{{ form.booking_reference }}">
+                  </div>
+                {%- endif -%}
+                <div class="boc-contact-form__field boc-contact-form__field--full">
+                  <label for="{{ msg_id }}">Message <span aria-hidden="true">*</span></label>
+                  <textarea id="{{ msg_id }}" name="contact[body]" required placeholder="{{ section.settings.message_placeholder }}">{{ form.body }}</textarea>
+                </div>
+              </div>
+              <div class="boc-contact-form__foot">
+                {%- if section.settings.privacy_text != blank -%}<small>{{ section.settings.privacy_text }}</small>{%- endif -%}
+                <button type="submit" class="boc-btn boc-btn--accent">{{ section.settings.submit_label }}</button>
+              </div>
             </div>
           {%- endform -%}
         </div>

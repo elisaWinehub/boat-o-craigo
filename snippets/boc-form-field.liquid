@@ -36,9 +36,13 @@
       >{{ value }}</textarea>
     {%- when 'select' -%}
       <select id="{{ id }}" name="{{ name }}" {% if required %}required{% endif %} {% if disabled %}disabled{% endif %}>
+        {%- if placeholder != blank -%}
+          <option value="" disabled selected hidden>{{ placeholder }}</option>
+        {%- endif -%}
         {%- assign option_list = options | split: '|' -%}
         {%- for option in option_list -%}
-          <option value="{{ option | strip }}">{{ option | strip }}</option>
+          {%- assign option_value = option | strip -%}
+          <option value="{{ option_value }}">{{ option_value }}</option>
         {%- endfor -%}
       </select>
     {%- else -%}

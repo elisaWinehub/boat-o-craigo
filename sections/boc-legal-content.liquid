@@ -1,0 +1,70 @@
+{%- liquid
+  assign section_classes = 'boc-legal-section boc-legal-section--standard'
+  unless section.settings.section_enabled
+    assign section_classes = section_classes | append: ' boc-legal-section--disabled'
+  endunless
+  unless section.settings.show_desktop
+    assign section_classes = section_classes | append: ' boc-legal-section--hide-desktop'
+  endunless
+  unless section.settings.show_tablet
+    assign section_classes = section_classes | append: ' boc-legal-section--hide-tablet'
+  endunless
+  unless section.settings.show_mobile
+    assign section_classes = section_classes | append: ' boc-legal-section--hide-mobile'
+  endunless
+-%}
+
+{{ 'boc-legal.css' | asset_url | stylesheet_tag }}
+
+<section
+  id="{{ section.settings.section_anchor_id | default: 'boc-legal-content' }}"
+  class="{{ section_classes }}"
+  data-boc-legal
+  style="
+    --boc-legal-bg: {{ section.settings.background_color }};
+    --boc-legal-heading: {{ section.settings.heading_color }};
+    --boc-legal-body: {{ section.settings.body_color }};
+    --boc-legal-pt-d: {{ section.settings.padding_top_desktop }}px;
+    --boc-legal-pb-d: {{ section.settings.padding_bottom_desktop }}px;
+    --boc-legal-pt-t: {{ section.settings.padding_top_tablet }}px;
+    --boc-legal-pb-t: {{ section.settings.padding_bottom_tablet }}px;
+    --boc-legal-pt-m: {{ section.settings.padding_top_mobile }}px;
+    --boc-legal-pb-m: {{ section.settings.padding_bottom_mobile }}px;
+  "
+>
+  <div class="boc-legal-section__inner boc-legal-section__inner--narrow">
+    {%- if section.settings.heading != blank -%}
+      <h1 class="boc-legal-section__heading">{{ section.settings.heading }}</h1>
+    {%- endif -%}
+    {%- if section.settings.body != blank -%}
+      <div class="boc-legal-content rte">{{ section.settings.body }}</div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "BOC — Legal content",
+  "tag": "section",
+  "class": "boc-legal-content-section",
+  "settings": [
+    { "type": "checkbox", "id": "section_enabled", "label": "Enable section", "default": true },
+    { "type": "checkbox", "id": "show_desktop", "label": "Show on desktop", "default": true },
+    { "type": "checkbox", "id": "show_tablet", "label": "Show on tablet", "default": true },
+    { "type": "checkbox", "id": "show_mobile", "label": "Show on mobile", "default": true },
+    { "type": "text", "id": "section_anchor_id", "label": "Section anchor ID", "default": "boc-legal-content" },
+    { "type": "color", "id": "background_color", "label": "Background", "default": "#FAF8F5" },
+    { "type": "color", "id": "heading_color", "label": "Heading colour", "default": "#212121" },
+    { "type": "color", "id": "body_color", "label": "Body colour", "default": "#575962" },
+    { "type": "range", "id": "padding_top_desktop", "label": "Desktop padding top", "min": 0, "max": 160, "step": 2, "unit": "px", "default": 80 },
+    { "type": "range", "id": "padding_bottom_desktop", "label": "Desktop padding bottom", "min": 0, "max": 160, "step": 2, "unit": "px", "default": 120 },
+    { "type": "range", "id": "padding_top_tablet", "label": "Tablet padding top", "min": 0, "max": 128, "step": 2, "unit": "px", "default": 72 },
+    { "type": "range", "id": "padding_bottom_tablet", "label": "Tablet padding bottom", "min": 0, "max": 128, "step": 2, "unit": "px", "default": 96 },
+    { "type": "range", "id": "padding_top_mobile", "label": "Mobile padding top", "min": 0, "max": 120, "step": 2, "unit": "px", "default": 50 },
+    { "type": "range", "id": "padding_bottom_mobile", "label": "Mobile padding bottom", "min": 0, "max": 120, "step": 2, "unit": "px", "default": 72 },
+    { "type": "text", "id": "heading", "label": "Page heading", "default": "Terms and conditions" },
+    { "type": "richtext", "id": "body", "label": "Body content" }
+  ],
+  "presets": [{ "name": "BOC — Legal content" }]
+}
+{% endschema %}

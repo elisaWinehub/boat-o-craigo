@@ -1,0 +1,129 @@
+/* Boat O'Craigo — Legal pages (terms, privacy) */
+
+.boc-legal-section--disabled {
+  display: none !important;
+}
+
+@media (min-width: 981px) {
+  .boc-legal-section--hide-desktop {
+    display: none !important;
+  }
+}
+
+@media (min-width: 721px) and (max-width: 980px) {
+  .boc-legal-section--hide-tablet {
+    display: none !important;
+  }
+}
+
+@media (max-width: 720px) {
+  .boc-legal-section--hide-mobile {
+    display: none !important;
+  }
+}
+
+.boc-legal-section--standard {
+  padding-top: var(--boc-legal-pt-d, 80px);
+  padding-bottom: var(--boc-legal-pb-d, 120px);
+  background: var(--boc-legal-bg, var(--boc-cream));
+  color: var(--boc-legal-text, var(--boc-ink));
+}
+
+@media (min-width: 721px) and (max-width: 980px) {
+  .boc-legal-section--standard {
+    padding-top: var(--boc-legal-pt-t, 72px);
+    padding-bottom: var(--boc-legal-pb-t, 96px);
+  }
+}
+
+@media (max-width: 720px) {
+  .boc-legal-section--standard {
+    padding-top: var(--boc-legal-pt-m, 50px);
+    padding-bottom: var(--boc-legal-pb-m, 72px);
+  }
+}
+
+.boc-legal-section__inner {
+  width: min(calc(100% - 48px), var(--boc-max-width));
+  margin-inline: auto;
+}
+
+.boc-legal-section__inner--narrow {
+  max-width: min(780px, 100%);
+}
+
+@media (max-width: 720px) {
+  .boc-legal-section__inner {
+    width: min(calc(100% - 32px), var(--boc-max-width));
+  }
+}
+
+.boc-legal-section__heading {
+  font-family: var(--boc-serif);
+  font-size: var(--boc-display-md);
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  margin: 0 0 40px;
+  color: var(--boc-legal-heading, var(--boc-ink));
+}
+
+.boc-legal-content {
+  color: var(--boc-legal-body, var(--boc-slate));
+  font-family: var(--boc-sans);
+  font-size: var(--boc-body);
+  line-height: 1.65;
+}
+
+.boc-legal-content :is(p, ul, ol) {
+  margin: 0 0 20px;
+}
+
+.boc-legal-content :is(p, ul, ol):last-child {
+  margin-bottom: 0;
+}
+
+.boc-legal-content h2 {
+  font-family: var(--boc-serif);
+  font-size: var(--boc-heading-sm);
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--boc-legal-heading, var(--boc-ink));
+  margin: 40px 0 16px;
+}
+
+.boc-legal-content h2:first-child {
+  margin-top: 0;
+}
+
+.boc-legal-content ul {
+  padding-left: 1.25rem;
+}
+
+.boc-legal-content li {
+  margin-bottom: 10px;
+}
+
+.boc-legal-content li:last-child {
+  margin-bottom: 0;
+}
+
+.boc-legal-content a {
+  color: var(--boc-ink);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.boc-legal-content a:hover {
+  color: var(--boc-sand);
+}
+
+.boc-legal-content strong {
+  color: var(--boc-legal-heading, var(--boc-ink));
+  font-weight: 600;
+}
+
+.boc-legal-content em {
+  font-style: italic;
+}

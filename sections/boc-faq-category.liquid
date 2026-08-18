@@ -69,6 +69,14 @@
           loading: 'lazy',
           sizes: '(min-width: 980px) 55vw, 100vw'
         %}
+      {%- elsif section.settings.external_image_url != blank -%}
+        <img
+          src="{{ section.settings.external_image_url }}"
+          alt="{{ section.settings.heading | escape }}"
+          loading="lazy"
+          width="1600"
+          height="680"
+        >
       {%- else -%}
         <img src="{{ fallback_url }}" alt="{{ section.settings.heading | escape }}" loading="lazy" width="1600" height="680">
       {%- endif -%}
@@ -130,6 +138,7 @@
     { "type": "checkbox", "id": "reverse_layout", "label": "Image on right", "default": false },
     { "type": "image_picker", "id": "image", "label": "Image" },
     { "type": "image_picker", "id": "mobile_image", "label": "Mobile image" },
+    { "type": "text", "id": "external_image_url", "label": "External image URL", "info": "Use for Shopify Files CDN URLs when not selectable via image picker." },
     { "type": "text", "id": "image_fallback", "label": "Fallback image asset", "default": "boc-estate-visit.jpg" },
     { "type": "text", "id": "split_ratio", "label": "Split ratio", "default": "1.05fr 0.95fr" },
     { "type": "range", "id": "desktop_image_height", "label": "Desktop image height", "min": 360, "max": 900, "step": 20, "unit": "px", "default": 680 },

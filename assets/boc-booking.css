@@ -212,6 +212,10 @@
   margin-inline: auto;
 }
 
+.boc-booking-pathways__intro .boc-booking-section__heading {
+  margin-bottom: 20px;
+}
+
 .boc-booking-pathways__intro p {
   color: var(--boc-slate);
   font-size: 1rem;

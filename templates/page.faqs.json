@@ -203,7 +203,7 @@
           "type": "faq",
           "settings": {
             "question": "Can I buy a Gift Voucher online?",
-            "answer": "<p>Yes! Visit our <a href=\"/products/gift-card\">Gift Vouchers page</a> under Shop for more info. Gift Cards can be redeemed in-store or over the phone by calling us during business hours; Thursday – Monday, 10am – 5pm.</p>",
+            "answer": "<p>Yes! Visit our <a href=\"https://giftcards.nowbookit.com/cards/card-selection?accountid=20cb5efb-4257-47a2-a7c9-7c23eceb2feb&amp;venueid=6523&amp;theme=light&amp;accent=95,124,138\" target=\"_blank\" rel=\"noopener noreferrer\">Gift Vouchers page</a> under Shop for more info. Gift Cards can be redeemed in-store or over the phone by calling us during business hours; Thursday – Monday, 10am – 5pm.</p>",
             "open_by_default": false
           }
         },

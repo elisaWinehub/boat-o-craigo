@@ -5,7 +5,7 @@ mutation CreateFooterMenus {
     items: [
       { title: "Wines", type: HTTP, url: "/collections/wines" }
       { title: "Gift Packs", type: HTTP, url: "/collections/gift-packs" }
-      { title: "Gift Cards", type: HTTP, url: "/products/gift-card" }
+      { title: "Gift Cards", type: HTTP, url: "https://giftcards.nowbookit.com/cards/card-selection?accountid=20cb5efb-4257-47a2-a7c9-7c23eceb2feb&venueid=6523&theme=light&accent=95,124,138" }
       { title: "Wine Club", type: PAGE, resourceId: "gid://shopify/Page/111877914708" }
     ]
   ) {

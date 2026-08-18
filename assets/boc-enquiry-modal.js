@@ -46,7 +46,13 @@
     }
     if (intro) intro.hidden = true;
     if (errors) errors.hidden = true;
-    if (title) title.textContent = 'Thank you for your enquiry';
+    if (title) title.hidden = true;
+
+    var dialog = modal.querySelector('.boc-group-booking-modal__dialog');
+    var successTitle = successPanel && successPanel.querySelector('.boc-group-booking-modal__success-lead');
+    if (dialog && successTitle && successTitle.id) {
+      dialog.setAttribute('aria-labelledby', successTitle.id);
+    }
   }
 
   function hasVisibleErrors(modal) {

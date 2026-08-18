@@ -55,12 +55,8 @@
         <div hidden data-boc-enquiry-auto-open="true"></div>
       {%- endif -%}
 
-      <h2 id="boc-enquiry-title-{{ section_id }}" class="boc-group-booking-modal__title">
-        {%- if show_success -%}
-          Thank you for your enquiry
-        {%- else -%}
-          {{ title }}
-        {%- endif -%}
+      <h2 id="boc-enquiry-title-{{ section_id }}" class="boc-group-booking-modal__title" {% if show_success %}hidden{% endif %}>
+        {{ title }}
       </h2>
       {%- if intro != blank and show_success == false -%}
         <p class="boc-group-booking-modal__intro">{{ intro }}</p>
@@ -104,7 +100,7 @@
         data-boc-enquiry-success-panel
         {% unless show_success %}hidden{% endunless %}
       >
-        <p class="boc-group-booking-modal__success-lead">Thank you for your enquiry.</p>
+        <p id="boc-enquiry-success-title-{{ section_id }}" class="boc-group-booking-modal__success-lead">Thank you for your enquiry.</p>
         <p class="boc-group-booking-modal__success-message">{{ success_message }}</p>
         <button type="button" class="boc-btn boc-btn--primary" data-boc-enquiry-close data-boc-enquiry-success-focus>
           Close

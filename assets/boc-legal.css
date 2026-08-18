@@ -68,6 +68,14 @@
   color: var(--boc-legal-heading, var(--boc-ink));
 }
 
+.boc-legal-section__subheading {
+  font-family: var(--boc-sans);
+  font-size: var(--boc-body-lg);
+  line-height: 1.5;
+  color: var(--boc-slate);
+  margin: -24px 0 40px;
+}
+
 .boc-legal-content {
   color: var(--boc-legal-body, var(--boc-slate));
   font-family: var(--boc-sans);

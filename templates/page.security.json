@@ -1,0 +1,38 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "boc_security_content": {
+      "type": "boc-legal-content",
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "section_anchor_id": "boc-security",
+        "background_color": "#FAF8F5",
+        "heading_color": "#212121",
+        "body_color": "#575962",
+        "padding_top_desktop": 80,
+        "padding_bottom_desktop": 120,
+        "padding_top_tablet": 72,
+        "padding_bottom_tablet": 96,
+        "padding_top_mobile": 50,
+        "padding_bottom_mobile": 72,
+        "heading": "Learn How Stripe Manages Security",
+        "subheading": "Protecting you and your sensitive information",
+        "body": "<p>Anyone involved with the processing, transmission, or storage of card data must comply with the Payment Card Industry Data Security Standards (PCI DSS). A PCI-certified auditor has audited Stripe, and they are denoted as a certified PCI Service Provider Level 1. This is the most stringent level of certification available in the payments industry. To accomplish this, Stripe use the best-in-class security tools and practices to maintain a high level of security.</p><p><strong>HTTPS and HSTS for Secure Connections</strong></p><p>Stripe forces HTTPS for all services using TLS (SSL). TLS refers to the process of securely transmitting data between the client—the app or browser that your customer is using—and your server. This includes their public website and the Dashboard to ensure secure connections:</p><ul><li>Stripe.js is served only over TLS.</li><li>Stripe's official libraries connect to Stripe's servers over TLS and verify TLS certificates on each connection.</li></ul><p>Stripe regularly audit the details of their implementation, including the certificates they serve, the certificate authorities they use, and the ciphers they support. They use HSTS to ensure that browsers interact with Stripe only over HTTPS. Stripe is also on the HSTS preloaded lists for both Google Chrome and Mozilla Firefox.</p><p><strong>Sensitive Data and Communication Encryption</strong></p><p>All your credit card numbers are encrypted at rest with AES-256. Decryption keys are stored on separate machines. None of Stripe's internal servers and daemons can obtain plain text card numbers but can request that cards are sent to a service provider on a static allowlist. Stripe's infrastructure for storing, decrypting, and transmitting card numbers runs in a separate hosting environment, and doesn't share any credentials with Stripe's primary services including their API and website.</p>"
+      }
+    }
+  },
+  "order": [
+    "boc_security_content"
+  ]
+}

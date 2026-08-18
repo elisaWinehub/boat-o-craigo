@@ -44,7 +44,7 @@ mutation CreateFooterMenus {
     items: [
       { title: "Terms", type: HTTP, url: "/policies/terms-of-service" }
       { title: "Privacy", type: HTTP, url: "/policies/privacy-policy" }
-      { title: "Shipping", type: HTTP, url: "/policies/shipping-policy" }
+      { title: "Security", type: HTTP, url: "/pages/security" }
     ]
   ) {
     menu { id handle title }

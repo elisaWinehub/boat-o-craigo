@@ -772,8 +772,62 @@
   gap: 16px;
 }
 
-.boc-group-booking-modal__grid .boc-form-field--full {
+.boc-group-booking-modal__grid .boc-form-field--full,
+.boc-group-booking-modal__grid .boc-whats-on-enquiry__field--full {
   grid-column: 1 / -1;
+}
+
+.boc-group-booking-modal__grid .boc-form-field,
+.boc-group-booking-modal__grid .boc-whats-on-enquiry__field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.boc-group-booking-modal__grid .boc-form-field label,
+.boc-group-booking-modal__grid .boc-whats-on-enquiry__field label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.boc-group-booking-modal__grid .boc-form-field input,
+.boc-group-booking-modal__grid .boc-form-field select,
+.boc-group-booking-modal__grid .boc-form-field textarea,
+.boc-group-booking-modal__grid .boc-whats-on-enquiry__field input,
+.boc-group-booking-modal__grid .boc-whats-on-enquiry__field select,
+.boc-group-booking-modal__grid .boc-whats-on-enquiry__field textarea {
+  width: 100%;
+  border: 1px solid var(--boc-line);
+  background: var(--boc-white);
+  padding: 14px;
+  min-height: 48px;
+  font: inherit;
+  color: var(--boc-ink);
+}
+
+.boc-group-booking-modal__grid .boc-form-field textarea,
+.boc-group-booking-modal__grid .boc-whats-on-enquiry__field textarea {
+  min-height: 130px;
+  resize: vertical;
+}
+
+.boc-group-booking-modal__success {
+  margin: 0;
+  padding: 16px 18px;
+  background: var(--boc-cream);
+  border: 1px solid var(--boc-line);
+  color: var(--boc-ink);
+  line-height: 1.55;
+}
+
+.boc-group-booking-modal__errors {
+  margin: 0 0 16px;
+  padding: 16px 18px;
+  background: #fff5f5;
+  border: 1px solid #e8c4c4;
+  color: var(--boc-ink);
 }
 
 .boc-group-booking-modal__foot {

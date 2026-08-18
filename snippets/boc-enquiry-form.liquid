@@ -11,6 +11,7 @@
   @param {string} [dates_label] - Proposed date/s field label
   @param {string} [occasion_label] - Occasion field label
   @param {string} [submit_label] - Submit button label
+  @param {string} [return_to] - Post-submit redirect URL
 {%- enddoc -%}
 
 {%- liquid
@@ -24,9 +25,19 @@
   assign dates_label = dates_label | default: 'Proposed date/s'
   assign occasion_label = occasion_label | default: 'Occasion'
   assign submit_label = submit_label | default: 'Send enquiry'
+  assign modal_open = false
+  if form.posted_successfully? or form.errors
+    assign modal_open = true
+  endif
 -%}
 
-<div class="boc-group-booking-modal" data-boc-enquiry-modal hidden>
+<div
+  class="boc-group-booking-modal"
+  data-boc-enquiry-modal
+  {% unless modal_open %}hidden{% endunless %}
+  {% if form.posted_successfully? %}data-boc-enquiry-posted="true"{% endif %}
+  {% if form.errors %}data-boc-enquiry-error="true"{% endif %}
+>
   <div class="boc-group-booking-modal__backdrop" data-boc-enquiry-close tabindex="-1"></div>
   <div
     class="boc-group-booking-modal__dialog"
@@ -39,45 +50,47 @@
     </button>
 
     <h2 id="boc-enquiry-title-{{ section_id }}" class="boc-group-booking-modal__title">{{ title }}</h2>
-    {%- if intro != blank -%}
+    {%- if intro != blank and form.posted_successfully? == false -%}
       <p class="boc-group-booking-modal__intro">{{ intro }}</p>
     {%- endif -%}
 
-    {%- form 'contact', id: form_id, class: 'boc-group-booking-modal__form' -%}
+    {%- form 'contact', id: form_id, class: 'boc-group-booking-modal__form', return_to: return_to -%}
       <input type="hidden" name="contact[enquiry_type]" value="{{ enquiry_type | escape }}">
       <input type="hidden" name="contact[tags]" value="{{ tags | escape }}">
 
       {%- if form.posted_successfully? -%}
-        <p class="boc-group-booking-modal__success" role="status">{{ success_message }}</p>
+        <p class="boc-group-booking-modal__success" role="status" tabindex="-1">{{ success_message }}</p>
       {%- endif -%}
 
       {%- if form.errors -%}
         <div class="boc-group-booking-modal__errors" role="alert">{{ form.errors | default_errors }}</div>
       {%- endif -%}
 
-      <div class="boc-group-booking-modal__grid">
-        {%- assign name_id = form_id_prefix | append: '-name-' | append: section_id -%}
-        {%- assign phone_id = form_id_prefix | append: '-phone-' | append: section_id -%}
-        {%- assign email_id = form_id_prefix | append: '-email-' | append: section_id -%}
-        {%- assign guests_id = form_id_prefix | append: '-guests-' | append: section_id -%}
-        {%- assign occasion_id = form_id_prefix | append: '-occasion-' | append: section_id -%}
-        {%- assign dates_id = form_id_prefix | append: '-dates-' | append: section_id -%}
-        {%- assign time_id = form_id_prefix | append: '-time-' | append: section_id -%}
-        {%- assign details_id = form_id_prefix | append: '-details-' | append: section_id -%}
+      {%- unless form.posted_successfully? -%}
+        <div class="boc-group-booking-modal__grid">
+          {%- assign name_id = form_id_prefix | append: '-name-' | append: section_id -%}
+          {%- assign phone_id = form_id_prefix | append: '-phone-' | append: section_id -%}
+          {%- assign email_id = form_id_prefix | append: '-email-' | append: section_id -%}
+          {%- assign guests_id = form_id_prefix | append: '-guests-' | append: section_id -%}
+          {%- assign occasion_id = form_id_prefix | append: '-occasion-' | append: section_id -%}
+          {%- assign dates_id = form_id_prefix | append: '-dates-' | append: section_id -%}
+          {%- assign time_id = form_id_prefix | append: '-time-' | append: section_id -%}
+          {%- assign details_id = form_id_prefix | append: '-details-' | append: section_id -%}
 
-        {% render 'boc-form-field', id: name_id, name: 'contact[name]', label: 'Name', required: true %}
-        {% render 'boc-form-field', id: phone_id, name: 'contact[phone]', label: 'Contact number', type: 'tel', required: true %}
-        {% render 'boc-form-field', id: email_id, name: 'contact[email]', label: 'Email address', type: 'email', required: true %}
-        {% render 'boc-form-field', id: guests_id, name: 'contact[number_of_guests]', label: 'Number of guests', type: 'number', placeholder: 'e.g. 80' %}
-        {% render 'boc-form-field', id: occasion_id, name: 'contact[occasion]', label: occasion_label %}
-        {% render 'boc-form-field', id: dates_id, name: 'contact[proposed_dates]', label: dates_label %}
-        {% render 'boc-form-field', id: time_id, name: 'contact[proposed_time]', label: 'Proposed time' %}
-        {% render 'boc-form-field', id: details_id, name: 'contact[body]', label: 'Any other important details', type: 'textarea', full_width: true %}
-      </div>
+          {% render 'boc-form-field', id: name_id, name: 'contact[name]', label: 'Name', required: true, autocomplete: 'name' %}
+          {% render 'boc-form-field', id: phone_id, name: 'contact[phone]', label: 'Contact number', type: 'tel', required: true, autocomplete: 'tel' %}
+          {% render 'boc-form-field', id: email_id, name: 'contact[email]', label: 'Email address', type: 'email', required: true, autocomplete: 'email' %}
+          {% render 'boc-form-field', id: guests_id, name: 'contact[number_of_guests]', label: 'Number of guests', type: 'number', placeholder: 'e.g. 80' %}
+          {% render 'boc-form-field', id: occasion_id, name: 'contact[occasion]', label: occasion_label %}
+          {% render 'boc-form-field', id: dates_id, name: 'contact[proposed_dates]', label: dates_label %}
+          {% render 'boc-form-field', id: time_id, name: 'contact[proposed_time]', label: 'Proposed time' %}
+          {% render 'boc-form-field', id: details_id, name: 'contact[body]', label: 'Any other important details', type: 'textarea', full_width: true %}
+        </div>
 
-      <div class="boc-group-booking-modal__foot">
-        <button type="submit" class="boc-btn boc-btn--primary">{{ submit_label }}</button>
-      </div>
+        <div class="boc-group-booking-modal__foot">
+          <button type="submit" class="boc-btn boc-btn--primary">{{ submit_label }}</button>
+        </div>
+      {%- endunless -%}
     {%- endform -%}
   </div>
 </div>

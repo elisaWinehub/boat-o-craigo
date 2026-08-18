@@ -11,13 +11,14 @@
   @param {string} [options] - Pipe-separated select options
   @param {boolean} [required] - Required field
   @param {boolean} [disabled] - Disabled field (inactive enquiry tab)
+  @param {string} [autocomplete] - Autocomplete attribute
 {%- enddoc -%}
 
 {%- liquid
   assign field_type = type | default: 'text'
-  assign field_class = 'boc-whats-on-enquiry__field'
+  assign field_class = 'boc-form-field boc-whats-on-enquiry__field'
   if full_width
-    assign field_class = field_class | append: ' boc-whats-on-enquiry__field--full'
+    assign field_class = field_class | append: ' boc-form-field--full boc-whats-on-enquiry__field--full'
   endif
 -%}
 
@@ -29,6 +30,7 @@
         id="{{ id }}"
         name="{{ name }}"
         placeholder="{{ placeholder }}"
+        {% if autocomplete %}autocomplete="{{ autocomplete }}"{% endif %}
         {% if required %}required{% endif %}
         {% if disabled %}disabled{% endif %}
       >{{ value }}</textarea>
@@ -46,6 +48,7 @@
         name="{{ name }}"
         value="{{ value }}"
         placeholder="{{ placeholder }}"
+        {% if autocomplete %}autocomplete="{{ autocomplete }}"{% endif %}
         {% if required %}required{% endif %}
         {% if disabled %}disabled{% endif %}
       >

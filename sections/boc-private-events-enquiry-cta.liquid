@@ -12,6 +12,9 @@
   unless section.settings.show_mobile
     assign section_classes = section_classes | append: ' boc-section--hide-mobile'
   endunless
+
+  assign enquiry_anchor = section.settings.section_anchor_id | default: 'boc-private-events-enquiry'
+  assign form_return_to = request.path | append: '#' | append: enquiry_anchor
 -%}
 
 {{ 'boc-private-events.css' | asset_url | stylesheet_tag }}
@@ -56,7 +59,8 @@
       tags: section.settings.enquiry_tags,
       dates_label: section.settings.dates_field_label,
       occasion_label: section.settings.occasion_field_label,
-      submit_label: section.settings.submit_label
+      submit_label: section.settings.submit_label,
+      return_to: form_return_to
     %}
   </div>
 </section>

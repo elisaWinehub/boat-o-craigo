@@ -46,7 +46,7 @@
     {%- form 'contact', id: form_id, class: 'boc-group-booking-modal__form', return_to: return_to -%}
       {%- liquid
         assign show_success = false
-        if form.posted_successfully?
+        if form.posted_successfully? or request.params.boc_enquiry == 'sent'
           assign show_success = true
         endif
       -%}
@@ -100,7 +100,7 @@
       </div>
 
       <div
-        class="boc-group-booking-modal__success-panel"
+        class="boc-group-booking-modal__success-panel{% if show_success %} is-visible{% endif %}"
         data-boc-enquiry-success-panel
         {% unless show_success %}hidden{% endunless %}
       >

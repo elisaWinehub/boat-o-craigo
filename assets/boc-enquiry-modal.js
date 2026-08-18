@@ -1,6 +1,10 @@
 (function () {
   'use strict';
 
+  function storageKey(form) {
+    return 'bocEnquirySent:' + (form && form.id ? form.id : 'default');
+  }
+
   function buildEnquiryBody(form) {
     var bodyField = form.querySelector('[name="contact[body]"]');
     if (!bodyField || bodyField.value.trim()) return;
@@ -21,9 +25,56 @@
       }
     });
 
-    if (parts.length) {
-      bodyField.value = parts.join('\n');
+    if (!parts.length) {
+      parts.push('Enquiry submitted via website form.');
     }
+
+    bodyField.value = parts.join('\n');
+  }
+
+  function showSuccessState(modal) {
+    var formFields = modal.querySelector('[data-boc-enquiry-form-fields]');
+    var successPanel = modal.querySelector('[data-boc-enquiry-success-panel]');
+    var intro = modal.querySelector('.boc-group-booking-modal__intro');
+    var title = modal.querySelector('.boc-group-booking-modal__title');
+    var errors = modal.querySelector('[data-boc-enquiry-form-errors]');
+
+    if (formFields) formFields.hidden = true;
+    if (successPanel) {
+      successPanel.hidden = false;
+      successPanel.classList.add('is-visible');
+    }
+    if (intro) intro.hidden = true;
+    if (errors) errors.hidden = true;
+    if (title) title.textContent = 'Thank you for your enquiry';
+  }
+
+  function hasVisibleErrors(modal) {
+    var errors = modal.querySelector('[data-boc-enquiry-form-errors]');
+    return !!(errors && !errors.hidden && errors.textContent.trim());
+  }
+
+  function applyPostSubmitState(modal, form) {
+    var key = storageKey(form);
+    var params = new URLSearchParams(window.location.search);
+    var sentViaQuery = params.get('boc_enquiry') === 'sent';
+    var serverSuccessPanel = modal.querySelector('[data-boc-enquiry-success-panel]');
+    var serverSuccess = serverSuccessPanel
+      && (!serverSuccessPanel.hidden || serverSuccessPanel.classList.contains('is-visible'));
+    var pendingSuccess = sessionStorage.getItem(key) === '1';
+
+    if (hasVisibleErrors(modal)) {
+      sessionStorage.removeItem(key);
+      return false;
+    }
+
+    if (pendingSuccess || sentViaQuery || serverSuccess) {
+      sessionStorage.removeItem(key);
+      showSuccessState(modal);
+      return true;
+    }
+
+    return false;
   }
 
   function bindEnquiryForm(modal, form) {
@@ -32,14 +83,13 @@
 
     form.addEventListener('submit', function () {
       buildEnquiryBody(form);
+      sessionStorage.setItem(storageKey(form), '1');
 
       var submitBtn = form.querySelector('[type="submit"]');
       if (submitBtn) {
         submitBtn.disabled = true;
         submitBtn.textContent = 'Sending…';
       }
-
-      modal.dataset.bocEnquirySubmitting = 'true';
     });
   }
 
@@ -54,6 +104,7 @@
 
     function openModal() {
       modal.hidden = false;
+      modal.classList.add('is-open');
       document.body.classList.add('boc-scroll-lock');
 
       var focusTarget = successPanel && !successPanel.hidden
@@ -65,6 +116,7 @@
 
     function closeModal() {
       modal.hidden = true;
+      modal.classList.remove('is-open');
       document.body.classList.remove('boc-scroll-lock');
       if (openBtn) openBtn.focus();
     }
@@ -83,11 +135,10 @@
 
     bindEnquiryForm(modal, form);
 
+    var submittedSuccessfully = applyPostSubmitState(modal, form);
     var autoOpenMarker = modal.querySelector('[data-boc-enquiry-auto-open="true"]');
-    var shouldAutoOpen = autoOpenMarker
-      || (successPanel && !successPanel.hidden);
 
-    if (shouldAutoOpen) {
+    if (submittedSuccessfully || autoOpenMarker || hasVisibleErrors(modal)) {
       openModal();
     }
   }
@@ -96,7 +147,12 @@
     document.querySelectorAll('[data-boc-enquiry-modal]').forEach(initEnquiryModal);
   }
 
-  document.addEventListener('DOMContentLoaded', initAll);
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAll);
+  } else {
+    initAll();
+  }
+
   document.addEventListener('shopify:section:load', function (event) {
     if (!(event.target instanceof HTMLElement)) return;
     event.target.querySelectorAll('[data-boc-enquiry-modal]').forEach(initEnquiryModal);

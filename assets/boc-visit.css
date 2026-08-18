@@ -831,6 +831,10 @@
   line-height: 1.55;
 }
 
+.boc-group-booking-modal__success-panel.is-visible {
+  display: block;
+}
+
 .boc-group-booking-modal__success {
   margin: 0;
   padding: 16px 18px;

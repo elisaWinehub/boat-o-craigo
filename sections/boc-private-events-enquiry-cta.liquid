@@ -14,7 +14,7 @@
   endunless
 
   assign enquiry_anchor = section.settings.section_anchor_id | default: 'boc-private-events-enquiry'
-  assign form_return_to = request.path | append: '#' | append: enquiry_anchor
+  assign form_return_to = page.url | append: '?boc_enquiry=sent#' | append: enquiry_anchor
 -%}
 
 {{ 'boc-private-events.css' | asset_url | stylesheet_tag }}

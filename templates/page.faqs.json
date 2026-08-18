@@ -1,0 +1,352 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "boc_faq_hero": {
+      "type": "boc-faq-hero",
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "overlay_opacity": 55,
+        "height_desktop": 560,
+        "height_tablet": 520,
+        "height_mobile": 460,
+        "image_focal_point": "center",
+        "content_width": 760,
+        "text_alignment_desktop": "left",
+        "text_alignment_mobile": "left",
+        "eyebrow": "Help centre",
+        "heading": "Frequently asked questions",
+        "body": "Find answers about cellar door visits, our wines, orders and more."
+      }
+    },
+    "boc_faq_cellar_door": {
+      "type": "boc-faq-category",
+      "blocks": {
+        "cellar_door_faq_1": {
+          "type": "faq",
+          "settings": {
+            "question": "What are your opening hours?",
+            "answer": "<p>Our Cellar Door at Healesville is open 10.00am to 5.00pm, Thursday to Monday.</p><p><strong>Wine Tastings:</strong> Thurs – Mon, 10am – 4pm</p><p><strong>Kitchen:</strong> Mon/Thurs/Fri, 12pm – 3pm, Sat/Sun, 11am – 4pm</p>",
+            "open_by_default": false
+          }
+        },
+        "cellar_door_faq_2": {
+          "type": "faq",
+          "settings": {
+            "question": "Do I need to book?",
+            "answer": "<p>To ensure we can dedicate time with you and your group, we recommended that you make a booking for all wine tastings and lunch sittings. Visit our <a href=\"/pages/book-now\">booking page</a> for more info.</p>",
+            "open_by_default": false
+          }
+        },
+        "cellar_door_faq_3": {
+          "type": "faq",
+          "settings": {
+            "question": "Do you do wine tastings?",
+            "answer": "<p>Wine tastings are $15pp, refundable upon purchase of 2+ bottles, and includes five wines from our Tasting Menu.</p>",
+            "open_by_default": false
+          }
+        },
+        "cellar_door_faq_4": {
+          "type": "faq",
+          "settings": {
+            "question": "What can we eat?",
+            "answer": "<p>We offer locally sourced charcuterie and cheese paddles, as well as our traditional thin base pizzas. We have vegetarian, vegan and gluten free options, and can accommodate most dietary requirements. Please note this at your time of booking.</p>",
+            "open_by_default": false
+          }
+        },
+        "cellar_door_faq_5": {
+          "type": "faq",
+          "settings": {
+            "question": "Can I bring my dog?",
+            "answer": "<p>We love our four-legged friends and we are pleased to be a dog-friendly venue in outdoor areas only. Dogs must remain on lead and under supervision at all times. Please note this alongside your booking.</p>",
+            "open_by_default": false
+          }
+        },
+        "cellar_door_faq_6": {
+          "type": "faq",
+          "settings": {
+            "question": "What about large groups?",
+            "answer": "<p><strong>Wine Tastings</strong> – Please call or email us for bookings of 11+ people (you will not be able to make a booking via the booking system for groups larger than 11).</p><p><strong>Restaurant</strong> – Groups of 10+ will enjoy the ease of our $55 Feed Me menu, offering a selection of our grazing boards, delicious pizzas and fresh salads ($25 pp for 5–12 years). Please call or email us for bookings of 10+ people (you will not be able to make a booking via the system for groups larger than 10).</p>",
+            "open_by_default": false
+          }
+        },
+        "cellar_door_faq_7": {
+          "type": "faq",
+          "settings": {
+            "question": "What seating options do you have?",
+            "answer": "<p>We have a number of different seated sections, please view the images on the booking page for more information. We will do our best to seat you in your preferred section, but please make a note of any special requirements upon booking.</p>",
+            "open_by_default": false
+          }
+        },
+        "cellar_door_faq_8": {
+          "type": "faq",
+          "settings": {
+            "question": "How do I change or cancel my booking?",
+            "answer": "<p>Service is a busy time, and we can't always make it to your phone call. If you need to update, change or cancel your booking, please do this from your booking confirmation email. Otherwise send us an email at <a href=\"mailto:info@boatocraigo.com.au\">info@boatocraigo.com.au</a> and we'll get back to you as soon as we're free.</p>",
+            "open_by_default": false
+          }
+        }
+      },
+      "block_order": [
+        "cellar_door_faq_1",
+        "cellar_door_faq_2",
+        "cellar_door_faq_3",
+        "cellar_door_faq_4",
+        "cellar_door_faq_5",
+        "cellar_door_faq_6",
+        "cellar_door_faq_7",
+        "cellar_door_faq_8"
+      ],
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "layout_width": "contained",
+        "section_anchor_id": "boc-faq-cellar-door",
+        "reverse_layout": false,
+        "image_fallback": "boc-estate-visit.jpg",
+        "split_ratio": "1.05fr 0.95fr",
+        "desktop_image_height": 680,
+        "tablet_image_height": 520,
+        "mobile_image_height": 380,
+        "mobile_stack_order": "image_first",
+        "copy_background_color": "#FAF8F5",
+        "copy_text_color": "#212121",
+        "copy_body_color": "#575962",
+        "divider_color": "#E8E2D9",
+        "question_color": "#212121",
+        "answer_color": "#575962",
+        "icon_color": "#212121",
+        "one_open_only": true,
+        "first_item_open": false,
+        "eyebrow": "Visit",
+        "heading": "Cellar Door"
+      }
+    },
+    "boc_faq_our_wines": {
+      "type": "boc-faq-category",
+      "blocks": {
+        "our_wines_faq_1": {
+          "type": "faq",
+          "settings": {
+            "question": "If I don't know anything about wine, where do I start?",
+            "answer": "<p>This is a great question, there is so much to learn about wine, but start with what you enjoy. Make your wine choices fit within your lifestyle, for example, what kinds of foods do you enjoy? If it's seafood, try a Sauvignon Blanc or Chardonnay. Love oysters? Try them with a glass of our Sparkling. If you prefer red meats or hearty stews, try our Shiraz or Pinot Noir. It's also a great idea to head to our cellar door and book in a for a tasting, you'll quickly discover what you like. And our cellar door staff are fantastic and helping you through the process.</p>",
+            "open_by_default": false
+          }
+        },
+        "our_wines_faq_2": {
+          "type": "faq",
+          "settings": {
+            "question": "I love your wine! Do you have a Wine Club where I can get great discounts?",
+            "answer": "<p>We do and we'd love you to join the Boato family! Wine Club members enjoy discounts of up to 30% off all wines, including museum releases and reserves, free tastings in cellar door, free shipping on deliveries and exclusive member releases and invites to events. Check out our <a href=\"/pages/wine-club\">Wine Club page</a> for more info.</p>",
+            "open_by_default": false
+          }
+        },
+        "our_wines_faq_3": {
+          "type": "faq",
+          "settings": {
+            "question": "Do you have any sweet wines at Boat O'Craigo?",
+            "answer": "<p>We get asked this one a lot too. At Boato we make predominantly dry wines but have recently experimented with a Sparkling Shiraz and a Field Blend. Browse our <a href=\"/collections/wines\">wines collection</a> for more info.</p>",
+            "open_by_default": false
+          }
+        }
+      },
+      "block_order": [
+        "our_wines_faq_1",
+        "our_wines_faq_2",
+        "our_wines_faq_3"
+      ],
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "layout_width": "contained",
+        "section_anchor_id": "boc-faq-our-wines",
+        "reverse_layout": true,
+        "image_fallback": "boc-hero-wines.png",
+        "split_ratio": "1.05fr 0.95fr",
+        "desktop_image_height": 680,
+        "tablet_image_height": 520,
+        "mobile_image_height": 380,
+        "mobile_stack_order": "image_first",
+        "copy_background_color": "#FAF8F5",
+        "copy_text_color": "#212121",
+        "copy_body_color": "#575962",
+        "divider_color": "#E8E2D9",
+        "question_color": "#212121",
+        "answer_color": "#575962",
+        "icon_color": "#212121",
+        "one_open_only": true,
+        "first_item_open": false,
+        "eyebrow": "Wine",
+        "heading": "Our Wines"
+      }
+    },
+    "boc_faq_orders": {
+      "type": "boc-faq-category",
+      "blocks": {
+        "orders_faq_1": {
+          "type": "faq",
+          "settings": {
+            "question": "Can I buy a Gift Voucher online?",
+            "answer": "<p>Yes! Visit our <a href=\"/products/gift-card\">Gift Vouchers page</a> under Shop for more info. Gift Cards can be redeemed in-store or over the phone by calling us during business hours; Thursday – Monday, 10am – 5pm.</p>",
+            "open_by_default": false
+          }
+        },
+        "orders_faq_2": {
+          "type": "faq",
+          "settings": {
+            "question": "I've placed my order but I didn't receive my order confirmation.",
+            "answer": "<p>It may have got caught in your spam or junk inbox. Take a look in there, and if you are still unable to find it, please contact us.</p>",
+            "open_by_default": false
+          }
+        },
+        "orders_faq_3": {
+          "type": "faq",
+          "settings": {
+            "question": "How much is shipping?",
+            "answer": "<p>Our shipping costs vary depending on the size of your order and where you live. We try to keep our shipping costs as low as we can for you. Best news is that all orders in Victoria, as well as metro Sydney, Brisbane and Adelaide have FREE shipping on all orders of 12+ bottles</p>",
+            "open_by_default": false
+          }
+        },
+        "orders_faq_4": {
+          "type": "faq",
+          "settings": {
+            "question": "How do I know when my order has been shipped?",
+            "answer": "<p>Our team will pick and dispatch your order as quickly as possible. Once dispatched, you will receive an email notification from AusPost with tracking information to let you know that your order is on its way. At times, Australia Post deem in unsafe to leave deliveries in certain situations. Please check the tracking information to see if your order has been taken to your local post office.</p>",
+            "open_by_default": false
+          }
+        },
+        "orders_faq_5": {
+          "type": "faq",
+          "settings": {
+            "question": "I've received my order, but the bottles are incorrect.",
+            "answer": "<p>We take every care to ensure this doesn't happen, but we are also fallible and completely human! Please contact us if something isn't right and we'll do our best to fix this up for you.</p>",
+            "open_by_default": false
+          }
+        },
+        "orders_faq_6": {
+          "type": "faq",
+          "settings": {
+            "question": "What happens if something arrives broken?",
+            "answer": "<p>Unfortunately, it's rare, but it has happened to us before. In the case your parcel arrives to you broken, please get in touch with us as soon as possible for us to arrange appropriate replacements.</p>",
+            "open_by_default": false
+          }
+        }
+      },
+      "block_order": [
+        "orders_faq_1",
+        "orders_faq_2",
+        "orders_faq_3",
+        "orders_faq_4",
+        "orders_faq_5",
+        "orders_faq_6"
+      ],
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "layout_width": "contained",
+        "section_anchor_id": "boc-faq-orders",
+        "reverse_layout": false,
+        "image_fallback": "boc-estate-vineyard.jpg",
+        "split_ratio": "1.05fr 0.95fr",
+        "desktop_image_height": 680,
+        "tablet_image_height": 520,
+        "mobile_image_height": 380,
+        "mobile_stack_order": "image_first",
+        "copy_background_color": "#FAF8F5",
+        "copy_text_color": "#212121",
+        "copy_body_color": "#575962",
+        "divider_color": "#E8E2D9",
+        "question_color": "#212121",
+        "answer_color": "#575962",
+        "icon_color": "#212121",
+        "one_open_only": true,
+        "first_item_open": false,
+        "eyebrow": "Shop",
+        "heading": "Orders"
+      }
+    },
+    "boc_faq_good_to_know": {
+      "type": "boc-faq-category",
+      "blocks": {
+        "good_to_know_faq_1": {
+          "type": "faq",
+          "settings": {
+            "question": "Are your wines Vegan?",
+            "answer": "<p>Yes, and we're very proud of Vegan friendly processes. All our wines are vegan, which means that no egg or animal products have been used in the fining stages of the winemaking process.</p>",
+            "open_by_default": false
+          }
+        },
+        "good_to_know_faq_2": {
+          "type": "faq",
+          "settings": {
+            "question": "How long does open wine last?",
+            "answer": "<p>While every wine is different, there are some general guidelines to follow that will help slow down the ageing process before it goes bad. The main chemical reaction that happens to open wine is oxidation. Once the wine's open you expose it to oxygen. It will start reacting just like, for example, if you left a piece of apple outside. The apple will turn brown after a certain time.</p><p>According to experts, open white wine rose will last roughly three to five days if kept refrigerated. Sparkling wine is more like one to two days, but invest in a proper sparkling bottle stopper to save bubble loss. An open red wine, if closed immediately and kept in a cool dark place, lasts four to five days in winter but in summer it's more like two or three days. And finally, the last category to consider is natural or orange wine. Since a lot of these wines are lo-fi with minimal intervention they're best finished on the day they're opened.</p>",
+            "open_by_default": false
+          }
+        },
+        "good_to_know_faq_3": {
+          "type": "faq",
+          "settings": {
+            "question": "How long can wine be cellared?",
+            "answer": "<p>It depends on which wine although the advent of screwcaps have increased the cellaring potential of all wines. Most white wines are best when fresh in the first couple of years after vintage whilst our reds wines will gain character and complexity for over five years.</p>",
+            "open_by_default": false
+          }
+        }
+      },
+      "block_order": [
+        "good_to_know_faq_1",
+        "good_to_know_faq_2",
+        "good_to_know_faq_3"
+      ],
+      "settings": {
+        "section_enabled": true,
+        "show_desktop": true,
+        "show_tablet": true,
+        "show_mobile": true,
+        "layout_width": "contained",
+        "section_anchor_id": "boc-faq-good-to-know",
+        "reverse_layout": true,
+        "image_fallback": "boc-estate-vineyard.jpg",
+        "split_ratio": "1.05fr 0.95fr",
+        "desktop_image_height": 680,
+        "tablet_image_height": 520,
+        "mobile_image_height": 380,
+        "mobile_stack_order": "image_first",
+        "copy_background_color": "#FAF8F5",
+        "copy_text_color": "#212121",
+        "copy_body_color": "#575962",
+        "divider_color": "#E8E2D9",
+        "question_color": "#212121",
+        "answer_color": "#575962",
+        "icon_color": "#212121",
+        "one_open_only": true,
+        "first_item_open": false,
+        "eyebrow": "Wine knowledge",
+        "heading": "Good to Know"
+      }
+    }
+  },
+  "order": [
+    "boc_faq_hero",
+    "boc_faq_cellar_door",
+    "boc_faq_our_wines",
+    "boc_faq_orders",
+    "boc_faq_good_to_know"
+  ]
+}

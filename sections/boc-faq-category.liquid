@@ -1,0 +1,164 @@
+{{ 'boc-visit.css' | asset_url | stylesheet_tag }}
+{{ 'boc-faq.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'boc-faq.js' | asset_url }}" defer></script>
+
+{%- liquid
+  assign section_classes = 'boc-visit-section boc-visit-tasting boc-faq-category'
+  if section.settings.layout_width == 'contained'
+    assign section_classes = section_classes | append: ' boc-visit-section--contained'
+  else
+    assign section_classes = section_classes | append: ' boc-visit-section--full'
+  endif
+  unless section.settings.section_enabled
+    assign section_classes = section_classes | append: ' boc-visit-section--disabled'
+  endunless
+  unless section.settings.show_desktop
+    assign section_classes = section_classes | append: ' boc-visit-section--hide-desktop'
+  endunless
+  unless section.settings.show_tablet
+    assign section_classes = section_classes | append: ' boc-visit-section--hide-tablet'
+  endunless
+  unless section.settings.show_mobile
+    assign section_classes = section_classes | append: ' boc-visit-section--hide-mobile'
+  endunless
+
+  assign feature_class = 'boc-visit-feature'
+  if section.settings.reverse_layout
+    assign feature_class = feature_class | append: ' boc-visit-feature--reverse'
+  endif
+  if section.settings.mobile_stack_order == 'copy_first'
+    assign feature_class = feature_class | append: ' boc-visit-feature--mobile-copy-first'
+  endif
+
+  assign fallback_url = section.settings.image_fallback | default: 'boc-estate-visit.jpg' | asset_url
+  assign split_ratio = section.settings.split_ratio | default: '1.05fr 0.95fr'
+  assign one_open = section.settings.one_open_only
+  assign first_open = section.settings.first_item_open
+-%}
+
+<section
+  id="boc-faq-category-{{ section.id }}"
+  class="{{ section_classes }}"
+  data-boc-faq
+>
+  <div
+    id="{{ section.settings.section_anchor_id | default: section.id }}"
+    class="{{ feature_class }}"
+    style="
+      --boc-v-split-ratio: {{ split_ratio }};
+      --boc-v-split-ratio-rev: {{ section.settings.split_ratio_reverse | default: '0.95fr 1.05fr' }};
+      --boc-v-feature-min-h: {{ section.settings.desktop_image_height }}px;
+      --boc-v-feature-media-h: {{ section.settings.desktop_image_height }}px;
+      --boc-v-feature-media-h-m: {{ section.settings.tablet_image_height }}px;
+      --boc-v-feature-media-h-s: {{ section.settings.mobile_image_height }}px;
+      --boc-v-copy-bg: {{ section.settings.copy_background_color }};
+      --boc-v-copy-text: {{ section.settings.copy_text_color }};
+      --boc-v-copy-body: {{ section.settings.copy_body_color }};
+      --boc-fq-divider: {{ section.settings.divider_color }};
+      --boc-fq-question: {{ section.settings.question_color }};
+      --boc-fq-answer: {{ section.settings.answer_color }};
+      --boc-fq-icon: {{ section.settings.icon_color }};
+    "
+  >
+    <div class="boc-visit-feature__media">
+      {%- if section.settings.image != blank or section.settings.mobile_image != blank -%}
+        {% render 'boc-responsive-image',
+          image: section.settings.image,
+          mobile_image: section.settings.mobile_image,
+          alt: section.settings.heading,
+          loading: 'lazy',
+          sizes: '(min-width: 980px) 55vw, 100vw'
+        %}
+      {%- else -%}
+        <img src="{{ fallback_url }}" alt="{{ section.settings.heading | escape }}" loading="lazy" width="1600" height="680">
+      {%- endif -%}
+    </div>
+
+    <div class="boc-visit-feature__copy">
+      {%- if section.settings.eyebrow != blank -%}
+        <span class="boc-eyebrow">{{ section.settings.eyebrow }}</span>
+      {%- endif -%}
+      {%- if section.settings.heading != blank -%}
+        <h2 class="boc-visit-section__heading">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+
+      {%- if section.blocks.size > 0 -%}
+        <div
+          class="boc-faq-category__list"
+          data-boc-faq-list
+          data-one-open="{% if one_open %}true{% else %}false{% endif %}"
+        >
+          {%- for block in section.blocks -%}
+            {%- liquid
+              assign open_item = false
+              if block.settings.open_by_default
+                assign open_item = true
+              elsif first_open and forloop.first
+                assign open_item = true
+              endif
+            -%}
+            {% render 'boc-faq-item',
+              block: block,
+              section_id: section.id,
+              is_open: open_item,
+              divider_color: section.settings.divider_color,
+              question_color: section.settings.question_color,
+              answer_color: section.settings.answer_color,
+              icon_color: section.settings.icon_color,
+              namespace: 'faq'
+            %}
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "BOC — FAQ Category",
+  "tag": "section",
+  "class": "boc-faq-category-section",
+  "max_blocks": 16,
+  "settings": [
+    { "type": "checkbox", "id": "section_enabled", "label": "Enable section", "default": true },
+    { "type": "checkbox", "id": "show_desktop", "label": "Show on desktop", "default": true },
+    { "type": "checkbox", "id": "show_tablet", "label": "Show on tablet", "default": true },
+    { "type": "checkbox", "id": "show_mobile", "label": "Show on mobile", "default": true },
+    { "type": "select", "id": "layout_width", "label": "Layout width", "options": [{"value":"full","label":"Full width"},{"value":"contained","label":"Contained (max width)"}],"default": "contained" },
+    { "type": "text", "id": "section_anchor_id", "label": "Section anchor ID" },
+    { "type": "checkbox", "id": "reverse_layout", "label": "Image on right", "default": false },
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "image_picker", "id": "mobile_image", "label": "Mobile image" },
+    { "type": "text", "id": "image_fallback", "label": "Fallback image asset", "default": "boc-estate-visit.jpg" },
+    { "type": "text", "id": "split_ratio", "label": "Split ratio", "default": "1.05fr 0.95fr" },
+    { "type": "range", "id": "desktop_image_height", "label": "Desktop image height", "min": 360, "max": 900, "step": 20, "unit": "px", "default": 680 },
+    { "type": "range", "id": "tablet_image_height", "label": "Tablet image height", "min": 300, "max": 700, "step": 20, "unit": "px", "default": 520 },
+    { "type": "range", "id": "mobile_image_height", "label": "Mobile image height", "min": 280, "max": 600, "step": 20, "unit": "px", "default": 380 },
+    { "type": "select", "id": "mobile_stack_order", "label": "Mobile stack order", "options": [{"value":"image_first","label":"Image first"},{"value":"copy_first","label":"Copy first"}],"default": "image_first" },
+    { "type": "color", "id": "copy_background_color", "label": "Copy background", "default": "#FAF8F5" },
+    { "type": "color", "id": "copy_text_color", "label": "Heading colour", "default": "#212121" },
+    { "type": "color", "id": "copy_body_color", "label": "Body text", "default": "#575962" },
+    { "type": "color", "id": "divider_color", "label": "Divider colour", "default": "#E8E2D9" },
+    { "type": "color", "id": "question_color", "label": "Question colour", "default": "#212121" },
+    { "type": "color", "id": "answer_color", "label": "Answer colour", "default": "#575962" },
+    { "type": "color", "id": "icon_color", "label": "Plus/minus colour", "default": "#212121" },
+    { "type": "checkbox", "id": "one_open_only", "label": "Allow one open item only", "default": true },
+    { "type": "checkbox", "id": "first_item_open", "label": "First item open by default", "default": false },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow" },
+    { "type": "text", "id": "heading", "label": "Category heading", "default": "Category" }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "FAQ item",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Question", "default": "Question" },
+        { "type": "richtext", "id": "answer", "label": "Answer", "default": "<p>Answer copy.</p>" },
+        { "type": "checkbox", "id": "open_by_default", "label": "Open by default", "default": false }
+      ]
+    }
+  ],
+  "presets": [{ "name": "BOC — FAQ Category" }]
+}
+{% endschema %}

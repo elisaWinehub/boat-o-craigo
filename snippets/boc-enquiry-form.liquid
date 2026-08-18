@@ -19,7 +19,7 @@
   assign form_id = form_id_prefix | append: '-form-' | append: section_id
   assign title = title | default: 'Enquiry'
   assign intro = intro | default: 'Share a few details and our team will follow up by email.'
-  assign success_message = success_message | default: 'Thank you — our team will be in touch shortly.'
+  assign success_message = success_message | default: 'Our team will be in touch shortly.'
   assign enquiry_type = enquiry_type | default: 'Event enquiry'
   assign tags = tags | default: 'event-enquiry'
   assign dates_label = dates_label | default: 'Proposed date/s'
@@ -36,7 +36,6 @@
   data-boc-enquiry-modal
   {% unless modal_open %}hidden{% endunless %}
   {% if form.posted_successfully? %}data-boc-enquiry-posted="true"{% endif %}
-  {% if form.errors %}data-boc-enquiry-error="true"{% endif %}
 >
   <div class="boc-group-booking-modal__backdrop" data-boc-enquiry-close tabindex="-1"></div>
   <div
@@ -49,7 +48,13 @@
       {% render 'boc-icon', name: 'close' %}
     </button>
 
-    <h2 id="boc-enquiry-title-{{ section_id }}" class="boc-group-booking-modal__title">{{ title }}</h2>
+    <h2 id="boc-enquiry-title-{{ section_id }}" class="boc-group-booking-modal__title">
+      {%- if form.posted_successfully? -%}
+        Thank you for your enquiry
+      {%- else -%}
+        {{ title }}
+      {%- endif -%}
+    </h2>
     {%- if intro != blank and form.posted_successfully? == false -%}
       <p class="boc-group-booking-modal__intro">{{ intro }}</p>
     {%- endif -%}
@@ -58,15 +63,11 @@
       <input type="hidden" name="contact[enquiry_type]" value="{{ enquiry_type | escape }}">
       <input type="hidden" name="contact[tags]" value="{{ tags | escape }}">
 
-      {%- if form.posted_successfully? -%}
-        <p class="boc-group-booking-modal__success" role="status" tabindex="-1">{{ success_message }}</p>
-      {%- endif -%}
+      <div class="boc-group-booking-modal__errors" data-boc-enquiry-form-errors role="alert" {% unless form.errors %}hidden{% endunless %}>
+        {%- if form.errors -%}{{ form.errors | default_errors }}{%- endif -%}
+      </div>
 
-      {%- if form.errors -%}
-        <div class="boc-group-booking-modal__errors" role="alert">{{ form.errors | default_errors }}</div>
-      {%- endif -%}
-
-      {%- unless form.posted_successfully? -%}
+      <div class="boc-group-booking-modal__form-fields" data-boc-enquiry-form-fields {% if form.posted_successfully? %}hidden{% endif %}>
         <div class="boc-group-booking-modal__grid">
           {%- assign name_id = form_id_prefix | append: '-name-' | append: section_id -%}
           {%- assign phone_id = form_id_prefix | append: '-phone-' | append: section_id -%}
@@ -90,7 +91,19 @@
         <div class="boc-group-booking-modal__foot">
           <button type="submit" class="boc-btn boc-btn--primary">{{ submit_label }}</button>
         </div>
-      {%- endunless -%}
+      </div>
+
+      <div
+        class="boc-group-booking-modal__success-panel"
+        data-boc-enquiry-success-panel
+        {% unless form.posted_successfully? %}hidden{% endunless %}
+      >
+        <p class="boc-group-booking-modal__success-lead">Thank you for your enquiry.</p>
+        <p class="boc-group-booking-modal__success-message">{{ success_message }}</p>
+        <button type="button" class="boc-btn boc-btn--primary" data-boc-enquiry-close data-boc-enquiry-success-focus>
+          Close
+        </button>
+      </div>
     {%- endform -%}
   </div>
 </div>

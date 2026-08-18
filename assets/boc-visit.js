@@ -103,45 +103,6 @@
     });
   }
 
-  function initGroupBookingModal(root) {
-    var openBtn = root.querySelector('[data-boc-enquiry-open], [data-boc-group-booking-open]');
-    var modal = root.querySelector('[data-boc-enquiry-modal], [data-boc-group-booking-modal]');
-    if (!modal || modal.dataset.bocEnquiryModalBound === 'true') return;
-    modal.dataset.bocEnquiryModalBound = 'true';
-
-    function openModal() {
-      modal.hidden = false;
-      document.body.classList.add('boc-scroll-lock');
-      var focusTarget = modal.querySelector('.boc-group-booking-modal__success')
-        || modal.querySelector('.boc-group-booking-modal__errors')
-        || modal.querySelector('.boc-group-booking-modal__close')
-        || modal.querySelector('input, textarea, select, button');
-      if (focusTarget) focusTarget.focus();
-    }
-
-    function closeModal() {
-      modal.hidden = true;
-      document.body.classList.remove('boc-scroll-lock');
-      if (openBtn) openBtn.focus();
-    }
-
-    if (openBtn) {
-      openBtn.addEventListener('click', openModal);
-    }
-
-    modal.querySelectorAll('[data-boc-enquiry-close], [data-boc-group-booking-close]').forEach(function (el) {
-      el.addEventListener('click', closeModal);
-    });
-
-    modal.addEventListener('keydown', function (event) {
-      if (event.key === 'Escape') closeModal();
-    });
-
-    if (!modal.hidden) {
-      openModal();
-    }
-  }
-
   function initRoot(root) {
     if (!root || root.dataset.bocVisitInit === 'true') return;
     root.dataset.bocVisitInit = 'true';
@@ -149,7 +110,6 @@
     initAnchorNav(root);
     initReviewsCarousel(root);
     initAccordions(root);
-    initGroupBookingModal(root);
   }
 
   function initAll() {

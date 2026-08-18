@@ -813,6 +813,24 @@
   resize: vertical;
 }
 
+.boc-group-booking-modal__success-panel {
+  padding: 8px 0 4px;
+  text-align: center;
+}
+
+.boc-group-booking-modal__success-lead {
+  margin: 0 0 12px;
+  font-family: var(--boc-serif);
+  font-size: var(--boc-heading-sm);
+  color: var(--boc-ink);
+}
+
+.boc-group-booking-modal__success-message {
+  margin: 0 0 24px;
+  color: var(--boc-slate);
+  line-height: 1.55;
+}
+
 .boc-group-booking-modal__success {
   margin: 0;
   padding: 16px 18px;

@@ -325,9 +325,18 @@ body.boc-product-gallery-modal-open { overflow: hidden; }
 }
 
 .product-title {
-  font: 400 clamp(2.8rem, 4.8vw, 5rem) / 1 var(--serif);
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(2rem, 4vw, 2.8125rem);
+  line-height: 1;
   letter-spacing: -0.03em;
   margin: 0 0 18px;
+}
+
+@media (min-width: 721px) {
+  .product-title {
+    font-size: 45px;
+  }
 }
 
 .product-subtitle {

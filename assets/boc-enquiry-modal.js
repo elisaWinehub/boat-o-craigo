@@ -1,87 +1,45 @@
 (function () {
   'use strict';
 
-  function showSuccessState(modal, form) {
-    var formFields = modal.querySelector('[data-boc-enquiry-form-fields]');
-    var successPanel = modal.querySelector('[data-boc-enquiry-success-panel]');
-    var intro = modal.querySelector('.boc-group-booking-modal__intro');
-    var title = modal.querySelector('.boc-group-booking-modal__title');
-    var errors = modal.querySelector('[data-boc-enquiry-form-errors]');
+  function buildEnquiryBody(form) {
+    var bodyField = form.querySelector('[name="contact[body]"]');
+    if (!bodyField || bodyField.value.trim()) return;
 
-    if (formFields) formFields.hidden = true;
-    if (successPanel) successPanel.hidden = false;
-    if (intro) intro.hidden = true;
-    if (errors) errors.hidden = true;
-    if (title) title.textContent = 'Thank you for your enquiry';
+    var parts = [];
+    var map = [
+      ['contact[enquiry_type]', 'Enquiry type'],
+      ['contact[number_of_guests]', 'Number of guests'],
+      ['contact[occasion]', 'Occasion'],
+      ['contact[proposed_dates]', 'Proposed date/s'],
+      ['contact[proposed_time]', 'Proposed time'],
+    ];
 
-    modal.dataset.bocEnquiryPosted = 'true';
+    map.forEach(function (entry) {
+      var field = form.querySelector('[name="' + entry[0] + '"]');
+      if (field && field.value && field.value.trim()) {
+        parts.push(entry[1] + ': ' + field.value.trim());
+      }
+    });
 
-    var focusTarget = successPanel && successPanel.querySelector('[data-boc-enquiry-success-focus]');
-    if (focusTarget) focusTarget.focus();
+    if (parts.length) {
+      bodyField.value = parts.join('\n');
+    }
   }
 
   function bindEnquiryForm(modal, form) {
     if (!form || form.dataset.bocEnquirySubmitBound === 'true') return;
     form.dataset.bocEnquirySubmitBound = 'true';
 
-    form.addEventListener('submit', function (event) {
-      event.preventDefault();
-      if (form.dataset.bocEnquirySubmitting === 'true') return;
+    form.addEventListener('submit', function () {
+      buildEnquiryBody(form);
 
       var submitBtn = form.querySelector('[type="submit"]');
-      var errorsBox = modal.querySelector('[data-boc-enquiry-form-errors]');
-      var defaultSubmitLabel = submitBtn ? submitBtn.textContent : '';
-
-      form.dataset.bocEnquirySubmitting = 'true';
       if (submitBtn) {
         submitBtn.disabled = true;
         submitBtn.textContent = 'Sending…';
       }
-      if (errorsBox) errorsBox.hidden = true;
 
-      fetch(form.action || '/contact', {
-        method: 'POST',
-        body: new FormData(form),
-        credentials: 'same-origin',
-        redirect: 'follow',
-        headers: {
-          Accept: 'text/html',
-        },
-      })
-        .then(function (response) {
-          return response.text().then(function (html) {
-            return { response: response, html: html };
-          });
-        })
-        .then(function (result) {
-          var parsed = new DOMParser().parseFromString(result.html, 'text/html');
-          var remoteErrors = parsed.querySelector('.boc-group-booking-modal__errors, .errors, .form-errors');
-
-          if (remoteErrors && remoteErrors.textContent.trim()) {
-            if (errorsBox) {
-              errorsBox.innerHTML = remoteErrors.innerHTML;
-              errorsBox.hidden = false;
-            }
-            return;
-          }
-
-          if (result.response.ok) {
-            showSuccessState(modal, form);
-          }
-        })
-        .catch(function () {
-          if (errorsBox) {
-            errorsBox.textContent = 'Something went wrong. Please try again or email us directly.';
-            errorsBox.hidden = false;
-          }
-        })
-        .finally(function () {
-          form.dataset.bocEnquirySubmitting = 'false';
-          if (submitBtn) {
-            submitBtn.disabled = false;
-            submitBtn.textContent = defaultSubmitLabel;
-          }
-        });
+      modal.dataset.bocEnquirySubmitting = 'true';
     });
   }
 
@@ -125,7 +83,11 @@
 
     bindEnquiryForm(modal, form);
 
-    if (!modal.hidden || (successPanel && !successPanel.hidden) || modal.dataset.bocEnquiryPosted === 'true') {
+    var autoOpenMarker = modal.querySelector('[data-boc-enquiry-auto-open="true"]');
+    var shouldAutoOpen = autoOpenMarker
+      || (successPanel && !successPanel.hidden);
+
+    if (shouldAutoOpen) {
       openModal();
     }
   }
